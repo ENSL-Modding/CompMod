@@ -23,5 +23,6 @@ Modules =
 	"Marine/GunDropTime",
 	"Marine/Jetpack",
 	"Marine/Pres",
+	"Marine/Shotgun",
 	"Marine/WeldSpeed",
 }
