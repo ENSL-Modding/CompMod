@@ -20,6 +20,7 @@ Modules =
 	"Global/HealthBars",
 
 	-- Marine Changes
+	"Marine/Flamethrower",
 	"Marine/GunDropTime",
 	"Marine/Jetpack",
 	"Marine/Pres",
