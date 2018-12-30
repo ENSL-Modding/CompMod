@@ -121,10 +121,11 @@ end
 -- ktechids
 
 function AddTechId(techId)
+	ModPrintDebug("Adding techId: " .. techId, "all")
 	AppendToEnum(kTechId, techId)
 end
 
--- setters
+-- setters (or inserters =])
 
 function AddTechIdToMaterialOffset(techId, offset)
 	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
@@ -224,8 +225,8 @@ function ChangeResearch(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kResearchToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
-function AddResearchNode(techId, prereq1, prereq2, addOnTechId, after)
-	table.insert(kResearchToAdd, { techId, prereq1, prereq2, addOnTechId, after } )
+function AddResearchNode(techId, prereq1, prereq2, addOnTechId)
+	table.insert(kResearchToAdd, { techId, prereq1, prereq2, addOnTechId } )
 end
 
 -- targeted activation
@@ -304,8 +305,8 @@ function ChangeActivation(techId, prereq1, prereq2)
 	table.insert(kActivationToChange, techId, { techId, prereq1, prereq2 } )
 end
 
-function AddActivation(techId, prereq1, prereq2, afterTech)
-	table.insert(kActivationToAdd, { techId, prereq1, prereq2, afterTech } )
+function AddActivation(techId, prereq1, prereq2)
+	table.insert(kActivationToAdd, { techId, prereq1, prereq2 } )
 end
 
 -- targeted buy nodes

@@ -18,7 +18,6 @@ end
 
 local researchToRemove = GetResearchToRemove()
 local researchToChange = GetResearchToChange()
-local researchToAdd = GetResearchToAdd()
 
 local oldAddResearchNode = TechTree.AddResearchNode
 function TechTree:AddResearchNode(techId, prereq1, prereq2, addOnTechId)
@@ -31,13 +30,6 @@ function TechTree:AddResearchNode(techId, prereq1, prereq2, addOnTechId)
         oldAddResearchNode(self, changedNode[1], changedNode[2], changedNode[3], changedNode[4])
     else
         oldAddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
-    end
-
-    for _, value in pairs(researchToAdd) do
-        if value[5] == techId then
-            ModPrintDebug("Adding research node: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
-            oldAddResearchNode(self, value[1], value[2], value[3], value[4])
-        end
     end
 end
 
@@ -163,7 +155,6 @@ end
 
 local activationToRemove = GetActivationToRemove()
 local activationToChange = GetActivationToChange()
-local activationToAdd = GetActivationToAdd()
 
 local oldAddActivation = TechTree.AddActivation
 function TechTree:AddActivation(techId, prereq1, prereq2)
@@ -177,13 +168,6 @@ function TechTree:AddActivation(techId, prereq1, prereq2)
         oldAddActivation(self, changedNode[1], changedNode[2], changedNode[3])
     else
         oldAddActivation(self, techId, prereq1, prereq2)
-    end
-
-    for _, value in pairs(activationToAdd) do
-        if value[4] == techId then
-            ModPrintDebug("Adding activation node: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
-            oldAddActivation(self, value[1], value[2], value[3])
-        end
     end
 end
 
