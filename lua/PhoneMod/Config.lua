@@ -20,6 +20,7 @@ Modules =
 
 	-- Marine Changes
 	"Marine/GunDropTime",
+	"Marine/Jetpack",
 	"Marine/Pres",
 	"Marine/WeldSpeed",
 }
