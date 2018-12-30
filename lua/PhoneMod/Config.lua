@@ -14,6 +14,7 @@ Modules =
 	-- Commander Changes
 		-- Marine Commander
 		"Commander/Marine/ARCSpeedBoost",
+		"Commander/Marine/Medpack",
 
 	-- Global Changes
 	"Global/HealthBars",
