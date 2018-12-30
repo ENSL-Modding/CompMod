@@ -19,6 +19,7 @@ Modules =
 	"Global/HealthBars",
 
 	-- Marine Changes
+	"Marine/GunDropTime",
 	"Marine/Pres",
 	"Marine/WeldSpeed",
 }

@@ -1,0 +1,1 @@
+kWeaponStayTime = 23
