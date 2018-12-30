@@ -11,6 +11,10 @@ Modules =
 	-- Alien Changes
 	"Alien/Pres",
 
+	-- Commander Changes
+		-- Marine Commander
+		"Commander/Marine/ARCSpeedBoost",
+
 	-- Global Changes
 	"Global/HealthBars",
 
