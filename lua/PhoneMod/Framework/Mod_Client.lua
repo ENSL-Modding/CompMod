@@ -14,4 +14,4 @@ end
 
 ModPrintDebug("Client files loaded.", "Client")
 
-ModPrint("Version: v" .. kModVersion .. "." .. kModBuild .. " loaded", "Client")
+ModPrintVersion("Client")

@@ -14,4 +14,4 @@ end
 
 ModPrintDebug("Server files loaded.", "Server")
 
-ModPrint("Version: v" .. kModVersion .. "." .. kModBuild .. " loaded", "Server")
+ModPrintVersion("Server")

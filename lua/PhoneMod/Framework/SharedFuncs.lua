@@ -110,6 +110,10 @@ function ModPrintDebug(msg, vm)
 	end
 end
 
+function ModPrintVersion(vm)
+	ModPrint("Version: v" .. kModVersion .. "." .. kModBuild .. " loaded", vm)
+end
+
 function FormatDir(path, vm)
 	return "lua/" .. kModName ..  "/" .. path .. "/" .. vm .. "/*.lua"
 end
