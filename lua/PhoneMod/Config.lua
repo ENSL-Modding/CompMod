@@ -20,4 +20,5 @@ Modules =
 
 	-- Marine Changes
 	"Marine/Pres",
+	"Marine/WeldSpeed",
 }
