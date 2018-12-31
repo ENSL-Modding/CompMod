@@ -14,6 +14,7 @@ Modules =
 	-- Commander Changes
 		-- Marine Commander
 		"Commander/Marine/ARCSpeedBoost",
+		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
 
