@@ -39,7 +39,7 @@ local kBuildToChange = {}
 local kPassiveToRemove = {}
 local kPassiveToChange = {}
 
--- special 
+-- special
 local kSpecialToRemove = {}
 local kSpecialToChange = {}
 
@@ -97,12 +97,12 @@ function ModPrint(msg, vm, debug)
 		Shared.Message(str)
 	elseif vm == "Server" and Server
 		or vm == "Client" and Client
-		or vm == "Predict" and Predict 
+		or vm == "Predict" and Predict
 		or vm == "all" then
-		
+
 		Shared.Message(str)
 	end
-end	
+end
 
 function ModPrintDebug(msg, vm)
 	if kAllowModDebugMessages then
@@ -111,7 +111,12 @@ function ModPrintDebug(msg, vm)
 end
 
 function ModPrintVersion(vm)
-	ModPrint("Version: v" .. kModVersion .. "." .. kModBuild .. " loaded", vm)
+	local version = GetModVersion()
+	ModPrint("Version: " .. version .. " loaded", vm)
+end
+
+function GetModVersion()
+	return "v" .. kModVersion .. "." .. kModBuild;
 end
 
 function FormatDir(path, vm)
@@ -142,7 +147,7 @@ function AddAlienTechmapTech(techId, x, y)
 end
 
 function DeleteAlienTechmapTech(techId)
-	table.insert(kAlienTechmapTechToRemove, techId, true ) 
+	table.insert(kAlienTechmapTechToRemove, techId, true )
 end
 
 function ChangeAlienTechmapLine(oldLine, newLine)
@@ -168,7 +173,7 @@ function AddMarineTechmapTech(techId, x, y)
 end
 
 function DeleteMarineTechmapTech(techId)
-	table.insert(kMarineTechmapTechToRemove, techId, true ) 
+	table.insert(kMarineTechmapTechToRemove, techId, true )
 end
 
 function ChangeMarineTechmapLine(oldLine, newLine)
