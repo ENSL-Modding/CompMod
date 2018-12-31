@@ -77,6 +77,32 @@ local kMarineTechmapLinesToChange = {}
 local kMarineTechmapLinesToAdd = {}
 local kMarineTechmapLinesToRemove = {}
 
+-- Retrieve called local function
+-- Useful if you need to override a local function in a local function with ReplaceLocals but lack a reference to it.
+--
+-- Original author: https://forums.unknownworlds.com/discussion/comment/2178874#Comment_2178874
+function GetLocalFunction(originalFunction, localFunctionName)
+
+    local index = 1
+    while true do
+
+        local n, v = debug.getupvalue(originalFunction, index)
+        if not n then
+           break
+        end
+
+        if n == localFunctionName then
+            return v
+        end
+
+        index = index + 1
+
+    end
+
+    return nil
+
+end
+
 function ModPrint(msg, vm, debug)
 	local current_vm = ""
 	local debug_str = (debug and " - Debug" or "")
