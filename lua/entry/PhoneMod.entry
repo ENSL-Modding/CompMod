@@ -4,6 +4,7 @@ local kModName = string.match(Script.CallStack(), "lua/entry/.*%.entry"):gsub("l
 modEntry = {
 	Client = "lua/" .. kModName .. "/Framework/Mod_Client.lua",
 	Server = "lua/" .. kModName .. "/Framework/Mod_Server.lua",
+	Predict = "lua/" .. kModName .. "/Framework/Mod_Predict.lua",
 	Shared = "lua/" .. kModName .. "/Framework/Mod_Shared.lua",
 	FileHooks = "lua/" .. kModName .. "/Framework/Mod_FileHooks.lua",
 	Priority = 100

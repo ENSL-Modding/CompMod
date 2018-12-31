@@ -8,14 +8,14 @@ Script.Load("lua/" .. kModName .. "/Framework/SharedFuncs.lua")
 
 ModPrintDebug("Loading NewTech files", "all")
 for i = 1, #Modules do
-	path = FormatDir(Modules[i], "NewTech")
+	local path = FormatDir(Modules[i], "NewTech")
 
 	local NewTechFiles = {}
 	Shared.GetMatchingFileNames(path, true, NewTechFiles)
 
 	for i = 1, #NewTechFiles do
 		ModPrintDebug("Loading new tech file: " .. NewTechFiles[i], "all")
-	    Script.Load(NewTechFiles[i])
+	  Script.Load(NewTechFiles[i])
 	end
 end
 
@@ -24,14 +24,14 @@ ModPrintDebug("NewTech files loaded.", "all")
 ModPrintDebug("Loading Shared files", "all")
 
 for i = 1, #Modules do
-	path = FormatDir(Modules[i], "Shared")
+	local path = FormatDir(Modules[i], "Shared")
 
 	local SharedFiles = {}
 	Shared.GetMatchingFileNames(path, true, SharedFiles)
 
 	for i = 1, #SharedFiles do
 		ModPrintDebug("Loading shared file: " .. SharedFiles[i], "all")
-	    Script.Load(SharedFiles[i])
+	  Script.Load(SharedFiles[i])
 	end
 end
 
