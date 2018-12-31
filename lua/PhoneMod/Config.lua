@@ -15,6 +15,7 @@ Modules =
 		-- Marine Commander
 		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/Medpack",
+		"Commander/Marine/NanoShield",
 
 	-- Global Changes
 	"Global/HealthBars",
