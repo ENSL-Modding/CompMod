@@ -12,11 +12,15 @@ Modules =
 	"Alien/Pres",
 
 	-- Commander Changes
+		-- Alien Commander
+		"Commander/Alien/SupplyChanges",
+
 		-- Marine Commander
 		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
+		"Commander/Marine/SupplyChanges",
 
 	-- Global Changes
 	"Global/HealthBars",
