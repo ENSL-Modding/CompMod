@@ -6,7 +6,7 @@ kShowModInFeedbackText = true
 kModVersion = "0"
 kModBuild = "1"
 
-Modules = 
+Modules =
 {
 	-- Alien Changes
 	"Alien/Pres",
@@ -20,10 +20,12 @@ Modules =
 	"Global/HealthBars",
 
 	-- Marine Changes
-	"Marine/Flamethrower",
 	"Marine/GunDropTime",
 	"Marine/Jetpack",
 	"Marine/Pres",
-	"Marine/Shotgun",
 	"Marine/WeldSpeed",
+
+		-- Weapons
+		"Marine/Weapons/Flamethrower",
+		"Marine/Weapons/Shotgun",
 }
