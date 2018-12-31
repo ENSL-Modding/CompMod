@@ -27,5 +27,6 @@ Modules =
 
 		-- Weapons
 		"Marine/Weapons/Flamethrower",
+		"Marine/Weapons/HMG",
 		"Marine/Weapons/Shotgun",
 }
