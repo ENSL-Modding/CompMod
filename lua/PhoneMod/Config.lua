@@ -16,6 +16,7 @@ Modules =
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
+		"Commander/Marine/ARCBugFix",
 		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
