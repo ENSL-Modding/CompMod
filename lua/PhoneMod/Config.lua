@@ -9,6 +9,7 @@ kModBuild = "1"
 Modules =
 {
 	-- Alien Changes
+	"Alien/Gorge",
 	"Alien/Pres",
 
 	-- Commander Changes
