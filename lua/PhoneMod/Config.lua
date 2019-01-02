@@ -10,6 +10,7 @@ Modules =
 {
 	-- Alien Changes
 	"Alien/Gorge",
+	"Alien/Lerk",
 	"Alien/Pres",
 
 	-- Commander Changes

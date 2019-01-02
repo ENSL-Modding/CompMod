@@ -1,0 +1,1 @@
+kLerkCost = 25

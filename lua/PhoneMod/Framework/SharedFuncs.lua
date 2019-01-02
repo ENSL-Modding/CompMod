@@ -6,6 +6,7 @@ Script.Load("lua/" .. kModName .. "/Framework/Elixer_Utility.lua")
 Elixer.UseVersion( 1.8 )
 
 -- TODO: funcs to add tech
+-- TODO: Make tech tree changes automatic
 
 local kTechIdToMaterialOffsetAdditions = {}
 
