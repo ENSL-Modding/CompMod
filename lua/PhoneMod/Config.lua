@@ -12,6 +12,7 @@ Modules =
 	"Alien/Fade",
 	"Alien/Gorge",
 	"Alien/Lerk",
+	"Alien/Onos",
 	"Alien/Pres",
 
 	-- Commander Changes

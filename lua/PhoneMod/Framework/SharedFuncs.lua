@@ -104,6 +104,39 @@ function GetLocalFunction(originalFunction, localFunctionName)
 
 end
 
+function UpdateEnum(tbl, key, value)
+  if rawget(tbl, key) == nil then
+    ModPrintDebug("Error updating enum: key doesn't exist in table.")
+    return
+  end
+
+  rawset(tbl, rawget(tbl, key), value)
+  rawset( tbl, key, value )
+end
+
+function DeleteFromEnum( tbl, key )
+	if rawget(tbl,key) == nil then
+    ModPrintDebug("Cannot delete value from enum: key doesn't exist in table.")
+    return
+	end
+
+  -- TODO: fix this :))
+	local maxVal = 0
+	if tbl == kTechId then
+		maxVal = tbl.Max - 1
+		if maxVal == kTechIdMax then
+			error( "Appending another value to the TechId enum would exceed network precision constraints" )
+		end
+
+		-- rawset( tbl, rawget( tbl, maxVal+2 ), nil )
+		rawset( tbl, 'Max', maxVal+2 )
+		rawset( tbl, maxVal+2, 'Max' )
+	end
+
+  rawset(tbl, rawget(tbl, key), nil)
+  rawset( tbl, key, nil )
+end
+
 function ModPrint(msg, vm, debug)
 	local current_vm = ""
 	local debug_str = (debug and " - Debug" or "")
