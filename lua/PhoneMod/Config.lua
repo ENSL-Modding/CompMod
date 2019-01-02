@@ -17,6 +17,7 @@ Modules =
 
 	-- Commander Changes
 		-- Alien Commander
+		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
