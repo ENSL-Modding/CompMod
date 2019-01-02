@@ -4,14 +4,10 @@ Script.Load("lua/" .. kModName .. "/Config.lua")
 
 table.insert(Modules, "Framework/Framework")
 
-Script.Load("lua/" .. kModName .. "/Framework/Elixer_Utility.lua")
-Elixer.UseVersion( 1.8 )
-
--- Retrieve called local function
--- Useful if you need to override a local function in a local function with ReplaceLocals but lack a reference to it.
+-- Retrieve referenced local variable
 --
 -- Original author: https://forums.unknownworlds.com/discussion/comment/2178874#Comment_2178874
-function GetLocalFunction(originalFunction, localFunctionName)
+function GetLocalVariable(originalFunction, localName)
 
     local index = 1
     while true do
@@ -21,7 +17,7 @@ function GetLocalFunction(originalFunction, localFunctionName)
            break
         end
 
-        if n == localFunctionName then
+        if n == localName then
             return v
         end
 
@@ -33,10 +29,48 @@ function GetLocalFunction(originalFunction, localFunctionName)
 
 end
 
--- update given key in enum to value
+-- Append new value to enum
+function AppendToEnum(tbl, key)
+    if rawget(tbl,key) ~= nil then
+        ModPrintDebug("Key already exists in enum.")
+        Shared.Message(Script.CallStack())
+        return
+    end
+
+    local maxVal = 0
+    if tbl == kTechId then
+        maxVal = tbl.Max
+
+        if maxVal - 1 == kTechIdMax then
+            ModPrintDebug( "Appending another value to the TechId enum would exceed network precision constraints" )
+            return
+        end
+
+        -- move max down
+		rawset( tbl, 'Max', maxVal-1 )
+		rawset( tbl, maxVal-1, 'Max' )
+
+        -- delete old max
+        rawset(tbl, rawget(tbl, maxVal), nil)
+        rawset( tbl, maxVal, nil )
+    else
+        for k, v in next, tbl do
+            if type(v) == "number" and v > maxVal then
+                maxVal = v
+            end
+        end
+        maxVal = maxVal + 1
+    end
+
+    rawset( tbl, key, maxVal )
+    rawset( tbl, maxVal, key )
+end
+
+-- Update value in enum
 function UpdateEnum(tbl, key, value)
   if rawget(tbl, key) == nil then
     ModPrintDebug("Error updating enum: key doesn't exist in table.")
+    Shared.Message(Script.CallStack())
     return
   end
 
@@ -44,32 +78,32 @@ function UpdateEnum(tbl, key, value)
   rawset( tbl, key, value )
 end
 
--- delete key from enum
+-- Delete key from enum
 function DeleteFromEnum( tbl, key )
 	if rawget(tbl,key) == nil then
-    ModPrintDebug("Cannot delete value from enum: key doesn't exist in table.")
-    return
+        ModPrintDebug("Cannot delete value from enum: key doesn't exist in table.")
+        Shared.Message(Script.CallStack())
+        return
 	end
 
-  -- TODO: fix this :))
+    rawset(tbl, rawget(tbl, key), nil)
+    rawset( tbl, key, nil )
 
 	local maxVal = 0
 	if tbl == kTechId then
-		maxVal = tbl.Max - 1
-		if maxVal == kTechIdMax then
-			error( "Appending another value to the TechId enum would exceed network precision constraints" )
-		end
+		maxVal = tbl.Max
 
-		-- rawset( tbl, rawget( tbl, maxVal+2 ), nil )
-		rawset( tbl, 'Max', maxVal+2 )
-		rawset( tbl, maxVal+2, 'Max' )
+        -- move max down
+		rawset( tbl, 'Max', maxVal-1 )
+		rawset( tbl, maxVal-1, 'Max' )
+
+        -- delete old max
+        rawset(tbl, rawget(tbl, maxVal), nil)
+        rawset( tbl, maxVal, nil )
 	end
-
-  rawset(tbl, rawget(tbl, key), nil)
-  rawset( tbl, key, nil )
 end
 
--- shared.message wrapper
+-- Shared.Message wrapper
 function ModPrint(msg, vm, debug)
 	local current_vm = ""
 	local debug_str = (debug and " - Debug" or "")
@@ -97,25 +131,25 @@ function ModPrint(msg, vm, debug)
 	end
 end
 
--- debug print
+-- Debug print
 function ModPrintDebug(msg, vm)
 	if kAllowModDebugMessages then
 		ModPrint(msg, vm, true)
 	end
 end
 
--- prints the mod version to console using the given vm
+-- Prints the mod version to console using the given vm
 function ModPrintVersion(vm)
 	local version = GetModVersion()
 	ModPrint("Version: " .. version .. " loaded", vm)
 end
 
--- returns a string with the mod version
+-- Returns a string with the mod version
 function GetModVersion()
 	return "v" .. kModVersion .. "." .. kModBuild;
 end
 
--- returns the relative ns2 path used to find lua files from the given module and vm
+-- Returns the relative ns2 path used to find lua files from the given module and vm
 function FormatDir(module, vm)
 	return "lua/" .. kModName ..  "/" .. module .. "/" .. vm .. "/*.lua"
 end

@@ -1,4 +1,4 @@
-local kTechIdToMaterialOffset = GetUpValue( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
+local kTechIdToMaterialOffset = GetLocalVariable( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
 local additions = GetTechIdToMaterialOffsetAdditions()
 
 for _,v in ipairs(additions) do
