@@ -33,7 +33,7 @@ end
 function AppendToEnum(tbl, key)
     if rawget(tbl,key) ~= nil then
         ModPrintDebug("Key already exists in enum.")
-        Shared.Message(Script.CallStack())
+        PrintCallStack()
         return
     end
 
@@ -43,6 +43,7 @@ function AppendToEnum(tbl, key)
 
         if maxVal - 1 == kTechIdMax then
             ModPrintDebug( "Appending another value to the TechId enum would exceed network precision constraints" )
+            PrintCallStack()
             return
         end
 
@@ -70,7 +71,7 @@ end
 function UpdateEnum(tbl, key, value)
   if rawget(tbl, key) == nil then
     ModPrintDebug("Error updating enum: key doesn't exist in table.")
-    Shared.Message(Script.CallStack())
+    PrintCallStack()
     return
   end
 
@@ -82,7 +83,7 @@ end
 function DeleteFromEnum( tbl, key )
 	if rawget(tbl,key) == nil then
         ModPrintDebug("Cannot delete value from enum: key doesn't exist in table.")
-        Shared.Message(Script.CallStack())
+        PrintCallStack()
         return
 	end
 
@@ -101,6 +102,10 @@ function DeleteFromEnum( tbl, key )
         rawset(tbl, rawget(tbl, maxVal), nil)
         rawset( tbl, maxVal, nil )
 	end
+end
+
+function PrintCallStack()
+    Shared.Message(Script.CallStack())
 end
 
 -- Shared.Message wrapper
