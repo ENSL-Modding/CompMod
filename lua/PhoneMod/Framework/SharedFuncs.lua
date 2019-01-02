@@ -1,82 +1,11 @@
+-- at this point we can assume that kModName has been set both in ModShared.lua and in ModFileHooks.lua
+
 Script.Load("lua/" .. kModName .. "/Config.lua")
 
 table.insert(Modules, "Framework/Framework")
 
 Script.Load("lua/" .. kModName .. "/Framework/Elixer_Utility.lua")
 Elixer.UseVersion( 1.8 )
-
--- TODO: funcs to add tech
--- TODO: Make tech tree changes automatic
-
-local kTechIdToMaterialOffsetAdditions = {}
-
--- tech data changes
-local kTechToRemove = {}
-local kTechToChange = {}
-local kTechToAdd = {}
-
--- upgrade nodes
-local kUpgradesToRemove = {}
-local kUpgradesToChange = {}
-
--- research nodes
-local kResearchToRemove = {}
-local kResearchToChange = {}
-local kResearchToAdd = {}
-
--- targeted activation
-local kTargetedActivationToRemove = {}
-local kTargetedActivationToChange = {}
-
--- buy nodes
-local kBuyToRemove = {}
-local kBuyToChange = {}
-
--- build nodes
-local kBuildToRemove = {}
-local kBuildToChange = {}
-
--- passive
-local kPassiveToRemove = {}
-local kPassiveToChange = {}
-
--- special
-local kSpecialToRemove = {}
-local kSpecialToChange = {}
-
--- manufacture node
-local kManufactureNodeToRemove = {}
-local kManufactureNodeToChange = {}
-
--- orders
-local kOrderToRemove = {}
-
--- activation
-local kActivationToRemove= {}
-local kActivationToChange = {}
-local kActivationToAdd = {}
-
--- Targeted Buy Node
-local kTargetedBuyToRemove = {}
-local kTargetedBuyToChange = {}
-
--- alien techmap
-local kAlienTechmapTechToChange = {}
-local kAlienTechmapTechToAdd = {}
-local kAlienTechmapTechToRemove = {}
-
-local kAlienTechmapLinesToChange = {}
-local kAlienTechmapLinesToAdd = {}
-local kAlienTechmapLinesToRemove = {}
-
--- marine techmap
-local kMarineTechmapTechToChange = {}
-local kMarineTechmapTechToAdd = {}
-local kMarineTechmapTechToRemove = {}
-
-local kMarineTechmapLinesToChange = {}
-local kMarineTechmapLinesToAdd = {}
-local kMarineTechmapLinesToRemove = {}
 
 -- Retrieve called local function
 -- Useful if you need to override a local function in a local function with ReplaceLocals but lack a reference to it.
@@ -104,6 +33,7 @@ function GetLocalFunction(originalFunction, localFunctionName)
 
 end
 
+-- update given key in enum to value
 function UpdateEnum(tbl, key, value)
   if rawget(tbl, key) == nil then
     ModPrintDebug("Error updating enum: key doesn't exist in table.")
@@ -114,6 +44,7 @@ function UpdateEnum(tbl, key, value)
   rawset( tbl, key, value )
 end
 
+-- delete key from enum
 function DeleteFromEnum( tbl, key )
 	if rawget(tbl,key) == nil then
     ModPrintDebug("Cannot delete value from enum: key doesn't exist in table.")
@@ -121,6 +52,7 @@ function DeleteFromEnum( tbl, key )
 	end
 
   -- TODO: fix this :))
+
 	local maxVal = 0
 	if tbl == kTechId then
 		maxVal = tbl.Max - 1
@@ -137,6 +69,7 @@ function DeleteFromEnum( tbl, key )
   rawset( tbl, key, nil )
 end
 
+-- shared.message wrapper
 function ModPrint(msg, vm, debug)
 	local current_vm = ""
 	local debug_str = (debug and " - Debug" or "")
@@ -164,39 +97,58 @@ function ModPrint(msg, vm, debug)
 	end
 end
 
+-- debug print
 function ModPrintDebug(msg, vm)
 	if kAllowModDebugMessages then
 		ModPrint(msg, vm, true)
 	end
 end
 
+-- prints the mod version to console using the given vm
 function ModPrintVersion(vm)
 	local version = GetModVersion()
 	ModPrint("Version: " .. version .. " loaded", vm)
 end
 
+-- returns a string with the mod version
 function GetModVersion()
 	return "v" .. kModVersion .. "." .. kModBuild;
 end
 
-function FormatDir(path, vm)
-	return "lua/" .. kModName ..  "/" .. path .. "/" .. vm .. "/*.lua"
+-- returns the relative ns2 path used to find lua files from the given module and vm
+function FormatDir(module, vm)
+	return "lua/" .. kModName ..  "/" .. module .. "/" .. vm .. "/*.lua"
 end
 
+--[[
+======================
+    Tech Functions
+======================
+]]
+
+-- TODO: funcs to add tech
+-- TODO: Make tech tree changes automatic
+
 -- ktechids
+local kTechIdToMaterialOffsetAdditions = {}
+
+function AddTechIdToMaterialOffset(techId, offset)
+	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
+end
 
 function AddTechId(techId)
 	ModPrintDebug("Adding techId: " .. techId, "all")
 	AppendToEnum(kTechId, techId)
 end
 
--- setters (or inserters =])
+-- alien techmap
+local kAlienTechmapTechToChange = {}
+local kAlienTechmapTechToAdd = {}
+local kAlienTechmapTechToRemove = {}
 
-function AddTechIdToMaterialOffset(techId, offset)
-	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
-end
-
--- alien tech map
+local kAlienTechmapLinesToChange = {}
+local kAlienTechmapLinesToAdd = {}
+local kAlienTechmapLinesToRemove = {}
 
 function ChangeAlienTechmapTech(techId, x, y)
 	table.insert(kAlienTechmapTechToChange, techId, { techId, x, y } )
@@ -222,7 +174,14 @@ function DeleteAlienTechmapLine(line)
 	table.insert(kAlienTechmapLinesToRemove, line )
 end
 
--- marine tech map
+-- marine techmap
+local kMarineTechmapTechToChange = {}
+local kMarineTechmapTechToAdd = {}
+local kMarineTechmapTechToRemove = {}
+
+local kMarineTechmapLinesToChange = {}
+local kMarineTechmapLinesToAdd = {}
+local kMarineTechmapLinesToRemove = {}
 
 function ChangeMarineTechmapTech(techId, x, y)
 	table.insert(kMarineTechmapTechToChange, techId, { techId, x, y } )
@@ -256,7 +215,10 @@ function DeleteMarineTechmapLineWithTech(tech1, tech2)
 	table.insert(kMarineTechmapLinesToRemove, { 1, tech1, tech2 } )
 end
 
--- tech
+-- tech data changes
+local kTechToRemove = {}
+local kTechToChange = {}
+local kTechToAdd = {}
 
 function RemoveTech(techId)
 	table.insert(kTechToRemove, techId, true )
@@ -270,7 +232,9 @@ function AddTech(techData)
 	table.insert(kTechToAdd, techData)
 end
 
--- upgrades
+-- upgrade nodes
+local kUpgradesToRemove = {}
+local kUpgradesToChange = {}
 
 function RemoveUpgrade(techId)
 	table.insert(kUpgradesToRemove, techId, true)
@@ -280,7 +244,10 @@ function ChangeUpgrade(techId, prereq1, prereq2)
 	table.insert(kUpgradesToChange, techId, { techId, prereq1, prereq2 } )
 end
 
--- research
+-- research nodes
+local kResearchToRemove = {}
+local kResearchToChange = {}
+local kResearchToAdd = {}
 
 function RemoveResearch(techId)
 	table.insert(kResearchToRemove, techId, true)
@@ -295,6 +262,8 @@ function AddResearchNode(techId, prereq1, prereq2, addOnTechId)
 end
 
 -- targeted activation
+local kTargetedActivationToRemove = {}
+local kTargetedActivationToChange = {}
 
 function RemoveTargetedActivation(techId)
 	table.insert(kTargetedActivationToRemove, techId, true)
@@ -305,6 +274,8 @@ function ChangeTargetedActivation(techId, prereq1, prereq2)
 end
 
 -- buy nodes
+local kBuyToRemove = {}
+local kBuyToChange = {}
 
 function RemoveBuyNode(techId)
 	table.insert(kBuyToRemove, techId, true)
@@ -314,7 +285,9 @@ function ChangeBuyNode(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
--- build node
+-- build nodes
+local kBuildToRemove = {}
+local kBuildToChange = {}
 
 function RemoveBuildNode(techId)
 	table.insert(kBuildToRemove, techId, true)
@@ -325,6 +298,8 @@ function ChangeBuildNode(techId, prereq1, prereq2, isRequired)
 end
 
 -- passive
+local kPassiveToRemove = {}
+local kPassiveToChange = {}
 
 function RemovePassive(techId)
 	table.insert(kPassiveToRemove, techId, true)
@@ -335,6 +310,8 @@ function ChangePassive(techId, prereq1, prereq2)
 end
 
 -- special
+local kSpecialToRemove = {}
+local kSpecialToChange = {}
 
 function RemoveSpecial(techId)
 	table.insert(kSpecialToRemove, techId, true)
@@ -345,6 +322,8 @@ function ChangeSpecial(techId, prereq1, prereq2, requiresTarget)
 end
 
 -- manufacture node
+local kManufactureNodeToRemove = {}
+local kManufactureNodeToChange = {}
 
 function RemoveManufactureNode(techId)
 	table.insert(kManufactureNodeToRemove, techId, true)
@@ -354,13 +333,17 @@ function ChangeManufactureNode(techId, prereq1, prereq2, isRequired)
 	table.insert(kManufactureNodeToChange, techId, { techId, prereq1, prereq2, isRequired } )
 end
 
--- order
+-- orders
+local kOrderToRemove = {}
 
 function RemoveOrder(techId)
 	table.insert(kOrderToRemove, techId, true)
 end
 
--- activations
+-- activation
+local kActivationToRemove= {}
+local kActivationToChange = {}
+local kActivationToAdd = {}
 
 function RemoveActivation(techId)
 	table.insert(kActivationToRemove, techId, true)
@@ -374,7 +357,9 @@ function AddActivation(techId, prereq1, prereq2)
 	table.insert(kActivationToAdd, { techId, prereq1, prereq2 } )
 end
 
--- targeted buy nodes
+-- Targeted Buy Node
+local kTargetedBuyToRemove = {}
+local kTargetedBuyToChange = {}
 
 function RemoveTargetedBuy(techId)
 	table.insert(kTargetedBuyToRemove, techId, true)
@@ -384,7 +369,7 @@ function ChangeTargetedBuy(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kTargetedBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
--- getters
+-- getters BOOOOO
 
 function GetTechIdToMaterialOffsetAdditions()
 	return kTechIdToMaterialOffsetAdditions
