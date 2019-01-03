@@ -1,14 +1,14 @@
 -- add new tech id
-PhoneMod:AddTechId("ARCSpeedBoost")
+CompMod:AddTechId("ARCSpeedBoost")
 
 -- add activation to tech tree
-PhoneMod:AddActivation(kTechId.ARCSpeedBoost, nil, nil)
+CompMod:AddActivation(kTechId.ARCSpeedBoost, nil, nil)
 
 -- add material offset
-PhoneMod:AddTechIdToMaterialOffset(kTechId.ARCSpeedBoost, 111) -- onos charge :)
+CompMod:AddTechIdToMaterialOffset(kTechId.ARCSpeedBoost, 111) -- onos charge :)
 
 -- add tech data
-PhoneMod:AddTech({
+CompMod:AddTech({
 	    [kTechDataId] = kTechId.ARCSpeedBoost,
         [kTechDataCostKey] = kARCSpeedBoostCost,
         [kTechDataDisplayName] = "ARC Speed Boost",

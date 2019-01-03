@@ -1,11 +1,11 @@
 -- move boneshield requirement to bio4
-PhoneMod:ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
+CompMod:ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
 
 -- update techtree
-PhoneMod:ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
+CompMod:ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
 
 -- remove stampede physics mask
-PhoneMod:DeleteFromEnum(PhysicsMask, "OnosStampede")
+CompMod:DeleteFromEnum(PhysicsMask, "OnosStampede")
 
 -- charging onos get blocked by marines again
 local chargeMask = CreateMaskExcludingGroups(PhysicsGroup.WhipGroup,
@@ -22,4 +22,4 @@ local chargeMask = CreateMaskExcludingGroups(PhysicsGroup.WhipGroup,
                                        PhysicsGroup.PathingGroup,
                                        PhysicsGroup.WebsGroup)
 
-PhoneMod:UpdateEnum(PhysicsMask, "OnosCharge", chargeMask)
+CompMod:UpdateEnum(PhysicsMask, "OnosCharge", chargeMask)
