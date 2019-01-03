@@ -54,13 +54,13 @@ function recalculateTechTreeLines()
 	return kMarineLines
 end
 
-local techToChange = _G[kModName].GetMarineTechMapChanges()
-local techToAdd = _G[kModName].GetMarineTechMapAdditions()
-local techToRemove = _G[kModName].GetMarineTechMapDeletions()
+local techToChange = _G[kModName]:GetMarineTechMapChanges()
+local techToAdd = _G[kModName]:GetMarineTechMapAdditions()
+local techToRemove = _G[kModName]:GetMarineTechMapDeletions()
 
-local linesToChange = _G[kModName].GetMarineTechMapLineChanges()
-local linesToAdd = _G[kModName].GetMarineTechMapLineAdditions()
-local linesToRemove = _G[kModName].GetMarineTechMapLineDeletions()
+local linesToChange = _G[kModName]:GetMarineTechMapLineChanges()
+local linesToAdd = _G[kModName]:GetMarineTechMapLineAdditions()
+local linesToRemove = _G[kModName]:GetMarineTechMapLineDeletions()
 
 -- techtree tech
 

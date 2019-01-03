@@ -1,10 +1,10 @@
-local techToChange = _G[kModName].GetAlienTechMapChanges()
-local techToAdd = _G[kModName].GetAlienTechMapAdditions()
-local techToRemove = _G[kModName].GetAlienTechMapDeletions()
+local techToChange = _G[kModName]:GetAlienTechMapChanges()
+local techToAdd = _G[kModName]:GetAlienTechMapAdditions()
+local techToRemove = _G[kModName]:GetAlienTechMapDeletions()
 
-local linesToChange = _G[kModName].GetAlienTechMapLineChanges()
-local linesToAdd = _G[kModName].GetAlienTechMapLineAdditions()
-local linesToRemove = _G[kModName].GetAlienTechMapLineDeletions()
+local linesToChange = _G[kModName]:GetAlienTechMapLineChanges()
+local linesToAdd = _G[kModName]:GetAlienTechMapLineAdditions()
+local linesToRemove = _G[kModName]:GetAlienTechMapLineDeletions()
 
 -- techtree tech
 

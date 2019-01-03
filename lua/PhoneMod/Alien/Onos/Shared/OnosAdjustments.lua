@@ -1,8 +1,8 @@
 -- move boneshield requirement to bio4
-PhoneMod.ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
+PhoneMod:ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
 
 -- update techtree
-PhoneMod.ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
+PhoneMod:ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
 
 -- remove stampede physics mask
 PhoneMod:DeleteFromEnum(PhysicsMask, "OnosStampede")

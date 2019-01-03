@@ -1,5 +1,5 @@
-local upgradeToRemove = _G[kModName].GetUpgradesToRemove()
-local upgradeToChange = _G[kModName].GetUpgradesToChange()
+local upgradeToRemove = _G[kModName]:GetUpgradesToRemove()
+local upgradeToChange = _G[kModName]:GetUpgradesToChange()
 
 local oldAddUpgradeNode = TechTree.AddUpgradeNode
 function TechTree:AddUpgradeNode(techId, prereq1, prereq2)
@@ -16,8 +16,8 @@ function TechTree:AddUpgradeNode(techId, prereq1, prereq2)
     end
 end
 
-local researchToRemove = _G[kModName].GetResearchToRemove()
-local researchToChange = _G[kModName].GetResearchToChange()
+local researchToRemove = _G[kModName]:GetResearchToRemove()
+local researchToChange = _G[kModName]:GetResearchToChange()
 
 local oldAddResearchNode = TechTree.AddResearchNode
 function TechTree:AddResearchNode(techId, prereq1, prereq2, addOnTechId)
@@ -33,8 +33,8 @@ function TechTree:AddResearchNode(techId, prereq1, prereq2, addOnTechId)
     end
 end
 
-local targetedActivationToRemove = _G[kModName].GetTargetedActivationToRemove()
-local targetedActivationToChange = _G[kModName].GetTargetedActivationToChange()
+local targetedActivationToRemove = _G[kModName]:GetTargetedActivationToRemove()
+local targetedActivationToChange = _G[kModName]:GetTargetedActivationToChange()
 
 local oldAddTargetedActivation = TechTree.AddTargetedActivation
 function TechTree:AddTargetedActivation(techId, prereq1, prereq2)
@@ -51,8 +51,8 @@ function TechTree:AddTargetedActivation(techId, prereq1, prereq2)
     end
 end
 
-local buyToRemove = _G[kModName].GetBuyNodesToRemove()
-local buyToChange = _G[kModName].GetBuyNodesToChange()
+local buyToRemove = _G[kModName]:GetBuyNodesToRemove()
+local buyToChange = _G[kModName]:GetBuyNodesToChange()
 
 local oldAddBuyNode = TechTree.AddBuyNode
 function TechTree:AddBuyNode(techId, prereq1, prereq2, addOnTechId)
@@ -69,8 +69,8 @@ function TechTree:AddBuyNode(techId, prereq1, prereq2, addOnTechId)
     end
 end
 
-local buildToRemove = _G[kModName].GetBuildNodesToRemove()
-local buildToChange = _G[kModName].GetBuildNodesToChange()
+local buildToRemove = _G[kModName]:GetBuildNodesToRemove()
+local buildToChange = _G[kModName]:GetBuildNodesToChange()
 
 local oldAddBuildNode = TechTree.AddBuildNode
 function TechTree:AddBuildNode(techId, prereq1, prereq2, isRequired)
@@ -87,8 +87,8 @@ function TechTree:AddBuildNode(techId, prereq1, prereq2, isRequired)
     end
 end
 
-local passiveToRemove = _G[kModName].GetPassiveToRemove()
-local passiveToChange = _G[kModName].GetPassiveToChange()
+local passiveToRemove = _G[kModName]:GetPassiveToRemove()
+local passiveToChange = _G[kModName]:GetPassiveToChange()
 
 local oldAddPassive = TechTree.AddPassive
 function TechTree:AddPassive(techId, prereq1, prereq2)
@@ -105,8 +105,8 @@ function TechTree:AddPassive(techId, prereq1, prereq2)
     end
 end
 
-local specialToRemove = _G[kModName].GetSpecialToRemove()
-local specialToChange = _G[kModName].GetSpecialToChange()
+local specialToRemove = _G[kModName]:GetSpecialToRemove()
+local specialToChange = _G[kModName]:GetSpecialToChange()
 
 local oldAddSpecial = TechTree.AddSpecial
 function TechTree:AddSpecial(techId, prereq1, prereq2, requiresTarget)
@@ -123,8 +123,8 @@ function TechTree:AddSpecial(techId, prereq1, prereq2, requiresTarget)
     end
 end
 
-local manufactureNodesToRemove = _G[kModName].GetManufactureNodesToRemove()
-local manufactureNodesToChange = _G[kModName].GetManufactureNodesToChange()
+local manufactureNodesToRemove = _G[kModName]:GetManufactureNodesToRemove()
+local manufactureNodesToChange = _G[kModName]:GetManufactureNodesToChange()
 
 local oldAddManufactureNode = TechTree.AddManufactureNode
 function TechTree:AddManufactureNode(techId, prereq1, prereq2, isRequired)
@@ -141,7 +141,7 @@ function TechTree:AddManufactureNode(techId, prereq1, prereq2, isRequired)
     end
 end
 
-local ordersToRemove = _G[kModName].GetOrdersToRemove()
+local ordersToRemove = _G[kModName]:GetOrdersToRemove()
 
 local oldAddOrder = TechTree.AddOrder
 function TechTree:AddOrder(techId)
@@ -153,8 +153,8 @@ function TechTree:AddOrder(techId)
     end
 end
 
-local activationToRemove = _G[kModName].GetActivationToRemove()
-local activationToChange = _G[kModName].GetActivationToChange()
+local activationToRemove = _G[kModName]:GetActivationToRemove()
+local activationToChange = _G[kModName]:GetActivationToChange()
 
 local oldAddActivation = TechTree.AddActivation
 function TechTree:AddActivation(techId, prereq1, prereq2)
@@ -171,8 +171,8 @@ function TechTree:AddActivation(techId, prereq1, prereq2)
     end
 end
 
-local targetedBuyToRemove = _G[kModName].GetTargetedBuyToRemove()
-local targetedBuyToChange = _G[kModName].GetTargetedBuyToChange()
+local targetedBuyToRemove = _G[kModName]:GetTargetedBuyToRemove()
+local targetedBuyToChange = _G[kModName]:GetTargetedBuyToChange()
 
 local oldAddTargetedBuyNode = TechTree.AddTargetedBuyNode
 function TechTree:AddTargetedBuyNode(techId, prereq1, prereq2, addOnTechId)

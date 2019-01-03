@@ -3,8 +3,8 @@ local oldInitTechTree = PlayingTeam.InitTechTree
 function PlayingTeam:InitTechTree()
 	oldInitTechTree(self)
 
-	local researchToAdd = _G[kModName].GetResearchToAdd()
-	local activationToAdd = _G[kModName].GetActivationToAdd()
+	local researchToAdd = _G[kModName]:GetResearchToAdd()
+	local activationToAdd = _G[kModName]:GetActivationToAdd()
 
     for _, value in pairs(researchToAdd) do
 		_G[kModName]:PrintDebug("Adding research node: " .. (EnumToString(kTechId, value[1]) or value[1]) .. ", Team: " .. self:GetTeamNumber(), "all")

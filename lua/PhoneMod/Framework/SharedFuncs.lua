@@ -11,7 +11,7 @@ table.insert(Mod.config.modules, "Framework/Framework")
 -- Retrieve referenced local variable
 --
 -- Original author: https://forums.unknownworlds.com/discussion/comment/2178874#Comment_2178874
-function Mod.GetLocalVariable(originalFunction, localName)
+function Mod:GetLocalVariable(originalFunction, localName)
 
     local index = 1
     while true do
@@ -108,7 +108,7 @@ function Mod:DeleteFromEnum( tbl, key )
 	end
 end
 
-function Mod.PrintCallStack()
+function Mod:PrintCallStack()
     Shared.Message(Script.CallStack())
 end
 
@@ -175,7 +175,7 @@ end
 -- ktechids
 local kTechIdToMaterialOffsetAdditions = {}
 
-function Mod.AddTechIdToMaterialOffset(techId, offset)
+function Mod:AddTechIdToMaterialOffset(techId, offset)
 	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
 end
 
@@ -193,27 +193,27 @@ local kAlienTechmapLinesToChange = {}
 local kAlienTechmapLinesToAdd = {}
 local kAlienTechmapLinesToRemove = {}
 
-function Mod.ChangeAlienTechmapTech(techId, x, y)
+function Mod:ChangeAlienTechmapTech(techId, x, y)
 	table.insert(kAlienTechmapTechToChange, techId, { techId, x, y } )
 end
 
-function Mod.AddAlienTechmapTech(techId, x, y)
+function Mod:AddAlienTechmapTech(techId, x, y)
 	table.insert(kAlienTechmapTechToAdd, techId, { techId, x, y } )
 end
 
-function Mod.DeleteAlienTechmapTech(techId)
+function Mod:DeleteAlienTechmapTech(techId)
 	table.insert(kAlienTechmapTechToRemove, techId, true )
 end
 
-function Mod.ChangeAlienTechmapLine(oldLine, newLine)
+function Mod:ChangeAlienTechmapLine(oldLine, newLine)
 	table.insert(kAlienTechmapLinesToChange, { oldLine, newLine } )
 end
 
-function Mod.AddAlienTechmapLine(newLine)
+function Mod:AddAlienTechmapLine(newLine)
 	table.insert(kAlienTechmapLinesToAdd, { newLine } )
 end
 
-function Mod.DeleteAlienTechmapLine(line)
+function Mod:DeleteAlienTechmapLine(line)
 	table.insert(kAlienTechmapLinesToRemove, line )
 end
 
@@ -226,35 +226,35 @@ local kMarineTechmapLinesToChange = {}
 local kMarineTechmapLinesToAdd = {}
 local kMarineTechmapLinesToRemove = {}
 
-function Mod.ChangeMarineTechmapTech(techId, x, y)
+function Mod:ChangeMarineTechmapTech(techId, x, y)
 	table.insert(kMarineTechmapTechToChange, techId, { techId, x, y } )
 end
 
-function Mod.AddMarineTechmapTech(techId, x, y)
+function Mod:AddMarineTechmapTech(techId, x, y)
 	table.insert(kMarineTechmapTechToAdd, techId, { techId, x, y } )
 end
 
-function Mod.DeleteMarineTechmapTech(techId)
+function Mod:DeleteMarineTechmapTech(techId)
 	table.insert(kMarineTechmapTechToRemove, techId, true )
 end
 
-function Mod.ChangeMarineTechmapLine(oldLine, newLine)
+function Mod:ChangeMarineTechmapLine(oldLine, newLine)
 	table.insert(kMarineTechmapLinesToChange, { oldLine, newLine } )
 end
 
-function Mod.AddMarineTechmapLine(newLine)
+function Mod:AddMarineTechmapLine(newLine)
 	table.insert(kMarineTechmapLinesToAdd, { 0, newLine } )
 end
 
-function Mod.AddMarineTechmapLineWithTech(tech1, tech2)
+function Mod:AddMarineTechmapLineWithTech(tech1, tech2)
 	table.insert(kMarineTechmapLinesToAdd, { 1, tech1, tech2 })
 end
 
-function Mod.DeleteMarineTechmapLine(line)
+function Mod:DeleteMarineTechmapLine(line)
 	table.insert(kMarineTechmapLinesToRemove, { 0, line } )
 end
 
-function Mod.DeleteMarineTechmapLineWithTech(tech1, tech2)
+function Mod:DeleteMarineTechmapLineWithTech(tech1, tech2)
 	table.insert(kMarineTechmapLinesToRemove, { 1, tech1, tech2 } )
 end
 
@@ -263,15 +263,15 @@ local kTechToRemove = {}
 local kTechToChange = {}
 local kTechToAdd = {}
 
-function Mod.RemoveTech(techId)
+function Mod:RemoveTech(techId)
 	table.insert(kTechToRemove, techId, true )
 end
 
-function Mod.ChangeTech(techId, newTechData)
+function Mod:ChangeTech(techId, newTechData)
 	table.insert(kTechToChange, techId, newTechData )
 end
 
-function Mod.AddTech(techData)
+function Mod:AddTech(techData)
 	table.insert(kTechToAdd, techData)
 end
 
@@ -279,11 +279,11 @@ end
 local kUpgradesToRemove = {}
 local kUpgradesToChange = {}
 
-function Mod.RemoveUpgrade(techId)
+function Mod:RemoveUpgrade(techId)
 	table.insert(kUpgradesToRemove, techId, true)
 end
 
-function Mod.ChangeUpgrade(techId, prereq1, prereq2)
+function Mod:ChangeUpgrade(techId, prereq1, prereq2)
 	table.insert(kUpgradesToChange, techId, { techId, prereq1, prereq2 } )
 end
 
@@ -292,15 +292,15 @@ local kResearchToRemove = {}
 local kResearchToChange = {}
 local kResearchToAdd = {}
 
-function Mod.RemoveResearch(techId)
+function Mod:RemoveResearch(techId)
 	table.insert(kResearchToRemove, techId, true)
 end
 
-function Mod.ChangeResearch(techId, prereq1, prereq2, addOnTechId)
+function Mod:ChangeResearch(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kResearchToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
-function Mod.AddResearchNode(techId, prereq1, prereq2, addOnTechId)
+function Mod:AddResearchNode(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kResearchToAdd, { techId, prereq1, prereq2, addOnTechId } )
 end
 
@@ -308,11 +308,11 @@ end
 local kTargetedActivationToRemove = {}
 local kTargetedActivationToChange = {}
 
-function Mod.RemoveTargetedActivation(techId)
+function Mod:RemoveTargetedActivation(techId)
 	table.insert(kTargetedActivationToRemove, techId, true)
 end
 
-function Mod.ChangeTargetedActivation(techId, prereq1, prereq2)
+function Mod:ChangeTargetedActivation(techId, prereq1, prereq2)
 	table.insert(kTargetedActivationToChange, techId, { techId, prereq1, prereq2 } )
 end
 
@@ -320,11 +320,11 @@ end
 local kBuyToRemove = {}
 local kBuyToChange = {}
 
-function Mod.RemoveBuyNode(techId)
+function Mod:RemoveBuyNode(techId)
 	table.insert(kBuyToRemove, techId, true)
 end
 
-function Mod.ChangeBuyNode(techId, prereq1, prereq2, addOnTechId)
+function Mod:ChangeBuyNode(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
@@ -332,11 +332,11 @@ end
 local kBuildToRemove = {}
 local kBuildToChange = {}
 
-function Mod.RemoveBuildNode(techId)
+function Mod:RemoveBuildNode(techId)
 	table.insert(kBuildToRemove, techId, true)
 end
 
-function Mod.ChangeBuildNode(techId, prereq1, prereq2, isRequired)
+function Mod:ChangeBuildNode(techId, prereq1, prereq2, isRequired)
 	table.insert(kBuildToChange, techId, { techId, prereq1, prereq2, isRequired } )
 end
 
@@ -344,11 +344,11 @@ end
 local kPassiveToRemove = {}
 local kPassiveToChange = {}
 
-function Mod.RemovePassive(techId)
+function Mod:RemovePassive(techId)
 	table.insert(kPassiveToRemove, techId, true)
 end
 
-function Mod.ChangePassive(techId, prereq1, prereq2)
+function Mod:ChangePassive(techId, prereq1, prereq2)
 	table.insert(kPassiveToChange, techId, { techId, prereq1, prereq2 } )
 end
 
@@ -356,11 +356,11 @@ end
 local kSpecialToRemove = {}
 local kSpecialToChange = {}
 
-function Mod.RemoveSpecial(techId)
+function Mod:RemoveSpecial(techId)
 	table.insert(kSpecialToRemove, techId, true)
 end
 
-function Mod.ChangeSpecial(techId, prereq1, prereq2, requiresTarget)
+function Mod:ChangeSpecial(techId, prereq1, prereq2, requiresTarget)
 	table.insert(kSpecialToChange, techId, { techId, prereq1, prereq2, requiresTarget } )
 end
 
@@ -368,18 +368,18 @@ end
 local kManufactureNodeToRemove = {}
 local kManufactureNodeToChange = {}
 
-function Mod.RemoveManufactureNode(techId)
+function Mod:RemoveManufactureNode(techId)
 	table.insert(kManufactureNodeToRemove, techId, true)
 end
 
-function Mod.ChangeManufactureNode(techId, prereq1, prereq2, isRequired)
+function Mod:ChangeManufactureNode(techId, prereq1, prereq2, isRequired)
 	table.insert(kManufactureNodeToChange, techId, { techId, prereq1, prereq2, isRequired } )
 end
 
 -- orders
 local kOrderToRemove = {}
 
-function Mod.RemoveOrder(techId)
+function Mod:RemoveOrder(techId)
 	table.insert(kOrderToRemove, techId, true)
 end
 
@@ -388,15 +388,15 @@ local kActivationToRemove= {}
 local kActivationToChange = {}
 local kActivationToAdd = {}
 
-function Mod.RemoveActivation(techId)
+function Mod:RemoveActivation(techId)
 	table.insert(kActivationToRemove, techId, true)
 end
 
-function Mod.ChangeActivation(techId, prereq1, prereq2)
+function Mod:ChangeActivation(techId, prereq1, prereq2)
 	table.insert(kActivationToChange, techId, { techId, prereq1, prereq2 } )
 end
 
-function Mod.AddActivation(techId, prereq1, prereq2)
+function Mod:AddActivation(techId, prereq1, prereq2)
 	table.insert(kActivationToAdd, { techId, prereq1, prereq2 } )
 end
 
@@ -404,169 +404,169 @@ end
 local kTargetedBuyToRemove = {}
 local kTargetedBuyToChange = {}
 
-function Mod.RemoveTargetedBuy(techId)
+function Mod:RemoveTargetedBuy(techId)
 	table.insert(kTargetedBuyToRemove, techId, true)
 end
 
-function Mod.ChangeTargetedBuy(techId, prereq1, prereq2, addOnTechId)
+function Mod:ChangeTargetedBuy(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kTargetedBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
 -- getters BOOOOO
 
-function Mod.GetTechIdToMaterialOffsetAdditions()
+function Mod:GetTechIdToMaterialOffsetAdditions()
 	return kTechIdToMaterialOffsetAdditions
 end
 
-function Mod.GetAlienTechMapChanges()
+function Mod:GetAlienTechMapChanges()
 	return kAlienTechmapTechToChange
 end
 
-function Mod.GetAlienTechMapAdditions()
+function Mod:GetAlienTechMapAdditions()
 	return kAlienTechmapTechToAdd
 end
 
-function Mod.GetAlienTechMapDeletions()
+function Mod:GetAlienTechMapDeletions()
 	return kAlienTechmapTechToRemove
 end
 
-function Mod.GetAlienTechMapLineChanges()
+function Mod:GetAlienTechMapLineChanges()
 	return kAlienTechmapLinesToChange
 end
 
-function Mod.GetAlienTechMapLineAdditions()
+function Mod:GetAlienTechMapLineAdditions()
 	return kAlienTechmapLinesToAdd
 end
 
-function Mod.GetAlienTechMapLineDeletions()
+function Mod:GetAlienTechMapLineDeletions()
 	return kAlienTechmapLinesToRemove
 end
 
-function Mod.GetMarineTechMapChanges()
+function Mod:GetMarineTechMapChanges()
 	return kMarineTechmapTechToChange
 end
 
-function Mod.GetMarineTechMapAdditions()
+function Mod:GetMarineTechMapAdditions()
 	return kMarineTechmapTechToAdd
 end
 
-function Mod.GetMarineTechMapDeletions()
+function Mod:GetMarineTechMapDeletions()
 	return kMarineTechmapTechToRemove
 end
 
-function Mod.GetMarineTechMapLineChanges()
+function Mod:GetMarineTechMapLineChanges()
 	return kMarineTechmapLinesToChange
 end
 
-function Mod.GetMarineTechMapLineAdditions()
+function Mod:GetMarineTechMapLineAdditions()
 	return kMarineTechmapLinesToAdd
 end
 
-function Mod.GetMarineTechMapLineDeletions()
+function Mod:GetMarineTechMapLineDeletions()
 	return kMarineTechmapLinesToRemove
 end
 
-function Mod.GetTechToRemove()
+function Mod:GetTechToRemove()
 	return kTechToRemove
 end
 
-function Mod.GetTechToChange()
+function Mod:GetTechToChange()
 	return kTechToChange
 end
 
-function Mod.GetTechToAdd()
+function Mod:GetTechToAdd()
 	return kTechToAdd
 end
 
-function Mod.GetUpgradesToRemove()
+function Mod:GetUpgradesToRemove()
 	return kUpgradesToRemove
 end
 
-function Mod.GetUpgradesToChange()
+function Mod:GetUpgradesToChange()
 	return kUpgradesToChange
 end
 
-function Mod.GetResearchToRemove()
+function Mod:GetResearchToRemove()
 	return kResearchToRemove
 end
 
-function Mod.GetResearchToChange()
+function Mod:GetResearchToChange()
 	return kResearchToChange
 end
 
-function Mod.GetResearchToAdd()
+function Mod:GetResearchToAdd()
 	return kResearchToAdd
 end
 
-function Mod.GetTargetedActivationToRemove()
+function Mod:GetTargetedActivationToRemove()
 	return kTargetedActivationToRemove
 end
 
-function Mod.GetTargetedActivationToChange()
+function Mod:GetTargetedActivationToChange()
 	return kTargetedActivationToChange
 end
 
-function Mod.GetBuyNodesToRemove()
+function Mod:GetBuyNodesToRemove()
 	return kBuyToRemove
 end
 
-function Mod.GetBuyNodesToChange()
+function Mod:GetBuyNodesToChange()
 	return kBuyToChange
 end
 
-function Mod.GetBuildNodesToRemove()
+function Mod:GetBuildNodesToRemove()
 	return kBuildToRemove
 end
 
-function Mod.GetBuildNodesToChange()
+function Mod:GetBuildNodesToChange()
 	return kBuildToChange
 end
 
-function Mod.GetPassiveToRemove()
+function Mod:GetPassiveToRemove()
 	return kPassiveToRemove
 end
 
-function Mod.GetPassiveToChange()
+function Mod:GetPassiveToChange()
 	return kPassiveToChange
 end
 
-function Mod.GetSpecialToRemove()
+function Mod:GetSpecialToRemove()
 	return kSpecialToRemove
 end
 
-function Mod.GetSpecialToChange()
+function Mod:GetSpecialToChange()
 	return kSpecialToChange
 end
 
-function Mod.GetManufactureNodesToRemove()
+function Mod:GetManufactureNodesToRemove()
 	return kManufactureNodeToRemove
 end
 
-function Mod.GetManufactureNodesToChange()
+function Mod:GetManufactureNodesToChange()
 	return kManufactureNodeToChange
 end
 
-function Mod.GetOrdersToRemove()
+function Mod:GetOrdersToRemove()
 	return kOrderToRemove
 end
 
-function Mod.GetActivationToRemove()
+function Mod:GetActivationToRemove()
 	return kActivationToRemove
 end
 
-function Mod.GetActivationToChange()
+function Mod:GetActivationToChange()
 	return kActivationToChange
 end
 
-function Mod.GetActivationToAdd()
+function Mod:GetActivationToAdd()
 	return kActivationToAdd
 end
 
-function Mod.GetTargetedBuyToRemove()
+function Mod:GetTargetedBuyToRemove()
 	return kTargetedBuyToRemove
 end
 
-function Mod.GetTargetedBuyToChange()
+function Mod:GetTargetedBuyToChange()
 	return kTargetedBuyToChange
 end
 
