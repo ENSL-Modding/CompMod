@@ -1,6 +1,6 @@
 -- remove egg drop tech
 
-RemoveTech(kTechId.GorgeEgg)
-RemoveTech(kTechId.LerkEgg)
-RemoveTech(kTechId.FadeEgg)
-RemoveTech(kTechId.OnosEgg)
+PhoneMod.RemoveTech(kTechId.GorgeEgg)
+PhoneMod.RemoveTech(kTechId.LerkEgg)
+PhoneMod.RemoveTech(kTechId.FadeEgg)
+PhoneMod.RemoveTech(kTechId.OnosEgg)

@@ -1,17 +1,17 @@
-ModPrintDebug("Loading Server files", "Server")
+_G[kModName]:PrintDebug("Loading Server files", "Server")
 
-for i = 1, #Modules do
-	local path = FormatDir(Modules[i], "Server")
+for i = 1, #_G[kModName].config.modules do
+	local path = _G[kModName]:FormatDir(_G[kModName].config.modules[i], "Server")
 
 	local ServerFiles = {}
 	Shared.GetMatchingFileNames(path, true, ServerFiles)
 
 	for i = 1, #ServerFiles do
-		ModPrintDebug("Loading server file: " .. ServerFiles[i], "Server")
-	  Script.Load(ServerFiles[i])
+		_G[kModName]:PrintDebug("Loading server file: " .. ServerFiles[i], "Server")
+	  	Script.Load(ServerFiles[i])
 	end
 end
 
-ModPrintDebug("Server files loaded.", "Server")
+_G[kModName]:PrintDebug("Server files loaded.", "Server")
 
-ModPrintVersion("Server")
+_G[kModName]:PrintVersion("Server")

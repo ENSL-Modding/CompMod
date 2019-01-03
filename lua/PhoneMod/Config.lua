@@ -1,12 +1,12 @@
 -- i wonder if this will still work with multiple mods using the framework
 -- prolly not but hey :)
 
-kAllowModDebugMessages = true
-kShowModInFeedbackText = true
-kModVersion = "0"
-kModBuild = "1"
+Mod.config.kAllowDebugMessages = true
+Mod.config.kShowInFeedbackText = true
+Mod.config.kModVersion = "0"
+Mod.config.kModBuild = "1"
 
-Modules =
+Mod.config.modules =
 {
 	-- Alien Changes
 	"Alien/Eggs",

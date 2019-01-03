@@ -6,33 +6,33 @@ kModName = string.match(Script.CallStack(), "lua/.*/Framework/Mod_Shared.lua"):g
 Script.Load("lua/Class.lua")
 Script.Load("lua/" .. kModName .. "/Framework/SharedFuncs.lua")
 
-ModPrintDebug("Loading NewTech files", "all")
-for i = 1, #Modules do
-	local path = FormatDir(Modules[i], "NewTech")
+_G[kModName]:PrintDebug("Loading NewTech files", "all")
+for i = 1, #_G[kModName].config.modules do
+	local path = _G[kModName]:FormatDir(_G[kModName].config.modules[i], "NewTech")
 
 	local NewTechFiles = {}
 	Shared.GetMatchingFileNames(path, true, NewTechFiles)
 
 	for i = 1, #NewTechFiles do
-		ModPrintDebug("Loading new tech file: " .. NewTechFiles[i], "all")
-	  Script.Load(NewTechFiles[i])
+		_G[kModName]:PrintDebug("Loading new tech file: " .. NewTechFiles[i], "all")
+	  	Script.Load(NewTechFiles[i])
 	end
 end
 
-ModPrintDebug("NewTech files loaded.", "all")
+_G[kModName]:PrintDebug("NewTech files loaded.", "all")
 
-ModPrintDebug("Loading Shared files", "all")
+_G[kModName]:PrintDebug("Loading Shared files", "all")
 
-for i = 1, #Modules do
-	local path = FormatDir(Modules[i], "Shared")
+for i = 1, #_G[kModName].config.modules do
+	local path = _G[kModName]:FormatDir(_G[kModName].config.modules[i], "Shared")
 
 	local SharedFiles = {}
 	Shared.GetMatchingFileNames(path, true, SharedFiles)
 
 	for i = 1, #SharedFiles do
-		ModPrintDebug("Loading shared file: " .. SharedFiles[i], "all")
-	  Script.Load(SharedFiles[i])
+		_G[kModName]:PrintDebug("Loading shared file: " .. SharedFiles[i], "all")
+	  	Script.Load(SharedFiles[i])
 	end
 end
 
-ModPrintDebug("Shared files loaded.", "all")
+_G[kModName]:PrintDebug("Shared files loaded.", "all")
