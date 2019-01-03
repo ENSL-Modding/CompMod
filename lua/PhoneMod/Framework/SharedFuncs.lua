@@ -51,13 +51,13 @@ function Mod:AppendToEnum(tbl, key)
             return
         end
 
-        -- move max down
-		rawset( tbl, 'Max', maxVal-1 )
-		rawset( tbl, maxVal-1, 'Max' )
-
         -- delete old max
         rawset(tbl, rawget(tbl, maxVal), nil)
         rawset( tbl, maxVal, nil )
+
+        -- move max down
+		rawset( tbl, 'Max', maxVal-1 )
+		rawset( tbl, maxVal-1, 'Max' )
     else
         for k, v in next, tbl do
             if type(v) == "number" and v > maxVal then
@@ -98,13 +98,13 @@ function Mod:DeleteFromEnum( tbl, key )
 	if tbl == kTechId then
 		maxVal = tbl.Max
 
-        -- move max down
-		rawset( tbl, 'Max', maxVal-1 )
-		rawset( tbl, maxVal-1, 'Max' )
-
         -- delete old max
         rawset(tbl, rawget(tbl, maxVal), nil)
         rawset( tbl, maxVal, nil )
+
+        -- move max down
+		rawset( tbl, 'Max', maxVal-1 )
+		rawset( tbl, maxVal-1, 'Max' )
 	end
 end
 
