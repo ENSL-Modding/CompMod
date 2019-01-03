@@ -570,4 +570,8 @@ function Mod:GetTargetedBuyToChange()
 	return kTargetedBuyToChange
 end
 
-_G[Mod.config.kModName] = Mod
+if _G[Mod.config.kModName] then
+    Mod:PrintDebug("A mod with the name \"" .. Mod.config.kModName .. "\" is already loaded into memory. Change your mod name to resolve.")
+else
+    _G[Mod.config.kModName] = Mod
+end
