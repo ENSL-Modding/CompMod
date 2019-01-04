@@ -1,10 +1,40 @@
--- at this point we can assume that kModName has been set both in ModShared.lua and in ModFileHooks.lua
+-- at this point we can assume that kModName has been set in both ModShared.lua and in ModFileHooks.lua
+
+local kLogLevels = {
+    fatal = {display="FATAL", level=0},
+    error = {display="ERROR", level=1},
+    warn = {display="WARN", level=2},
+    info = {display="INFO", level=3},
+    debug = {display="DEBUG", level=4},
+}
+
+-- Check if another mod is loaded using the same name
+assert(not _G[kModName], "[FATAL] A mod with the name \"" .. kModName .. "\" is already loaded into memory. Change your mod name to resolve.")
 
 Mod = {}
+Mod.kLogLevels = kLogLevels
 Mod.config = {}
+Mod.config.kModName = kModName
 Mod.config.kModName = kModName
 
 Script.Load("lua/" .. Mod.config.kModName .. "/Config.lua")
+
+assert(Mod.config.modules, "[FATAL] Modules not set for mod " .. Mod.config.kModName) -- we cannot continue without modules
+
+-- while it's not essential that these are set, it makes it a lot easier :)
+assert(Mod.config.kModVersion, "[FATAL] Mod version not set for mod " .. Mod.config.kModName)
+assert(Mod.config.kModBuild, "[FATAL] Mod build not set for mod " .. Mod.config.kModName)
+
+if not Mod.config.kLogLevel then
+    Mod.config.kLogLevel = 2
+end
+
+if not Mod.config.kShowInFeedbackText then
+    if Mod.config.kLogLevel >= Mod.config.kLogLevels.debug.level then
+        Shared.Message("[DEBUG] Using default value for kShowInFeedbackText (false) for mod " .. Mod.config.kModName)
+    end
+    Mod.config.kShowInFeedbackText = false
+end
 
 table.insert(Mod.config.modules, "Framework/Framework")
 
@@ -113,54 +143,59 @@ function Mod:PrintCallStack()
 end
 
 -- Shared.Message wrapper
-function Mod:Print(msg, vm, debug)
-	local current_vm = ""
-	local debug_str = (debug and " - Debug" or "")
+function Mod:Print(str, level, vm)
+    assert(str)
+    assert(level)
 
-	if Client then
-		current_vm = "Client"
-	elseif Server then
-		current_vm = "Server"
-	elseif Predict then
-		current_vm = "Predict"
-	end
+    if self.config.kLogLevel < level.level then
+        return
+    end
 
-	assert(current_vm ~= "")
+    local current_vm = ""
 
-	local str = string.format("[%s (%s%s)] %s", self.config.kModName, current_vm, debug_str, msg)
+    if Client then
+    	current_vm = "Client"
+    elseif Server then
+    	current_vm = "Server"
+    elseif Predict then
+    	current_vm = "Predict"
+    end
 
-	if not vm then
-		Shared.Message(str)
-	elseif vm == "Server" and Server
-		or vm == "Client" and Client
-		or vm == "Predict" and Predict
-		or vm == "all" then
+    assert(current_vm ~= "")
 
-		Shared.Message(str)
+    local msg = string.format("[%s] (%s - %s) %s", level.display, self.config.kModName, current_vm, str)
+
+	if not vm
+        or vm == "Server" and Server
+	    or vm == "Client" and Client
+	    or vm == "Predict" and Predict
+        or vm == "all" then
+
+		Shared.Message(msg)
 	end
 end
 
 -- Debug print
-function Mod:PrintDebug(msg, vm)
-	if self.config.kAllowDebugMessages then
-		Mod:Print(msg, vm, true)
-	end
+function Mod:PrintDebug(str, vm)
+    Mod:Print(str, self.kLogLevels.debug, vm)
 end
 
 -- Prints the mod version to console using the given vm
 function Mod:PrintVersion(vm)
 	local version = self:GetVersion()
-	self:Print("Version: " .. version .. " loaded", vm)
+	self:Print(string.format("Version: %s loaded", version), self.kLogLevels.info, vm)
 end
 
 -- Returns a string with the mod version
 function Mod:GetVersion()
-	return "v" .. self.config.kModVersion .. "." .. self.config.kModBuild;
+	return string.format("v%s.%s", self.config.kModVersion, self.config.kModBuild);
 end
 
 -- Returns the relative ns2 path used to find lua files from the given module and vm
 function Mod:FormatDir(module, vm)
-	return "lua/" .. self.config.kModName ..  "/" .. module .. "/" .. vm .. "/*.lua"
+  assert(module ~= nil)
+  assert(vm ~= nil)
+  return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
 end
 
 --[[
@@ -570,8 +605,6 @@ function Mod:GetTargetedBuyToChange()
 	return kTargetedBuyToChange
 end
 
-if _G[Mod.config.kModName] then
-    Mod:PrintDebug("A mod with the name \"" .. Mod.config.kModName .. "\" is already loaded into memory. Change your mod name to resolve.")
-else
-    _G[Mod.config.kModName] = Mod
-end
+-- no need to validate since we know mod is set and the mod name is unique
+_G[Mod.config.kModName] = Mod
+_G[Mod.config.kModName]:PrintDebug("Framework loaded.")
