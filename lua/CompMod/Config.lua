@@ -13,7 +13,7 @@ Mod.config.modules =
 	"Alien/Fade",
 	"Alien/Focus",
 	"Alien/Gorge",
-	"Alien/InnateRegen",
+	"Alien/Healing",
 	"Alien/Lerk",
 	"Alien/Neurotoxin",
 	"Alien/Onos",
