@@ -21,6 +21,7 @@ Mod.config.modules =
 
 	-- Commander Changes
 		-- Alien Commander
+		"Commander/Alien/Echo",
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/NutrientMist",
 		"Commander/Alien/Structures",
