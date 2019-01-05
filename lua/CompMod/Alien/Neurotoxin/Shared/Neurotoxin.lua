@@ -79,6 +79,34 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     return damage, armorFractionUsed
 end
 
+function Ability:GetIsAffectedByNeurotoxin()
+    return false
+end
+
+function BiteLeap:GetIsAffectedByNeurotoxin()
+    return self.primaryAttacking
+end
+
+function Gore:GetIsAffectedByNeurotoxin()
+    return true
+end
+
+function LerkBite:GetIsAffectedByNeurotoxin()
+    return self.primaryAttacking
+end
+
+function SpitSpray:GetIsAffectedByNeurotoxin()
+    return self.primaryAttacking
+end
+
+function StabBlink:GetIsAffectedByNeurotoxin()
+    return self.primaryAttacking
+end
+
+function SwipeBlink:GetIsAffectedByNeurotoxin()
+    return self.primaryAttacking
+end
+
 -- DotMarker bug fix
 local function ApplyDamage(self, targetList)
 
@@ -109,33 +137,3 @@ local function ApplyDamage(self, targetList)
 end
 
 ReplaceLocals(DotMarker.OnUpdate, {ApplyDamage = ApplyDamage})
-
--- boiler plate junk
-
-function Ability:GetIsAffectedByNeurotoxin()
-    return false
-end
-
-function BiteLeap:GetIsAffectedByNeurotoxin()
-    return self.primaryAttacking
-end
-
-function Gore:GetIsAffectedByNeurotoxin()
-    return true
-end
-
-function LerkBite:GetIsAffectedByNeurotoxin()
-    return self.primaryAttacking
-end
-
-function SpitSpray:GetIsAffectedByNeurotoxin()
-    return self.primaryAttacking
-end
-
-function StabBlink:GetIsAffectedByNeurotoxin()
-    return self.primaryAttacking
-end
-
-function SwipeBlink:GetIsAffectedByNeurotoxin()
-    return self.primaryAttacking
-end
