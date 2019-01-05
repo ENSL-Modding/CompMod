@@ -23,6 +23,7 @@ Mod.config.modules =
 	-- Commander Changes
 		-- Alien Commander
 		"Commander/Alien/Biomass",
+		"Commander/Alien/Cyst",
 		"Commander/Alien/Echo",
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/NutrientMist",
