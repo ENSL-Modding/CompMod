@@ -3,7 +3,7 @@
 
 kModName = string.match(Script.CallStack(), "lua/.*/Framework/Mod_FileHooks.lua"):gsub("lua/", ""):gsub("/Framework/Mod_FileHooks.lua", "")
 
-Script.Load("lua/" .. kModName .. "/Framework/SharedFuncs.lua")
+Script.Load("lua/" .. kModName .. "/Framework/Framework.lua")
 
 _G[kModName]:PrintDebug("Setting up file hooks", "all")
 

@@ -4,7 +4,7 @@
 kModName = string.match(Script.CallStack(), "lua/.*/Framework/Mod_Shared.lua"):gsub("lua/", ""):gsub("/Framework/Mod_Shared.lua", "")
 
 Script.Load("lua/Class.lua")
-Script.Load("lua/" .. kModName .. "/Framework/SharedFuncs.lua")
+Script.Load("lua/" .. kModName .. "/Framework/Framework.lua")
 
 _G[kModName]:PrintDebug("Loading NewTech files", "all")
 for i = 1, #_G[kModName].config.modules do
