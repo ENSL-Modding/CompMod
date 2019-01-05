@@ -9,6 +9,7 @@ Mod.config.kModBuild = "1"
 Mod.config.modules =
 {
 	-- Alien Changes
+	"Alien/Aura",
 	"Alien/Eggs",
 	"Alien/Fade",
 	"Alien/Focus",
