@@ -11,6 +11,7 @@ Mod.config.modules =
 	-- Alien Changes
 	"Alien/Eggs",
 	"Alien/Fade",
+	"Alien/Focus",
 	"Alien/Gorge",
 	"Alien/Lerk",
 	"Alien/Onos",
