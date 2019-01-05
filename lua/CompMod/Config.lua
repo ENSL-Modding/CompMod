@@ -14,6 +14,7 @@ Mod.config.modules =
 	"Alien/Focus",
 	"Alien/Gorge",
 	"Alien/Lerk",
+	"Alien/Neurotoxin",
 	"Alien/Onos",
 	"Alien/Pres",
 

@@ -1,11 +1,11 @@
 -- at this point we can assume that kModName has been set in both ModShared.lua and in ModFileHooks.lua
 
 local kLogLevels = {
-    fatal = {display="FATAL", level=0},
-    error = {display="ERROR", level=1},
-    warn = {display="WARN", level=2},
-    info = {display="INFO", level=3},
-    debug = {display="DEBUG", level=4},
+    fatal = {display="Fatal", level=0},
+    error = {display="Error", level=1},
+    warn = {display="Warn", level=2},
+    info = {display="Info", level=3},
+    debug = {display="Debug", level=4},
 }
 
 -- Check if another mod is loaded using the same name
@@ -25,13 +25,15 @@ assert(Mod.config.modules, "[FATAL] Modules not set for mod " .. Mod.config.kMod
 assert(Mod.config.kModVersion, "[FATAL] Mod version not set for mod " .. Mod.config.kModName)
 assert(Mod.config.kModBuild, "[FATAL] Mod build not set for mod " .. Mod.config.kModName)
 
+-- we can load defaults for the next few options
+
 if not Mod.config.kLogLevel then
     Mod.config.kLogLevel = 2
 end
 
 if not Mod.config.kShowInFeedbackText then
-    if Mod.config.kLogLevel >= Mod.config.kLogLevels.debug.level then
-        Shared.Message("[DEBUG] Using default value for kShowInFeedbackText (false) for mod " .. Mod.config.kModName)
+    if Mod.config.kLogLevel >= Mod.kLogLevels.info.level then
+        Shared.Message("[" .. Mod.kLogLevels.info.display .. "] Using default value for kShowInFeedbackText (false) for mod " .. Mod.config.kModName)
     end
     Mod.config.kShowInFeedbackText = false
 end
@@ -114,7 +116,7 @@ function Mod:UpdateEnum(tbl, key, value)
 end
 
 -- Delete key from enum
-function Mod:DeleteFromEnum( tbl, key )
+function Mod:RemoveFromEnum( tbl, key )
 	if rawget(tbl,key) == nil then
         self:PrintDebug("Cannot delete value from enum: key doesn't exist in table.")
         self.PrintCallStack()
@@ -163,7 +165,7 @@ function Mod:Print(str, level, vm)
 
     assert(current_vm ~= "")
 
-    local msg = string.format("[%s] (%s - %s) %s", level.display, self.config.kModName, current_vm, str)
+    local msg = string.format("[%s - %s] (%s) %s", self.config.kModName, current_vm, level.display, str)
 
 	if not vm
         or vm == "Server" and Server
@@ -208,15 +210,16 @@ end
 -- TODO: Make tech tree changes automatic
 
 -- ktechids
-local kTechIdToMaterialOffsetAdditions = {}
-
-function Mod:AddTechIdToMaterialOffset(techId, offset)
-	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
-end
 
 function Mod:AddTechId(techId)
 	self:PrintDebug("Adding techId: " .. techId, "all")
 	self:AppendToEnum(kTechId, techId)
+end
+
+local kTechIdToMaterialOffsetAdditions = {}
+
+function Mod:AddTechIdToMaterialOffset(techId, offset)
+	table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
 end
 
 -- alien techmap
@@ -354,6 +357,7 @@ end
 -- buy nodes
 local kBuyToRemove = {}
 local kBuyToChange = {}
+local kBuyToAdd = {}
 
 function Mod:RemoveBuyNode(techId)
 	table.insert(kBuyToRemove, techId, true)
@@ -361,6 +365,10 @@ end
 
 function Mod:ChangeBuyNode(techId, prereq1, prereq2, addOnTechId)
 	table.insert(kBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
+end
+
+function Mod:AddBuyNode(techId, prereq1, prereq2, addOnTechId)
+    table.insert(kBuyToAdd, { techId, prereq1, prereq2, addOnTechId } )
 end
 
 -- build nodes
@@ -547,6 +555,10 @@ end
 
 function Mod:GetBuyNodesToChange()
 	return kBuyToChange
+end
+
+function Mod:GetBuyNodesToAdd()
+    return kBuyToAdd
 end
 
 function Mod:GetBuildNodesToRemove()

@@ -5,9 +5,9 @@ CompMod:ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kT
 CompMod:ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
 
 -- remove stampede physics mask
-CompMod:DeleteFromEnum(PhysicsMask, "OnosStampede")
+CompMod:RemoveFromEnum(PhysicsMask, "OnosStampede")
 
--- charging onos get blocked by marines again
+-- charging onos get blocked by marines
 local chargeMask = CreateMaskExcludingGroups(PhysicsGroup.WhipGroup,
                                        PhysicsGroup.SmallStructuresGroup,
                                        PhysicsGroup.MediumStructuresGroup,
