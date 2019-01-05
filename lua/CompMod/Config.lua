@@ -23,6 +23,7 @@ Mod.config.modules =
 		-- Alien Commander
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/NutrientMist",
+		"Commander/Alien/Structures",
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
