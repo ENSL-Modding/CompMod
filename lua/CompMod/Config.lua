@@ -24,6 +24,7 @@ Mod.config.modules =
 		-- Alien Commander
 		"Commander/Alien/Biomass",
 		"Commander/Alien/Cyst",
+		"Commander/Alien/Drifter",
 		"Commander/Alien/Echo",
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/NutrientMist",
