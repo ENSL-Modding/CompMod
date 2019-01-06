@@ -31,6 +31,9 @@ Mod.config.modules =
 		"Commander/Alien/Structures",
 		"Commander/Alien/SupplyChanges",
 
+		-- Global Commander Changes
+		"Commander/Global/SupplyChanges",
+
 		-- Marine Commander
 		"Commander/Marine/ARCBugFix",
 		"Commander/Marine/ARCSpeedBoost",
