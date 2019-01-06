@@ -9,38 +9,44 @@ function GetModConfig(kLogLevels)
 	config.modules =
 	{
 		-- Alien Changes
-		"Alien/Aura",
 		"Alien/Eggs",
-		"Alien/Fade",
-		"Alien/Focus",
-		"Alien/Gorge",
 		"Alien/Healing",
-		"Alien/Lerk",
-		"Alien/Neurotoxin",
-		"Alien/Onos",
+
+		-- Lifeforms
+		"Alien/Lifeforms/Fade",
+		"Alien/Lifeforms/Gorge",
+		"Alien/Lifeforms/Lerk",
+		"Alien/Lifeforms/Onos",
+
 		"Alien/Pres",
 
+		-- Upgrades
+		"Alien/Upgrades/Aura",
+		"Alien/Upgrades/Focus",
+		"Alien/Upgrades/Neurotoxin",
+
 		-- Commander Changes
-			-- Alien Commander
-			"Commander/Alien/Biomass",
-			"Commander/Alien/Cyst",
-			"Commander/Alien/Drifter",
-			"Commander/Alien/Echo",
-			"Commander/Alien/LifeformEggs",
-			"Commander/Alien/NutrientMist",
-			"Commander/Alien/Structures",
-			"Commander/Alien/SupplyChanges",
 
-			-- Global Commander Changes
-			"Commander/Global/SupplyChanges",
+		-- Alien Commander
+		"Commander/Alien/Biomass",
+		"Commander/Alien/Cyst",
+		"Commander/Alien/Drifter",
+		"Commander/Alien/Echo",
+		"Commander/Alien/LifeformEggs",
+		"Commander/Alien/NutrientMist",
+		"Commander/Alien/Structures",
+		"Commander/Alien/SupplyChanges",
 
-			-- Marine Commander
-			"Commander/Marine/ARCBugFix",
-			"Commander/Marine/ARCSpeedBoost",
-			"Commander/Marine/CatPacks",
-			"Commander/Marine/Medpack",
-			"Commander/Marine/NanoShield",
-			"Commander/Marine/SupplyChanges",
+		-- Global Commander Changes
+		"Commander/Global/SupplyChanges",
+
+		-- Marine Commander
+		"Commander/Marine/ARCBugFix",
+		"Commander/Marine/ARCSpeedBoost",
+		"Commander/Marine/CatPacks",
+		"Commander/Marine/Medpack",
+		"Commander/Marine/NanoShield",
+		"Commander/Marine/SupplyChanges",
 
 		-- Global Changes
 		"Global/HealthBars",
@@ -52,12 +58,12 @@ function GetModConfig(kLogLevels)
 		"Marine/Pres",
 		"Marine/WeldSpeed",
 
-			-- Weapons
-			"Marine/Weapons/Flamethrower",
-			"Marine/Weapons/Grenades",
-			"Marine/Weapons/HMG",
-			"Marine/Weapons/Mine",
-			"Marine/Weapons/Shotgun",
+		-- Weapons
+		"Marine/Weapons/Flamethrower",
+		"Marine/Weapons/Grenades",
+		"Marine/Weapons/HMG",
+		"Marine/Weapons/Mine",
+		"Marine/Weapons/Shotgun",
 	}
 
 	return config
