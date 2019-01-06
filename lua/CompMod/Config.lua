@@ -42,6 +42,7 @@ Mod.config.modules =
 	"Global/HealthBars",
 
 	-- Marine Changes
+	"Marine/AxeFix",
 	"Marine/GunDropTime",
 	"Marine/Jetpack",
 	"Marine/Pres",
