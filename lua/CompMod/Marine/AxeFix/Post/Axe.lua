@@ -1,3 +1,6 @@
+-- thx based Dragon <3
+-- https://github.com/xToken/CompMod/blob/master/lua/CompMod/Weapons/Marine/Axe/shared.lua
+
 local kAxeWebDamageVector = Vector(0.1, 0.2, 0.1)
 function Axe:GetWebTraceVector()
 	return kAxeWebDamageVector
