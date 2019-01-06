@@ -1,10 +1,10 @@
-local techToChange = _G[kModName]:GetAlienTechMapChanges()
-local techToAdd = _G[kModName]:GetAlienTechMapAdditions()
-local techToRemove = _G[kModName]:GetAlienTechMapDeletions()
+local techToChange = Mod:GetAlienTechMapChanges()
+local techToAdd = Mod:GetAlienTechMapAdditions()
+local techToRemove = Mod:GetAlienTechMapDeletions()
 
-local linesToChange = _G[kModName]:GetAlienTechMapLineChanges()
-local linesToAdd = _G[kModName]:GetAlienTechMapLineAdditions()
-local linesToRemove = _G[kModName]:GetAlienTechMapLineDeletions()
+local linesToChange = Mod:GetAlienTechMapLineChanges()
+local linesToAdd = Mod:GetAlienTechMapLineAdditions()
+local linesToRemove = Mod:GetAlienTechMapLineDeletions()
 
 -- techtree tech
 
@@ -13,7 +13,7 @@ for techIndex, record in ipairs(kAlienTechMap) do
     local techId = record[1]
 
     if techToChange[techId] then
-    	_G[kModName]:PrintDebug("Changing alien techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
+    	Mod:PrintDebug("Changing alien techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
     	kAlienTechMap[techIndex] = techToChange[techId]
     end
 end
@@ -23,14 +23,14 @@ for techIndex, record in ipairs(kAlienTechMap) do
     local techId = record[1]
 
     if techToRemove[techId] then
-    	_G[kModName]:PrintDebug("Deleting alien techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
+    	Mod:PrintDebug("Deleting alien techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
 		kAlienTechMap[techIndex] = {nil}
     end
 end
 
 -- additions
 for _, value in pairs(techToAdd) do
-	_G[kModName]:PrintDebug("Adding alien techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
+	Mod:PrintDebug("Adding alien techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
 	table.insert(kAlienTechMap, value)
 end
 
@@ -43,7 +43,7 @@ for index, record in ipairs(kAlienLines) do
 		and record[2] == line[1][2]
 		and record[3] == line[1][3]
 		and record[4] == line[1][4] then
-			_G[kModName]:PrintDebug(string.format("Changing alien techtree line: (%f, %f, %f, %f) to (%f, %f, %f, %f)", line[1][1], line[1][2], line[1][3], line[1][4], line[2][1], line[2][2], line[2][3], line[2][4]), "all")
+			Mod:PrintDebug(string.format("Changing alien techtree line: (%f, %f, %f, %f) to (%f, %f, %f, %f)", line[1][1], line[1][2], line[1][3], line[1][4], line[2][1], line[2][2], line[2][3], line[2][4]), "all")
 			kAlienLines[index] = line[2]
 		end
 	end
@@ -56,7 +56,7 @@ for index, record in ipairs(kAlienLines) do
 		and record[2] == line[2]
 		and record[3] == line[3]
 		and record[4] == line[4] then
-			_G[kModName]:PrintDebug(string.format("Deleting alien techtree line: %f, %f, %f, %f", line[1], line[2], line[3], line[4]), "all")
+			Mod:PrintDebug(string.format("Deleting alien techtree line: %f, %f, %f, %f", line[1], line[2], line[3], line[4]), "all")
 			table.remove(kAlienLines, index)
 		end
 	end
@@ -64,6 +64,6 @@ end
 
 -- additions
 for _, value in ipairs(linesToAdd) do
-	_G[kModName]:PrintDebug(string.format("Adding alien techtree line: (%f, %f, %f, %f)", value[1], value[2], value[3], value[4]), "all")
+	Mod:PrintDebug(string.format("Adding alien techtree line: (%f, %f, %f, %f)", value[1], value[2], value[3], value[4]), "all")
 	table.insert(kAlienLines, value)
 end

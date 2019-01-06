@@ -1,7 +1,7 @@
-local kTechIdToMaterialOffset = _G[kModName]:GetLocalVariable( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
-local additions = _G[kModName]:GetTechIdToMaterialOffsetAdditions()
+local kTechIdToMaterialOffset = Mod:GetLocalVariable( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
+local additions = Mod:GetTechIdToMaterialOffsetAdditions()
 
 for _,v in ipairs(additions) do
-	_G[kModName]:PrintDebug("Adding kTechIdToMaterialOffset for: " .. (EnumToString(kTechId, v[1]) or v[1]), "all")
+	Mod:PrintDebug("Adding kTechIdToMaterialOffset for: " .. (EnumToString(kTechId, v[1]) or v[1]), "all")
 	kTechIdToMaterialOffset[v[1]] = v[2]
 end

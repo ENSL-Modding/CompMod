@@ -1,44 +1,73 @@
--- at this point we can assume that kModName has been set in both ModShared.lua and in ModFileHooks.lua
-
-local kLogLevels = {
-    fatal = {display="Fatal", level=0},
-    error = {display="Error", level=1},
-    warn = {display="Warn", level=2},
-    info = {display="Info", level=3},
-    debug = {display="Debug", level=4},
-}
-
--- Check if another mod is loaded using the same name
-assert(not _G[kModName], "[FATAL] A mod with the name \"" .. kModName .. "\" is already loaded into memory. Change your mod name to resolve.")
-
+local framework_version = "0"
+local framework_build = "1"
 Mod = {}
-Mod.kLogLevels = kLogLevels
-Mod.config = {}
-Mod.config.kModName = kModName
-Mod.config.kModName = kModName
 
-Script.Load("lua/" .. Mod.config.kModName .. "/Config.lua")
+function Mod:Initialise(kModName)
 
-assert(Mod.config.modules, "[FATAL] Modules not set for mod " .. Mod.config.kModName) -- we cannot continue without modules
+    local current_vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
 
--- while it's not essential that these are set, it makes it a lot easier :)
-assert(Mod.config.kModVersion, "[FATAL] Mod version not set for mod " .. Mod.config.kModName)
-assert(Mod.config.kModBuild, "[FATAL] Mod build not set for mod " .. Mod.config.kModName)
+    local kLogLevels = {
+        fatal = {display="Fatal", level=0},
+        error = {display="Error", level=1},
+        warn = {display="Warn", level=2},
+        info = {display="Info", level=3},
+        debug = {display="Debug", level=4},
+    }
 
--- we can load defaults for the next few options
+    Shared.Message(string.format("[%s - %s] Loading framework %s", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
 
-if not Mod.config.kLogLevel then
-    Mod.config.kLogLevel = 2
-end
-
-if not Mod.config.kShowInFeedbackText then
-    if Mod.config.kLogLevel >= Mod.kLogLevels.info.level then
-        Shared.Message("[" .. Mod.kLogLevels.info.display .. "] Using default value for kShowInFeedbackText (false) for mod " .. Mod.config.kModName)
+    if _G[kModName] then
+        Mod = _G[kModName]
+        Shared.Message(string.format("[%s - %s] Skipped loading framework %s", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
+        return
     end
-    Mod.config.kShowInFeedbackText = false
-end
 
-table.insert(Mod.config.modules, "Framework/Framework")
+    Mod.kLogLevels = kLogLevels
+
+    Script.Load("lua/" .. kModName .. "/Config.lua")
+
+    assert(GetModConfig, string.format("[%s - %s] (%s) Config.lua malformed. Missing GetModConfig function.", kModName, current_vm, kLogLevels.fatal.display))
+
+    Mod.config = GetModConfig(kLogLevels)
+
+    assert(Mod.config, string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return anything.", kModName, current_vm, kLogLevels.fatal.display))
+    assert(type(Mod.config) == "table", string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return expected type.", kModName, current_vm, kLogLevels.fatal.display))
+
+    Mod.config.kModName = kModName
+
+    -- load some defaults
+
+    if not Mod.config.kLogLevel then
+        Mod.config.kLogLevel = kLogLevels.info
+        Mod:Print(string.format("Using default value for kLogLevel (%s:%s)", Mod.config.kLogLevel.level, Mod.config.kLogLevel.display), kLogLevels.warn)
+    end
+
+    if not Mod.config.kShowInFeedbackText then
+        Mod.config.kShowInFeedbackText = false
+        Mod:Print("Using default value for kShowInFeedbackText (false)", kLogLevels.warn)
+    end
+
+    if not Mod.config.modules or #Mod.config.modules == 0 then
+        Mod.config.modules = {}
+        Mod:Print("No modules specified.", kLogLevels.warn)
+    end
+
+    if not Mod.config.kModVersion then
+        Mod.config.kModVersion = "0"
+        Mod:Print("Using default value for kModVersion (0)", kLogLevels.warn)
+    end
+
+    if not Mod.config.kModBuild then
+        Mod.config.kModBuild = "0"
+        Mod:Print("Using default value for kModBuild (0)", kLogLevels.warn)
+    end
+
+    table.insert(Mod.config.modules, "Framework/Framework")
+
+    _G[Mod.config.kModName] = Mod
+    Shared.Message(string.format("[%s - %s] Framework %s loaded", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
+
+end
 
 -- Retrieve referenced local variable
 --
@@ -67,7 +96,7 @@ end
 
 -- Append new value to enum
 function Mod:AppendToEnum(tbl, key)
-    if rawget(tbl,key) ~= nil then
+    if rawget(tbl,key) then
         self:PrintDebug("Key already exists in enum.")
         self.PrintCallStack()
         return
@@ -147,23 +176,13 @@ end
 -- Shared.Message wrapper
 function Mod:Print(str, level, vm)
     assert(str)
-    assert(level)
+    level = level or self.kLogLevels.info
 
-    if self.config.kLogLevel < level.level then
+    if self.config.kLogLevel.level < level.level then
         return
     end
 
-    local current_vm = ""
-
-    if Client then
-    	current_vm = "Client"
-    elseif Server then
-    	current_vm = "Server"
-    elseif Predict then
-    	current_vm = "Predict"
-    end
-
-    assert(current_vm ~= "")
+    local current_vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
 
     local msg = string.format("[%s - %s] (%s) %s", self.config.kModName, current_vm, level.display, str)
 
@@ -195,8 +214,12 @@ end
 
 -- Returns the relative ns2 path used to find lua files from the given module and vm
 function Mod:FormatDir(module, vm)
-  assert(module ~= nil)
-  assert(vm ~= nil)
+  assert(module)
+  assert(vm)
+
+  assert(type(module) == "string")
+  assert(type(vm) == "string")
+
   return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
 end
 
@@ -457,6 +480,18 @@ end
 
 -- getters BOOOOO
 
+function Mod:GetFrameworkVersion()
+    return framework_version
+end
+
+function Mod:GetFrameworkBuild()
+    return framework_build
+end
+
+function Mod:GetFrameworkVersionPrintable()
+    return string.format("v%s.%s", self:GetFrameworkVersion(), self:GetFrameworkBuild())
+end
+
 function Mod:GetTechIdToMaterialOffsetAdditions()
 	return kTechIdToMaterialOffsetAdditions
 end
@@ -616,7 +651,3 @@ end
 function Mod:GetTargetedBuyToChange()
 	return kTargetedBuyToChange
 end
-
--- no need to validate since we know mod is set and the mod name is unique
-_G[Mod.config.kModName] = Mod
-_G[Mod.config.kModName]:PrintDebug("Framework loaded.")

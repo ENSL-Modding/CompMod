@@ -54,13 +54,13 @@ function recalculateTechTreeLines()
 	return kMarineLines
 end
 
-local techToChange = _G[kModName]:GetMarineTechMapChanges()
-local techToAdd = _G[kModName]:GetMarineTechMapAdditions()
-local techToRemove = _G[kModName]:GetMarineTechMapDeletions()
+local techToChange = Mod:GetMarineTechMapChanges()
+local techToAdd = Mod:GetMarineTechMapAdditions()
+local techToRemove = Mod:GetMarineTechMapDeletions()
 
-local linesToChange = _G[kModName]:GetMarineTechMapLineChanges()
-local linesToAdd = _G[kModName]:GetMarineTechMapLineAdditions()
-local linesToRemove = _G[kModName]:GetMarineTechMapLineDeletions()
+local linesToChange = Mod:GetMarineTechMapLineChanges()
+local linesToAdd = Mod:GetMarineTechMapLineAdditions()
+local linesToRemove = Mod:GetMarineTechMapLineDeletions()
 
 -- techtree tech
 
@@ -69,7 +69,7 @@ for techIndex, record in ipairs(kMarineTechMap) do
     local techId = record[1]
 
     if techToChange[techId] then
-    	_G[kModName]:PrintDebug("Changing marine techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
+    	Mod:PrintDebug("Changing marine techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
     	kMarineTechMap[techIndex] = techToChange[techId]
     end
 end
@@ -79,14 +79,14 @@ for techIndex, record in ipairs(kMarineTechMap) do
     local techId = record[1]
 
     if techToRemove[techId] then
-    	_G[kModName]:PrintDebug("Deleting marine techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
+    	Mod:PrintDebug("Deleting marine techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
 		kMarineTechMap[techIndex] = {nil}
     end
 end
 
 -- additions
 for _, value in pairs(techToAdd) do
-	_G[kModName]:PrintDebug("Adding marine techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
+	Mod:PrintDebug("Adding marine techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
 	table.insert(kMarineTechMap, value)
 end
 
@@ -101,7 +101,7 @@ for index, record in ipairs(kMarineLines) do
 		and record[2] == line[1][2]
 		and record[3] == line[1][3]
 		and record[4] == line[1][4] then
-			_G[kModName]:PrintDebug(string.format("Changing marine techtree line: (%f, %f, %f, %f) to (%f, %f, %f, %f)", line[1][1], line[1][2], line[1][3], line[1][4], line[2][1], line[2][2], line[2][3], line[2][4]), "all")
+			Mod:PrintDebug(string.format("Changing marine techtree line: (%f, %f, %f, %f) to (%f, %f, %f, %f)", line[1][1], line[1][2], line[1][3], line[1][4], line[2][1], line[2][2], line[2][3], line[2][4]), "all")
 			kMarineLines[index] = line[2]
 		end
 	end
@@ -124,7 +124,7 @@ for index, record in ipairs(kMarineLines) do
 		and record[2] == line[2]
 		and record[3] == line[3]
 		and record[4] == line[4] then
-			_G[kModName]:PrintDebug(string.format("Deleting marine techtree line: %f, %f, %f, %f", line[1], line[2], line[3], line[4]), "all")
+			Mod:PrintDebug(string.format("Deleting marine techtree line: %f, %f, %f, %f", line[1], line[2], line[3], line[4]), "all")
 			table.remove(kMarineLines, index)
 		end
 	end
@@ -139,6 +139,6 @@ for _, value in ipairs(linesToAdd) do
 		line = GetLinePositionForTechMap(kMarineTechMap, value[2], value[3])
 	end
 	assert(line ~= {})
-	_G[kModName]:PrintDebug(string.format("Adding marine techtree line: (%f, %f, %f, %f)", line[1], line[2], line[3], line[4]), "all")
+	Mod:PrintDebug(string.format("Adding marine techtree line: (%f, %f, %f, %f)", line[1], line[2], line[3], line[4]), "all")
 	table.insert(kMarineLines, line)
 end

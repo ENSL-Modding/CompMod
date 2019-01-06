@@ -1,61 +1,64 @@
--- i wonder if this will still work with multiple mods using the framework
--- prolly not but hey :)
+function GetModConfig(kLogLevels)
+	local config = {}
 
-Mod.config.kLogLevel = 4
-Mod.config.kShowInFeedbackText = true
-Mod.config.kModVersion = "0"
-Mod.config.kModBuild = "1"
+	config.kLogLevel = kLogLevels.info
+	config.kShowInFeedbackText = true
+	config.kModVersion = "1"
+	config.kModBuild = "1"
 
-Mod.config.modules =
-{
-	-- Alien Changes
-	"Alien/Aura",
-	"Alien/Eggs",
-	"Alien/Fade",
-	"Alien/Focus",
-	"Alien/Gorge",
-	"Alien/Healing",
-	"Alien/Lerk",
-	"Alien/Neurotoxin",
-	"Alien/Onos",
-	"Alien/Pres",
+	config.modules =
+	{
+		-- Alien Changes
+		"Alien/Aura",
+		"Alien/Eggs",
+		"Alien/Fade",
+		"Alien/Focus",
+		"Alien/Gorge",
+		"Alien/Healing",
+		"Alien/Lerk",
+		"Alien/Neurotoxin",
+		"Alien/Onos",
+		"Alien/Pres",
 
-	-- Commander Changes
-		-- Alien Commander
-		"Commander/Alien/Biomass",
-		"Commander/Alien/Cyst",
-		"Commander/Alien/Drifter",
-		"Commander/Alien/Echo",
-		"Commander/Alien/LifeformEggs",
-		"Commander/Alien/NutrientMist",
-		"Commander/Alien/Structures",
-		"Commander/Alien/SupplyChanges",
+		-- Commander Changes
+			-- Alien Commander
+			"Commander/Alien/Biomass",
+			"Commander/Alien/Cyst",
+			"Commander/Alien/Drifter",
+			"Commander/Alien/Echo",
+			"Commander/Alien/LifeformEggs",
+			"Commander/Alien/NutrientMist",
+			"Commander/Alien/Structures",
+			"Commander/Alien/SupplyChanges",
 
-		-- Global Commander Changes
-		"Commander/Global/SupplyChanges",
+			-- Global Commander Changes
+			"Commander/Global/SupplyChanges",
 
-		-- Marine Commander
-		"Commander/Marine/ARCBugFix",
-		"Commander/Marine/ARCSpeedBoost",
-		"Commander/Marine/CatPacks",
-		"Commander/Marine/Medpack",
-		"Commander/Marine/NanoShield",
-		"Commander/Marine/SupplyChanges",
+			-- Marine Commander
+			"Commander/Marine/ARCBugFix",
+			"Commander/Marine/ARCSpeedBoost",
+			"Commander/Marine/CatPacks",
+			"Commander/Marine/Medpack",
+			"Commander/Marine/NanoShield",
+			"Commander/Marine/SupplyChanges",
 
-	-- Global Changes
-	"Global/HealthBars",
+		-- Global Changes
+		"Global/HealthBars",
 
-	-- Marine Changes
-	"Marine/AxeFix",
-	"Marine/GunDropTime",
-	"Marine/Jetpack",
-	"Marine/Pres",
-	"Marine/WeldSpeed",
+		-- Marine Changes
+		"Marine/AxeFix",
+		"Marine/GunDropTime",
+		"Marine/Jetpack",
+		"Marine/Pres",
+		"Marine/WeldSpeed",
 
-		-- Weapons
-		"Marine/Weapons/Flamethrower",
-		"Marine/Weapons/Grenades",
-		"Marine/Weapons/HMG",
-		"Marine/Weapons/Mine",
-		"Marine/Weapons/Shotgun",
-}
+			-- Weapons
+			"Marine/Weapons/Flamethrower",
+			"Marine/Weapons/Grenades",
+			"Marine/Weapons/HMG",
+			"Marine/Weapons/Mine",
+			"Marine/Weapons/Shotgun",
+	}
+
+	return config
+end
