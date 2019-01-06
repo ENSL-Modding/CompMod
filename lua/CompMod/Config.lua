@@ -23,6 +23,7 @@ function GetModConfig(kLogLevels)
 		-- Upgrades
 		"Alien/Upgrades/Adrenaline",
 		"Alien/Upgrades/Aura",
+		"Alien/Upgrades/Camouflage",
 		"Alien/Upgrades/Focus",
 		"Alien/Upgrades/Neurotoxin",
 
