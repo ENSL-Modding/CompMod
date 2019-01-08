@@ -1,3 +1,6 @@
+local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
+local Mod = _G[kModName]
+
 Mod:PrintDebug("Loading Client files", "Client")
 
 for i = 1, #Mod.config.modules do

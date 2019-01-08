@@ -1,10 +1,9 @@
--- an odd way to get the mod name
--- but this is dumb and it hurts my brain theres gotta be a better way scoob
-local kModName = string.match(Script.CallStack(), "lua/.*/Framework/Mod_Shared.lua"):gsub("lua/", ""):gsub("/Framework/Mod_Shared.lua", "")
+local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
 
 Script.Load("lua/Class.lua")
 Script.Load("lua/" .. kModName .. "/Framework/Framework.lua")
-Mod:Initialise(kModName)
+
+local Mod = _G[kModName]
 
 Mod:PrintDebug("Loading NewTech files", "all")
 for i = 1, #Mod.config.modules do

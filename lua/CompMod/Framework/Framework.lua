@@ -1,78 +1,85 @@
 local framework_version = "0"
-local framework_build = "1"
-Mod = {}
+local framework_build = "3"
+local Mod = {}
 
-function Mod:Initialise(kModName)
+function Mod:Initialise()
+
+    local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
+
+    -- just in case :))
+    assert(kModName and type(kModName) == "string")
 
     local current_vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
 
     local kLogLevels = {
         fatal = {display="Fatal", level=0},
         error = {display="Error", level=1},
-        warn = {display="Warn", level=2},
-        info = {display="Info", level=3},
+        warn  = {display="Warn",  level=2},
+        info  = {display="Info",  level=3},
         debug = {display="Debug", level=4},
     }
 
-    Shared.Message(string.format("[%s - %s] Loading framework %s", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
+    Shared.Message(string.format("[%s - %s] Loading framework %s", kModName, current_vm, self:GetFrameworkVersionPrintable()))
 
     if _G[kModName] then
         Mod = _G[kModName]
-        Shared.Message(string.format("[%s - %s] Skipped loading framework %s", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
+        Shared.Message(string.format("[%s - %s] Skipped loading framework %s", kModName, current_vm, self:GetFrameworkVersionPrintable()))
         return
     end
 
-    Mod.kLogLevels = kLogLevels
+    self.kLogLevels = kLogLevels
 
     Script.Load("lua/" .. kModName .. "/Config.lua")
 
     assert(GetModConfig, string.format("[%s - %s] (%s) Config.lua malformed. Missing GetModConfig function.", kModName, current_vm, kLogLevels.fatal.display))
 
-    Mod.config = GetModConfig(kLogLevels)
+    self.config = GetModConfig(kLogLevels)
 
-    assert(Mod.config, string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return anything.", kModName, current_vm, kLogLevels.fatal.display))
-    assert(type(Mod.config) == "table", string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return expected type.", kModName, current_vm, kLogLevels.fatal.display))
+    assert(self.config, string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return anything.", kModName, current_vm, kLogLevels.fatal.display))
+    assert(type(self.config) == "table", string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return expected type.", kModName, current_vm, kLogLevels.fatal.display))
 
-    Mod.config.kModName = kModName
+    self.config.kModName = kModName
 
     -- load some defaults
 
-    if not Mod.config.kLogLevel then
-        Mod.config.kLogLevel = kLogLevels.info
-        Mod:Print(string.format("Using default value for kLogLevel (%s:%s)", Mod.config.kLogLevel.level, Mod.config.kLogLevel.display), kLogLevels.warn)
+    if not self.config.kLogLevel then
+        self.config.kLogLevel = kLogLevels.info
+        self:Print(string.format("Using default value for kLogLevel (%s:%s)", self.config.kLogLevel.level, self.config.kLogLevel.display), kLogLevels.warn)
     end
 
-    if not Mod.config.kShowInFeedbackText then
-        Mod.config.kShowInFeedbackText = false
-        Mod:Print("Using default value for kShowInFeedbackText (false)", kLogLevels.warn)
+    if not self.config.kShowInFeedbackText then
+        self.config.kShowInFeedbackText = false
+        self:Print("Using default value for kShowInFeedbackText (false)", kLogLevels.warn)
     end
 
-    if not Mod.config.modules or #Mod.config.modules == 0 then
-        Mod.config.modules = {}
-        Mod:Print("No modules specified.", kLogLevels.warn)
+    if not self.config.modules or #self.config.modules == 0 then
+        self.config.modules = {}
+        self:Print("No modules specified.", kLogLevels.warn)
     end
 
-    if not Mod.config.kModVersion then
-        Mod.config.kModVersion = "0"
-        Mod:Print("Using default value for kModVersion (0)", kLogLevels.warn)
+    if not self.config.kModVersion then
+        self.config.kModVersion = "0"
+        self:Print("Using default value for kModVersion (0)", kLogLevels.warn)
     end
 
-    if not Mod.config.kModBuild then
-        Mod.config.kModBuild = "0"
-        Mod:Print("Using default value for kModBuild (0)", kLogLevels.warn)
+    if not self.config.kModBuild then
+        self.config.kModBuild = "0"
+        self:Print("Using default value for kModBuild (0)", kLogLevels.warn)
     end
 
-    table.insert(Mod.config.modules, "Framework/Framework")
+    table.insert(self.config.modules, "Framework/Framework")
 
-    _G[Mod.config.kModName] = Mod
-    Shared.Message(string.format("[%s - %s] Framework %s loaded", kModName, current_vm, Mod:GetFrameworkVersionPrintable()))
-
+    _G[self.config.kModName] = self
+    Shared.Message(string.format("[%s - %s] Framework %s loaded", kModName, current_vm, self:GetFrameworkVersionPrintable()))
 end
 
 -- Retrieve referenced local variable
 --
 -- Original author: https://forums.unknownworlds.com/discussion/comment/2178874#Comment_2178874
 function Mod:GetLocalVariable(originalFunction, localName)
+
+    assert(originalFunction and type(originalFunction) == "function")
+    assert(localName and type(localName) == "string")
 
     local index = 1
     while true do
@@ -90,12 +97,18 @@ function Mod:GetLocalVariable(originalFunction, localName)
 
     end
 
+    self:PrintDebug("Local variable \"" .. localName .. "\" not found")
+
     return nil
 
 end
 
 -- Append new value to enum
 function Mod:AppendToEnum(tbl, key)
+
+    assert(type(tbl) == "table")
+    assert(key)
+
     if rawget(tbl,key) then
         self:PrintDebug("Key already exists in enum.")
         self.PrintCallStack()
@@ -114,11 +127,11 @@ function Mod:AppendToEnum(tbl, key)
 
         -- delete old max
         rawset(tbl, rawget(tbl, maxVal), nil)
-        rawset( tbl, maxVal, nil )
+        rawset(tbl, maxVal, nil)
 
         -- move max down
-		rawset( tbl, 'Max', maxVal-1 )
-		rawset( tbl, maxVal-1, 'Max' )
+		rawset(tbl, 'Max', maxVal-1)
+		rawset(tbl, maxVal-1, 'Max')
     else
         for k, v in next, tbl do
             if type(v) == "number" and v > maxVal then
@@ -128,24 +141,35 @@ function Mod:AppendToEnum(tbl, key)
         maxVal = maxVal + 1
     end
 
-    rawset( tbl, key, maxVal )
-    rawset( tbl, maxVal, key )
+    rawset(tbl, key, maxVal)
+    rawset(tbl, maxVal, key)
+
 end
 
 -- Update value in enum
 function Mod:UpdateEnum(tbl, key, value)
-  if rawget(tbl, key) == nil then
-    self:PrintDebug("Error updating enum: key doesn't exist in table.")
-    self.PrintCallStack()
-    return
-  end
 
-  rawset(tbl, rawget(tbl, key), value)
-  rawset( tbl, key, value )
+    assert(tbl and type(tbl) == "table")
+    assert(key)
+    assert(value)
+
+    if rawget(tbl, key) == nil then
+        self:PrintDebug("Error updating enum: key doesn't exist in table.")
+        self.PrintCallStack()
+        return
+    end
+
+    rawset(tbl, rawget(tbl, key), value)
+    rawset(tbl, key, value)
+
 end
 
 -- Delete key from enum
-function Mod:RemoveFromEnum( tbl, key )
+function Mod:RemoveFromEnum(tbl, key)
+
+    assert(tbl and type(tbl) == "table")
+    assert(key)
+
 	if rawget(tbl,key) == nil then
         self:PrintDebug("Cannot delete value from enum: key doesn't exist in table.")
         self.PrintCallStack()
@@ -153,20 +177,23 @@ function Mod:RemoveFromEnum( tbl, key )
 	end
 
     rawset(tbl, rawget(tbl, key), nil)
-    rawset( tbl, key, nil )
+    rawset(tbl, key, nil)
 
 	local maxVal = 0
 	if tbl == kTechId then
+
 		maxVal = tbl.Max
 
         -- delete old max
         rawset(tbl, rawget(tbl, maxVal), nil)
-        rawset( tbl, maxVal, nil )
+        rawset(tbl, maxVal, nil)
 
         -- move max down
-		rawset( tbl, 'Max', maxVal-1 )
-		rawset( tbl, maxVal-1, 'Max' )
+		rawset(tbl, 'Max', maxVal-1)
+		rawset(tbl, maxVal-1, 'Max')
+
 	end
+
 end
 
 function Mod:PrintCallStack()
@@ -175,8 +202,12 @@ end
 
 -- Shared.Message wrapper
 function Mod:Print(str, level, vm)
-    assert(str)
+
+    assert(str and type(str) == "string")
+
     level = level or self.kLogLevels.info
+
+    assert(type(level) == "table")
 
     if self.config.kLogLevel.level < level.level then
         return
@@ -194,17 +225,18 @@ function Mod:Print(str, level, vm)
 
 		Shared.Message(msg)
 	end
+
 end
 
 -- Debug print
 function Mod:PrintDebug(str, vm)
-    Mod:Print(str, self.kLogLevels.debug, vm)
+    self:Print(str, self.kLogLevels.debug, vm)
 end
 
 -- Prints the mod version to console using the given vm
 function Mod:PrintVersion(vm)
 	local version = self:GetVersion()
-	self:Print(string.format("Version: %s loaded", version), self.kLogLevels.info, vm)
+	self:Print(string.format("%s version: %s loaded", self.config.kModName, version), self.kLogLevels.info, vm)
 end
 
 -- Returns a string with the mod version
@@ -214,11 +246,8 @@ end
 
 -- Returns the relative ns2 path used to find lua files from the given module and vm
 function Mod:FormatDir(module, vm)
-  assert(module)
-  assert(vm)
-
-  assert(type(module) == "string")
-  assert(type(vm) == "string")
+  assert(module and type(module) == "string")
+  assert(vm and type(vm) == "string")
 
   return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
 end
@@ -651,3 +680,5 @@ end
 function Mod:GetTargetedBuyToChange()
 	return kTargetedBuyToChange
 end
+
+Mod:Initialise()
