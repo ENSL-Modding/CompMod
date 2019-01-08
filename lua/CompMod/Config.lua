@@ -33,6 +33,7 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/Cyst",
 		"Commander/Alien/Drifter",
 		"Commander/Alien/Echo",
+		"Commander/Alien/HallucinationCloud",
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/MucousShield",
 		"Commander/Alien/NutrientMist",
