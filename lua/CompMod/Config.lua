@@ -11,14 +11,13 @@ function GetModConfig(kLogLevels)
 		-- Alien Changes
 		"Alien/Eggs",
 		"Alien/Healing",
+		"Alien/Pres",
 
 		-- Lifeforms
 		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Gorge",
 		"Alien/Lifeforms/Lerk",
 		"Alien/Lifeforms/Onos",
-
-		"Alien/Pres",
 
 		-- Upgrades
 		"Alien/Upgrades/Adrenaline",
@@ -58,6 +57,7 @@ function GetModConfig(kLogLevels)
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
 		"Marine/Pres",
+		"Marine/PrototypeLab",
 		"Marine/WeldSpeed",
 
 		-- Weapons
