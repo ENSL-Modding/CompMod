@@ -20,5 +20,10 @@ oldInitialize = Class_ReplaceMethod("GUIUpgradeChamberDisplay", "Initialize",
     end
 )
 
--- TODO: add gui post/pre scripts
--- i should probably add way to run post/pre init gui scripts at some point
+-- TODO: add gui post/pre script system
+
+local kIconTexture = "ui/compmod_buildmenu.dds"
+local CreateIcons = CompMod:GetLocalVariable(oldInitialize, "CreateIcons")
+local CreateUpgradeIcon = CompMod:GetLocalVariable(CreateIcons, "CreateUpgradeIcon")
+
+ReplaceLocals(CreateUpgradeIcon, {kIconTexture = kIconTexture})

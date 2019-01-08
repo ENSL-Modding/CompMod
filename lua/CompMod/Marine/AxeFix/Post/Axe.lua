@@ -1,6 +1,12 @@
 -- thx based Dragon <3
 -- https://github.com/xToken/CompMod/blob/master/lua/CompMod/Weapons/Marine/Axe/shared.lua
 
+local kAnimationGraph = PrecacheAsset("models/marine/axe/compmod_axe_view.animation_graph")
+
+function Axe:GetAnimationGraphName()
+    return kAnimationGraph
+end
+
 local kAxeWebDamageVector = Vector(0.1, 0.2, 0.1)
 function Axe:GetWebTraceVector()
 	return kAxeWebDamageVector
