@@ -99,6 +99,10 @@ function SpitSpray:GetIsAffectedByNeurotoxin()
     return self.primaryAttacking
 end
 
+function Spit:GetIsAffectedByNeurotoxin()
+    return true
+end
+
 function StabBlink:GetIsAffectedByNeurotoxin()
     return self.primaryAttacking
 end
