@@ -79,6 +79,8 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     return damage, armorFractionUsed
 end
 
+-- add affectedby funcs
+
 function Ability:GetIsAffectedByNeurotoxin()
     return false
 end
