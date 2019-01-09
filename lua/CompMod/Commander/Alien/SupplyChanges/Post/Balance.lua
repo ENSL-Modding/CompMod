@@ -1,5 +1,9 @@
-kDrifterSupply = 10 -- from 15 to 10
-kWhipSupply = 15
-kCragSupply = 10
-kShadeSupply = 10
-kShiftSupply = 10
+kDrifterSupply = 20
+kWhipSupply = 30
+kCragSupply = 25
+kShadeSupply = 25
+kShiftSupply = 25
+
+kSpurSupply = 5
+kShellSupply = 5
+kVeilSupply = 5

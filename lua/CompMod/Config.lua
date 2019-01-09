@@ -1,7 +1,7 @@
 function GetModConfig(kLogLevels)
 	local config = {}
 
-	config.kLogLevel = kLogLevels.info
+	config.kLogLevel = kLogLevels.debug
 	config.kShowInFeedbackText = true
 	config.kModVersion = "1"
 	config.kModBuild = "1"
