@@ -19,6 +19,7 @@ function GetModConfig(kLogLevels)
 		"Alien/Lifeforms/Gorge",
 		"Alien/Lifeforms/Lerk",
 		"Alien/Lifeforms/Onos",
+		"Alien/Lifeforms/Skulk",
 
 		-- Upgrades
 		"Alien/Upgrades/Adrenaline",
