@@ -1,7 +1,7 @@
 function GetModConfig(kLogLevels)
 	local config = {}
 
-	config.kLogLevel = kLogLevels.debug
+	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "1"
 	config.kModBuild = "1"
@@ -9,6 +9,7 @@ function GetModConfig(kLogLevels)
 	config.modules =
 	{
 		-- Alien Changes
+		"Alien/Babblers",
 		"Alien/Eggs",
 		"Alien/GorgeTunnel",
 		"Alien/Healing",
