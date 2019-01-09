@@ -58,6 +58,7 @@ function GetModConfig(kLogLevels)
 		"Marine/AxeFix",
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
+		"Marine/MarineClassChanges",
 		"Marine/Observatory",
 		"Marine/Pres",
 		"Marine/PrototypeLab",
