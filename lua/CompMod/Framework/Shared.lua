@@ -9,6 +9,12 @@ Mod:PrintDebug("Loading NewTech files", "all")
 for i = 1, #Mod.config.modules do
 	local path = Mod:FormatDir(Mod.config.modules[i], "NewTech")
 
+	if Server then
+		local hashPath = Mod:FormatDir(Mod.config.modules[i])
+		Server.AddRestrictedFileHashes(hashPath)
+		Mod:PrintDebug("Hashing: " .. hashPath)
+	end
+
 	local NewTechFiles = {}
 	Shared.GetMatchingFileNames(path, true, NewTechFiles)
 

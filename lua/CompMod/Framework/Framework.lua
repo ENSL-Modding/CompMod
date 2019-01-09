@@ -1,23 +1,143 @@
 local framework_version = "0"
-local framework_build = "3"
+local framework_build = "7"
+
+local kLogLevels = {
+    fatal = {display="Fatal", level=0},
+    error = {display="Error", level=1},
+    warn  = {display="Warn",  level=2},
+    info  = {display="Info",  level=3},
+    debug = {display="Debug", level=4},
+}
+
+local configOptions = {
+  logLevel = {
+    var             = "kLogLevel",
+    expectedType    = "table",
+    validator       =
+      function(tbl)
+        assert(tbl)
+        for k,v in pairs(kLogLevels) do
+          if v == tbl then
+            return true
+          end
+        end
+
+        return false
+      end,
+    required        = false,
+    default         = kLogLevels.info,
+    displayDefault  = "info",
+    warn            = true
+  },
+
+  showInFeedbackText = {
+    var             = "kShowInFeedbackText",
+    expectedType    = "boolean",
+    required        = false,
+    default         = false,
+    displayDefault  = "false",
+    warn            = true
+  },
+
+  modVersion = {
+    var             = "kModVersion",
+    expectedType    = "string",
+    required        = false,
+    default         = "0",
+    displayDefault  = "0",
+    warn            = true
+  },
+
+  modBuild = {
+    var             = "kModBuild",
+    expectedType    = "string",
+    required        = false,
+    default         = "1",
+    displayDefault  = "1",
+    warn            = true
+  },
+
+  modules = {
+    var             = "modules",
+    expectedType    = "table",
+    validator       =
+      function(tbl)
+        assert(tbl)
+        for k,v in pairs(tbl) do
+          if type(v) ~= "string" then
+            return false
+          end
+        end
+
+        return true
+      end,
+    required        = false,
+    default         = {},
+    displayDefault  = "new table",
+    warn            = true
+  },
+}
+
+local function ValidateConfigOption(configVar, configOption)
+
+  if type(configVar) ~= configOption.expectedType then
+    return false, string.format("Expected type \"%s\" for variable \"%s\", got \"%s\" instead", configOption.expectedType, configOption.var, type(configVar))
+  end
+
+  if configOption.validator then
+    local valid = configOption.validator(configVar)
+    if not valid then
+      return false, string.format("Validator failed for variable \"%s\"", configOption.var)
+    end
+  end
+
+  return true, "pass"
+end
+
+local function LoadDefaults(config, v)
+
+  option = v.default
+  config[v.var] = option
+
+  if v.warn then
+    Shared.Message(string.format("Using default value for option \"%s\" (%s)", v.var, v.displayDefault))
+  end
+
+end
+
+local function ValidateConfig(config)
+
+  if #config > #configOptions then
+    return false, "Too many config options set"
+  end
+
+  for _,v in pairs(configOptions) do
+
+    if config[v.var] then
+      local valid, reason = ValidateConfigOption(config[v.var], v)
+      if not valid then
+        return false, reason
+      end
+    else
+      if v.required then
+        return false, "Missing required config option \"" .. v.var .. "\""
+      end
+      LoadDefaults(config, v)
+    end
+
+  end
+
+  return true, "pass"
+
+end
+
 local Mod = {}
 
 function Mod:Initialise()
 
     local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
-
-    -- just in case :))
-    assert(kModName and type(kModName) == "string")
-
     local current_vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
-
-    local kLogLevels = {
-        fatal = {display="Fatal", level=0},
-        error = {display="Error", level=1},
-        warn  = {display="Warn",  level=2},
-        info  = {display="Info",  level=3},
-        debug = {display="Debug", level=4},
-    }
+    assert(kModName and type(kModName) == "string", "Initialise: Error finding mod name. Please report.")
 
     Shared.Message(string.format("[%s - %s] Loading framework %s", kModName, current_vm, self:GetFrameworkVersionPrintable()))
 
@@ -31,55 +151,34 @@ function Mod:Initialise()
 
     Script.Load("lua/" .. kModName .. "/Config.lua")
 
-    assert(GetModConfig, string.format("[%s - %s] (%s) Config.lua malformed. Missing GetModConfig function.", kModName, current_vm, kLogLevels.fatal.display))
+    local config = assert(GetModConfig, "Initialise: Config.lua malformed. Missing GetModConfig function.")
+    config = config(kLogLevels)
 
-    self.config = GetModConfig(kLogLevels)
+    assert(config, "Initialise: Config.lua malformed. GetModConfig doesn't return anything.")
+    assert(type(config) == "table", "Initialise: Config.lua malformed. GetModConfig doesn't return expected type.")
 
-    assert(self.config, string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return anything.", kModName, current_vm, kLogLevels.fatal.display))
-    assert(type(self.config) == "table", string.format("[%s - %s] (%s) Config.lua malformed. GetModConfig doesn't return expected type.", kModName, current_vm, kLogLevels.fatal.display))
+    valid, reason = ValidateConfig(config)
+    assert(valid, "Initialise: Config failed validation. " .. reason)
 
-    self.config.kModName = kModName
-
-    -- load some defaults
-
-    if not self.config.kLogLevel then
-        self.config.kLogLevel = kLogLevels.info
-        self:Print(string.format("Using default value for kLogLevel (%s:%s)", self.config.kLogLevel.level, self.config.kLogLevel.display), kLogLevels.warn)
-    end
-
-    if not self.config.kShowInFeedbackText then
-        self.config.kShowInFeedbackText = false
-        self:Print("Using default value for kShowInFeedbackText (false)", kLogLevels.warn)
-    end
-
-    if not self.config.modules or #self.config.modules == 0 then
-        self.config.modules = {}
-        self:Print("No modules specified.", kLogLevels.warn)
-    end
-
-    if not self.config.kModVersion then
-        self.config.kModVersion = "0"
-        self:Print("Using default value for kModVersion (0)", kLogLevels.warn)
-    end
-
-    if not self.config.kModBuild then
-        self.config.kModBuild = "0"
-        self:Print("Using default value for kModBuild (0)", kLogLevels.warn)
-    end
+    config.kModName = kModName
+    self.config = config
+    config = nil
 
     table.insert(self.config.modules, "Framework/Framework")
 
     _G[self.config.kModName] = self
     Shared.Message(string.format("[%s - %s] Framework %s loaded", kModName, current_vm, self:GetFrameworkVersionPrintable()))
+
 end
 
--- Retrieve referenced local variable
---
--- Original author: https://forums.unknownworlds.com/discussion/comment/2178874#Comment_2178874
+-- Get local variable from function
 function Mod:GetLocalVariable(originalFunction, localName)
 
-    assert(originalFunction and type(originalFunction) == "function")
-    assert(localName and type(localName) == "string")
+    local funcType = originalFunction and type(originalFunction) or "nil"
+    local nameType = localName and type(localName) == "string" or "nil"
+
+    assert(funcType == "function", "GetLocalVariable: Expected first argument to be of type function, was given " .. funcType)
+    assert(localName and type(localName) == "string", "GetLocalVariable: Expected second argument to be of type string, was given " .. funcType)
 
     local index = 1
     while true do
@@ -106,24 +205,17 @@ end
 -- Append new value to enum
 function Mod:AppendToEnum(tbl, key)
 
-    assert(type(tbl) == "table")
-    assert(key)
+    local tblType = tbl and type(tbl) or "nil"
+    assert(tbl and type(tbl) == "table", "AppendToEnum: First argument expected to be of type table, was " .. tblType)
+    assert(key, "AppendToEnum: required second argument \"key\" missing")
 
-    if rawget(tbl,key) then
-        self:PrintDebug("Key already exists in enum.")
-        self.PrintCallStack()
-        return
-    end
+    assert(not rawget(tbl,key), "AppendToEnum: key already exists in enum.")
 
     local maxVal = 0
     if tbl == kTechId then
         maxVal = tbl.Max
 
-        if maxVal - 1 == kTechIdMax then
-            self:PrintDebug( "Appending another value to the TechId enum would exceed network precision constraints" )
-            self.PrintCallStack()
-            return
-        end
+        assert(maxVal - 1 ~= kTechIdMax, "AppendToEnum: Appending another value to the TechId enum would exceed network precision constraints")
 
         -- delete old max
         rawset(tbl, rawget(tbl, maxVal), nil)
@@ -149,15 +241,13 @@ end
 -- Update value in enum
 function Mod:UpdateEnum(tbl, key, value)
 
-    assert(tbl and type(tbl) == "table")
-    assert(key)
-    assert(value)
+    local tblType = tbl and type(tbl) or "nil"
 
-    if rawget(tbl, key) == nil then
-        self:PrintDebug("Error updating enum: key doesn't exist in table.")
-        self.PrintCallStack()
-        return
-    end
+    assert(tblType == "table", "UpdateEnum: First argument expected to be of type table, was " .. tblType)
+    assert(key, "UpdateEnum: Required second argument \"key\" missing.")
+    assert(value, "UpdateEnum: Required third argument \"value\" missing.")
+
+    assert(rawget(tbl,key), "UpdateEnum: key doesn't exist in table.")
 
     rawset(tbl, rawget(tbl, key), value)
     rawset(tbl, key, value)
@@ -167,14 +257,12 @@ end
 -- Delete key from enum
 function Mod:RemoveFromEnum(tbl, key)
 
-    assert(tbl and type(tbl) == "table")
-    assert(key)
+    local tblType = tbl and type(tbl) or "nil"
 
-	if rawget(tbl,key) == nil then
-        self:PrintDebug("Cannot delete value from enum: key doesn't exist in table.")
-        self.PrintCallStack()
-        return
-	end
+    assert(tblType == "table", "RemoveFromEnum: First argument expected to be of type table, was " .. tblType)
+    assert(key, "RemoveFromEnum: Required second argument \"key\" missing.")
+
+    assert(rawget(tbl,key), "RemoveFromEnum: key doesn't exist in table.")
 
     rawset(tbl, rawget(tbl, key), nil)
     rawset(tbl, key, nil)
@@ -203,11 +291,13 @@ end
 -- Shared.Message wrapper
 function Mod:Print(str, level, vm)
 
-    assert(str and type(str) == "string")
+    local strType = str and type(str) or "nil"
+    assert(strType == "string", "Print: First argument expected to be of type string, was " .. strType)
 
     level = level or self.kLogLevels.info
 
-    assert(type(level) == "table")
+    local levelType = level and type(level) or "nil"
+    assert(levelType == "table", "Print: Second argument expected to be of type table, was " .. levelType)
 
     if self.config.kLogLevel.level < level.level then
         return
@@ -230,7 +320,12 @@ end
 
 -- Debug print
 function Mod:PrintDebug(str, vm)
+
+    local strType = str and type(str) or "nil"
+    assert(strType == "string", "DebugPrint: First argument expected to be of type string, was " .. strType)
+
     self:Print(str, self.kLogLevels.debug, vm)
+
 end
 
 -- Prints the mod version to console using the given vm
@@ -246,10 +341,15 @@ end
 
 -- Returns the relative ns2 path used to find lua files from the given module and vm
 function Mod:FormatDir(module, vm)
-  assert(module and type(module) == "string")
-  assert(vm and type(vm) == "string")
 
-  return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
+  local moduleType = module and type(module) or "nil"
+  assert(moduleType == "string", "FormatDir: First argument expected to be of type string, was " .. moduleType)
+
+  if vm then
+      return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
+  else
+      return string.format("lua/%s/%s/*", self.config.kModName, module)
+  end
 end
 
 --[[

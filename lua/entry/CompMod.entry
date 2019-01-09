@@ -1,11 +1,10 @@
--- i feel sick abusing the call stack like this. I hope theres no noticable performance issue with it
-local kModName = string.match(Script.CallStack(), "lua/entry/.*%.entry"):gsub("lua/entry/", ""):gsub("%.entry", "")
+local kModName = debug.getinfo(1, "S").source:gsub("@lua/entry/", ""):gsub("%.entry", "")
 
 modEntry = {
-	Client = "lua/" .. kModName .. "/Framework/Mod_Client.lua",
-	Server = "lua/" .. kModName .. "/Framework/Mod_Server.lua",
-	Predict = "lua/" .. kModName .. "/Framework/Mod_Predict.lua",
-	Shared = "lua/" .. kModName .. "/Framework/Mod_Shared.lua",
-	FileHooks = "lua/" .. kModName .. "/Framework/Mod_FileHooks.lua",
+	Client = "lua/" .. kModName .. "/Framework/Client.lua",
+	Server = "lua/" .. kModName .. "/Framework/Server.lua",
+	Predict = "lua/" .. kModName .. "/Framework/Predict.lua",
+	Shared = "lua/" .. kModName .. "/Framework/Shared.lua",
+	FileHooks = "lua/" .. kModName .. "/Framework/FileHooks.lua",
 	Priority = 100
 }
