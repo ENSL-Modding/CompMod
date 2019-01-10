@@ -1,5 +1,5 @@
 local framework_version = "0"
-local framework_build = "7"
+local framework_build = "8"
 
 local kLogLevels = {
     fatal = {display="Fatal", level=0},
@@ -348,7 +348,7 @@ function Mod:FormatDir(module, vm)
   if vm then
       return string.format("lua/%s/%s/%s/*.lua", self.config.kModName, module, vm)
   else
-      return string.format("lua/%s/%s/*", self.config.kModName, module)
+      return string.format("lua/%s/%s/*.lua", self.config.kModName, module)
   end
 end
 
