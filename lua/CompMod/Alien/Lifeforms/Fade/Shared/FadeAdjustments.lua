@@ -1,8 +1,3 @@
--- fade speed increase
-local kMaxSpeed = 6.3 -- was 6.2
-ReplaceLocals(Fade.ModifyCrouchAnimation, {kMaxSpeed = kMaxSpeed})
-ReplaceLocals(Fade.GetMaxSpeed, {kMaxSpeed = kMaxSpeed})
-
 -- slightly modified version of Dragon's original fade fix
 
 local kOffsetUpdate = 0 -- Full Speed
