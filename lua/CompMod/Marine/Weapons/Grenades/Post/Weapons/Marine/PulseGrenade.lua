@@ -1,16 +1,19 @@
-local kPulseGrenadeAutoExplodeRadius = 1
+if Server then
 
-function PulseGrenade:OnUpdate(deltaTime)
+  local kPulseGrenadeAutoExplodeRadius = 1
 
-    PredictedProjectile.OnUpdate(self, deltaTime)
+  function PulseGrenade:OnUpdate(deltaTime)
 
-    for _, enemy in ipairs( GetEntitiesForTeamWithinRange("Alien", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kPulseGrenadeAutoExplodeRadius) ) do
+      PredictedProjectile.OnUpdate(self, deltaTime)
 
-        if enemy:GetIsAlive() then
-            self:Detonate()
-            break
-        end
+      for _, enemy in ipairs( GetEntitiesForTeamWithinRange("Alien", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kPulseGrenadeAutoExplodeRadius) ) do
 
-    end
+          if enemy:GetIsAlive() then
+              self:Detonate()
+              break
+          end
 
+      end
+
+  end
 end
