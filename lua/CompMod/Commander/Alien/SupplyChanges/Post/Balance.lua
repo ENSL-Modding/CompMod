@@ -4,6 +4,6 @@ kCragSupply = 25
 kShadeSupply = 25
 kShiftSupply = 25
 
-kSpurSupply = 5
-kShellSupply = 5
-kVeilSupply = 5
+kSpurSupply = 0
+kShellSupply = 0
+kVeilSupply = 0
