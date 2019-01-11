@@ -1,3 +1,3 @@
-kEnergizeRange = 17
+kEnergizeRange = 14
 
 kPlayerEnergyPerEnergize = 10 -- decreased from 15
