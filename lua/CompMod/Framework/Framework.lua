@@ -175,10 +175,10 @@ end
 function Mod:GetLocalVariable(originalFunction, localName)
 
     local funcType = originalFunction and type(originalFunction) or "nil"
-    local nameType = localName and type(localName) == "string" or "nil"
+    local nameType = localName and type(localName) or "nil"
 
     assert(funcType == "function", "GetLocalVariable: Expected first argument to be of type function, was given " .. funcType)
-    assert(localName and type(localName) == "string", "GetLocalVariable: Expected second argument to be of type string, was given " .. funcType)
+    assert(nameType == "string", "GetLocalVariable: Expected second argument to be of type string, was given " .. funcType)
 
     local index = 1
     while true do
