@@ -1,10 +1,10 @@
 local kModName = debug.getinfo(1, "S").source:gsub("@lua/entry/", ""):gsub("%.entry", "")
 
 modEntry = {
-	Client = "lua/" .. kModName .. "/Framework/Client.lua",
-	Server = "lua/" .. kModName .. "/Framework/Server.lua",
-	Predict = "lua/" .. kModName .. "/Framework/Predict.lua",
-	Shared = "lua/" .. kModName .. "/Framework/Shared.lua",
-	FileHooks = "lua/" .. kModName .. "/Framework/FileHooks.lua",
+	Client = "lua/" .. kModName .. "/Framework/Core/Client.lua",
+	Server = "lua/" .. kModName .. "/Framework/Core/Server.lua",
+	Predict = "lua/" .. kModName .. "/Framework/Core/Predict.lua",
+	Shared = "lua/" .. kModName .. "/Framework/Core/Shared.lua",
+	FileHooks = "lua/" .. kModName .. "/Framework/Core/FileHooks.lua",
 	Priority = 100
 }

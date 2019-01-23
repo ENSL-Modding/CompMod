@@ -11,8 +11,8 @@ for i = 1, #Mod.config.modules do
 
 	if Server then
 		local hashPath = Mod:FormatDir(Mod.config.modules[i])
-		Server.AddRestrictedFileHashes(hashPath)
-		Mod:PrintDebug("Hashing: " .. hashPath)
+		local result = Server.AddRestrictedFileHashes(hashPath)
+		Mod:PrintDebug("Hashing: " .. hashPath .. " Result: " .. (result and result or "nil"))
 	end
 
 	local NewTechFiles = {}
@@ -20,7 +20,7 @@ for i = 1, #Mod.config.modules do
 
 	for i = 1, #NewTechFiles do
 		Mod:PrintDebug("Loading new tech file: " .. NewTechFiles[i], "all")
-	  	Script.Load(NewTechFiles[i])
+		Script.Load(NewTechFiles[i])
 	end
 end
 
@@ -36,7 +36,7 @@ for i = 1, #Mod.config.modules do
 
 	for i = 1, #SharedFiles do
 		Mod:PrintDebug("Loading shared file: " .. SharedFiles[i], "all")
-	  	Script.Load(SharedFiles[i])
+		Script.Load(SharedFiles[i])
 	end
 end
 

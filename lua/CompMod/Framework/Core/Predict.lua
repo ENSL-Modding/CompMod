@@ -1,5 +1,4 @@
-local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
-local Mod = _G[kModName]
+local Mod = GetMod()
 
 Mod:PrintDebug("Loading Predict files", "Predict")
 
@@ -11,7 +10,7 @@ for i = 1, #Mod.config.modules do
 
 	for i = 1, #PredictFiles do
 		Mod:PrintDebug("Loading predict file: " .. PredictFiles[i], "Predict")
-    	Script.Load(PredictFiles[i])
+		Script.Load(PredictFiles[i])
 	end
 end
 

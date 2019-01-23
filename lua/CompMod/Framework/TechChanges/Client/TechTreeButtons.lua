@@ -1,5 +1,4 @@
-local kModName = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/Framework/.*%.lua", "")
-local Mod = _G[kModName]
+local Mod = GetMod()
 
 local kTechIdToMaterialOffset = Mod:GetLocalVariable( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
 local additions = Mod:GetTechIdToMaterialOffsetAdditions()
