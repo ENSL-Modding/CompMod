@@ -510,7 +510,7 @@ end
 
 local bindingAdditions = {}
 
-function Mod:AddNewBind(name, type, transKey, default, afterName, defaultInputKey, move)
+function Mod:AddNewBind(name, type, transKey, default, afterName)
   assert(name)
   assert(type)
   assert(transKey)
