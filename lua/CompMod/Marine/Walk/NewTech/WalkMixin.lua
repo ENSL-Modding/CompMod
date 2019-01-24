@@ -20,10 +20,14 @@ end
 
 function WalkMixin:ModifyMaxSpeed(maxSpeedTable)
 
-    if self:GetIsOnGround() and not self.crouching and not self.sprinting and self.walking then
+    if self:CanWalk() and self:GetWalking() then
         maxSpeedTable.maxSpeed = maxSpeedTable.maxSpeed * 0.5
     end
 
+end
+
+function WalkMixin:CanWalk()
+  return self:GetIsOnGround() and not self.crouching and not self.sprinting
 end
 
 function WalkMixin:HandleButtons(input)
@@ -31,8 +35,6 @@ function WalkMixin:HandleButtons(input)
     PROFILE("WalkMixin:HandleButtons")
 
     local walkDesired = bit.band(input.commands, Move.ReadyRoom) ~= 0
-    local current_vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
-    print("(" .. current_vm .. ") walkDes:" .. (walkDesired and "yes" or "no"))
     if walkDesired == self.walking then
         return
     end
@@ -40,7 +42,7 @@ function WalkMixin:HandleButtons(input)
     if not walkDesired then
         self.walking = walkDesired
         self:UpdateControllerFromEntity()
-    elseif self:GetIsOnGround() and not self.crouching and not self.sprinting then
+    elseif self:CanWalk() then
         self.walking = walkDesired
         self:UpdateControllerFromEntity()
     end

@@ -23,6 +23,7 @@ local _keyBinding =
     MoveRight = InputKey.D,
     Jump = InputKey.Space,
     MovementModifier = InputKey.LeftShift,
+    SecondaryMovementModifier = InputKey.Capital,
     Crouch = InputKey.LeftControl,
     Scoreboard = InputKey.Tab,
     PrimaryAttack = InputKey.MouseButton0,
@@ -110,13 +111,6 @@ local _keyBinding =
     ESC = InputKey.Escape,
     Space = InputKey.Space
 }
-
-local Mod = GetMod()
-local bindings = Mod:GetBindingAdditions()
-
-for _,v in ipairs(bindings) do
-  _keyBinding = v[6](_keyBinding)
-end
 
 local _mouseAccel = 1.0
 local _sensitivityScalarX = 1.0
@@ -370,6 +364,9 @@ local function GenerateMove()
         if _keyState[ _keyBinding.MovementModifier ] then
             move.commands = bit.bor(move.commands, Move.MovementModifier)
         end
+        if _keyState[ _keyBinding.SecondaryMovementModifier ] then
+          move.commands = bit.bor(move.commands, Move.ReadyRoom)
+        end
 
         if _keyState[ _keyBinding.ScrollForward ] then
             move.commands = bit.bor(move.commands, Move.ScrollForward)
@@ -458,12 +455,6 @@ local function GenerateMove()
 
         if _keyPressed[ _keyBinding.Taunt ] then
             move.commands = bit.bor(move.commands, Move.Taunt)
-        end
-
-        local bindings = Mod:GetBindingAdditions()
-
-        for _,v in ipairs(bindings) do
-          move.commands = v[7](_keyPressed, _keyBinding, move)
         end
 
         -- Handle the hot keys used for commander mode.

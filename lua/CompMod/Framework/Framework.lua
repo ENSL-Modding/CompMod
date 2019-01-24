@@ -1,9 +1,8 @@
 local framework_version = "0"
-local framework_build = "17"
+local framework_build = "18"
 
 local frameworkModules = {
   "ConsistencyCheck",
-  "Bindings",
   "TechChanges",
 }
 
@@ -517,9 +516,7 @@ function Mod:AddNewBind(name, type, transKey, default, afterName, defaultInputKe
   assert(transKey)
   assert(default)
   assert(afterName)
-  assert(defaultInputKey)
-  assert(move)
-  table.insert(bindingAdditions, { name, type, transKey, default, afterName, defaultInputKey, move })
+  table.insert(bindingAdditions, { name, type, transKey, default, afterName })
 end
 
 --[[

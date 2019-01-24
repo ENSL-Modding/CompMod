@@ -55,6 +55,7 @@ function GetModConfig(kLogLevels)
 
 		-- Global Changes
 		"Global/HealthBars",
+		"Global/Bindings",
 
 		-- Marine Changes
 		"Marine/AxeFix",
@@ -64,6 +65,7 @@ function GetModConfig(kLogLevels)
 		"Marine/Observatory",
 		"Marine/Pres",
 		"Marine/PrototypeLab",
+		"Marine/Walk",
 		"Marine/WeldSpeed",
 
 		-- Weapons
