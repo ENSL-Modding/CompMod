@@ -16,4 +16,8 @@ end
 
 Mod:PrintDebug("Server files loaded.", "Server")
 
+if Mod:GetConfig().disableRanking == true then
+  gRankingDisabled = true
+end
+
 Mod:PrintVersion("Server")

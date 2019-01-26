@@ -188,10 +188,6 @@ function Mod:Initialise()
   self.config = config
   config = nil
 
-  if self.config.disableRanking == true and Server then
-    gRankingDisabled = true
-  end
-
   for _,v in ipairs(frameworkModules) do
     assert(type(v) == "string", "Initialise: Invalid framework module")
     table.insert(self.config.modules, "Framework/" .. v)
