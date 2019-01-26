@@ -24,11 +24,21 @@ local function UpdateButton(button, index)
   end
 
   if button.techId == kTechId.GorgeTunnel then
-    color = Color(0, 1, 0.2, 1) -- the same colour as kBlipColorType.MAC
+    local r = CompMod:GetConfigOption("GorgeTunnelEntranceColour_R")
+    local g = CompMod:GetConfigOption("GorgeTunnelEntranceColour_G")
+    local b = CompMod:GetConfigOption("GorgeTunnelEntranceColour_B")
+    local a = CompMod:GetConfigOption("GorgeTunnelEntranceColour_A")
+    local entranceColour = Color(r, g, b, a)
+    color = entranceColour
   end
 
   if button.techId == kTechId.GorgeTunnelExit then
-    color = Color(0.8, 0.6, 1, 1) -- the same colour as kBlipColorType.EtherealGate
+    local r = CompMod:GetConfigOption("GorgeTunnelExitColour_R")
+    local g = CompMod:GetConfigOption("GorgeTunnelExitColour_G")
+    local b = CompMod:GetConfigOption("GorgeTunnelExitColour_B")
+    local a = CompMod:GetConfigOption("GorgeTunnelExitColour_A")
+    local exitColour = Color(r, g, b, a)
+    color = exitColour
   end
 
   button.description:SetColor(color)

@@ -17,3 +17,9 @@ end
 Mod:PrintDebug("Client files loaded.", "Client")
 
 Mod:PrintVersion("Client")
+
+if Mod:GetConfig().use_config == "client" or Mod:GetConfig().use_config == "both" then
+	WriteDefaultConfigFile(Mod:GetConfigFileName(), Mod:GetDefaultConfigOptions())
+
+	Mod:LoadConfig()
+end

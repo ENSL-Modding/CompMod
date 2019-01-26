@@ -1,5 +1,5 @@
 local framework_version = "0"
-local framework_build = "18"
+local framework_build = "19"
 
 local frameworkModules = {
   "ConsistencyCheck",
@@ -73,7 +73,7 @@ local configOptions = {
   {
     var             = "modules",
     expectedType    = "table",
-    required        = false,
+    required        = true,
     default         = {},
     displayDefault  = "new table",
     warn            = true,
@@ -88,6 +88,28 @@ local configOptions = {
         return true
       end,
   },
+
+  {
+    var             = "use_config",
+    expectedType    = "string",
+    required        = false,
+    default         = "none",
+    displayDefault  = "none",
+    warn            = true,
+    validator       =
+      function(str)
+        assert(str)
+        local v = str:lower()
+        local validOptions = {
+          "none",
+          "client",
+          "server",
+          "both"
+        }
+
+        return table.contains(validOptions, v)
+      end,
+  }
 }
 
 local Mod = {}
@@ -116,8 +138,8 @@ local function LoadDefaults(config, v)
   end
 end
 
-local function ValidateConfig(self, config)
-  local configLength = self:TableLength(config)
+local function ValidateConfig(config)
+  local configLength = table.real_length(config)
   local configOptionsLength = #configOptions
 
   -- is this really needed?
@@ -181,12 +203,11 @@ function Mod:Initialise()
   assert(config, "Initialise: Config.lua malformed. GetModConfig doesn't return anything.")
   assert(type(config) == "table", "Initialise: Config.lua malformed. GetModConfig doesn't return expected type.")
 
-  valid, reason = ValidateConfig(self, config)
+  valid, reason = ValidateConfig(config)
   assert(valid, "Initialise: Config failed validation. " .. reason)
 
   config.kModName = kModName
-  self.config = config
-  config = nil
+  self.config, config = config, nil
 
   for _,v in ipairs(frameworkModules) do
     assert(type(v) == "string", "Initialise: Invalid framework module")
@@ -980,12 +1001,21 @@ end
 ]]
 
 -- i wish the # operator was deterministic
-function Mod:TableLength(tbl)
+function table.real_length(tbl)
   local count = 0
   for k,v in pairs(tbl) do
     count = count + 1
   end
   return count
+end
+
+function table.contains(table, element)
+  for _, value in pairs(table) do
+    if value == element then
+      return true
+    end
+  end
+  return false
 end
 
 --[[
@@ -1021,5 +1051,55 @@ local function UpdateBindingData()
 end
 
 Event.Hook("LoadComplete", UpdateBindingData)
+
+--[[
+====================
+    Config Funcs
+====================
+]]
+
+local configOptions = {}
+local defaultConfigOptions = {}
+
+function Mod:GetConfigFileName()
+  local modName = self:GetModName()
+
+  if Server then
+    return modName .. "_Server.json"
+  end
+
+  return modName .. ".json"
+end
+
+function Mod:RegisterConfigOption(name, value)
+  assert(not configOptions[name], string.format("RegisterConfigOption: %q is already registered", name))
+  defaultConfigOptions[name] = value
+end
+
+function Mod:GetDefaultConfigOptions()
+  return defaultConfigOptions
+end
+
+function Mod:GetConfigOption(name)
+  assert(configOptions[name], string.format("GetConfigOption: No config option with the name %q is registered", name))
+  return configOptions[name]
+end
+
+function Mod:UpdateConfigOption(name, value)
+  assert(configOptions[name], string.format("UpdateConfigOption: No config option with the name %q is registered", name))
+  configOptions[name] = value
+  self:SaveConfigOptions()
+end
+
+function Mod:SaveConfigOptions()
+  SaveConfigFile(self:GetConfigFileName(), configOptions)
+end
+
+function Mod:LoadConfig()
+  configOptions = LoadConfigFile(self:GetConfigFileName()) or defaultConfigOptions
+end
+
+-- We're finally done
+-- Init the stuff
 
 Mod:Initialise()
