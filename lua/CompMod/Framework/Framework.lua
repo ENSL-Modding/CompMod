@@ -1,8 +1,9 @@
 local framework_version = "0"
-local framework_build = "19"
+local framework_build = "20"
 
 local frameworkModules = {
   "ConsistencyCheck",
+  "ResourceSystem",
   "TechChanges",
 }
 
@@ -1097,6 +1098,23 @@ end
 
 function Mod:LoadConfig()
   configOptions = LoadConfigFile(self:GetConfigFileName()) or defaultConfigOptions
+end
+
+--[[
+=======================
+    Resource System
+=======================
+]]
+
+local guiTexturesToReplace = {}
+
+function Mod:ReplaceGUITexture(old, new)
+  assert(not guiTexturesToReplace[old], string.format("ReplaceGUITexture: The texture %q is already being replaced with %q.", old, new))
+  guiTexturesToReplace[old] = new
+end
+
+function Mod:GetGUITexturesToReplace()
+  return guiTexturesToReplace
 end
 
 -- We're finally done

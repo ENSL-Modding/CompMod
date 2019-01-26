@@ -9,9 +9,39 @@ CompMod:AddTech({
     [kTechDataCostKey] = kFocusCost,
 })
 CompMod:AddBuyNode(kTechId.Neurotoxin, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-
--- TODO: Add proper texture system
 CompMod:AddTechIdToMaterialOffset(kTechId.Neurotoxin, 174) -- 174 is the position for focus, which we replaced with neurotoxin
+CompMod:ReplaceGUITexture("ui/buildmenu.dds", "ui/compmod_buildmenu.dds")
+CompMod:ReplaceGUITexture("ui/inventory_icons.dds", "ui/compmod_inventory_icons.dds")
+
+local techUpgradesTable = CompMod:GetLocalVariable(GetTechIdsFromBitMask, "techUpgradesTable")
+
+for i,v in ipairs(techUpgradesTable) do
+  if v == kTechId.Focus then
+    techUpgradesTable[i] = kTechId.Neurotoxin
+  end
+end
+
+local techUpgradesBitmask = CreateBitMask(techUpgradesTable)
+
+ReplaceLocals(GetTechIdsFromBitMask, { techUpgradesTable = techUpgradesTable })
+ReplaceLocals(PlayerInfoEntity.UpdateScore, { techUpgradesBitmask = techUpgradesBitmask })
+ReplaceLocals(GetTechIdsFromBitMask, { techUpgradesBitmask = techUpgradesBitmask })
+
+if Server then
+  local kUpgradeStructureTable = CompMod:GetLocalVariable(AlienTeam.GetUpgradeStructureTable, "kUpgradeStructureTable")
+
+  for ichamber,vchamber in pairs(kUpgradeStructureTable) do
+    if vchamber.techId == kTechId.Veil then
+      for iup,vup in ipairs(vchamber.upgrades) do
+        if vup == kTechId.Focus then
+          kUpgradeStructureTable[ichamber].upgrades[iup] = kTechId.Neurotoxin
+        end
+      end
+    end
+  end
+
+  ReplaceLocals(AlienTeam.GetUpgradeStructureTable, { kUpgradeStructureTable = kUpgradeStructureTable })
+end
 
 -- Neurotoxin implementation
 local function GetNeurotoxinDamage(weapon)
