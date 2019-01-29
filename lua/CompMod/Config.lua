@@ -50,6 +50,7 @@ function GetModConfig(kLogLevels)
 		-- Marine Commander
 		"Commander/Marine/ARCBugFix",
 		"Commander/Marine/ARCSpeedBoost",
+		"Commander/Marine/ArmsLab",
 		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
