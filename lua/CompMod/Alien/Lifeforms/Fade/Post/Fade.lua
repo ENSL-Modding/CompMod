@@ -1,7 +1,7 @@
 -- sweets' ground slide thing
 
 local kFadeGroundFrictionBase = 9
-local kFadeGroundFrictionPostBlink = 1
+local kFadeGroundFrictionPostBlink = 1.2
 local kFadeGroundFrictionPostBlinkDelay = 1.5
 local kFadeBlinkGroundFriction = 5
 
