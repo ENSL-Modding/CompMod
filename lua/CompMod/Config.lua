@@ -36,6 +36,7 @@ function GetModConfig(kLogLevels)
 
 		-- Alien Commander
 		"Commander/Alien/Biomass",
+		"Commander/Alien/Consume",
 		"Commander/Alien/Cyst",
 		"Commander/Alien/Drifter",
 		"Commander/Alien/Echo",

@@ -653,6 +653,7 @@ end
 -- upgrade nodes
 local kUpgradesToRemove = {}
 local kUpgradesToChange = {}
+local kUpgradesToAdd    = {}
 
 function Mod:RemoveUpgrade(techId)
   table.insert(kUpgradesToRemove, techId, true)
@@ -660,6 +661,10 @@ end
 
 function Mod:ChangeUpgrade(techId, prereq1, prereq2)
   table.insert(kUpgradesToChange, techId, { techId, prereq1, prereq2 } )
+end
+
+function Mod:AddUpgradeNode(techId, prereq1, prereq2, team)
+  table.insert(kUpgradesToAdd, {techId, prereq1, prereq2, team})
 end
 
 -- research nodes
@@ -885,6 +890,10 @@ end
 
 function Mod:GetUpgradesToChange()
   return kUpgradesToChange
+end
+
+function Mod:GetUpgradesToAdd()
+  return kUpgradesToAdd
 end
 
 function Mod:GetResearchToRemove()
