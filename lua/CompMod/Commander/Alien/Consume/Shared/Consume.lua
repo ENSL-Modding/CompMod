@@ -42,7 +42,7 @@ local structuresToAdd = {
   "Shell",
   "Veil",
   "Harvester",
-  "Hive",
+  "Hive", -- let's see how people break this :D
 }
 
 local structuresToAddWithResearch = {
@@ -88,6 +88,6 @@ function GetIsUnitActive(unit, debug)
 
     local isConsumed = HasMixin(unit, "Consume") and (unit:GetIsConsumed() or unit:GetIsConsuming())
 
-    return oldGetIsUnitActive and not isConsumed
+    return oldGetIsUnitActive(self, unit, debug) and not isConsumed
 
 end
