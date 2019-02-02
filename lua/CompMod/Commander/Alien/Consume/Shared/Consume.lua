@@ -88,6 +88,6 @@ function GetIsUnitActive(unit, debug)
 
     local isConsumed = HasMixin(unit, "Consume") and (unit:GetIsConsumed() or unit:GetIsConsuming())
 
-    return oldGetIsUnitActive(self, unit, debug) and not isConsumed
+    return oldGetIsUnitActive(unit, debug) and not isConsumed
 
 end
