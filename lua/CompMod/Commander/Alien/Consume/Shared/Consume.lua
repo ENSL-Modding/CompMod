@@ -35,18 +35,15 @@ end
 Script.Load("lua/ResearchMixin.lua")
 
 local structuresToAdd = {
-  "Crag",
-  "Shift",
-  "Shade",
-  "Spur",
-  "Shell",
-  "Veil",
-  "Harvester",
-  "Hive", -- let's see how people break this :D
-}
-
-local structuresToAddWithResearch = {
-  "Cyst",
+  {"Crag", false},
+  {"Shift", false},
+  {"Shade", false},
+  {"Spur", false},
+  {"Shell", false},
+  {"Veil", false},
+  {"Harvester", false},
+  {"Hive", false}, -- let's see how people break this :D
+  {"Cyst", true},
 }
 
 local function add(v, withResearch)
@@ -76,11 +73,7 @@ local function add(v, withResearch)
 end
 
 for _,v in ipairs(structuresToAdd) do
-  add(v, false)
-end
-
-for _,v in ipairs(structuresToAddWithResearch) do
-  add(v, true)
+  add(v[1], v[2[]])
 end
 
 local oldGetIsUnitActive = GetIsUnitActive
