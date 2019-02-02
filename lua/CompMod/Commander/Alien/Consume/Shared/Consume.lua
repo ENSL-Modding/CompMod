@@ -44,6 +44,7 @@ local structuresToAdd = {
   {"Harvester", false},
   {"Hive", false}, -- let's see how people break this :D
   {"Cyst", true},
+  {"Drifter", true},
 }
 
 local function add(v, withResearch)
