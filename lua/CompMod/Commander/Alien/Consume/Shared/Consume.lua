@@ -73,7 +73,7 @@ local function add(v, withResearch)
 end
 
 for _,v in ipairs(structuresToAdd) do
-  add(v[1], v[2[]])
+  add(v[1], v[2])
 end
 
 local oldGetIsUnitActive = GetIsUnitActive
