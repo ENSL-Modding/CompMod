@@ -9,7 +9,7 @@ CompMod:AddTech({
   [kTechIDShowEnables] = false,
   [kTechDataResearchTimeKey] = kRecycleTime,
   [kTechDataHotkey] = Move.R,
-  [kTechDataTooltipInfo] = "Consumes the structure.",
+  [kTechDataTooltipInfo] = "Consume the entity and return the supply cost.",
   [kTechDataMenuPriority] = 2,
 })
 
