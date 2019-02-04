@@ -60,6 +60,8 @@ function GetModConfig(kLogLevels)
 		"Global/Bindings",
 		"Global/DamageIndicatorFix",
 		"Global/HealthBars",
+		"Global/MucousHitsounds",
+
 		-- Marine Changes
 		"Marine/AxeFix",
 		"Marine/GunDropTime",
