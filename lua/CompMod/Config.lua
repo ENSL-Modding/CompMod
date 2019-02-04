@@ -57,9 +57,9 @@ function GetModConfig(kLogLevels)
 		"Commander/Marine/SupplyChanges",
 
 		-- Global Changes
-		"Global/HealthBars",
 		"Global/Bindings",
-
+		"Global/DamageIndicatorFix",
+		"Global/HealthBars",
 		-- Marine Changes
 		"Marine/AxeFix",
 		"Marine/GunDropTime",
