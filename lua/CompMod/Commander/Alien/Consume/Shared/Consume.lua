@@ -68,7 +68,9 @@ local function add(v, withResearch)
   local oldGetTechButtons = Structure.GetTechButtons
   function Structure:GetTechButtons(techId)
     local techButtons = oldGetTechButtons(self, techId)
-    techButtons[8] = kTechId.Consume
+    if techButtons then
+      techButtons[8] = kTechId.Consume
+    end
     return techButtons
   end
 end
