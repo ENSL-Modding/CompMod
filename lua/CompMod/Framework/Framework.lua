@@ -1,5 +1,5 @@
 local framework_version = "0"
-local framework_build = "20"
+local framework_build = "20.1"
 
 local frameworkModules = {
   "ConsistencyCheck",
@@ -110,9 +110,19 @@ local configOptions = {
 
         return table.contains(validOptions, v)
       end,
+  },
+
+  {
+    var             = "techIdsToAdd",
+    expectedType    = "table",
+    required        = false,
+    default         = {},
+    displayDefault  = "new table",
+    warn            = false,
   }
 }
 
+local techIdsLoaded = false
 local Mod = {}
 
 local function ValidateConfigOption(configVar, configOption)
@@ -381,6 +391,7 @@ end
 function Mod:AppendToEnum(tbl, key)
   local tblType = tbl and type(tbl) or "nil"
 
+  assert(not techIdsLoaded or tbl ~= kTechId, "AppendToEnum: Do not use AppendToEnum to add tech ids. Define in config.lua")
   assert(tbl ~= nil and type(tbl) == "table", "AppendToEnum: First argument expected to be of type table, was " .. tblType)
   assert(key ~= nil, "AppendToEnum: required second argument \"key\" missing")
   assert(rawget(tbl,key) == nil, "AppendToEnum: key already exists in enum.")
@@ -388,15 +399,14 @@ function Mod:AppendToEnum(tbl, key)
   local maxVal = 0
   if tbl == kTechId then
     maxVal = tbl.Max
-    assert(maxVal - 1 ~= kTechIdMax, "AppendToEnum: Appending another value to the TechId enum would exceed network precision constraints")
 
     -- delete old max
     rawset(tbl, rawget(tbl, maxVal), nil)
     rawset(tbl, maxVal, nil)
 
     -- move max down
-    rawset(tbl, 'Max', maxVal-1)
-    rawset(tbl, maxVal-1, 'Max')
+    rawset(tbl, 'Max', maxVal+1)
+    rawset(tbl, maxVal+1, 'Max')
   else
     for k, v in next, tbl do
       if type(v) == "number" and v > maxVal then
@@ -545,13 +555,6 @@ end
 
 -- TODO: funcs to add tech
 -- TODO: Make tech tree changes automatic
-
--- ktechids
-
-function Mod:AddTechId(techId)
-  self:PrintDebug("Adding techId: " .. techId, "all")
-  self:AppendToEnum(kTechId, techId)
-end
 
 local kTechIdToMaterialOffsetAdditions = {}
 
@@ -802,7 +805,15 @@ function Mod:ChangeTargetedBuy(techId, prereq1, prereq2, addOnTechId)
   table.insert(kTargetedBuyToChange, techId, { techId, prereq1, prereq2, addOnTechId } )
 end
 
+function Mod:OnTechIdsAdded()
+  techIdsLoaded = true
+end
+
 -- getters BOOOOO
+
+function Mod:GetTechIdsToAdd()
+  return self.config.techIdsToAdd
+end
 
 function Mod:GetBindingAdditions()
   return bindingAdditions
@@ -1118,7 +1129,7 @@ end
 local guiTexturesToReplace = {}
 
 function Mod:ReplaceGUITexture(old, new)
-  assert(not guiTexturesToReplace[old], string.format("ReplaceGUITexture: The texture %q is already being replaced with %q.", old, new))
+  assert(not guiTexturesToReplace[old], string.format("ReplaceGUITexture: The texture %q is already being replaced with %q.", old, guiTexturesToReplace[old]))
   guiTexturesToReplace[old] = new
 end
 
