@@ -1,4 +1,3 @@
-CompMod:AddTechId("Consume")
 CompMod:AddUpgradeNode(kTechId.Consume, kTechId.None, kTechId.None, 2)
 CompMod:AddTechIdToMaterialOffset(kTechId.Consume, 108)
 

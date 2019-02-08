@@ -1,6 +1,3 @@
--- add new tech id
-CompMod:AddTechId("ARCSpeedBoost")
-
 -- add activation to tech tree
 CompMod:AddActivation(kTechId.ARCSpeedBoost, nil, nil)
 

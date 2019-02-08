@@ -4,10 +4,14 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "1"
-	config.kModBuild = "4.0"
+	config.kModBuild = "4.1"
 	config.disableRanking = true
 	config.use_config = "client"
 	config.techIdsToAdd = {
+		"GorgeTunnelExit",
+		"Neurotoxin",
+		"Consume",
+		"ARCSpeedBoost",
 	}
 
 	config.modules =

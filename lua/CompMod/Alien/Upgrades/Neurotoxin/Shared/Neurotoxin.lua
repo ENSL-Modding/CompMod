@@ -1,5 +1,4 @@
 -- add neurotoxin data
-CompMod:AddTechId("Neurotoxin")
 CompMod:AddTech({
     [kTechDataId] = kTechId.Neurotoxin,
     [kTechDataCategory] = kTechId.ShadeHive,

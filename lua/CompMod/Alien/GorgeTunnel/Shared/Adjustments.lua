@@ -1,5 +1,3 @@
-CompMod:AddTechId("GorgeTunnelExit")
-
 CompMod:AppendToEnum(kMinimapBlipType, "TunnelExit")
 
 CompMod:AddTechIdToMaterialOffset(kTechId.GorgeTunnelExit, 103)
