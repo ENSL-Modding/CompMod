@@ -85,6 +85,9 @@ function ConsumeMixin:GetIsConsuming()
     return self.researchingId == kTechId.Consume
 end
 
+function ConsumeMixin:OnConsumeTriggered()
+end
+
 function ConsumeMixin:OnResearch(researchId)
 
     if researchId == kTechId.Consume then
@@ -92,10 +95,13 @@ function ConsumeMixin:OnResearch(researchId)
         if self.MarkBlipDirty then
             self:MarkBlipDirty()
         end
+        self:OnConsumeTriggered()
     end
 
 end
 
+function ConsumeMixin:OnConsumeCancelled()
+end
 
 function ConsumeMixin:OnResearchCancel(researchId)
 
@@ -103,6 +109,7 @@ function ConsumeMixin:OnResearchCancel(researchId)
         if self.MarkBlipDirty then
             self:MarkBlipDirty()
         end
+        self:OnConsumeCancelled()
     end
 
 end
