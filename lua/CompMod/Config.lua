@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "1"
-	config.kModBuild = "4.2"
+	config.kModBuild = "5.0"
 	config.disableRanking = true
 	config.use_config = "client"
 	config.techIdsToAdd = {
@@ -22,6 +22,7 @@ function GetModConfig(kLogLevels)
 		"Alien/GorgeTunnel",
 		"Alien/Healing",
 		"Alien/Pres",
+		"Alien/Webs",
 
 		-- Lifeforms
 		"Alien/Lifeforms/Fade",
@@ -66,6 +67,8 @@ function GetModConfig(kLogLevels)
 		"Global/Bindings",
 		"Global/DamageIndicatorFix",
 		"Global/HealthBars",
+		"Global/MucousHitsounds",
+
 		-- Marine Changes
 		"Marine/AxeFix",
 		"Marine/GunDropTime",

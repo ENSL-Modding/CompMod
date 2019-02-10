@@ -1,0 +1,1 @@
+kHallucinationCloudAbilityCooldown = 8
