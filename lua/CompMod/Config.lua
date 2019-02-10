@@ -16,6 +16,7 @@ function GetModConfig(kLogLevels)
 		"Alien/GorgeTunnel",
 		"Alien/Healing",
 		"Alien/Pres",
+		"Alien/Webs",
 
 		-- Lifeforms
 		"Alien/Lifeforms/Fade",
