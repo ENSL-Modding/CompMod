@@ -19,16 +19,23 @@ local usage_vars = {
   "  a - Alpha channel value: 0 to 1"
 }
 
-local function validate_args(r, g, b, a, usage)
+local defaultEntranceVars = "0 1 0.2 1"
+local defaultExitVars = "0.8 0.6 1 1"
 
-  assert(usage and type(usage) == "string")
+local function validate_args(r, g, b, a, cmd, default)
+
+  assert(cmd and type(cmd) == "string")
 
   if not a then
     a = 1.0
   end
 
   if not r or not g or not b then
-    CompMod:Print(usage)
+    CompMod:Print("Usage: " .. cmd .. " r g b [a]")
+    if default then
+      CompMod:Print("Default: " .. cmd .. " " .. default)
+    end
+
     for _,v in ipairs(usage_vars) do
       CompMod:Print(v)
     end
@@ -91,7 +98,7 @@ local function ResetMinimapElements()
 end
 
 local function ChangeEntranceColour(r, g, b, a)
-  local valid, r, g, b, a = validate_args(r, g, b, a, "Usage: compmod_entrancecolour r g b [a]")
+  local valid, r, g, b, a = validate_args(r, g, b, a, "compmod_entrancecolour", defaultEntranceVars)
 
   if valid then
     CompMod:UpdateConfigOption("GorgeTunnelEntranceColour_R", r)
@@ -105,7 +112,7 @@ local function ChangeEntranceColour(r, g, b, a)
 end
 
 local function ChangeExitColour(r, g, b, a)
-  local valid, r, g, b, a = validate_args(r, g, b, a, "Usage: compmod_exitcolour r g b [a]")
+  local valid, r, g, b, a = validate_args(r, g, b, a, "compmod_exitcolour", defaultExitVars)
 
   if valid then
     CompMod:UpdateConfigOption("GorgeTunnelExitColour_R", r)
