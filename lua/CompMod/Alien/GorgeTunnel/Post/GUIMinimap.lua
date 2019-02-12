@@ -1,3 +1,18 @@
+local function GetColours(option, blipTeam)
+  local r = CompMod:GetConfigOption(option .. "_R")
+  local g = CompMod:GetConfigOption(option .. "_G")
+  local b = CompMod:GetConfigOption(option .. "_B")
+  local a = CompMod:GetConfigOption(option .. "_A")
+
+  if blipTeam == kMinimapBlipTeam.InactiveAlien then
+    r = r/3
+    g = g/3
+    b = b/3
+  end
+
+  return r,g,b,a
+end
+
 function GUIMinimap:InitMinimapIcon(item, blipType, blipTeam)
 
     local blipInfo = self.blipInfoTable[blipType]
@@ -9,21 +24,13 @@ function GUIMinimap:InitMinimapIcon(item, blipType, blipTeam)
     item.blipTeam = blipTeam
 
     if item.blipType == kMinimapBlipType.TunnelEntrance then
-      local r = CompMod:GetConfigOption("GorgeTunnelEntranceColour_R")
-      local g = CompMod:GetConfigOption("GorgeTunnelEntranceColour_G")
-      local b = CompMod:GetConfigOption("GorgeTunnelEntranceColour_B")
-      local a = CompMod:GetConfigOption("GorgeTunnelEntranceColour_A")
-      local entranceColour = Color(r, g, b, a)
+      local r,g,b,a = GetColours("GorgeTunnelEntranceColour", item.blipTeam)
 
-      item.blipColor = entranceColour
+      item.blipColor = Color(r, g, b, a)
     elseif item.blipType == kMinimapBlipType.TunnelExit then
-      local r = CompMod:GetConfigOption("GorgeTunnelExitColour_R")
-      local g = CompMod:GetConfigOption("GorgeTunnelExitColour_G")
-      local b = CompMod:GetConfigOption("GorgeTunnelExitColour_B")
-      local a = CompMod:GetConfigOption("GorgeTunnelExitColour_A")
-      local exitColour = Color(r, g, b, a)
+      local r,g,b,a = GetColours("GorgeTunnelExitColour", item.blipTeam)
 
-      item.blipColor = exitColour
+      item.blipColor = Color(r, g, b, a)
     else
       item.blipColor = self.blipColorTable[item.blipTeam][colorType]
     end
