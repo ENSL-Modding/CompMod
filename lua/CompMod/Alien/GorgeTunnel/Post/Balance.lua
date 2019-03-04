@@ -1,1 +1,1 @@
-kGorgeTunnelBuildTime = 18.0
+kGorgeTunnelBuildTime = 10.0
