@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "1"
-	config.kModBuild = "5.3"
+	config.kModBuild = "6.0"
 	config.disableRanking = true
 	config.use_config = "client"
 	config.techIdsToAdd = {
