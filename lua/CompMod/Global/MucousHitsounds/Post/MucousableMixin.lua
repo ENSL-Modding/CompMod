@@ -7,11 +7,13 @@ if Server then
     if damage == 0 and ogdamage > 0 then
       local weapon = attacker:GetActiveWeapon()
       local techId
-
-      if attacker:isa("Alien") and ( weapon.secondaryAttacking or weapon.shootingSpikes) then
-        techId = weapon:GetSecondaryTechId()
-      else
-        techId = weapon:GetTechId()
+      
+      if weapon then
+        if attacker:isa("Alien") and ( weapon.secondaryAttacking or weapon.shootingSpikes) then
+          techId = weapon:GetSecondaryTechId()
+        else
+          techId = weapon:GetTechId()
+        end
       end
 
       if techId and HitSound_IsEnabledForWeapon( techId ) then
