@@ -69,7 +69,6 @@ function GetModConfig(kLogLevels)
 		"Global/ReadyRoomPanels",
 
 		-- Marine Changes
-		"Marine/AxeFix",
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
 		"Marine/MarineClassChanges",
