@@ -29,7 +29,6 @@ function GetModConfig(kLogLevels)
 		"Alien/Lifeforms/Skulk",
 
 		-- Upgrades
-		"Alien/Upgrades/Adrenaline",
 		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
 		"Alien/Upgrades/Carapace",
