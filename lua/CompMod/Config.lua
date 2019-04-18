@@ -8,7 +8,6 @@ function GetModConfig(kLogLevels)
 	config.disableRanking = true
 	config.use_config = "client"
 	config.techIdsToAdd = {
-		"GorgeTunnelExit",
 		"Neurotoxin",
 		"Consume",
 		"ARCSpeedBoost",
@@ -19,7 +18,6 @@ function GetModConfig(kLogLevels)
 		-- Alien Changes
 		"Alien/Babblers",
 		"Alien/Eggs",
-		"Alien/GorgeTunnel",
 		"Alien/Healing",
 		"Alien/Pres",
 		"Alien/Webs",
