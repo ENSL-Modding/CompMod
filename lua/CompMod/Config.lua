@@ -16,15 +16,14 @@ function GetModConfig(kLogLevels)
 	config.modules =
 	{
 		-- Alien Changes
-		"Alien/Babblers",
 		"Alien/Eggs",
 		"Alien/Healing",
 		"Alien/Pres",
 		"Alien/Webs",
 
 		-- Lifeforms
-		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Gorge",
+		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Lerk",
 		"Alien/Lifeforms/Onos",
 		"Alien/Lifeforms/Skulk",
