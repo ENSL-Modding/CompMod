@@ -49,10 +49,9 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
-		"Commander/Marine/ARCBugFix",
+		"Commander/Marine/ARCCorrodeBugFix",
 		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/ArmsLab",
-		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
 		"Commander/Marine/SupplyChanges",
@@ -67,7 +66,6 @@ function GetModConfig(kLogLevels)
 		-- Marine Changes
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
-		"Marine/MarineClassChanges",
 		"Marine/Observatory",
 		"Marine/Pres",
 		"Marine/PrototypeLab",
