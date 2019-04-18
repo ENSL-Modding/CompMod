@@ -1,9 +1,3 @@
--- move boneshield requirement to bio4
-CompMod:ChangeResearch(kTechId.BoneShield, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
-
--- update techtree
-CompMod:ChangeAlienTechmapTech(kTechId.BoneShield, 6, 9)
-
 -- remove stampede physics mask
 CompMod:RemoveFromEnum(PhysicsMask, "OnosStampede")
 
