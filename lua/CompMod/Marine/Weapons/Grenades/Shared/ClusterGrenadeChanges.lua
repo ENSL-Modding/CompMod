@@ -42,16 +42,3 @@ local function BuildDamageTypeRules()
 end
 
 ReplaceLocals(GetDamageByType, {BuildDamageTypeRules = BuildDamageTypeRules})
-
-local oldComputeDamageOverride
-oldComputeDamageOverride = Class_ReplaceMethod("Clog", "ComputeDamageOverride",
-  function(self, attacker, damage, damageType, time)
-    damage = oldComputeDamageOverride(self, attacker, damage, damageType, time)
-
-    if damageType ~= kDamageType.ClusterFlame and damage >= Clog.kMaxShockDamage then
-      damage = Clog.kMaxShockDamage
-    end
-
-    return damage
-  end
-)
