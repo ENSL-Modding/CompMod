@@ -3,12 +3,11 @@ function GetModConfig(kLogLevels)
 
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
-	config.kModVersion = "1"
-	config.kModBuild = "6.0"
+	config.kModVersion = "2"
+	config.kModBuild = "0.0"
 	config.disableRanking = true
 	config.use_config = "client"
 	config.techIdsToAdd = {
-		"GorgeTunnelExit",
 		"Neurotoxin",
 		"Consume",
 		"ARCSpeedBoost",
@@ -17,22 +16,19 @@ function GetModConfig(kLogLevels)
 	config.modules =
 	{
 		-- Alien Changes
-		"Alien/Babblers",
 		"Alien/Eggs",
-		"Alien/GorgeTunnel",
 		"Alien/Healing",
 		"Alien/Pres",
 		"Alien/Webs",
 
 		-- Lifeforms
-		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Gorge",
+		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Lerk",
 		"Alien/Lifeforms/Onos",
 		"Alien/Lifeforms/Skulk",
 
 		-- Upgrades
-		"Alien/Upgrades/Adrenaline",
 		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
 		"Alien/Upgrades/Carapace",
@@ -44,8 +40,6 @@ function GetModConfig(kLogLevels)
 		-- Alien Commander
 		"Commander/Alien/Biomass",
 		"Commander/Alien/Consume",
-		"Commander/Alien/Cyst",
-		"Commander/Alien/Drifter",
 		"Commander/Alien/Echo",
 		"Commander/Alien/HallucinationCloud",
 		"Commander/Alien/LifeformEggs",
@@ -55,10 +49,9 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
-		"Commander/Marine/ARCBugFix",
+		"Commander/Marine/ARCCorrodeBugFix",
 		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/ArmsLab",
-		"Commander/Marine/CatPacks",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
 		"Commander/Marine/SupplyChanges",
@@ -71,10 +64,8 @@ function GetModConfig(kLogLevels)
 		"Global/ReadyRoomPanels",
 
 		-- Marine Changes
-		"Marine/AxeFix",
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
-		"Marine/MarineClassChanges",
 		"Marine/Observatory",
 		"Marine/Pres",
 		"Marine/PrototypeLab",
@@ -86,7 +77,6 @@ function GetModConfig(kLogLevels)
 		"Marine/Weapons/Grenades",
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
-		"Marine/Weapons/Shotgun",
 	}
 
 	return config

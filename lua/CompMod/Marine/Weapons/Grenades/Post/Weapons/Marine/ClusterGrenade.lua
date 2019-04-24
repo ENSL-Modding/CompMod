@@ -8,7 +8,9 @@ if Server then
         table.removevalue(hitEntities, self)
         if player then
             for _, hitEnt in ipairs(hitEntities) do
-                hitEnt:SetOnFire(player, self)
+                if not hitEnt:isa("Marine") then
+                    hitEnt:SetOnFire(player, self)
+                end
             end
         end
     end

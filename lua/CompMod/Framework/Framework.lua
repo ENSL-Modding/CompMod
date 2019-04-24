@@ -1,5 +1,5 @@
 local framework_version = "0"
-local framework_build = "20.1"
+local framework_build = "20.2"
 
 local frameworkModules = {
   "ConsistencyCheck",
@@ -223,6 +223,18 @@ function Mod:Initialise()
   for _,v in ipairs(frameworkModules) do
     assert(type(v) == "string", "Initialise: Invalid framework module")
     table.insert(self.config.modules, "Framework/" .. v)
+  end
+
+  -- this is really bad for performance so lets do it on the client :D
+  if Client then
+    for _,v in ipairs(self.config.modules) do
+      local Files = {}
+      Shared.GetMatchingFileNames(self:FormatDir(v), true, Files)
+
+  	  if #Files == 0 then
+  		  Mod:Print("No files found for module: " .. v, Mod:GetLogLevels().warn)
+      end
+    end
   end
 
   _G[self.config.kModName] = self
