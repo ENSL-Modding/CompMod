@@ -45,7 +45,6 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/LifeformEggs",
 		"Commander/Alien/MucousShield",
 		"Commander/Alien/NutrientMist",
-		"Commander/Alien/Structures",
 		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
