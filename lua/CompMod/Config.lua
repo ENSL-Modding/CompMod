@@ -22,7 +22,6 @@ function GetModConfig(kLogLevels)
 		-- Upgrades
 		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
-		"Alien/Upgrades/Focus",
 		"Alien/Upgrades/Neurotoxin",
 
 		-- Commander Changes
