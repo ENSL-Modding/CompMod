@@ -18,7 +18,6 @@ function GetModConfig(kLogLevels)
 		"Alien/Webs",
 
 		-- Upgrades
-		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
 
 		-- Commander Changes
