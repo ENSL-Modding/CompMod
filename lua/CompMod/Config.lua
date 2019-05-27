@@ -6,7 +6,7 @@ function GetModConfig(kLogLevels)
 	config.kModVersion = "2"
 	config.kModBuild = "1.0"
 	config.disableRanking = true
-	config.use_config = "client"
+	config.use_config = "none"
 	config.techIdsToAdd = {
 		"Neurotoxin",
 		"Consume",
