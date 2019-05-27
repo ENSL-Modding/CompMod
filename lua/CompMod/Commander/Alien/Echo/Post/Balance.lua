@@ -1,1 +1,0 @@
-kEchoEggCost = 1
