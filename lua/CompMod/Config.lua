@@ -19,9 +19,6 @@ function GetModConfig(kLogLevels)
 		"Alien/Eggs",
 		"Alien/Webs",
 
-		-- Lifeforms
-		"Alien/Lifeforms/Onos",
-
 		-- Upgrades
 		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
