@@ -1,1 +1,0 @@
-kAlienInitialIndivRes = 19

@@ -17,7 +17,6 @@ function GetModConfig(kLogLevels)
 	{
 		-- Alien Changes
 		"Alien/Eggs",
-		"Alien/Pres",
 		"Alien/Webs",
 
 		-- Lifeforms
@@ -65,7 +64,6 @@ function GetModConfig(kLogLevels)
 		"Marine/GunDropTime",
 		"Marine/Jetpack",
 		"Marine/Observatory",
-		"Marine/Pres",
 		"Marine/PrototypeLab",
 		"Marine/Walk",
 		"Marine/WeldSpeed",

@@ -1,1 +1,0 @@
-kMarineInitialIndivRes = 25
