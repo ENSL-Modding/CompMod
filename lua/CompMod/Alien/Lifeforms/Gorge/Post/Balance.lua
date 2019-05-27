@@ -1,2 +1,0 @@
--- gorge
-kGorgeCost = 10

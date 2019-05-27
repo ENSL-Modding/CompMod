@@ -20,7 +20,6 @@ function GetModConfig(kLogLevels)
 		"Alien/Webs",
 
 		-- Lifeforms
-		"Alien/Lifeforms/Gorge",
 		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Lerk",
 		"Alien/Lifeforms/Onos",
