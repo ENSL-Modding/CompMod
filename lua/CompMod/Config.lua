@@ -52,7 +52,6 @@ function GetModConfig(kLogLevels)
 		-- Marine Changes
 		"Marine/PrototypeLab",
 		"Marine/Walk",
-		"Marine/WeldSpeed",
 
 		-- Weapons
 		"Marine/Weapons/Flamethrower",
