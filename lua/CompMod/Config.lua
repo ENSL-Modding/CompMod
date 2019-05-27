@@ -9,7 +9,6 @@ function GetModConfig(kLogLevels)
 	config.use_config = "none"
 	config.techIdsToAdd = {
 		"Consume",
-		"ARCSpeedBoost",
 	}
 
 	config.modules =
@@ -30,7 +29,6 @@ function GetModConfig(kLogLevels)
 
 		-- Marine Commander
 		"Commander/Marine/ARCCorrodeBugFix",
-		"Commander/Marine/ARCSpeedBoost",
 		"Commander/Marine/ArmsLab",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
