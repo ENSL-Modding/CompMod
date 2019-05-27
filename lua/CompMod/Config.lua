@@ -20,7 +20,6 @@ function GetModConfig(kLogLevels)
 		"Alien/Webs",
 
 		-- Lifeforms
-		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Onos",
 
 		-- Upgrades

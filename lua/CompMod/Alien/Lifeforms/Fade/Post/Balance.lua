@@ -1,1 +1,0 @@
-kFadeCost = 44
