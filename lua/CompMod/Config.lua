@@ -8,7 +8,6 @@ function GetModConfig(kLogLevels)
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
-		"Neurotoxin",
 		"Consume",
 		"ARCSpeedBoost",
 	}
@@ -22,7 +21,6 @@ function GetModConfig(kLogLevels)
 		-- Upgrades
 		"Alien/Upgrades/Aura",
 		"Alien/Upgrades/Camouflage",
-		"Alien/Upgrades/Neurotoxin",
 
 		-- Commander Changes
 
