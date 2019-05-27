@@ -1,1 +1,0 @@
-kPrototypeLabCost = 30

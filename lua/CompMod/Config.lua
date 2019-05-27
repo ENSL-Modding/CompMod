@@ -40,7 +40,6 @@ function GetModConfig(kLogLevels)
 		"Global/ReadyRoomPanels",
 
 		-- Marine Changes
-		"Marine/PrototypeLab",
 		"Marine/Walk",
 
 		-- Weapons
