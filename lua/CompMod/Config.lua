@@ -55,7 +55,6 @@ function GetModConfig(kLogLevels)
 
 		-- Weapons
 		"Marine/Weapons/Grenades",
-		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
 	}
 
