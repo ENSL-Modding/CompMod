@@ -32,7 +32,6 @@ function GetModConfig(kLogLevels)
 
 		-- Global Changes
 		"Global/Bindings",
-		"Global/DamageIndicatorFix",
 		"Global/HealthBars",
 		"Global/MucousHitsounds",
 		"Global/ReadyRoomPanels",
