@@ -17,7 +17,6 @@ function GetModConfig(kLogLevels)
 	{
 		-- Alien Changes
 		"Alien/Eggs",
-		"Alien/Healing",
 		"Alien/Pres",
 		"Alien/Webs",
 
