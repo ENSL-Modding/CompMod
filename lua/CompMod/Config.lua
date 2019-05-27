@@ -27,7 +27,6 @@ function GetModConfig(kLogLevels)
 		-- Alien Commander
 		"Commander/Alien/Consume",
 		"Commander/Alien/LifeformEggs",
-		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
 		"Commander/Marine/ARCCorrodeBugFix",
@@ -35,7 +34,6 @@ function GetModConfig(kLogLevels)
 		"Commander/Marine/ArmsLab",
 		"Commander/Marine/Medpack",
 		"Commander/Marine/NanoShield",
-		"Commander/Marine/SupplyChanges",
 
 		-- Global Changes
 		"Global/Bindings",
