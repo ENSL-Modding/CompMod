@@ -27,7 +27,6 @@ function GetModConfig(kLogLevels)
 		-- Alien Commander
 		"Commander/Alien/Consume",
 		"Commander/Alien/LifeformEggs",
-		"Commander/Alien/MucousShield",
 		"Commander/Alien/NutrientMist",
 		"Commander/Alien/SupplyChanges",
 
