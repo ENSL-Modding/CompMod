@@ -25,7 +25,6 @@ function GetModConfig(kLogLevels)
 		-- Commander Changes
 
 		-- Alien Commander
-		"Commander/Alien/Biomass",
 		"Commander/Alien/Consume",
 		"Commander/Alien/Echo",
 		"Commander/Alien/LifeformEggs",
