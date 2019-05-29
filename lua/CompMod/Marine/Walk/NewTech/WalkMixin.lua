@@ -34,7 +34,7 @@ function WalkMixin:HandleButtons(input)
 
     PROFILE("WalkMixin:HandleButtons")
 
-    local walkDesired = bit.band(input.commands, Move.ReadyRoom) ~= 0
+    local walkDesired = bit.band(input.commands, Move.ReadyRoom) ~= 0 and not self.crouching and self:GetIsOnGround() and not self.sprinting
     if walkDesired == self.walking then
         return
     end
