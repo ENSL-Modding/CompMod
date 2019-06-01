@@ -41,6 +41,7 @@ function GetModConfig(kLogLevels)
 		-- Weapons
 		"Marine/Weapons/Grenades",
 		"Marine/Weapons/Mine",
+		"Marine/Weapons/Shotgun",
 	}
 
 	return config
