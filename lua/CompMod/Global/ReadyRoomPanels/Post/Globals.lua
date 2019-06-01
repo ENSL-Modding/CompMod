@@ -1,6 +1,6 @@
 if AddModPanel then
   local ensl_panel_URL = "https://www.ensl.org"
-  local compmod_panel_URL = "https://adsfgg.github.io/CompMod"
+  local compmod_panel_URL = "https://adsfgg.github.io/CompMod/changes"
   local ensl_panel = PrecacheAsset("materials/compmod/mod_panel_ensl.material")
   local compmod_panel = PrecacheAsset("materials/compmod/mod_panel_compmod.material")
 
