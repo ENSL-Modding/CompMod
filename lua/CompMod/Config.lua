@@ -16,6 +16,7 @@ function GetModConfig(kLogLevels)
 		-- Alien Changes
 		"Alien/Eggs",
 		"Alien/Webs",
+		"Alien/Umbra",
 		
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
