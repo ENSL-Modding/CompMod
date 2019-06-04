@@ -33,6 +33,7 @@ function GetModConfig(kLogLevels)
 
 			-- Marine Commander
 			"Commander/Marine/ARCCorrodeBugFix",
+			"Commander/Marine/ARC",
 			"Commander/Marine/NanoShield",
 
 		-- Global Changes
