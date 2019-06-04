@@ -20,6 +20,7 @@ function GetModConfig(kLogLevels)
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
 		"Alien/Lifeforms/Lerk",
+		"Alien/Lifeforms/Onos",
 
 		-- Upgrades
 		"Alien/Upgrades/Camouflage",
