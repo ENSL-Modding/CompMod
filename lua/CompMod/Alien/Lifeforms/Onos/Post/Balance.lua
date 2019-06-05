@@ -1,0 +1,1 @@
+kBoneShieldMoveFraction = 0.68 --of max-speed --from 0.456

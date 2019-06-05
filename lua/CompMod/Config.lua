@@ -16,6 +16,12 @@ function GetModConfig(kLogLevels)
 		-- Alien Changes
 		"Alien/Eggs",
 		"Alien/Webs",
+		"Alien/Umbra",
+		
+		-- Lifeform Changes
+		"Alien/Lifeforms/Skulk",
+		"Alien/Lifeforms/Lerk",
+		"Alien/Lifeforms/Onos",
 
 		-- Upgrades
 		"Alien/Upgrades/Camouflage",
@@ -28,6 +34,7 @@ function GetModConfig(kLogLevels)
 
 			-- Marine Commander
 			"Commander/Marine/ARCCorrodeBugFix",
+			"Commander/Marine/ARC",
 			"Commander/Marine/NanoShield",
 
 		-- Global Changes
