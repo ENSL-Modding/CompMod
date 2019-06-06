@@ -9,9 +9,9 @@ do
 
     local kShotgunRings =
     {
-        { distance = 0.0, pelletCount = 1, damage=25 },
-        { distance = 0.5, pelletCount = 5, damage=15 },
-        { distance = 1.5, pelletCount = 7, damage=10 },
+        { distance = 0.0, pelletCount = 1, pelletSize = 0.016, damage=25 },
+        { distance = 0.5, pelletCount = 5, pelletSize = 0.016,damage=15 },
+        { distance = 1.5, pelletCount = 7, pelletSize = 0.15,damage=10 },
     }
 
     local function CalculateShotgunSpreadVectors()
@@ -26,6 +26,7 @@ do
                 local y = math.sin(theta) * ring.distance
                 table.insert(Shotgun.kSpreadVectors, {
                     vector=GetNormalizedVector(Vector(x, y, kShotgunSpreadDistance)),
+					pelletSize=ring.pelletSize,
                     damage=ring.damage
                 })
 
@@ -74,7 +75,9 @@ function Shotgun:FirePrimary(player)
 
         local endPoint = player:GetEyePos() + spreadDirection * range
 
-        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, self.kBulletSize, filter)
+		local pelletSize = self.kSpreadVectors[bullet].pelletSize
+
+        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, pelletSize, filter)
 
         HandleHitregAnalysis(player, startPoint, endPoint, trace)
 
