@@ -16,7 +16,6 @@ do
 
     local function CalculateShotgunSpreadVectors()
         local circle = math.pi * 2.0
-
         for _, ring in ipairs(kShotgunRings) do
 
             local radiansPer = circle / ring.pelletCount
@@ -103,12 +102,13 @@ function Shotgun:FirePrimary(player)
             -- local damage = kShotgunDamage
             local damage = self.kSpreadVectors[bullet].damage
 
-            -- Apply a damage falloff for shotgun damage.
+            --[[ Apply a damage falloff for shotgun damage.
             local distance = (hitPoint - startPoint):GetLength()
             local falloffFactor = Clamp((distance - self.kDamageFalloffStart) / (self.kDamageFalloffEnd - self.kDamageFalloffStart), 0, 1)
             local nearDamage = damage
             local farDamage = damage * self.kDamageFalloffReductionFactor
             damage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
+			--]]
 
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage, "", showTracer and i == numTargets)
 
