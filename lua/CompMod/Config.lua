@@ -45,6 +45,7 @@ function GetModConfig(kLogLevels)
 		"Global/ReadyRoomPanels",
 
 		-- Marine Changes
+		"Marine/FlameVsClogAndCystBuffs",
 		"Marine/Walk",
 
 		-- Weapons
