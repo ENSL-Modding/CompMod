@@ -9,14 +9,13 @@ do
 
     local kShotgunRings =
     {
-        { distance = 0.0, pelletCount = 1, damage=25 },
-        { distance = 0.5, pelletCount = 5, damage=15 },
-        { distance = 1.5, pelletCount = 6, damage=10 },
+        { distance = 0.0, pelletCount = 1, pelletSize = 0.016, damage=25 },
+        { distance = 0.5, pelletCount = 5, pelletSize = 0.016,damage=15 },
+        { distance = 1.5, pelletCount = 7, pelletSize = 0.15,damage=10 },
     }
 
     local function CalculateShotgunSpreadVectors()
         local circle = math.pi * 2.0
-
         for _, ring in ipairs(kShotgunRings) do
 
             local radiansPer = circle / ring.pelletCount
@@ -27,6 +26,7 @@ do
                 local y = math.sin(theta) * ring.distance
                 table.insert(Shotgun.kSpreadVectors, {
                     vector=GetNormalizedVector(Vector(x, y, kShotgunSpreadDistance)),
+					pelletSize=ring.pelletSize,
                     damage=ring.damage
                 })
 
@@ -75,7 +75,9 @@ function Shotgun:FirePrimary(player)
 
         local endPoint = player:GetEyePos() + spreadDirection * range
 
-        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, self.kBulletSize, filter)
+		local pelletSize = self.kSpreadVectors[bullet].pelletSize
+
+        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, pelletSize, filter)
 
         HandleHitregAnalysis(player, startPoint, endPoint, trace)
 
@@ -103,12 +105,13 @@ function Shotgun:FirePrimary(player)
             -- local damage = kShotgunDamage
             local damage = self.kSpreadVectors[bullet].damage
 
-            -- Apply a damage falloff for shotgun damage.
+            --[[ Apply a damage falloff for shotgun damage.
             local distance = (hitPoint - startPoint):GetLength()
             local falloffFactor = Clamp((distance - self.kDamageFalloffStart) / (self.kDamageFalloffEnd - self.kDamageFalloffStart), 0, 1)
             local nearDamage = damage
             local farDamage = damage * self.kDamageFalloffReductionFactor
             damage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
+			--]]
 
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage, "", showTracer and i == numTargets)
 

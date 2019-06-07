@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "2.2"
+	config.kModBuild = "2.3"
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
@@ -21,6 +21,7 @@ function GetModConfig(kLogLevels)
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
 		"Alien/Lifeforms/Lerk",
+		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Onos",
 
 		-- Upgrades
@@ -31,6 +32,7 @@ function GetModConfig(kLogLevels)
 			-- Alien Commander
 			"Commander/Alien/Consume",
 			"Commander/Alien/LifeformEggs",
+			"Commander/Alien/Cyst",
 
 			-- Marine Commander
 			"Commander/Marine/ARCCorrodeBugFix",
