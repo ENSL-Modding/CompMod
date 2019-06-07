@@ -32,6 +32,7 @@ function GetModConfig(kLogLevels)
 			-- Alien Commander
 			"Commander/Alien/Consume",
 			"Commander/Alien/LifeformEggs",
+			"Commander/Alien/Cyst",
 
 			-- Marine Commander
 			"Commander/Marine/ARCCorrodeBugFix",
