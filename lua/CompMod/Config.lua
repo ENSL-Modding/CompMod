@@ -17,7 +17,7 @@ function GetModConfig(kLogLevels)
 		"Alien/Eggs",
 		"Alien/Webs",
 		"Alien/Umbra",
-		
+
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
 		"Alien/Lifeforms/Lerk",
@@ -49,6 +49,7 @@ function GetModConfig(kLogLevels)
 
 		-- Weapons
 		"Marine/Weapons/Grenades",
+		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
 		"Marine/Weapons/Shotgun",
 	}
