@@ -1,3 +1,4 @@
+-- prioritise engagement point over model origin rather than the other way around
 function GetTargetOrigin(target)
 
     if target.GetEngagementPoint then
