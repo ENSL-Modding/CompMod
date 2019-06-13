@@ -50,7 +50,6 @@ function GetModConfig(kLogLevels)
 		"Marine/Walk",
 
 		-- Weapons
-		"Marine/Weapons/GrenadeLauncher",
 		"Marine/Weapons/Grenades",
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
