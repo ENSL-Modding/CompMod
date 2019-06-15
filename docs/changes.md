@@ -6,7 +6,7 @@
 * Upgrades
     * Camouflage
         * Cloak intensity is now related to player speed.
-        * Can't move full speed while cloaked.
+        * Lifeforms will decloak when moving at full speed
     * Carapace
         * Decreased armour bonus for skulks to 15 (from 20)
         * Decreased armour bonus for lerks to 20 (from 30)
