@@ -73,6 +73,8 @@ function ARC:AcquireTarget()
 
 end
 
+local PerformAttack = CompMod:GetLocalVariable(ARC.OnTag, 'PerformAttack', true)
+
 function ARC:OnTag(tagName)
 
     PROFILE("ARC:OnTag")
