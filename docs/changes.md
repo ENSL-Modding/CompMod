@@ -30,9 +30,9 @@
     * Increased biomass health bonus to 50 (from 30)
     * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
     * Boneshield is now available on Biomass 5 (down from Bio 6)
-* Cyst & Clogs
-    * Receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
-
+* Cyst & Clogs receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
+* Cyst
+    * Build time increased to 6 seconds from 3.33 seconds
 ### Marine
 * Walk added
     * Default key is CapsLock
