@@ -32,7 +32,8 @@
     * Boneshield is now available on Biomass 5 (down from Bio 6)
 * Cyst & Clogs receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
 * Cyst
-    * Build time increased to 6 seconds from 3.33 seconds
+    * Build time increased to 6 seconds from 3.33 
+seconds
 ### Marine
 * Walk added
     * Default key is CapsLock
