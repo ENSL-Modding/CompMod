@@ -51,7 +51,8 @@ local function CheckForIntersection(self, fromPlayer)
         local trace = Shared.TraceRay(self:GetOrigin(), self.endPoint, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterNonWebables())
         if trace.entity and not trace.entity:isa("Player") then
             trace.entity:SetWebbed(kWebbedDuration)
-            DestroyEntity(self)
+            --DestroyEntity(self)
+            self:OnKill()
         end
 
     end
@@ -61,5 +62,9 @@ end
 CompMod:ReplaceLocal(Web.UpdateWebOnProcessMove, "CheckForIntersection", CheckForIntersection)
 
 if Server then
-  CompMod:ReplaceLocal(Web.OnUpdate, "CheckForIntersection", CheckForIntersection)
+    CompMod:ReplaceLocal(Web.OnUpdate, "CheckForIntersection", CheckForIntersection)
+
+    function Web:GetSendDeathMessageOverride()
+        return false
+    end
 end
