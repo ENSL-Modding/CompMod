@@ -90,3 +90,4 @@ seconds
 
 ### Bug Fixes
 * ARCs now take corrode damage after deploying and undeploying.
+* Potential fix for view angles being set incorrectly on spawn 

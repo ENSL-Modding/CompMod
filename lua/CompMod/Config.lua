@@ -47,6 +47,7 @@ function GetModConfig(kLogLevels)
 
 		-- Marine Changes
 		"Marine/FlameVsClogAndCystBuffs",
+		"Marine/SpawnFix",
 		"Marine/Walk",
 
 		-- Weapons
