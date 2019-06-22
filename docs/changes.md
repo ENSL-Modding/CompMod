@@ -30,8 +30,10 @@
     * Increased biomass health bonus to 50 (from 30)
     * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
     * Boneshield is now available on Biomass 5 (down from Bio 6)
-* Cyst & Clogs
-    * Receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
+* Cyst & Clogs receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
+* Cyst
+    * Build time increased to 6 seconds from 3.33 
+seconds
 
 ### Marine
 * Walk added
@@ -62,7 +64,7 @@
         * 7 pellets with a center offset of 1.6 (outer ring) dealing 17 dmg and and a caliber of 150 mm
         ![Shotgun Changes](https://camo.githubusercontent.com/ca0779b0cdec0246ebdb359237a2dc30deb3b49e/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3562346532333734383733396331333333663664633439392f3563643263643138336264366531323165386233326161632f35613031383536393731336438613166333031346136376135313662343466392f3332375f53475f72616e746f2e706e67)
 * Axe
-    * The axe now works.
+    * The axe now works. (Thanks Steelcap ❤️)
 
 ### Alien Commander
 * Consume
