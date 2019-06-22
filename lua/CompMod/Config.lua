@@ -33,6 +33,7 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/Biomass",
 		"Commander/Alien/Consume",
 		"Commander/Alien/Cyst",
+		"Commander/Alien/GorgeTunnels",
 		"Commander/Alien/Harvester",
 		"Commander/Alien/LifeformEggs",
 

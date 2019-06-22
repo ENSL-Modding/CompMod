@@ -74,6 +74,9 @@
     * Unconnected cysts now take 20 damage/second up from 12 damage/second
 * Harvesters
     * Now take 60 seconds to die off infestation down from 90 seconds.
+* Tunnels
+    * Tunnels are infested tunnels by default
+    * Tunnel cost changed to 8 tres up from 6 tres
 
 ### Marine Commander
 * NanoShield
