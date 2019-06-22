@@ -57,7 +57,7 @@ function ConsumeMixin:OnResearchComplete(researchId)
             return
         end
 
-        self:TriggerEffects("recycle_end")
+        self:OnKill()
         Server.SendNetworkMessage( "Consume", { techId = self:GetTechId() }, true )
 
         local team = self:GetTeam()
