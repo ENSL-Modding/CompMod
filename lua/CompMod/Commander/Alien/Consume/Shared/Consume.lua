@@ -31,34 +31,26 @@ if Client then
   Client.HookNetworkMessage("Consume", OnCommandConsume)
 end
 
-Script.Load("lua/ResearchMixin.lua")
-
 local structuresToAdd = {
-  {"Crag", false},
-  {"Shift", false},
-  {"Shade", false},
-  {"Spur", false},
-  {"Shell", false},
-  {"Veil", false},
-  {"Harvester", false},
-  {"Hive", false}, -- let's see how people break this :D
+  {"Crag"},
+  {"Shift"},
+  {"Shade"},
+  {"Spur"},
+  {"Shell"},
+  {"Veil"},
+  {"Harvester"},
+  {"Hive"}, -- let's see how people break this :D
 }
 
-local function add(v, withResearch)
+local function add(v)
   local Structure = _G[v]
   local networkVars = {}
 
-  if withResearch then
-    AddMixinNetworkVars(ResearchMixin, networkVars)
-  end
   AddMixinNetworkVars(ConsumeMixin, networkVars)
 
   local oldOnCreate = Structure.OnCreate
   function Structure:OnCreate()
     oldOnCreate(self)
-    if withResearch then
-      InitMixin(self, ResearchMixin)
-    end
     InitMixin(self, ConsumeMixin)
   end
 
