@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "4.0"
+	config.kModBuild = "5.0 Beta"
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
@@ -15,6 +15,7 @@ function GetModConfig(kLogLevels)
 	{
 		-- Alien Changes
 		"Alien/Eggs",
+		"Alien/Stab",
 		"Alien/Webs",
 		"Alien/Umbra",
 

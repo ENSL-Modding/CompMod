@@ -25,6 +25,7 @@
         * Decreased umbra cloud life time to 2.5 seconds (from 4)
 * Fade
     * Increased initial blink boost to 15 m/s (from 13.5)
+    * Removed the movement penalty from stab
 * Onos
     * Decreased base health to 700 (from 900)
     * Increased biomass health bonus to 50 (from 30)
