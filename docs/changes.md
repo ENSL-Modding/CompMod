@@ -31,9 +31,6 @@
     * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
     * Boneshield is now available on Biomass 5 (down from Bio 6)
 * Cyst & Clogs receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
-* Cyst
-    * Build time increased to 6 seconds from 3.33 
-seconds
 
 ### Marine
 * Walk added
@@ -72,6 +69,9 @@ seconds
     * Allows commanders to recycle their structures to get the supply cost back.
     * Does not give resources back.
 * Lifeform egg drops removed
+* Cyst
+    * Build time increased to 6 seconds from 3.33 seconds
+    * Unconnected cysts now take 20 damage/second up from 12 damage/second
 
 ### Marine Commander
 * NanoShield
