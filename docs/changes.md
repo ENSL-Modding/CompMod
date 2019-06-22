@@ -72,6 +72,8 @@
 * Cyst
     * Build time increased to 6 seconds from 3.33 seconds
     * Unconnected cysts now take 20 damage/second up from 12 damage/second
+* Harvesters
+    * Now take 60 seconds to die off infestation down from 90 seconds.
 
 ### Marine Commander
 * NanoShield

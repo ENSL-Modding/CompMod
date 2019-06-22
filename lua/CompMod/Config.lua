@@ -29,16 +29,17 @@ function GetModConfig(kLogLevels)
 
 		-- Commander Changes
 
-			-- Alien Commander
-			"Commander/Alien/Biomass",
-			"Commander/Alien/Consume",
-			"Commander/Alien/LifeformEggs",
-			"Commander/Alien/Cyst",
+		-- Alien Commander
+		"Commander/Alien/Biomass",
+		"Commander/Alien/Consume",
+		"Commander/Alien/Cyst",
+		"Commander/Alien/Harvester",
+		"Commander/Alien/LifeformEggs",
 
-			-- Marine Commander
-			"Commander/Marine/ARCCorrodeBugFix",
-			"Commander/Marine/ARC",
-			"Commander/Marine/NanoShield",
+		-- Marine Commander
+		"Commander/Marine/ARCCorrodeBugFix",
+		"Commander/Marine/ARC",
+		"Commander/Marine/NanoShield",
 
 		-- Global Changes
 		"Global/Bindings",
