@@ -78,6 +78,12 @@
 * Tunnels
     * Tunnels are infested tunnels by default
     * Tunnel cost changed to 8 tres up from 6 tres
+* Supply Changes
+    * Drifter costs 5 from 10
+    * Whip costs 10 from 5
+    * Crag costs 25 from 5
+    * Shift costs 25 from 5
+    * Shade costs 25 from 5
 
 ### Marine Commander
 * NanoShield
@@ -90,6 +96,13 @@
     * Changed hp to 2600/400 fromm 3000/200 (shifting more hp to armor)
     * Fixed that ARCs didn't save and restore their previous armor value properly when changing their deployment state.
     * Make ARCs target the center of their target, instead of the model origin. So ARCs total damage is consistent and doesn't depend on the height of the main target's model origin.
+* Supply Changes
+    * MAC costs 5 from 10
+    * Armory costs 0 from 5
+    * ARCs cost 25 from 35
+    * Robotics Factory costs 0 from 5
+    * Sentry Battery costs 10 from 0
+    * Observatory costs 40 from 0
 
 ### Global
 * Player healthbars are disabled.

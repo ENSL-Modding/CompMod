@@ -37,11 +37,13 @@ function GetModConfig(kLogLevels)
 		"Commander/Alien/GorgeTunnels",
 		"Commander/Alien/Harvester",
 		"Commander/Alien/LifeformEggs",
+		"Commander/Alien/SupplyChanges",
 
 		-- Marine Commander
 		"Commander/Marine/ARCCorrodeBugFix",
 		"Commander/Marine/ARC",
 		"Commander/Marine/NanoShield",
+		"Commander/Marine/SupplyChanges",
 
 		-- Global Changes
 		"Global/Bindings",
