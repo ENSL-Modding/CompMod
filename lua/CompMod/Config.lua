@@ -31,6 +31,7 @@ function GetModConfig(kLogLevels)
 		-- Commander Changes
 
 		-- Alien Commander
+		"Commander/Alien/AdvancedMetabolize",
 		"Commander/Alien/Biomass",
 		"Commander/Alien/Consume",
 		"Commander/Alien/Cyst",
