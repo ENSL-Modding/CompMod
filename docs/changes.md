@@ -23,14 +23,21 @@
         * Now requires biomass 6 (up from 5)
         * Decreased damage reduction to 20% (from 25%)
         * Decreased umbra cloud life time to 2.5 seconds (from 4)
+    * Spores
+        * Now requires biomass 5 (up from 4)
 * Fade
     * Increased initial blink boost to 15 m/s (from 13.5)
     * Removed the movement penalty from stab
+    * Advanced Metabolise
+        * Now required biomass 4 down from 5)
 * Onos
     * Decreased base health to 700 (from 900)
     * Increased biomass health bonus to 50 (from 30)
     * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
     * Boneshield is now available on Biomass 5 (down from Bio 6)
+    * Stomp
+        * Research cost increased to 35 from 25
+        * Research time increased to 90 seconds from 60 seconds
 * Cyst & Clogs receive 7x direct damage from welders, flame throwers and cluster grenades (up from 2.5x)
 
 ### Marine
