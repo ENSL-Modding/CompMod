@@ -119,4 +119,5 @@
 * ARCs now take corrode damage after deploying and undeploying.
 * Potential fix for view angles being set incorrectly on spawn 
 * Cysts should no longer starve when they shouldn't
-* Cysts should be able to find their parents more reliably when the chain is updated 
+* Cysts should be able to find their parents more reliably when the chain is updated
+ 
