@@ -110,6 +110,8 @@
     * Robotics Factory costs 0 from 5
     * Sentry Battery costs 10 from 0
     * Observatory costs 40 from 0
+* Power Surge
+    * No longer slows and damaged aliens
 
 ### Global
 * Player healthbars are disabled.
