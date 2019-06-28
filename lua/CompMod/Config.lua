@@ -16,7 +16,6 @@ function GetModConfig(kLogLevels)
 		-- Alien Changes
 		"Alien/Eggs",
 		"Alien/Spores",
-		"Alien/Stab",
 		"Alien/Webs",
 		"Alien/Umbra",
 

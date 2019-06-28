@@ -27,7 +27,6 @@
         * Now requires biomass 5 (up from 4)
 * Fade
     * Increased initial blink boost to 15 m/s (from 13.5)
-    * Removed the movement penalty from stab
     * Advanced Metabolise
         * Now required biomass 4 down from 5)
 * Onos
