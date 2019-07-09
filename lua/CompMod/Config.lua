@@ -1,10 +1,10 @@
 function GetModConfig(kLogLevels)
 	local config = {}
 
-	config.kLogLevel = kLogLevels.debug
+	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "5.1"
+	config.kModBuild = "6.0-beta"
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
