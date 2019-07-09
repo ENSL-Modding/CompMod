@@ -1,7 +1,7 @@
 function GetModConfig(kLogLevels)
 	local config = {}
 
-	config.kLogLevel = kLogLevels.info
+	config.kLogLevel = kLogLevels.debug
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
 	config.kModBuild = "5.1"
@@ -9,13 +9,16 @@ function GetModConfig(kLogLevels)
 	config.use_config = "none"
 	config.techIdsToAdd = {
 		"Consume",
+		"AdvancedSwipe"
 	}
 
 	config.modules =
 	{
 		-- Alien Changes
+		"Alien/AdvancedSwipe",
 		"Alien/Eggs",
 		"Alien/Spores",
+		"Alien/Stab",
 		"Alien/Webs",
 		"Alien/Umbra",
 
