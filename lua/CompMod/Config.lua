@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "6.0-beta"
+	config.kModBuild = "6.1-beta"
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
@@ -15,12 +15,15 @@ function GetModConfig(kLogLevels)
 	config.modules =
 	{
 		-- Alien Changes
-		"Alien/AdvancedSwipe",
-		"Alien/Eggs",
-		"Alien/Spores",
-		"Alien/Stab",
-		"Alien/Webs",
-		"Alien/Umbra",
+
+        "Alien/Eggs",
+
+        -- Abilities
+		"Alien/Abilities/AdvancedSwipe",
+        "Alien/Abilities/Spores",
+		"Alien/Abilities/Stab",
+		"Alien/Abilities/Webs",
+		"Alien/Abilities/Umbra",
 
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
