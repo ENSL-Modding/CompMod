@@ -38,6 +38,7 @@ local structuresToAdd = {
   "Spur",
   "Shell",
   "Veil",
+  "Whip",
   "Harvester",
   "Hive", -- let's see how people break this :D
 }
