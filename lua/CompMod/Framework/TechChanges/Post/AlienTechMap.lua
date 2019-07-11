@@ -31,7 +31,7 @@ for techIndex, record in ipairs(kAlienTechMap) do
 end
 
 -- additions
-for _, value in ipairs(techToAdd) do
+for _, value in pairs(techToAdd) do
   Mod:PrintDebug("Adding alien techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
   table.insert(kAlienTechMap, value)
 end
