@@ -32,14 +32,14 @@ if Client then
 end
 
 local structuresToAdd = {
-  {"Crag"},
-  {"Shift"},
-  {"Shade"},
-  {"Spur"},
-  {"Shell"},
-  {"Veil"},
-  {"Harvester"},
-  {"Hive"}, -- let's see how people break this :D
+  "Crag",
+  "Shift",
+  "Shade",
+  "Spur",
+  "Shell",
+  "Veil",
+  "Harvester",
+  "Hive", -- let's see how people break this :D
 }
 
 local function add(v)
@@ -65,7 +65,7 @@ local function add(v)
 end
 
 for _,v in ipairs(structuresToAdd) do
-  add(v[1], v[2])
+  add(v)
 end
 
 local oldGetIsUnitActive = GetIsUnitActive
