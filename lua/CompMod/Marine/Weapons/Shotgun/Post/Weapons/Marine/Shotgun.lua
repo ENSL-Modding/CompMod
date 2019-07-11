@@ -1,3 +1,7 @@
+Shotgun.kDamageFalloffStart = 6
+Shotgun.kDamageFalloffEnd = 12
+Shotgun.kDamageFalloffReductionFactor = 0.75
+
 --
 --  Base: Build 327, Shotgun.lua:41-68
 --
@@ -9,9 +13,9 @@ do
 
     local kShotgunRings =
     {
-        { distance = 0.0, pelletCount = 1, pelletSize = 0.016, damage=15 },
-        { distance = 0.6, pelletCount = 5, pelletSize = 0.016, damage=17 },
-        { distance = 1.6, pelletCount = 7, pelletSize = 0.15 , damage=10 },
+        { distance = 0.0, pelletCount = 1, pelletSize = 0.016, damage=20 },
+        { distance = 0.5, pelletCount = 5, pelletSize = 0.016, damage=16 },
+        { distance = 1.5, pelletCount = 7, pelletSize = 0.15 , damage=10 },
     }
 
     local function CalculateShotgunSpreadVectors()
@@ -105,13 +109,12 @@ function Shotgun:FirePrimary(player)
             -- local damage = kShotgunDamage
             local damage = self.kSpreadVectors[bullet].damage
 
-            --[[ Apply a damage falloff for shotgun damage.
+            -- Apply a damage falloff for shotgun damage.
             local distance = (hitPoint - startPoint):GetLength()
             local falloffFactor = Clamp((distance - self.kDamageFalloffStart) / (self.kDamageFalloffEnd - self.kDamageFalloffStart), 0, 1)
             local nearDamage = damage
             local farDamage = damage * self.kDamageFalloffReductionFactor
             damage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
-			--]]
 
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage, "", showTracer and i == numTargets)
 
