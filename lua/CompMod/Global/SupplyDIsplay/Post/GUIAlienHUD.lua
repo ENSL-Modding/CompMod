@@ -27,7 +27,7 @@ local function CalculateYOffset(hud)
         return CalculateYOffsetNS2Plus(hud)
     end
 
-    return 390
+    return hud.resourceDisplay.teamText:GetPosition().y + 30
 end
 
 local function UpdateScale(hud)
