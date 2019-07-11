@@ -4,7 +4,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "6.1-beta"
+	config.kModBuild = "7.0-beta"
 	config.disableRanking = true
 	config.use_config = "none"
 	config.techIdsToAdd = {
@@ -58,6 +58,7 @@ function GetModConfig(kLogLevels)
 		"Global/Bindings",
 		"Global/HealthBars",
 		"Global/ReadyRoomPanels",
+		"Global/SupplyDisplay",
 
 		-- Marine Changes
 		"Marine/FlameVsClogAndCystBuffs",
