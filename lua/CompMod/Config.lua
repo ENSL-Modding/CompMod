@@ -1,26 +1,11 @@
-function GetModConfig(kLogLevels)
-	local config = {}
-
-	config.kLogLevel = kLogLevels.info
-	config.kShowInFeedbackText = true
-	config.kModVersion = "2"
-	config.kModBuild = "6.2-beta"
-	config.disableRanking = true
-	config.use_config = "none"
-	config.techIdsToAdd = {
-		"Consume",
-		"AdvancedSwipe"
-	}
-
-	config.modules =
-	{
+local function GetModules()
+	return {
 		-- Alien Changes
+		"Alien/Eggs",
 
-        "Alien/Eggs",
-
-        -- Abilities
+		-- Abilities
 		"Alien/Abilities/AdvancedSwipe",
-        "Alien/Abilities/Spores",
+		"Alien/Abilities/Spores",
 		"Alien/Abilities/Stab",
 		"Alien/Abilities/Webs",
 		"Alien/Abilities/Umbra",
@@ -72,6 +57,27 @@ function GetModConfig(kLogLevels)
 		"Marine/Weapons/Mine",
 		"Marine/Weapons/Shotgun",
 	}
+end
+
+local function GetTechIdsToAdd()
+	return {
+		"Consume",
+		"AdvancedSwipe"
+	}
+end
+
+function GetModConfig(kLogLevels)
+	local config = {}
+
+	config.kLogLevel = kLogLevels.info
+	config.kShowInFeedbackText = true
+	config.kModVersion = "2"
+	config.kModBuild = "6.2-beta"
+	config.disableRanking = true
+	config.use_config = "none"
+
+	config.techIdsToAdd = GetTechIdsToAdd()
+	config.modules = GetModules()
 
 	return config
 end
