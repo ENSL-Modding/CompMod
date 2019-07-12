@@ -15,6 +15,7 @@ local function GetModules()
 		-- Abilities
 		"Alien/Abilities/AdvancedMetabolize",
 		"Alien/Abilities/AdvancedSwipe",
+		"Alien/Abilities/Roost",
 		"Alien/Abilities/Spores",
 		"Alien/Abilities/Stab",
 		"Alien/Abilities/Stomp",
@@ -75,7 +76,8 @@ end
 local function GetTechIdsToAdd()
 	return {
 		"Consume",
-		"AdvancedSwipe"
+		"AdvancedSwipe",
+		"Roost"
 	}
 end
 
