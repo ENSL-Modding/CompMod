@@ -1,15 +1,25 @@
 local function GetModules()
 	return {
-		-- Alien Changes
+		--[[
+		=====================
+			Alien Changes
+		=====================
+		]]
+
+		"Alien/Biomass",
+		"Alien/Consume",
 		"Alien/Eggs",
+		"Alien/LifeformEggs",
+		"Alien/SupplyChanges",
 
 		-- Abilities
+		"Alien/Abilities/AdvancedMetabolize",
 		"Alien/Abilities/AdvancedSwipe",
 		"Alien/Abilities/Spores",
 		"Alien/Abilities/Stab",
 		"Alien/Abilities/Stomp",
-		"Alien/Abilities/Webs",
 		"Alien/Abilities/Umbra",
+		"Alien/Abilities/Webs",
 
 		-- Lifeform Changes
 		"Alien/Lifeforms/Skulk",
@@ -17,39 +27,41 @@ local function GetModules()
 		"Alien/Lifeforms/Fade",
 		"Alien/Lifeforms/Onos",
 
+		-- Structure Changes
+		"Alien/Structures/Cyst",
+		"Alien/GorgeTunnels/Cyst",
+		"Alien/Harvester/Cyst",
+
 		-- Upgrades
 		"Alien/Upgrades/Camouflage",
 
-		-- Commander Changes
-
-		-- Alien Commander
-		"Commander/Alien/AdvancedMetabolize",
-		"Commander/Alien/Biomass",
-		"Commander/Alien/Consume",
-		"Commander/Alien/Cyst",
-		"Commander/Alien/GorgeTunnels",
-		"Commander/Alien/Harvester",
-		"Commander/Alien/LifeformEggs",
-		"Commander/Alien/Stomp",
-		"Commander/Alien/SupplyChanges",
-
-		-- Marine Commander
-		"Commander/Marine/ARCCorrodeBugFix",
-		"Commander/Marine/ARC",
-		"Commander/Marine/NanoShield",
-		"Commander/Marine/PowerSurge",
-		"Commander/Marine/SupplyChanges",
-
-		-- Global Changes
+		--[[
+		======================
+			Global Changes
+		======================
+		]]
 		"Global/Bindings",
 		"Global/HealthBars",
 		"Global/ReadyRoomPanels",
 		"Global/SupplyDisplay",
 
-		-- Marine Changes
+		--[[
+		======================
+			Marine Changes
+		======================
+		]]
+		"Marine/ARCCorrodeBugFix",
 		"Marine/FlameVsClogAndCystBuffs",
 		"Marine/SpawnFix",
+		"Marine/SupplyChanges",
 		"Marine/Walk",
+
+		-- Abilities
+		"Marine/Abilities/NanoShield",
+		"Marine/Abilities/PowerSurge",
+
+		-- Structures
+		"Marine/Structures/ARC",
 
 		-- Weapons
 		"Marine/Weapons/Axe",
