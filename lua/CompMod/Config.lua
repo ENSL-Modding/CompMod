@@ -7,6 +7,7 @@ local function GetModules()
 		"Alien/Abilities/AdvancedSwipe",
 		"Alien/Abilities/Spores",
 		"Alien/Abilities/Stab",
+		"Alien/Abilities/Stomp",
 		"Alien/Abilities/Webs",
 		"Alien/Abilities/Umbra",
 
