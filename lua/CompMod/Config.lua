@@ -29,8 +29,8 @@ local function GetModules()
 
 		-- Structure Changes
 		"Alien/Structures/Cyst",
-		"Alien/GorgeTunnels/Cyst",
-		"Alien/Harvester/Cyst",
+		"Alien/Structures/GorgeTunnels",
+		"Alien/Structures/Harvester",
 
 		-- Upgrades
 		"Alien/Upgrades/Camouflage",
