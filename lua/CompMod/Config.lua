@@ -58,6 +58,7 @@ local function GetModules()
 		"Marine/Walk",
 
 		-- Abilities
+		"Marine/Abilities/GrenadeQuickThrow",
 		"Marine/Abilities/NanoShield",
 		"Marine/Abilities/PowerSurge",
 

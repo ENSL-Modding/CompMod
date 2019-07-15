@@ -28,6 +28,7 @@ local _keyBinding =
     Scoreboard = InputKey.Tab,
     PrimaryAttack = InputKey.MouseButton0,
     SecondaryAttack = InputKey.MouseButton1,
+    GrenadeQuickThrow = InputKey.N,
     Reload = InputKey.R,
     Use = InputKey.E,
     Drop = InputKey.G,
@@ -444,6 +445,9 @@ local function GenerateMove()
         end
         if _keyState[ _keyBinding.SecondaryAttack ] then
             move.commands = bit.bor(move.commands, Move.SecondaryAttack)
+        end
+        if _keyState[_keyBinding.GrenadeQuickThrow ] then
+            move.commands = bit.bor(move.commands, Move.Minimap)
         end
         if _keyState[ _keyBinding.Reload ] then
             move.commands = bit.bor(move.commands, Move.Reload)
