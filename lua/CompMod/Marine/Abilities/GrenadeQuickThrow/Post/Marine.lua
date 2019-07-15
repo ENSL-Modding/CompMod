@@ -1,7 +1,42 @@
+local networkVars =
+{
+    flashlightOn = "boolean",
+
+    timeOfLastDrop = "private time",
+    timeOfLastPickUpWeapon = "private time",
+
+    flashlightLastFrame = "private boolean",
+
+    timeLastSpitHit = "private time",
+    lastSpitDirection = "private vector",
+
+    ruptured = "boolean",
+    interruptAim = "private boolean",
+    poisoned = "boolean",
+    weaponUpgradeLevel = "integer (0 to 3)",
+
+    unitStatusPercentage = "private integer (0 to 100)",
+
+    strafeJumped = "private compensated boolean",
+
+    timeLastBeacon = "private time",
+
+    weaponBeforeUseId = "private compensated entityid",
+
+    quickGrenadeThrowLastFrame = "private boolean"
+}
+
 local NO_GRENADE = 0
 local CLUSTER_GRENADE = 1
 local GAS_GRENADE = 2
 local PULSE_GRENADE = 3
+
+local oldOnCreate = Marine.OnCreate
+function Marine:OnCreate()
+    oldOnCreate(self)
+
+    self.quickGrenadeThrowLastFrame = false
+end
 
 local oldHandleAttacks = Marine.HandleAttacks
 function Marine:HandleAttacks(input)
@@ -25,7 +60,13 @@ function Marine:HandleAttacks(input)
         end
 
         if bit.band(input.commands, Move.Minimap) ~= 0 then
-            self:QuickThrowGrenade(input)
+            if not self.quickGrenadeThrowLastFrame then
+                self:QuickThrowGrenade(input)
+            end
+
+            self.quickGrenadeThrowLastFrame = true
+        else
+            self.quickGrenadeThrowLastFrame = false
         end
     end
 end
@@ -58,7 +99,6 @@ function Marine:QuickThrowGrenade()
 
     if throwValid then
         for _,weapon in ipairs(weapons) do
-
             if weapon and GetGrenadeType(weapon) ~= NO_GRENADE then
 
                 weapon:OnPrimaryAttack(self)
@@ -72,3 +112,5 @@ function Marine:QuickThrowGrenade()
         end
     end
 end
+
+Shared.LinkClassToMap("Marine", Marine.kMapName, networkVars, true)
