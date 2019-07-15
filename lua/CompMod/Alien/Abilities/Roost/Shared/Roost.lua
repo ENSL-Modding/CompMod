@@ -1,7 +1,7 @@
 CompMod:AddTech({
     [kTechDataId] = kTechId.Roost,
     [kTechDataCostKey] = kRoostResearchCost,
-    [kTechDataResearchTimeKey] = kRoostResearchCost,
+    [kTechDataResearchTimeKey] = kRoostResearchTime,
     [kTechDataDisplayName] = "Roost",
     [kTechDataTooltipInfo] = "Allows Lerks to heal by perching on walls",
 })
