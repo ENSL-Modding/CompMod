@@ -38,15 +38,7 @@ function Lerk:UpdateRoostHeal()
         local roostAllowed = Shared.GetTime() > self.lastTimeRoost + self.roostInterval
 
         if self:GetIsWallGripping() and GetHasTech(self, kTechId.Roost, true) and roostAllowed then
-            local healAmount = self:AddHealth(self.roostHealRate, false, false)
-
-            if Client and healAmount > 0 then
-                local GUIRegenerationFeedback = ClientUI.GetScript("GUIRegenerationFeedback")
-                GUIRegenerationFeedback:TriggerRegenEffect()
-                local cinematic = Client.CreateCinematic(RenderScene.Zone_ViewModel)
-                cinematic:SetCinematic(kRegenerationViewCinematic)
-            end
-
+            self:AddHealth(self.roostHealRate, false, false)
             self.lastTimeRoost = Shared.GetTime()
         end
     end
