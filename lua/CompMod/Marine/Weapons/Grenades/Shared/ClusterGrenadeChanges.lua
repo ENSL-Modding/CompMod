@@ -1,5 +1,5 @@
 local kStructurePercentage = 1.25
-local kPlayerPercentage = 0.5
+local kPlayerPercentage = 1
 
 CompMod:AppendToEnum(kDamageType, "ClusterFlame")
 CompMod:AppendToEnum(kDamageTypeDesc, "Cluster Flame: Identical to Flame but also deals half damage to players and 25% more damage to structures")

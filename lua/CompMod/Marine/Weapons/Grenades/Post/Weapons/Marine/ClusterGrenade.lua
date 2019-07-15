@@ -54,3 +54,22 @@ if Server then
         oldClusterGrenadeDetonate(self, targetHit)
     end
 end
+
+ClusterFragment.MinDetonationTime = 0.7
+ClusterFragment.MaxDetonationTime = 1.7
+
+function ClusterFragment:OnCreate()
+
+    Projectile.OnCreate(self)
+
+    InitMixin(self, BaseModelMixin)
+    InitMixin(self, ModelMixin)
+    InitMixin(self, DamageMixin)
+
+    if Server then
+        self:AddTimedCallback(ClusterFragment.TimedDetonateCallback, math.random(self.MinDetonationTime, self.MaxDetonationTime))
+    elseif Client then
+        self:AddTimedCallback(ClusterFragment.CreateResidue, 0.06)
+    end
+
+end
