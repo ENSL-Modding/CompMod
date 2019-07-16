@@ -24,7 +24,7 @@ For a full list of changes from vanilla see [here](changes "CompMod ChangeLog").
 * Shifted more Lerk HP to Armour. Now: 180/30 from 190/20
 * Added Roost 
     * Allows the Lerk to heal passively for 5 HP/s when perched.
-    * Costs 10 tres and takes 30 seconds to research at Biomass 2.
+    * Costs 10 tres and takes 30 seconds to research at Biomass 2. (Is unlocked automatically at Biomass 2 at the moment for testing purposes)
 * Stomp 
     * Research cost changed to 35 from 25
     * Research time changed to 90 from 60
