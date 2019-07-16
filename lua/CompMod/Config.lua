@@ -27,7 +27,7 @@ local function GetModules()
 		-- Lifeform Changes
 		-- Skulk Changes
 		"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
-		"Alien/Lifeforms/Skulk/ModelSize",
+		--"Alien/Lifeforms/Skulk/ModelSize",
 
 		"Alien/Lifeforms/Lerk",
 
