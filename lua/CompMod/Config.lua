@@ -10,6 +10,7 @@ local function GetModules()
 		"Alien/Consume",
 		"Alien/Eggs",
 		"Alien/LifeformEggs",
+		"Alien/ShellHealSound",
 		"Alien/SupplyChanges",
 
 		-- Abilities
