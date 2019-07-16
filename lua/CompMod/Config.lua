@@ -8,6 +8,7 @@ local function GetModules()
 
 		"Alien/Biomass",
 		"Alien/Consume",
+		"Alien/Drifters/StructurePoofFix",
 		"Alien/Eggs",
 		"Alien/LifeformEggs",
 		"Alien/ShellHealSound",
