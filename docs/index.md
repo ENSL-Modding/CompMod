@@ -6,7 +6,7 @@ The vision of the Natural Selection League (NSL) Competitive Modification (CompM
 To do this the team commits to remaining transparent in all changes, to be open to discussion, feedback and criticism, and above all else, to strive to attain enjoyable play for all members of the competitive community, regardless of skill level. 
 
 # Changes
-For a full list of changes see [here](changes "CompMod ChangeLog").
+For a full list of changes from vanilla see [here](changes "CompMod ChangeLog").
 
 # Recent Changes
 #### 28/06/2019 (CompMod 2.5.0)
