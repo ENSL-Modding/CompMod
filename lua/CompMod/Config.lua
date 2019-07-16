@@ -24,9 +24,14 @@ local function GetModules()
 		"Alien/Abilities/Webs",
 
 		-- Lifeform Changes
-		"Alien/Lifeforms/Skulk",
+		-- Skulk Changes
+		"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
+		"Alien/Lifeforms/Skulk/ModelSize",
+
 		"Alien/Lifeforms/Lerk",
+
 		"Alien/Lifeforms/Fade",
+
 		"Alien/Lifeforms/Onos",
 
 		-- Structure Changes
