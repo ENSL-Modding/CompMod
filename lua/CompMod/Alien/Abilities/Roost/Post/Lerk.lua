@@ -34,7 +34,7 @@ function Lerk:OnProcessMove(input)
 end
 
 function Lerk:UpdateRoostHeal()
-    if not self:GetIsDestroyed() then
+    if not self:GetIsDestroyed() and self:GetIsAlive() then
         local roostAllowed = Shared.GetTime() > self.lastTimeRoost + self.roostInterval
 
         if self:GetIsWallGripping() and GetHasTech(self, kTechId.Roost, true) and roostAllowed then
