@@ -9,6 +9,33 @@ To do this the team commits to remaining transparent in all changes, to be open 
 For a full list of changes from vanilla see [here](changes "CompMod ChangeLog").
 
 # Recent Changes
+#### DATE TBA (CompMod 2.6.0)
+* Stab replaced by Advanced Swipe
+    * Upgrades the normal swipe damage to 81 from 70
+    * Can be researched at Biomass 7 
+    * Costs 25 tres and takes 60 seconds to research
+* Team supply visible on the player HUD
+* Shotgun Tweaks
+    * RingTwoRadius changed to 0.5 from 0.6
+    * RingThreeRadius changed to 1.5 from 1.
+    * RingOne damage changed to 20 from 15
+    * RingTwo damage changed to 16 from 17
+    * Added falloff from 6-12 meters, scaling up to 25%.
+* Shifted more Lerk HP to Armour. Now: 180/30 from 190/20
+* Added Roost 
+    * Allows the Lerk to heal passively for 5 HP/s when perched.
+    * Costs 10 tres and takes 30 seconds to research at Biomass 2.
+* Stomp 
+    * Research cost changed to 35 from 25
+    * Research time changed to 90 from 60
+* Added Grenade Quick Throw
+    * Default key: N
+    * Allows a marine to throw a grenade without waiting for the deploy animations
+* Cluster Grenades
+    * Slightly increased the time it takes for subsequent explosions to go off
+* Heal sound will no longer play when shells are built.
+* Drifters can pop blueprints again
+
 #### 28/06/2019 (CompMod 2.5.0)
 * Potential fix for view angles being set incorrectly on spawn 
 * Cysts should no longer starve when they shouldn't
