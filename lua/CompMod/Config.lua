@@ -81,7 +81,6 @@ local modules = {
 	"Marine/FlameVsClogAndCystBuffs",
 	"Marine/NanoShield",
 	"Marine/PowerSurge",
-	"Marine/SpawnFix",
 
 		-- Structure Modules
 			-- ARCs
