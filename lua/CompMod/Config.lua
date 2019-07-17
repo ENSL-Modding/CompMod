@@ -1,93 +1,103 @@
-local function GetModules()
-	return {
-		--[[
-		=====================
-			Alien Changes
-		=====================
-		]]
+local modules = {
+	--[[
+	  ============================
+			Alien Modules
+	  ============================
+	]]
 
-		"Alien/Biomass",
-		"Alien/Consume",
-		"Alien/Drifters/StructurePoofFix",
-		"Alien/Eggs",
-		"Alien/LifeformEggs",
-		"Alien/ShellHealSound",
-		"Alien/SupplyChanges",
+	"Alien/Biomass",
+	"Alien/Consume",
 
-		-- Abilities
-		"Alien/Abilities/AdvancedMetabolize",
-		"Alien/Abilities/AdvancedSwipe",
-		"Alien/Abilities/Roost",
-		"Alien/Abilities/Spores",
-		"Alien/Abilities/Stab",
-		"Alien/Abilities/Stomp",
-		"Alien/Abilities/Umbra",
-		"Alien/Abilities/Webs",
+		-- Drifter Modules
+		"Alien/Drifters/BlueprintPopFix",
 
-		-- Lifeform Changes
-		-- Skulk Changes
-		"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
-		--"Alien/Lifeforms/Skulk/ModelSize",
+		-- Egg Modules
+		"Alien/Eggs/EmbryoHP",
+		"Alien/Eggs/HiveEggHeal",
+		"Alien/Eggs/LifeformEggDrops",
 
-		"Alien/Lifeforms/Lerk",
+		-- Lifeform Modules
 
-		"Alien/Lifeforms/Fade",
+			-- Fade Modules
+			"Alien/Lifeforms/Fade/AdvancedMetabolize",
+			"Alien/Lifeforms/Fade/AdvancedSwipe",
+			"Alien/Lifeforms/Fade/Blink",
+			"Alien/Lifeforms/Fade/Stab",
 
-		"Alien/Lifeforms/Onos",
+			-- Gorge Modules
+			"Alien/Lifeforms/Gorge/Webs",
 
-		-- Structure Changes
+			-- Lerk Modules
+			"Alien/Lifeforms/Lerk/Base",
+			"Alien/Lifeforms/Lerk/Roost",
+			"Alien/Lifeforms/Lerk/Spikes",
+			"Alien/Lifeforms/Lerk/Spores",
+			"Alien/Lifeforms/Lerk/Umbra",
+
+			-- Onos Modules
+			"Alien/Lifeforms/Onos/Base",
+			"Alien/Lifeforms/Onos/BoneShield",
+			"Alien/Lifeforms/Onos/Stomp",
+
+			-- Skulk Modules
+			"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
+			--"Alien/Lifeforms/Skulk/ModelSize",
+
+	"Alien/ShellHealSound",
+
+		-- Structure Modules
 		"Alien/Structures/Cyst",
 		"Alien/Structures/GorgeTunnels",
 		"Alien/Structures/Harvester",
 
-		-- Upgrades
+	"Alien/SupplyChanges",
+
+		-- Upgrade Modules
 		"Alien/Upgrades/Camouflage",
 
-		--[[
-		======================
-			Global Changes
-		======================
-		]]
-		"Global/Bindings",
-		"Global/HealthBars",
-		"Global/ReadyRoomPanels",
-		"Global/SupplyDisplay",
+	--[[
+	  ==========================
+			Global Modules
+	  ==========================
+	]]
 
-		--[[
-		======================
-			Marine Changes
-		======================
-		]]
-		"Marine/ARCCorrodeBugFix",
-		"Marine/FlameVsClogAndCystBuffs",
-		"Marine/SpawnFix",
-		"Marine/SupplyChanges",
-		"Marine/Walk",
+	"Global/Bindings",
+	"Global/HealthBars",
+	"Global/ReadyRoomPanels",
+	"Global/SupplyDisplay",
 
-		-- Abilities
-		"Marine/Abilities/GrenadeQuickThrow",
-		"Marine/Abilities/NanoShield",
-		"Marine/Abilities/PowerSurge",
+	--[[
+	  ==========================
+			Marine Modules
+	  ==========================
+	]]
 
-		-- Structures
-		"Marine/Structures/ARC",
+	"Marine/FlameVsClogAndCystBuffs",
+	"Marine/NanoShield",
+	"Marine/PowerSurge",
+	"Marine/SpawnFix",
+
+		-- Structure Modules
+			-- ARCs
+			"Marine/Structures/ARC/ARCCorrodeBugFix",
+			"Marine/Structures/ARC/Base",
+
+	"Marine/SupplyChanges",
+	"Marine/Walk",
 
 		-- Weapons
-		"Marine/Weapons/Axe",
-		"Marine/Weapons/Grenades",
+		"Marine/Weapons/AxeHitFix",
+
+			-- Grenades
+			"Marine/Weapons/Grenades/ClusterGrenade",
+			"Marine/Weapons/Grenades/GasGrenade",
+			"Marine/Weapons/Grenades/GrenadeQuickThrow",
+			"Marine/Weapons/Grenades/PulseGrenade",
+
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
 		"Marine/Weapons/Shotgun",
-	}
-end
-
-local function GetTechIdsToAdd()
-	return {
-		"Consume",
-		"AdvancedSwipe",
-		"Roost"
-	}
-end
+}
 
 function GetModConfig(kLogLevels)
 	local config = {}
@@ -99,8 +109,13 @@ function GetModConfig(kLogLevels)
 	config.disableRanking = true
 	config.use_config = "none"
 
-	config.techIdsToAdd = GetTechIdsToAdd()
-	config.modules = GetModules()
+	config.techIdsToAdd = {
+		"Consume",
+		"AdvancedSwipe",
+		"Roost"
+	}
+
+	config.modules = modules
 
 	return config
 end
