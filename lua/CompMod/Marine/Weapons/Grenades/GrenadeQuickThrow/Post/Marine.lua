@@ -40,7 +40,6 @@ local networkVars =
 
     -- quick throw vars
     quickGrenadeThrowLastFrame = "private boolean",
-    quickGrenadeLastWeaponSlot = "private integer (0 to 10)"
 }
 
 local oldOnCreate = Marine.OnCreate
@@ -48,7 +47,6 @@ function Marine:OnCreate()
     oldOnCreate(self)
 
     self.quickGrenadeThrowLastFrame = false
-    self.quickGrenadeLastWeaponSlot = 1
 end
 
 local oldHandleAttacks = Marine.HandleAttacks
