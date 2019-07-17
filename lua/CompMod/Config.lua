@@ -36,6 +36,7 @@ local modules = {
 
 			-- Onos Modules
 			"Alien/Lifeforms/Onos/Base",
+			"Alien/Lifeforms/Onos/BoneFuel",
 			"Alien/Lifeforms/Onos/BoneShield",
 			"Alien/Lifeforms/Onos/Stomp",
 
