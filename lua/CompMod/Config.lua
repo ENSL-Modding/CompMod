@@ -37,12 +37,12 @@ local modules = {
 			-- Onos Modules
 			"Alien/Lifeforms/Onos/Base",
 
-				-- BoneFuel Modules
-				"Alien/Lifeforms/Onos/BoneFuel/ConsumeRate",
-				"Alien/Lifeforms/Onos/BoneFuel/MovementSpeed",
-				"Alien/Lifeforms/Onos/BoneFuel/UIBar",
+				-- BoneShield Modules
+				"Alien/Lifeforms/Onos/BoneShield/Base",
+				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
+				"Alien/Lifeforms/Onos/BoneShield/MovementSpeed",
+				"Alien/Lifeforms/Onos/BoneShield/UIBar",
 
-			"Alien/Lifeform/Onos/BoneShield",
 			"Alien/Lifeforms/Onos/Stomp",
 
 			-- Skulk Modules
