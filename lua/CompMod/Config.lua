@@ -42,6 +42,7 @@ local modules = {
 				"Alien/Lifeforms/Onos/BoneFuel/MovementSpeed",
 				"Alien/Lifeforms/Onos/BoneFuel/UIBar",
 
+			"Alien/Lifeform/Onos/BoneShield",
 			"Alien/Lifeforms/Onos/Stomp",
 
 			-- Skulk Modules
