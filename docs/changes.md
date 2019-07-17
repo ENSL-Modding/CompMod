@@ -32,8 +32,11 @@
 * Onos
     * Decreased base health to 700 (from 900)
     * Increased biomass health bonus to 50 (from 30)
-    * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
-    * Boneshield is now available on Biomass 5 (down from Bio 6)
+    * BoneShield
+        * Increase Boneshield Movement Speed to 4.5 (up from 3.3)
+        * Boneshield is now available on Biomass 5 (down from Bio 6)
+        * Add BoneShield initial cost 
+        * Moving with BoneShield active will consume BoneFuel faster
     * Stomp
         * Research cost increased to 35 from 25
         * Research time increased to 90 seconds from 60 seconds
