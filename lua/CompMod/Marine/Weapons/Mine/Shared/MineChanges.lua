@@ -20,7 +20,10 @@ local kMineMaxShakeIntensity = 0.13
 
 -- use our new local
 local function Detonate(self, armFunc)
-    if not self.active then return end
+    if not self.active then
+        DestroyEntity(self)
+        return
+    end
 
     local hitEntities = GetEntitiesWithMixinWithinRange("Live", self:GetOrigin(), kMineDetonateRange)
     RadiusDamage(hitEntities, self:GetOrigin(), kMineDetonateRange, kMineDamage, self, false, SineFalloff)
