@@ -24,7 +24,9 @@ local modules = {
 			"Alien/Lifeforms/Fade/Stab",
 
 			-- Gorge Modules
-			"Alien/Lifeforms/Gorge/Webs",
+				-- Web Modules
+				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
+				"Alien/Lifeforms/Gorge/Webs/RemoveFromKillfeed",
 
 			-- Lerk Modules
 			"Alien/Lifeforms/Lerk/Base",

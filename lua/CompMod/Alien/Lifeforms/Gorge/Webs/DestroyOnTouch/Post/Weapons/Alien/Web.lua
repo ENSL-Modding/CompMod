@@ -63,8 +63,4 @@ CompMod:ReplaceLocal(Web.UpdateWebOnProcessMove, "CheckForIntersection", CheckFo
 
 if Server then
     CompMod:ReplaceLocal(Web.OnUpdate, "CheckForIntersection", CheckForIntersection)
-
-    function Web:GetSendDeathMessageOverride()
-        return false
-    end
 end
