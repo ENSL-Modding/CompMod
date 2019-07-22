@@ -26,7 +26,6 @@ local modules = {
 			-- Gorge Modules
 				-- Web Modules
 				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
-				"Alien/Lifeforms/Gorge/Webs/RemoveFromKillfeed",
 
 			-- Lerk Modules
 			"Alien/Lifeforms/Lerk/Base",
