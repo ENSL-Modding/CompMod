@@ -6,7 +6,6 @@ local modules = {
 	]]
 
 	"Alien/Biomass",
-	"Alien/Consume",
 
 		-- Drifter Modules
 		"Alien/Drifters/BlueprintPopFix",
