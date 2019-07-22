@@ -114,7 +114,6 @@ function GetModConfig(kLogLevels)
 	config.use_config = "none"
 
 	config.techIdsToAdd = {
-		"Consume",
 		"AdvancedSwipe",
 		"Roost"
 	}
