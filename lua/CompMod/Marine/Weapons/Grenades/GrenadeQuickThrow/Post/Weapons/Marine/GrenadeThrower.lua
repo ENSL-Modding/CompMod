@@ -1,6 +1,5 @@
 local networkVars =
 {
-    grenadesLeft = "integer (0 to ".. kMaxHandGrenades ..")",
     quickThrown = "boolean"
 }
 
@@ -13,4 +12,4 @@ function GrenadeThrower:SetIsQuickThrown(quickThrown)
     self.quickThrown = quickThrown
 end
 
-Shared.LinkClassToMap("GrenadeThrower", GrenadeThrower.kMapName, networkVars)
+Shared.LinkClassToMap("GrenadeThrower", GrenadeThrower.kMapName, networkVars, true)
