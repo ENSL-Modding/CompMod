@@ -77,10 +77,7 @@ local modules = {
 		"Marine/Weapons/AxeHitFix",
 
 			-- Grenades
-			"Marine/Weapons/Grenades/ClusterGrenade",
-			"Marine/Weapons/Grenades/GasGrenade",
 			"Marine/Weapons/Grenades/GrenadeQuickThrow",
-			"Marine/Weapons/Grenades/PulseGrenade",
 
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
