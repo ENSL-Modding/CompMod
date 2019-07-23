@@ -89,7 +89,6 @@ function GetModConfig(kLogLevels)
 
 	config.techIdsToAdd = {
 		"AdvancedSwipe",
-		"Roost"
 	}
 
 	config.modules = modules
