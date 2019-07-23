@@ -62,8 +62,6 @@ local modules = {
 	  ==========================
 	]]
 
-	"Marine/PowerSurge",
-
 		-- Structure Modules
 			-- ARCs
 			"Marine/Structures/ARC/ARCCorrodeBugFix",
