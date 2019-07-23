@@ -102,6 +102,13 @@ local modules = {
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
 		"Marine/Weapons/Shotgun",
+
+	--[[
+	  ==============================
+	  		Spectator Modules
+	  ==============================
+	]]
+	"Spectator/KillFeedFix",
 }
 
 function GetModConfig(kLogLevels)
