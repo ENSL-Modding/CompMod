@@ -36,10 +36,6 @@ local modules = {
 
 			"Alien/Lifeforms/Onos/Stomp",
 
-			-- Skulk Modules
-			"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
-			--"Alien/Lifeforms/Skulk/ModelSize",
-
 	"Alien/ShellHealSound",
 
 		-- Structure Modules
