@@ -62,7 +62,6 @@ local modules = {
 	  ==========================
 	]]
 
-	"Marine/FlameVsClogAndCystBuffs",
 	"Marine/NanoShield",
 	"Marine/PowerSurge",
 
