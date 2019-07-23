@@ -45,9 +45,6 @@ local modules = {
 
 	"Alien/SupplyChanges",
 
-		-- Upgrade Modules
-		"Alien/Upgrades/Camouflage",
-
 	--[[
 	  ==========================
 			Global Modules
