@@ -62,7 +62,6 @@ local modules = {
 	  ==========================
 	]]
 
-	"Marine/NanoShield",
 	"Marine/PowerSurge",
 
 		-- Structure Modules
