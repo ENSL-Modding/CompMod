@@ -1,1 +1,1 @@
-Move.Walk = bit.lshift(1, 19)
+Move.Walk = bit.lshift(1, 25)
