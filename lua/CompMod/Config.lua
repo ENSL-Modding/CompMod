@@ -30,12 +30,8 @@ local modules = {
 			"Alien/Lifeforms/Lerk/Spores",
 
 			-- Onos Modules
-			"Alien/Lifeforms/Onos/Base",
-
 				-- BoneShield Modules
-				"Alien/Lifeforms/Onos/BoneShield/Base",
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
-				"Alien/Lifeforms/Onos/BoneShield/MovementSpeed",
 				"Alien/Lifeforms/Onos/BoneShield/UIBar",
 
 			"Alien/Lifeforms/Onos/Stomp",
