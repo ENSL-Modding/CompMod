@@ -80,7 +80,6 @@ local modules = {
 			"Marine/Weapons/Grenades/GrenadeQuickThrow",
 
 		"Marine/Weapons/Mine",
-		"Marine/Weapons/Shotgun",
 }
 
 function GetModConfig(kLogLevels)
