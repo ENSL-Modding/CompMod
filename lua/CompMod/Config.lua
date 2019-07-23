@@ -62,10 +62,9 @@ local modules = {
 	  ==========================
 	]]
 
-		-- Structure Modules
-			-- ARCs
-			"Marine/Structures/ARC/ARCCorrodeBugFix",
-			"Marine/Structures/ARC/Base",
+	-- Structure Modules
+		-- ARCs
+		"Marine/Structures/ARC/ARCCorrodeBugFix",
 
 	"Marine/SupplyChanges",
 	"Marine/Walk",
