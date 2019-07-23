@@ -20,7 +20,6 @@ local modules = {
 			-- Fade Modules
 			"Alien/Lifeforms/Fade/AdvancedMetabolize",
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
-			"Alien/Lifeforms/Fade/Blink",
 			"Alien/Lifeforms/Fade/Stab",
 
 			-- Gorge Modules
