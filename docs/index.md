@@ -13,7 +13,7 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 2, the changes for which can be found [here](ns2_beta_rev2 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
-## 25/07-2019 (CompMod 2.6.0)
+## CompMod 2.6.0 - (25/07-2019)
 * Stab replaced by Advanced Swipe
     * Upgrades the normal swipe damage to 81 from 70
     * Can be researched at Biomass 7 
@@ -34,7 +34,7 @@ The included version of ns2_beta is Revision 2, the changes for which can be fou
 * Drifters can pop blueprints again
 * Killfeed shows for spectators and readyroom players again
 
-## 28/06/2019 (CompMod 2.5.0)
+## CompMod 2.5.0 - (28/06/2019)
 * Potential fix for view angles being set incorrectly on spawn 
 * Cysts should no longer starve when they shouldn't
 * Cysts should be able to find their parents more reliably when the chain is updated
