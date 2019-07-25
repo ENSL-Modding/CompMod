@@ -23,12 +23,11 @@ local _keyBinding =
     MoveRight = InputKey.D,
     Jump = InputKey.Space,
     MovementModifier = InputKey.LeftShift,
-    SecondaryMovementModifier = InputKey.Capital,
+    Walk = InputKey.Capital,
     Crouch = InputKey.LeftControl,
     Scoreboard = InputKey.Tab,
     PrimaryAttack = InputKey.MouseButton0,
     SecondaryAttack = InputKey.MouseButton1,
-    GrenadeQuickThrow = InputKey.N,
     Reload = InputKey.R,
     Use = InputKey.E,
     Drop = InputKey.G,
@@ -43,6 +42,7 @@ local _keyBinding =
     Weapon3 = InputKey.Num3,
     Weapon4 = InputKey.Num4,
     Weapon5 = InputKey.Num5,
+    GrenadeQuickThrow = InputKey.B,
     ToggleConsole = InputKey.Grave,
     ToggleFlashlight = InputKey.F,
     ReadyRoom = InputKey.F4,
@@ -50,6 +50,7 @@ local _keyBinding =
     RequestHealth = InputKey.Q,
     RequestAmmo = InputKey.Z,
     RequestOrder = InputKey.H,
+    RequestStructure = InputKey.None,
     Taunt = InputKey.T,
     PingLocation = InputKey.MouseButton2,
     VoteYes = InputKey.VoteYes,
@@ -181,7 +182,7 @@ function Input_SyncInputOptions()
         local key = InputKey[keyName]
         if key == nil and string.len(keyName) > 1 and string.sub(keyName,1,1) == "#" then
             key = tonumber(string.sub(keyName,2))
-		    if key ~= nil then
+            if key ~= nil then
                 key = key + InputKey.FirstScanCode
             end
         end
@@ -264,7 +265,7 @@ local function OnSendKeyEvent(key, down, amount, repeated)
             _keyState[key] = true
             _keyPressed[key] = 1
 
-        -- Filter out the OS key repeat for our general movement (but we'll use it for GUI).
+            -- Filter out the OS key repeat for our general movement (but we'll use it for GUI).
         elseif not repeated then
 
             _keyState[key] = down
@@ -338,9 +339,9 @@ local function GenerateMove()
         if _keyState[ _keyBinding.Buy ] then
             move.commands = bit.bor(move.commands, Move.Buy)
         end
-        if _keyState[ _keyBinding.Eject ] then
-            move.commands = bit.bor(move.commands, Move.Eject)
-        end
+        --if _keyState[ _keyBinding.Eject ] then
+        --    move.commands = bit.bor(move.commands, Move.Eject)
+        --end
 
         if _keyState[ _keyBinding.MoveForward ] then
             move.move.z = move.move.z + 1
@@ -364,8 +365,8 @@ local function GenerateMove()
         if _keyState[ _keyBinding.MovementModifier ] then
             move.commands = bit.bor(move.commands, Move.MovementModifier)
         end
-        if _keyState[ _keyBinding.SecondaryMovementModifier ] then
-          move.commands = bit.bor(move.commands, Move.ReadyRoom)
+        if _keyState[_keyBinding.Walk] then
+            move.commands = bit.bor(move.commands, Move.Walk)
         end
 
         if _keyState[ _keyBinding.ScrollForward ] then
@@ -381,9 +382,9 @@ local function GenerateMove()
             move.commands = bit.bor(move.commands, Move.ScrollRight)
         end
 
-        if _keyPressed[ _keyBinding.ToggleRequest ] then
-            move.commands = bit.bor(move.commands, Move.ToggleRequest)
-        end
+        --if _keyPressed[ _keyBinding.ToggleRequest ] then
+        --    move.commands = bit.bor(move.commands, Move.ToggleRequest)
+        --end
         if _keyPressed[ _keyBinding.ToggleSayings ] then
             move.commands = bit.bor(move.commands, Move.ToggleSayings)
         end
@@ -430,6 +431,9 @@ local function GenerateMove()
         if _keyPressed[ _keyBinding.Weapon5 ] then
             move.commands = bit.bor(move.commands, Move.Weapon5)
         end
+        if _keyState[ _keyBinding.GrenadeQuickThrow ] then
+            move.commands = bit.bor(move.commands, Move.GrenadeQuickThrow)
+        end
         if _keyPressed[ _keyBinding.QuickSwitch ] then
             move.commands = bit.bor(move.commands, Move.QuickSwitch)
         end
@@ -445,9 +449,6 @@ local function GenerateMove()
         end
         if _keyState[ _keyBinding.SecondaryAttack ] then
             move.commands = bit.bor(move.commands, Move.SecondaryAttack)
-        end
-        if _keyState[_keyBinding.GrenadeQuickThrow ] then
-            move.commands = bit.bor(move.commands, Move.Minimap)
         end
         if _keyState[ _keyBinding.Reload ] then
             move.commands = bit.bor(move.commands, Move.Reload)
@@ -597,7 +598,7 @@ local function AggregateMove(move)
     _aggregatedCommands = bit.bor(
             bit.band( _aggregatedCommands, changedCommands ),
             bit.band( move.commands, bit.bnot(changedCommands) )
-        )
+    )
 
     if move.hotkey ~= 0 then
         _aggregatedHotKey = move.hotkey

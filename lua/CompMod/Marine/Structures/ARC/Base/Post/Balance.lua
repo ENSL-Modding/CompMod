@@ -1,1 +1,0 @@
-kARCDamage = 530

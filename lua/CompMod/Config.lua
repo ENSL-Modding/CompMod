@@ -6,7 +6,6 @@ local modules = {
 	]]
 
 	"Alien/Biomass",
-	"Alien/Consume",
 
 		-- Drifter Modules
 		"Alien/Drifters/BlueprintPopFix",
@@ -21,33 +20,21 @@ local modules = {
 			-- Fade Modules
 			"Alien/Lifeforms/Fade/AdvancedMetabolize",
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
-			"Alien/Lifeforms/Fade/Blink",
 			"Alien/Lifeforms/Fade/Stab",
 
 			-- Gorge Modules
-			"Alien/Lifeforms/Gorge/Webs",
+				-- Web Modules
+				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
 
 			-- Lerk Modules
-			"Alien/Lifeforms/Lerk/Base",
-			"Alien/Lifeforms/Lerk/Roost",
-			"Alien/Lifeforms/Lerk/Spikes",
 			"Alien/Lifeforms/Lerk/Spores",
-			"Alien/Lifeforms/Lerk/Umbra",
 
 			-- Onos Modules
-			"Alien/Lifeforms/Onos/Base",
-
 				-- BoneShield Modules
-				"Alien/Lifeforms/Onos/BoneShield/Base",
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
-				"Alien/Lifeforms/Onos/BoneShield/MovementSpeed",
 				"Alien/Lifeforms/Onos/BoneShield/UIBar",
 
 			"Alien/Lifeforms/Onos/Stomp",
-
-			-- Skulk Modules
-			"Alien/Lifeforms/Skulk/CarapaceMaxArmour",
-			--"Alien/Lifeforms/Skulk/ModelSize",
 
 	"Alien/ShellHealSound",
 
@@ -57,9 +44,6 @@ local modules = {
 		"Alien/Structures/Harvester",
 
 	"Alien/SupplyChanges",
-
-		-- Upgrade Modules
-		"Alien/Upgrades/Camouflage",
 
 	--[[
 	  ==========================
@@ -78,14 +62,9 @@ local modules = {
 	  ==========================
 	]]
 
-	"Marine/FlameVsClogAndCystBuffs",
-	"Marine/NanoShield",
-	"Marine/PowerSurge",
-
-		-- Structure Modules
-			-- ARCs
-			"Marine/Structures/ARC/ARCCorrodeBugFix",
-			"Marine/Structures/ARC/Base",
+	-- Structure Modules
+		-- ARCs
+		"Marine/Structures/ARC/ARCCorrodeBugFix",
 
 	"Marine/SupplyChanges",
 	"Marine/Walk",
@@ -94,14 +73,7 @@ local modules = {
 		"Marine/Weapons/AxeHitFix",
 
 			-- Grenades
-			"Marine/Weapons/Grenades/ClusterGrenade",
-			"Marine/Weapons/Grenades/GasGrenade",
 			"Marine/Weapons/Grenades/GrenadeQuickThrow",
-			"Marine/Weapons/Grenades/PulseGrenade",
-
-		"Marine/Weapons/HMG",
-		"Marine/Weapons/Mine",
-		"Marine/Weapons/Shotgun",
 
 	--[[
 	  ==============================
@@ -122,9 +94,7 @@ function GetModConfig(kLogLevels)
 	config.use_config = "none"
 
 	config.techIdsToAdd = {
-		"Consume",
 		"AdvancedSwipe",
-		"Roost"
 	}
 
 	config.modules = modules
