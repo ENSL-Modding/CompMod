@@ -13,6 +13,9 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 2, the changes for which can be found [here](ns2_beta_rev2 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.6.1 - (25/07/2019)
+* Fixed a bug that caused a ghost entity to remain after a mine was destroyed while arming.
+* Fixed a bug that caused mines to detonate after being destroyed
 ## CompMod 2.6.0 - (25/07-2019)
 * Stab replaced by Advanced Swipe
     * Upgrades the normal swipe damage to 81 from 70

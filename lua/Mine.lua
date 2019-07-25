@@ -88,7 +88,10 @@ local function SineFalloff(distanceFraction)
 end
 
 function Mine:Detonate()
-    if not self.active then return end
+    if not self.active then
+        DestroyEntity(self)
+        return
+    end
 
     local hitEntities = GetEntitiesWithMixinWithinRange("Live", self:GetOrigin(), kMineDetonateRange)
     RadiusDamage(hitEntities, self:GetOrigin(), kMineDetonateRange, kMineDamage, self, false, SineFalloff)
@@ -118,7 +121,6 @@ function Mine:Detonate()
 end
 
 function Mine:Arm()
-    if not self.active then return end
 
     if not self.armed then
         
