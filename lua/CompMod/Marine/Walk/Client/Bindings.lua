@@ -1,1 +1,1 @@
-CompMod:AddNewBind("SecondaryMovementModifier", "input", "Secondary Movement Modifier", "Capital", "MovementModifier")
+CompMod:AddNewBind("Walk", "input", "Marine Walk", "Capital", "MovementModifier")
