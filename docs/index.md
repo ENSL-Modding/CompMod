@@ -13,6 +13,10 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 2, the changes for which can be found [here](ns2_beta_rev2 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.6.2 - (26/07/2019)
+* Walk
+    * Fixed that marine walk couldn't be rebound.
+    * Walk bind will be reset to default after this patch.
 ## CompMod 2.6.1 - (25/07/2019)
 * Fixed a bug that caused a ghost entity to remain after a mine was destroyed while arming.
 * Fixed a bug that caused mines to detonate after being destroyed
