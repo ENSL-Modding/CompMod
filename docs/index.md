@@ -13,6 +13,12 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 2, the changes for which can be found [here](ns2_beta_rev2 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.6.4 - (27/07/2019)
+* Fade Blink Hotfix (Again :D)
+    * Revert Fade blink speed to 17
+    * Lower blink force to 14.25 from 15
+* PowerSurge
+    * Fixed that PowerSurge was acting like vanilla.
 ## CompMod 2.6.3 - (27/07/2019)
 * Fade Blink Hotfix
     * Lowered Fade blink speed to 16.25 from 17
