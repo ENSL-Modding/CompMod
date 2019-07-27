@@ -19,7 +19,7 @@ Blink.kMapName = "blink"
 
 -- initial force added when starting blink. kEtherealForce + kEtherealBoost will be the minimum speed a Fade is set
 -- to when they first blink. Each successive time after, they have kEtherealBoost added.
-local kEtherealForce = 15
+local kEtherealForce = 14.25
 local kEtherealBoost = 2
 local kEtherealVerticalForce = 2
 
