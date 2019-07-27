@@ -65,7 +65,8 @@ local modules = {
 	-- Structure Modules
 		-- ARCs
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
-
+	
+	"Marine/PowerSurge",
 	"Marine/SupplyChanges",
 	"Marine/Walk",
 
@@ -89,7 +90,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "6.3"
+	config.kModBuild = "6.4"
 	config.disableRanking = true
 	config.use_config = "none"
 
