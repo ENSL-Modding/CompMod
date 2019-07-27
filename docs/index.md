@@ -16,7 +16,7 @@ The included version of ns2_beta is Revision 2, the changes for which can be fou
 ## CompMod 2.6.4 - (27/07/2019)
 * Fade Blink Hotfix (Again :D)
     * Revert Fade blink speed to 17
-    * Lower blink force to 14.25 from 15
+    * Lower blink initial force to 14.25 from 15
 * PowerSurge
     * Fixed that PowerSurge was acting like vanilla.
 ## CompMod 2.6.3 - (27/07/2019)
