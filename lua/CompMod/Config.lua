@@ -65,7 +65,8 @@ local modules = {
 	-- Structure Modules
 		-- ARCs
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
-
+	
+	"Marine/PowerSurge",
 	"Marine/SupplyChanges",
 	"Marine/Walk",
 
