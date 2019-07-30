@@ -35,6 +35,8 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
     * Improved Grenade Quick Throw
         * Implements an improved version of the grenade quick throw found in ns2_beta
         * Allows Marines to throw the grenade instantly, without waiting for the deploy animations.
+* Pulse Grenade
+	* Damage decreased to 50 from 140
 * Axe
     * The axe now works. (Thanks Steelcap ❤️)
 
