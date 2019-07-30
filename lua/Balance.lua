@@ -95,7 +95,7 @@ kWelderDropCost = 3
 
 kPulseGrenadeDamageRadius = 6
 kPulseGrenadeEnergyDamageRadius = 10
-kPulseGrenadeDamage = 140
+kPulseGrenadeDamage = 50
 kPulseGrenadeEnergyDamage = 0
 kPulseGrenadeDamageType = kDamageType.Normal
 
