@@ -16,19 +16,23 @@ The included version of ns2_beta is Revision 2, the changes for which can be fou
 ## CompMod 2.6.5 - (30/07/2019)
 * Pulse Grenade Hotfix
 	* Damage lowered to 50 from 140
+
 ## CompMod 2.6.4 - (27/07/2019)
 * Fade Blink Hotfix (Again :D)
     * Revert Fade blink speed to 17
     * Lower blink initial force to 14.25 from 15
 * PowerSurge
     * Fixed that PowerSurge was acting like vanilla.
+
 ## CompMod 2.6.3 - (27/07/2019)
 * Fade Blink Hotfix
     * Lowered Fade blink speed to 16.25 from 17
+
 ## CompMod 2.6.2 - (26/07/2019)
 * Walk
     * Fixed that marine walk couldn't be rebound.
     * Walk bind will be reset to default after this patch.
+
 ## CompMod 2.6.1 - (25/07/2019)
 * Fixed a bug that caused a ghost entity to remain after a mine was destroyed while arming.
 * Fixed a bug that caused mines to detonate after being destroyed
