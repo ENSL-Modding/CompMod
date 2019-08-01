@@ -11,7 +11,7 @@ To see the full CompMod changelog see [here](full_changelog "CompMod Full Change
 
 CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/ns2_beta "NS2 Beta Github Repository"). 
 
-The included version of ns2_beta is Revision 2, the changes for which can be found [here](ns2_beta_rev2 "NS2 Beta Revision 2 Changes")
+The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
 ## CompMod 2.7.0 - (01/08/2019)
