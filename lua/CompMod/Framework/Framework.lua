@@ -2,7 +2,7 @@ local framework_version = "0"
 local framework_build = "20.2"
 
 local frameworkModules = {
-  "ConsistencyCheck",
+  --"ConsistencyCheck",
   "ResourceSystem",
   "TechChanges",
 }
