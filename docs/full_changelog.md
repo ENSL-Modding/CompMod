@@ -1,4 +1,8 @@
 # Full Changelog for CompMod
+## CompMod 2.7.1 - (01/08/2019)
+* Implement ns2_beta rev 3 hotfix
+    * Fade's can't zoom zoom on the floor anymore
+    
 ## CompMod 2.7.0 - (01/08/2019)
 * Implement ns2_beta Revision 3
 * Weapon Lifetime

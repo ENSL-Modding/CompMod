@@ -14,6 +14,10 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.7.1 - (01/08/2019)
+* Implement ns2_beta rev 3 hotfix
+    * Fade's can't zoom zoom on the floor anymore
+
 ## CompMod 2.7.0 - (01/08/2019)
 * Implement ns2_beta Revision 3
 * Weapon Lifetime

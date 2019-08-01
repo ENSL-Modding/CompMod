@@ -652,9 +652,9 @@ function Fade:HandleButtons(input)
         self.crouchBlinked = false
     end
 
-    --if self.crouchBlinked then
-    --    input.commands = bit.bor(input.commands, Move.Crouch)
-    --end
+    if self.crouchBlinked then
+        input.commands = bit.bor(input.commands, Move.Crouch)
+    end
 
 end
 

@@ -5,12 +5,16 @@ This mod contains various balance changes based on various ideas of the NS2 bala
 
 Join the official ns2 discord server (discord.gg/ns2) to leave feedback!
 
+## HOTFIX
+- Alien
+    - Fade
+        - Added back the auto crouch feature.
+
 ## Latest Changes (Revision 3)
 - Alien
     - The "Heal" sound is no longer played when aliens get another shell built.
     - The Umbra shader no instantly removes when umbra expires instead of slowly trickling away.
     - Fade
-        - Removed the auto-couching feature
         - Blink's initial cast (when you first activate ability) will now cancel All velocity across all axis' (used to only cancel Up/Down velocity)
         - Blink initial cast speed set to 16.25 (up from ~15.6)
         - Removed spurs reducing Air friction for fade. Originally this reduced 0.01 air friction per spur. Fade air friction is 0.17.
@@ -71,7 +75,6 @@ Join the official ns2 discord server (discord.gg/ns2) to leave feedback!
             - Research takes 30 seconds
     - Fade
         - Blink
-            - Removed the auto-couching feature from Blink
             - Blink's initial cast (when you first activate ability) will now cancel All velocity across all axis' (used to only cancel Up/Down velocity)
             - Blink initial cast speed set to 16.25 (up from ~15.6)
             - Removed spurs reducing Air friction for fade. Originally this reduced 0.01 air friction per spur. Fade air friction is 0.17.
