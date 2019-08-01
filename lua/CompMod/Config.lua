@@ -53,6 +53,8 @@ local modules = {
 
 	"Global/Bindings",
 	"Global/HealthBars",
+	"Global/MucousHitsounds",
+	"Global/PrimePowerNodes",
 	"Global/ReadyRoomPanels",
 	"Global/SupplyDisplay",
 
@@ -69,12 +71,15 @@ local modules = {
 	"Marine/PowerSurge",
 	"Marine/SupplyChanges",
 	"Marine/Walk",
+	"Marine/WeaponDropTime",
 
 		-- Weapons
 		"Marine/Weapons/AxeHitFix",
 
 			-- Grenades
 			"Marine/Weapons/Grenades/GrenadeQuickThrow",
+
+	"Marine/WeaponStepping",
 
 	--[[
 	  ==============================
@@ -90,7 +95,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "6.5"
+	config.kModBuild = "7.0"
 	config.disableRanking = true
 	config.use_config = "none"
 

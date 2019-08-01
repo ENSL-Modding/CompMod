@@ -35,7 +35,7 @@ Shotgun.kBulletSize = 0.016
 
 Shotgun.kDamageFalloffStart = 6 -- in meters, full damage closer than this.
 Shotgun.kDamageFalloffEnd = 12 -- in meters, minimum damage further than this, gradient between start/end.
-Shotgun.kDamageFalloffReductionFactor = 0.75 -- 25% reduction
+Shotgun.kDamageFalloffReductionFactor = 1.00 -- 0% reduction
 
 Shotgun.kSpreadVectors = {}
 do
@@ -269,12 +269,14 @@ function Shotgun:FirePrimary(player)
             local target = targets[i]
             local hitPoint = hitPoints[i]
 
+            -- Falloff is turned off, so kill this code to improve performance. Leave this code in case we want to re-enable.
+
             -- Apply a damage falloff for shotgun damage.
-            local distance = (hitPoint - startPoint):GetLength()
-            local falloffFactor = Clamp((distance - self.kDamageFalloffStart) / (self.kDamageFalloffEnd - self.kDamageFalloffStart), 0, 1)
-            local nearDamage = damage
-            local farDamage = damage * self.kDamageFalloffReductionFactor
-            damage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
+            --local distance = (hitPoint - startPoint):GetLength()
+            --local falloffFactor = Clamp((distance - self.kDamageFalloffStart) / (self.kDamageFalloffEnd - self.kDamageFalloffStart), 0, 1)
+            --local nearDamage = damage
+            --local farDamage = damage * self.kDamageFalloffReductionFactor
+            --damage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
 
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage, "", showTracer and i == numTargets)
 

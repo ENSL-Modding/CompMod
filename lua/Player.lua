@@ -2541,7 +2541,7 @@ function Player:UpdateArmorAmount(armorLevel)
     if newMaxArmor ~= self.maxArmor then    
     
         self.maxArmor = newMaxArmor
-        self:SetArmor(self.maxArmor * armorPercent)
+        self:SetArmor(self.maxArmor * armorPercent, true)
         
     end
     

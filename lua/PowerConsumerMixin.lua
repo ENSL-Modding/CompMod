@@ -56,7 +56,7 @@ if Server then
 end
 
 function PowerConsumerMixin:SetPowerSurgeDuration(duration)
-    
+
     if self:GetIsPowered() then
         CreateEntity( EMPBlast.kMapName, self:GetOrigin(), self:GetTeamNumber() )
     end

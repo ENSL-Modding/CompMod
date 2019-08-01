@@ -131,7 +131,7 @@ local function SharedUpdate(self, deltaTime)
             
         else
         
-            self.umbraIntensity = math.max(0, self.umbraIntensity - deltaTime * .5)
+            self.umbraIntensity = 0--math.max(0, self.umbraIntensity - deltaTime * .5)
         
         end
     

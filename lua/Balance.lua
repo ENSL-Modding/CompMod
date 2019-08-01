@@ -93,7 +93,7 @@ kWelderTechResearchCost = 0
 kWelderCost = 2
 kWelderDropCost = 3
 
-kPulseGrenadeDamageRadius = 6
+kPulseGrenadeDamageRadius = 3
 kPulseGrenadeEnergyDamageRadius = 10
 kPulseGrenadeDamage = 50
 kPulseGrenadeEnergyDamage = 0
@@ -417,13 +417,11 @@ kUmbraMaxRange = 17
 kUmbraDuration = 2.5
 kUmbraRadius = 4
 
-
-kUmbraDefaultModifier = 0.80
-kUmbraShotgunModifier = kUmbraDefaultModifier
-kUmbraBulletModifier = kUmbraDefaultModifier
-kUmbraMinigunModifier = kUmbraDefaultModifier
-kUmbraRailgunModifier = kUmbraDefaultModifier
-kUmbraGrenadeModifier = kUmbraDefaultModifier
+kUmbraShotgunModifier = 0.8
+kUmbraBulletModifier = 0.8
+kUmbraMinigunModifier = 0.8
+kUmbraRailgunModifier = 0.8
+kUmbraGrenadeModifier = 0.8
 
 kSpikeSpread = Math.Radians(3.6)
 kSpikeSize = 0.045
@@ -672,11 +670,11 @@ kNanoShieldDamageReductionDamage = 0.68
 
 kPowerSurgeResearchCost = 15
 kPowerSurgeResearchTime = 45
-kPowerSurgeCooldown = 10
+kPowerSurgeCooldown = 4
 kPowerSurgeDuration = 10
-kPowerSurgeCost = 3
-kPowerSurgeDamage = 25
-kPowerSurgeDamageRadius = 6
+kPowerSurgeCost = 2
+kPowerSurgeDamage = 0
+kPowerSurgeDamageRadius = 0
 kPowerSurgeElectrifiedDuration = 6
 
 kArmoryInitialEnergy = 100  kArmoryMaxEnergy = 150

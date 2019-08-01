@@ -59,7 +59,7 @@ kCarapaceHealReductionPerLevel = 0.0
 
 kSkulkArmorFullyUpgradedAmount = 25
 kGorgeArmorFullyUpgradedAmount = 100
-kLerkArmorFullyUpgradedAmount = 40
+kLerkArmorFullyUpgradedAmount = 50
 kFadeArmorFullyUpgradedAmount = 120
 kOnosArmorFullyUpgradedAmount = 650
 

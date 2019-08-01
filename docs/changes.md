@@ -39,6 +39,13 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 	* Damage decreased to 50 from 140
 * Axe
     * The axe now works. (Thanks Steelcap ❤️)
+* Weapon Lifetime
+    * Reduced weapon lifetime to 18 seconds from 25 seconds
+    * Stepping on a dropped weapon no longer refreshes the weapon timer
+* Mucous Membrane
+    * Added hitsounds for Aliens with mucous
+* PowerNodes
+    * Removed the flashlight requirement for finish power nodes without a structure in the room
 
 ### Alien Commander
 * Lifeform egg drops removed

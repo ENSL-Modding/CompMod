@@ -269,7 +269,7 @@ function Alien:UpdateArmorAmount(carapaceLevel)
 
         local armorPercent = self.maxArmor > 0 and self.armor/self.maxArmor or 0
         self.maxArmor = newMaxArmor
-        self:SetArmor(self.maxArmor * armorPercent)
+        self:SetArmor(self.maxArmor * armorPercent, true)
     
     end
 
