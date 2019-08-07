@@ -28,6 +28,7 @@ local modules = {
 				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
 
 			-- Lerk Modules
+			"Alien/Lifeforms/Lerk/Base",
 			"Alien/Lifeforms/Lerk/Spores",
 
 			-- Onos Modules
