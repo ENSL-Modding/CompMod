@@ -69,7 +69,8 @@ local modules = {
 	-- Structure Modules
 		-- ARCs
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
-	
+
+	"Marine/MedpackHoT",
 	"Marine/PowerSurge",
 	"Marine/SupplyChanges",
 	"Marine/Walk",
