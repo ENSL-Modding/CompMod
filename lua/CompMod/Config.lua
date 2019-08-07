@@ -47,6 +47,10 @@ local modules = {
 
 	"Alien/SupplyChanges",
 
+		-- Upgrade Modules
+			-- Vamparism Modules
+			"Alien/Upgrades/Vamparism/FriendlyFireFix",
+
 	--[[
 	  ==========================
 			Global Modules
