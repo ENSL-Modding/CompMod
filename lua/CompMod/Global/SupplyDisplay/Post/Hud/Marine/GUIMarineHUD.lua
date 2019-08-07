@@ -1,5 +1,5 @@
 -- modification of GUIMarineHUD:CHUDRepositionGUI(). used to get the y offset for ns2+'s additional elements
-local function CalculateYOffsetNS2Plus(hud)
+local function CalculateYOffsetNS2Plus()
     local minimap = CHUDGetOption("minimap")
     local showcomm = CHUDGetOption("showcomm")
     local gametime = CHUDGetOption("gametime")
@@ -31,22 +31,25 @@ end
 local function CalculateYOffset(hud)
     -- if the ns2+ changes to GUIMarineHUD have been loaded
     if hud.CHUDRepositionGUI then
-        return CalculateYOffsetNS2Plus(hud)
+        return CalculateYOffsetNS2Plus()
     end
 
     return 390
 end
 
-local function UpdateScale(hud)
-    if hud.supplyText then
-        hud.supplyText:SetScale(Vector(1,1,1) * hud.scale * 1.2)
-        hud.supplyText:SetScale(GetScaledVector())
+function GUIMarineHUD:UpdateScale()
+    local y = CalculateYOffset(self)
 
-        local y = CalculateYOffset(hud)
-        local position = Vector(20, y, 0)
+    if self.supplyText then
+        self.supplyText:SetFontName(GUIMarineHUD.kTextFontName)
+        self.supplyText:SetScale(GetScaledVector() * 1.15)
+        self.supplyText:SetPosition(Vector(20, y, 0))
+        GUIMakeFontScale(self.supplyText)
+        y = y + 30
+    end
 
-        hud.supplyText:SetPosition(position)
-        GUIMakeFontScale(hud.supplyText)
+    if self.eventDisplay then
+        self.eventDisplay.notificationFrame:SetPosition(Vector(20, y, 0) * self.eventDisplay.scale)
     end
 end
 
@@ -64,7 +67,7 @@ function GUIMarineHUD:Initialize()
     self.supplyText:SetFontIsBold(true)
     self.background:AddChild(self.supplyText)
 
-    UpdateScale(self)
+    self:UpdateScale()
 end
 
 
@@ -80,7 +83,7 @@ local oldReset = GUIMarineHUD.Reset
 function GUIMarineHUD:Reset()
     oldReset(self)
 
-    UpdateScale(self)
+    self:UpdateScale(self)
 end
 
 local oldUpdate = GUIMarineHUD.Update
