@@ -10,6 +10,7 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
     * Web
         * Webs break when marines walk through them
 * Lerk
+    * HP changed to 180/25 from 180/30
     * Spores
         * Now requires biomass 5 (up from 4)
 * Fade
@@ -29,6 +30,9 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 * Heal sound will no longer play when shells are built.
 
 ### Marine
+* Medpacks
+    * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
+    * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP. 
 * Walk added
     * Default key is CapsLock
 * Grenade
@@ -79,8 +83,8 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 
 ### Bug Fixes & Improvements
 * ARCs now take corrode damage after deploying and undeploying.
-* Cysts should no longer starve when they shouldn't
-* Cysts should be able to find their parents more reliably when the chain is updated
 * Drifters can pop blueprints again
 * Killfeed shows for spectators and readyroom players again
+* Carapace now shows correctly in spectate
+* Vamparism no longer does friendly fire.
  
