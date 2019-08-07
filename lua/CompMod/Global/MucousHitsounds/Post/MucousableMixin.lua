@@ -19,7 +19,7 @@ if Server then
             if techId and HitSound_IsEnabledForWeapon( techId ) then
                 HitSound_RecordHit( attacker, self, ogdamage, self:GetOrigin(), ogdamage, techId )
             else
-                SendDamageMessage( attacker, target, amount, point, overkill, weapon )
+                SendDamageMessage( attacker, self, ogdamage, self:GetOrigin(), ogdamage, techId )
             end
         end
         return damage
