@@ -14,6 +14,10 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.7.2-beta2 - (08/08/2019)
+##### Bug Fixes and Improvements
+* Fixed that the scoreboard would sometimes be slow to open.
+
 ## CompMod 2.7.2-beta1 - (07/08/2019)
 ##### Marines
 * Medpacks

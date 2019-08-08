@@ -1,4 +1,8 @@
 # Full Changelog for CompMod
+## CompMod 2.7.2-beta2 - (08/08/2019)
+##### Bug Fixes and Improvements
+* Fixed that the scoreboard would sometimes be slow to open.
+
 ## CompMod 2.7.2-beta1 - (07/08/2019)
 ##### Marines
 * Medpacks

@@ -87,4 +87,5 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 * Killfeed shows for spectators and readyroom players again
 * Carapace now shows correctly in spectate
 * Vamparism no longer does friendly fire.
+* Fixed that the scoreboard would sometimes be slow to open.
  
