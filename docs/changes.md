@@ -28,6 +28,8 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
         * Research cost increased to 35 from 25
         * Research time increased to 90 seconds from 60 seconds
 * Heal sound will no longer play when shells are built.
+* Carapace
+    * Deleted carapace.
 
 ### Marine
 * Medpacks
@@ -39,6 +41,8 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
     * Improved Grenade Quick Throw
         * Implements an improved version of the grenade quick throw found in ns2_beta
         * Allows Marines to throw the grenade instantly, without waiting for the deploy animations.
+    * Cluster Grenades
+        * Changed Cluster Grenades player damage reduction to 50%
 * Pulse Grenade
 	* Damage decreased to 50 from 140
 * Axe
@@ -50,6 +54,10 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
     * Added hitsounds for Aliens with mucous
 * PowerNodes
     * Removed the flashlight requirement for finish power nodes without a structure in the room
+* Observatory
+    * Changed build time to 10 seconds from 15 seconds
+* Shotgun
+    * Outer ring pellet size changed to 66mm from 16mm
 
 ### Alien Commander
 * Lifeform egg drops removed
