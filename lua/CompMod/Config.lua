@@ -86,6 +86,7 @@ local modules = {
 
 			-- Grenades
 			"Marine/Weapons/Grenades/GrenadeQuickThrow",
+			"Marine/Weapons/Grenades/ClusterGrenade/PlayerDamageReduction",
 
 	"Marine/WeaponStepping",
 
