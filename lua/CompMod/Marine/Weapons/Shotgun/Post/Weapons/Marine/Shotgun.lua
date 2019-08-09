@@ -1,3 +1,4 @@
+Shotgun.kSpreadVectors = {}
 do
     local kShotgunRings =
     {
