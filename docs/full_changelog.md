@@ -1,4 +1,25 @@
 # Full Changelog for CompMod
+## CompMod 2.7.2 - (09/08/2019)
+##### Marines
+* Medpacks
+    * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. Medpacks cannot overheal.
+    * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP. 
+
+##### Aliens
+* Lerk
+    * Lerk HP changed to 180/25 from 180/30
+   
+##### Spectators
+* Added display for team supply.
+
+##### Bug Fixes and Improvements
+* Fix carapace being shown incorrectly in spectate view.
+* Fix mucous hitsounds.
+* Fix Vamparism doing friendly fire.
+* Fixed that Cluster Grenades were not having the FlameAble multiplier applied.
+* Fixed that the commander actions panel would overlap with the supply display on a Marine's HUD
+* Fixed that the scoreboard would sometimes be slow to open.
+
 ## CompMod 2.7.1 - (01/08/2019)
 * Implement ns2_beta rev 3 hotfix
     * Fade's can't zoom zoom on the floor anymore

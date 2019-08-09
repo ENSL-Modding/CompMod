@@ -6,6 +6,7 @@ local modules = {
 	]]
 
 	"Alien/Biomass",
+	"Alien/CaraSpecBugfix",
 
 		-- Drifter Modules
 		"Alien/Drifters/BlueprintPopFix",
@@ -27,6 +28,7 @@ local modules = {
 				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
 
 			-- Lerk Modules
+			"Alien/Lifeforms/Lerk/Base",
 			"Alien/Lifeforms/Lerk/Spores",
 
 			-- Onos Modules
@@ -45,6 +47,10 @@ local modules = {
 
 	"Alien/SupplyChanges",
 
+		-- Upgrade Modules
+			-- Vamparism Modules
+			"Alien/Upgrades/Vamparism/FriendlyFireFix",
+
 	--[[
 	  ==========================
 			Global Modules
@@ -56,6 +62,7 @@ local modules = {
 	"Global/MucousHitsounds",
 	"Global/PrimePowerNodes",
 	"Global/ReadyRoomPanels",
+	"Global/ResponsiveGUI",
 	"Global/SupplyDisplay",
 
 	--[[
@@ -67,7 +74,8 @@ local modules = {
 	-- Structure Modules
 		-- ARCs
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
-	
+
+	"Marine/MedpackHoT",
 	"Marine/PowerSurge",
 	"Marine/SupplyChanges",
 	"Marine/Walk",
@@ -95,7 +103,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "7.1"
+	config.kModBuild = "7.2"
 	config.disableRanking = true
 	config.use_config = "none"
 
