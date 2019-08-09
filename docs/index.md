@@ -14,6 +14,19 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.7.3 - (09/08/2019)
+##### Marines
+* Observatory
+    * Changed build time to 10 seconds from 15 seconds
+* Shotgun
+    * Outer ring pellet size changed to 66mm from 16mm
+* Cluster Grenades
+    * Changed Cluster Grenades player damage reduction to 50%
+
+##### Alien
+* Carapace
+    * Deleted carapace.
+
 ## CompMod 2.7.2 - (09/08/2019)
 ##### Marines
 * Medpacks
