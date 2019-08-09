@@ -1,4 +1,17 @@
 # Full Changelog for CompMod
+## CompMod 2.7.3 - (09/08/2019)
+##### Marines
+* Observatory
+    * Changed build time to 10 seconds from 15 seconds
+* Shotgun
+    * Outer ring pellet size changed to 66mm from 16mm
+* Cluster Grenades
+    * Changed Cluster Grenades player damage reduction to 50%
+
+##### Alien
+* Carapace
+    * Deleted carapace.
+    
 ## CompMod 2.7.2 - (09/08/2019)
 ##### Marines
 * Medpacks
