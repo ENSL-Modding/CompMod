@@ -1,0 +1,1 @@
+CompMod:RemoveBuyNode(kTechId.Carapace)
