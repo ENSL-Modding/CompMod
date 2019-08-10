@@ -1,4 +1,14 @@
 # Full Changelog for CompMod
+## CompMod 2.7.5 - (10/08/2019)
+##### Marines
+* Shotgun
+    * Shotgun pellet size changed from 66mm to 60mm.
+
+## CompMod 2.7.4 - (09/08/2019)
+##### Marines
+* Shotgun
+    * Fixed an issue that caused the pellet changes to not be applied correctly. 
+
 ## CompMod 2.7.3 - (09/08/2019)
 ##### Marines
 * Observatory

@@ -57,7 +57,7 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 * Observatory
     * Changed build time to 10 seconds from 15 seconds
 * Shotgun
-    * Outer ring pellet size changed to 66mm from 16mm
+    * Outer ring pellet size changed to 60mm from 16mm
 
 ### Alien Commander
 * Lifeform egg drops removed
