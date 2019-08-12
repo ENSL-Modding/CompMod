@@ -28,8 +28,6 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
         * Research cost increased to 35 from 25
         * Research time increased to 90 seconds from 60 seconds
 * Heal sound will no longer play when shells are built.
-* Carapace
-    * Deleted carapace.
 
 ### Marine
 * Medpacks
@@ -57,7 +55,7 @@ A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](
 * Observatory
     * Changed build time to 10 seconds from 15 seconds
 * Shotgun
-    * Outer ring pellet size changed to 60mm from 16mm
+    * Outer ring pellet size changed to 32mm from 16mm
 
 ### Alien Commander
 * Lifeform egg drops removed

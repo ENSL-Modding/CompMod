@@ -48,7 +48,6 @@ local modules = {
 	"Alien/SupplyChanges",
 
 		-- Upgrade Modules
-		"Alien/Upgrades/Carapace",
 			-- Vamparism Modules
 			"Alien/Upgrades/Vamparism/FriendlyFireFix",
 
@@ -110,7 +109,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "7.6"
+	config.kModBuild = "7.7"
 	config.disableRanking = true
 	config.use_config = "none"
 

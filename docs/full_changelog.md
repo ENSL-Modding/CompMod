@@ -1,4 +1,14 @@
 # Full Changelog for CompMod
+## CompMod 2.7.7 - (12/08/2019)
+##### Alien
+* Carapace
+    * It's back.
+
+## CompMod 2.7.6 - (11/08/2019)
+##### Marines
+* Shotgun
+    * Shotgun pellet size changed to 32mm from 60mm
+    
 ## CompMod 2.7.5 - (10/08/2019)
 ##### Marines
 * Shotgun

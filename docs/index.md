@@ -14,6 +14,11 @@ CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/
 The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
 
 # Recent Changes
+## CompMod 2.7.7 - (12/08/2019)
+##### Alien
+* Carapace
+    * It's back.
+
 ## CompMod 2.7.6 - (11/08/2019)
 ##### Marines
 * Shotgun
