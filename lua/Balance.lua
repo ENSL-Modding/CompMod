@@ -279,7 +279,7 @@ kShotgunFireRate = 0.88
 kShotgunDamage = 11.33
 kShotgunDamageType = kDamageType.Normal
 kShotgunClipSize = 6
-kShotgunBulletsPerShot = 14
+kShotgunBulletsPerShot = 13
 kShotgunSpreadDistance = 10 --Gets used as z-axis value for spread vectors before normalization
 
 kNadeLauncherClipSize = 4
@@ -640,8 +640,6 @@ kBileBombResearchCost = 15
 kBileBombResearchTime = 40
 kShadowStepResearchCost = 15
 kShadowStepResearchTime = 40
-kRoostResearchCost = 10
-kRoostResearchTime = 30
 kUmbraResearchCost = 20
 kUmbraResearchTime = 45
 kBoneShieldResearchCost = 20

@@ -119,7 +119,7 @@ local gNerveGasDamageTakers = {}
 local kCloudUpdateRate = 0.3
 local kSpreadDelay = 0.6
 local kNerveGasCloudRadius = 7
-local kNerveGasCloudLifetime = 4.5
+local kNerveGasCloudLifetime = 6
 
 local kCloudMoveSpeed = 2
 

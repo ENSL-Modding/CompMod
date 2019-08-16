@@ -312,12 +312,12 @@ kMinWebLength = 0.5
 kMaxWebLength = 8
 
 kMACSupply = 5
-kArmorySupply = 0
-kObservatorySupply = 30
+kArmorySupply = 5
+kObservatorySupply = 25
 kARCSupply = 25
 kSentrySupply = 10
 kSentryBatterySupply = 15
-kRoboticsFactorySupply = 0
+kRoboticsFactorySupply = 5
 kInfantryPortalSupply = 0
 kPhaseGateSupply = 0
 

@@ -126,12 +126,12 @@ local function SharedUpdate(self, deltaTime)
                 self:TriggerEffects("umbra_drag", { effecthostcoords = coords } )
                 self.timeLastUmbraEffect = Shared.GetTime()
             end
-            
+
             self.umbraIntensity = 1
             
         else
         
-            self.umbraIntensity = 0--math.max(0, self.umbraIntensity - deltaTime * .5)
+            self.umbraIntensity = 0
         
         end
     

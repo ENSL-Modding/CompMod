@@ -57,7 +57,7 @@ kRecyclePaybackScalar = 0.75
 
 kCarapaceHealReductionPerLevel = 0.0
 
-kSkulkArmorFullyUpgradedAmount = 25
+kSkulkArmorFullyUpgradedAmount = 30
 kGorgeArmorFullyUpgradedAmount = 100
 kLerkArmorFullyUpgradedAmount = 50
 kFadeArmorFullyUpgradedAmount = 120

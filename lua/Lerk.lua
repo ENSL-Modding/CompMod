@@ -55,8 +55,7 @@ local networkVars =
     wallGripAllowed = "private compensated boolean",
     flapPressed = "private compensated boolean",
     timeOfLastPhase = "private time",
-    flySoundId = "entityid",
-    lastTimeRoost = "compensated time"
+    flySoundId = "entityid"
 }
 
 AddMixinNetworkVars(BaseMoveMixin, networkVars)
@@ -116,9 +115,6 @@ Lerk.kSwoopGravity = Lerk.kGravity * 6
 
 Lerk.kAdrenalineEnergyRecuperationRate = 13.0
 
-Lerk.kRoostTickInterval = 1
-Lerk.kRoostHealAmount = 5
-
 function Lerk:OnCreate()
 
     InitMixin(self, BaseMoveMixin, { kGravity = Lerk.kGravity })
@@ -157,7 +153,6 @@ function Lerk:OnCreate()
         self.flySoundId = self.flySound:GetId()
         
         self.playIdleStartTime = 0
-        self.lastTimeRoost = 0
     end
 end
 
@@ -188,34 +183,6 @@ function Lerk:OnInitialized()
     
     InitMixin(self, IdleMixin)
     
-end
-
-function Lerk:OnProcessMove(input)
-    Alien.OnProcessMove(self, input)
-
-    self:UpdateRoostHeal()
-end
-
-function Lerk:UpdateRoostHeal()
-    if not self:GetIsDestroyed() and self:GetIsAlive() then
-
-        if self:GetIsWallGripping() and GetHasTech(self, kTechId.Roost, true) then
-            local roostAllowed = Shared.GetTime() > self.lastTimeRoost + self.kRoostTickInterval
-            if roostAllowed then
-                local healAmount = self:AddHealth(self.kRoostHealAmount, false, false)
-
-                -- TODO want heal sounds?
-                --if Client and healAmount > 0 then
-                --    local GUIRegenerationFeedback = ClientUI.GetScript("GUIRegenerationFeedback")
-                --    GUIRegenerationFeedback:TriggerRegenEffect()
-                --    local cinematic = Client.CreateCinematic(RenderScene.Zone_ViewModel)
-                --    cinematic:SetCinematic(kRegenerationViewCinematic)
-                --end
-
-                self.lastTimeRoost = Shared.GetTime()
-            end
-        end
-    end
 end
 
 function Lerk:OnDestroy()

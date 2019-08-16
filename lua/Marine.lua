@@ -153,8 +153,7 @@ local networkVars =
     
     timeLastBeacon = "private time",
     
-    weaponBeforeUseId = "private compensated entityid",
-    quickThrowKeyActivated = "private boolean"
+    weaponBeforeUseId = "private compensated entityid"
 }
 
 AddMixinNetworkVars(OrdersMixin, networkVars)
@@ -253,7 +252,7 @@ function Marine:OnCreate()
 
     self.flashlightLastFrame = false
     self.weaponBeforeUseId = Entity.invalidId
-    self.quickThrowKeyActivated = false
+    self.tertiaryAttackLastFrame = false
 
 end
 
@@ -499,6 +498,10 @@ local function PickupWeapon(self, weapon, wasAutoPickup)
         (replacement and (self:GetActiveWeapon() == nil or obsoleteSlot == activeSlot)) then
         self:SetHUDSlotActive(weapon:GetHUDSlot())
     end
+
+    if HasMixin(weapon, "Live") then
+        weapon:SetHealth(weapon:GetMaxHealth())
+    end
     
     self.timeOfLastPickUpWeapon = Shared.GetTime()
     self.lastDroppedWeapon = oldWep
@@ -567,76 +570,66 @@ function Marine:HandleAttacks(input)
 
     if not self:GetIsCommander() and not self:GetIsUsing() then
         if not self:GetCanAttack() then
-            input.commands = bit.band(input.commands, bit.bnot(Move.GrenadeQuickThrow))
+            input.commands = bit.band(input.commands, bit.bnot(Move.TertiaryAttack))
         end
 
-        if bit.band(input.commands, Move.GrenadeQuickThrow) ~= 0 then
-            if not self.quickThrowKeyActivated then
-                self:QuickThrowGrenade(input)
-            end
+        if bit.band(input.commands, Move.TertiaryAttack) ~= 0 then
 
-            self.quickThrowKeyActivated = true
+            self:TertiaryAttack(input)
+
+            self.tertiaryAttackLastFrame = true
+
         else
-            if self.quickThrowKeyActivated then
-                self:EndQuickThrowGrenade(input)
+
+            if(self.tertiaryAttackLastFrame ~= nil and self.tertiaryAttackLastFrame) then
+
+                self:TertiaryAttackEnd(input)
+
             end
 
-            self.quickThrowKeyActivated = false
+            self.tertiaryAttackLastFrame = false
+
         end
     end
 
 end
 
-local NO_GRENADE = 0
-local CLUSTER_GRENADE = 1
-local GAS_GRENADE = 2
-local PULSE_GRENADE = 3
-
-local function GetGrenadeType(grenade)
-    if grenade:isa("ClusterGrenadeThrower") then return CLUSTER_GRENADE end
-    if grenade:isa("GasGrenadeThrower") then return GAS_GRENADE end
-    if grenade:isa("PulseGrenadeThrower") then return PULSE_GRENADE end
-
-    return NO_GRENADE
-end
-
-local function FindFirstGrenade(inventory)
-
-    for _,v in ipairs(inventory) do
-        if v:isa("GrenadeThrower") then
-            return v
+function Marine:FindFirstGrenade()
+    local weapons = self:GetWeapons()
+    if weapons ~= nil then
+        for _,v in ipairs(weapons) do
+            if v:isa("GrenadeThrower") then
+                return v
+            end
         end
     end
 
     return nil
 end
 
-function Marine:QuickThrowGrenade(input)
-    local validMarine = (self:isa("Marine") or self:isa("JetpackMarine"))
+function Marine:TertiaryAttack()
+    -- Tertiary Attack for a marine for now is the grenade quick throw.
 
-    if validMarine then
-
-        if self:GetActiveWeapon():isa("GrenadeThrower") then
-            self:PrimaryAttack()
-        else
-            local weapons = self.GetWeapons and self:GetWeapons() or 0
-            local grenadeWeapon = weapons and FindFirstGrenade(weapons)
-
-            if grenadeWeapon then
-                grenadeWeapon:SetPullPinOnDeploy()
-                self:SetActiveWeapon(grenadeWeapon.kMapName)
-            end
+    local weapon = self:GetActiveWeapon()
+    if weapon and weapon:isa("GrenadeThrower") then
+        weapon:OnPrimaryAttack(self)
+        weapon:SetQuickThrown(false)
+    else
+        local grenadeThrower = self:FindFirstGrenade()
+        if grenadeThrower ~= nil then
+            self:SetActiveWeapon(grenadeThrower.kMapName)
         end
-
     end
+
 end
 
-function Marine:EndQuickThrowGrenade(input)
+function Marine:TertiaryAttackEnd()
+    -- Tertiary Attack for a marine for now is the grenade quick throw.
 
     local activeWeapon = self:GetActiveWeapon()
-    if activeWeapon:isa("GrenadeThrower") then
-        self:PrimaryAttackEnd()
-        activeWeapon:SetThrowASAP()
+    if activeWeapon ~= nil and activeWeapon:isa("GrenadeThrower") then
+        activeWeapon:OnPrimaryAttackEnd(self)
+        activeWeapon:SetQuickThrown(true)
     end
 
 end

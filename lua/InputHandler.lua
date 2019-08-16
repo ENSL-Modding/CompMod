@@ -41,7 +41,7 @@ local _keyBinding =
     Weapon3 = InputKey.Num3,
     Weapon4 = InputKey.Num4,
     Weapon5 = InputKey.Num5,
-    GrenadeQuickThrow = InputKey.B,
+    TertiaryAttack = InputKey.B,
     ToggleConsole = InputKey.Grave,
     ToggleFlashlight = InputKey.F,
     ReadyRoom = InputKey.F4,
@@ -427,8 +427,8 @@ local function GenerateMove()
         if _keyPressed[ _keyBinding.Weapon5 ] then
             move.commands = bit.bor(move.commands, Move.Weapon5)
         end
-        if _keyState[ _keyBinding.GrenadeQuickThrow ] then
-            move.commands = bit.bor(move.commands, Move.GrenadeQuickThrow)
+        if _keyState[ _keyBinding.TertiaryAttack ] then
+            move.commands = bit.bor(move.commands, Move.TertiaryAttack)
         end
         if _keyPressed[ _keyBinding.QuickSwitch ] then
             move.commands = bit.bor(move.commands, Move.QuickSwitch)
