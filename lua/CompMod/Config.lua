@@ -92,7 +92,7 @@ local modules = {
 
 		"Marine/Weapons/Shotgun",
 
-	"Marine/WeaponStepping",
+	"Marine/WeaponExpire",
 
 	--[[
 	  ==============================
