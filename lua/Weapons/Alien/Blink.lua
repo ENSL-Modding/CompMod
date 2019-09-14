@@ -228,7 +228,6 @@ end
 
 function Blink:OnUpdateAnimationInput(modelMixin)
 
-    local player = self:GetParent()
     if self:GetIsBlinking() and (not self.GetHasMetabolizeAnimationDelay or not self:GetHasMetabolizeAnimationDelay()) then
         modelMixin:SetAnimationInput("move", "blink")
     end
