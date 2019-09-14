@@ -694,7 +694,6 @@ function BuildTechData()
             [kTechDataModel] = AmmoPack.kModelName,
             [kTechDataTooltipInfo] = "AMMO_PACK_TOOLTIP",
             [kTechDataSpawnHeightOffset] = kCommanderDropSpawnHeight,
-            [kCommanderSelectRadius] = 0.375,
             [kTechDataOverrideCoordsMethod] = AlignDroppack,
         },
 
@@ -723,7 +722,6 @@ function BuildTechData()
             [kTechDataModel] = CatPack.kModelName,
             [kTechDataTooltipInfo] = "CAT_PACK_TOOLTIP",
             [kTechDataSpawnHeightOffset] = kCommanderDropSpawnHeight,
-            [kCommanderSelectRadius] = 0.375,
             [kTechDataOverrideCoordsMethod] = AlignDroppack,
         },
 
@@ -1992,15 +1990,6 @@ function BuildTechData()
         },
 
         -- tier 1
-
-        {
-            [kTechDataId] = kTechId.Roost,
-            [kTechDataCategory] = kTechId.Lerk,
-            [kTechDataCostKey] = kRoostResearchCost,
-            [kTechDataResearchTimeKey] = kRoostResearchTime,
-            [kTechDataDisplayName] = "ROOST_ABILITY",
-            [kTechDataTooltipInfo] = "ROOST_TOOLTIP",
-        },
         {
             [kTechDataId] = kTechId.Umbra,
             [kTechDataCategory] = kTechId.Lerk,

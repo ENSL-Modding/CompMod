@@ -421,12 +421,8 @@ local function DoubleHealthPerArmorForStructures(target, _, _, damage, armorFrac
 end
 
 local kMachineGunPlayerDamageScalar = 1.5
-local function MultiplyForMachineGun(target, _, doer, damage, armorFractionUsed, healthPerArmor)
-    if target:isa("Player") or target:isa("Exosuit") then
-        damage = math.floor(damage * kMachineGunPlayerDamageScalar)
-    end
-
-    return damage, armorFractionUsed, healthPerArmor
+local function MultiplyForMachineGun(target, _, _, damage, armorFractionUsed, healthPerArmor)
+    return ConditionalValue(target:isa("Player") or target:isa("Exosuit"), damage * kMachineGunPlayerDamageScalar, damage), armorFractionUsed, healthPerArmor
 end
 
 local kGLStructuralDamageScalar = 4
@@ -440,7 +436,7 @@ local function QuintupleForStructure(target, _, _, damage, armorFractionUsed, he
 end
 
 local kClusterStructuralDamageScalar = 2.5
-local kClusterPlayerDamageScalar = 1.0
+local kClusterPlayerDamageScalar = 0.5
 local function ClusterFlameModifier(target, _, _, damage, armorFractionUsed, healthPerArmor, damageType)
     if target:isa("Player") then
         damage = damage * kClusterPlayerDamageScalar
@@ -454,8 +450,6 @@ local function ClusterFlameModifier(target, _, _, damage, armorFractionUsed, hea
             if target.GetIsFlameableMultiplier then
                 multi = target:GetIsFlameableMultiplier()
             end
-
-            damage = damage * multi
         end
     end
 

@@ -49,7 +49,7 @@ Fade.YExtents = 1.05
 Fade.kHealth = kFadeHealth
 Fade.kArmor = kFadeArmor
 
-Fade.kAdrenalineEnergyRecuperationRate = 13.0
+Fade.kAdrenalineEnergyRecuperationRate = 15.0
 
 Fade.kBlinkGroundFriction = 3
 Fade.kGroundFrictionBase = 9

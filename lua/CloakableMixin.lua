@@ -146,9 +146,10 @@ local function UpdateDesiredCloakFraction(self, deltaTime)
 
     -- Update cloaked fraction according to our speed and max speed
     if self.GetSpeedScalar then
+        -- Always cloak no matter how fast we go.
         -- TODO: Fix that GetSpeedScalar returns incorrect values for aliens with celerity
         local speedScalar = math.min(self:GetSpeedScalar(), 1)
-        newDesiredCloakFraction = newDesiredCloakFraction - speedScalar
+        newDesiredCloakFraction = newDesiredCloakFraction - 0.8 * speedScalar
         self.speedScalar = speedScalar * 3
     end
     

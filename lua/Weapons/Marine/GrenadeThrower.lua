@@ -8,7 +8,6 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
-local kGrenadeAnimationSpeedIncrease = 2.75
 local kDefaultVariantData = kMarineVariantData[ kDefaultMarineVariant ]
 function GenerateMarineGrenadeViewModelPaths(grenadeType)
 
@@ -38,8 +37,7 @@ local kGrenadeVelocity = 18
 local networkVars =
 {
     grenadesLeft = "integer (0 to ".. kMaxHandGrenades ..")",
-    pullPinOnDeploy = "private boolean",
-    throwASAP = "private boolean"
+    isQuickThrown = "private boolean"
 }
 
 local function DropGrenade(self, player)
@@ -75,14 +73,17 @@ local function ThrowGrenade(self, player)
 
 end
 
+function GrenadeThrower:GetHasSecondary(_)
+    return false
+end
+
 function GrenadeThrower:OnCreate()
 
     Weapon.OnCreate(self)
 
     self.pinPulled = false
     self.grenadesLeft = kMaxHandGrenades
-    self.pullPinOnDeploy = false
-    self.throwASAP = false
+    self.isQuickThrown = false
 
     self:SetModel(self:GetThirdPersonModelName())
 
@@ -116,12 +117,16 @@ function GrenadeThrower:OnPrimaryAttack(_)
 
 end
 
-function GrenadeThrower:SetPullPinOnDeploy()
-    self.pullPinOnDeploy = true
+function GrenadeThrower:OnSecondaryAttack(_)
+
 end
 
-function GrenadeThrower:SetThrowASAP()
-    self.throwASAP = true
+function GrenadeThrower:OnSecondaryAttackEnd(_)
+
+end
+
+function GrenadeThrower:SetQuickThrown(isQuickThrown)
+    self.isQuickThrown = isQuickThrown
 end
 
 function GrenadeThrower:OnPrimaryAttackEnd(_)
@@ -131,8 +136,7 @@ end
 function GrenadeThrower:OnHolster()
     Weapon.OnHolster(self)
     self.pinPulled = false
-    self.pullPinOnDeploy = false
-    self.throwASAP = false
+    self.isQuickThrown = false
 end
 
 function GrenadeThrower:OnTag(tagName)
@@ -141,21 +145,20 @@ function GrenadeThrower:OnTag(tagName)
 
     if tagName == "deploy_end" then
 
-        if (self.pullPinOnDeploy) then
-            player:PrimaryAttack()
+        if (self.isQuickThrown) then
+            self:OnPrimaryAttack(self)
         end
 
     elseif tagName == "pinpull_start" then
 
-        -- TODO(Simba) This currently is never being triggered - not sure if a problem.
         self:TriggerEffects("grenade_pull_pin")
 
     elseif tagName == "pinpull_end" then
 
         self.pinPulled = true
 
-        if (self.throwASAP) then
-            player:PrimaryAttackEnd()
+        if (self.isQuickThrown) then
+            self:OnPrimaryAttackEnd(self)
         end
 
     elseif tagName == "throw" then
@@ -206,7 +209,13 @@ end
 
 function GrenadeThrower:OnUpdateAnimationInput(modelMixin)
 
-    modelMixin:SetAnimationInput("activity", self.primaryAttacking and "primary" or "none")
+    local activity = "none"
+    if self.secondaryAttacking then
+        activity = "secondary"
+    elseif self.primaryAttacking then
+        activity = "primary"
+    end
+    modelMixin:SetAnimationInput("activity", activity)
     modelMixin:SetAnimationInput("grenadesLeft", self.grenadesLeft)
 
 end
@@ -232,7 +241,7 @@ if Server then
                 if activeWeapon == self then
 
                     self:OnHolster(player)
-                    player:SwitchWeapon(1)
+                    player:QuickSwitchWeapon()
 
                 end
 
@@ -248,7 +257,7 @@ if Server then
 end
 
 function GrenadeThrower:GetCatalystSpeedBase()
-    return self.primaryAttacking and kGrenadeAnimationSpeedIncrease or 1
+    return 1
 end
 
 Shared.LinkClassToMap("GrenadeThrower", GrenadeThrower.kMapName, networkVars)

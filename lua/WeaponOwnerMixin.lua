@@ -392,7 +392,7 @@ function WeaponOwnerMixin:SetHUDSlotActive(slot)
     if weapon then
         self:SetActiveWeapon(weapon:GetMapName())
     else
-    
+
         local orderedList = self:GetHUDOrderedWeaponList()
         if #orderedList > 0 then
             self:SetActiveWeapon(orderedList[1]:GetMapName())

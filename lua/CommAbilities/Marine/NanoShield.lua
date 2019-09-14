@@ -20,7 +20,7 @@ NanoShield.kMapName = "nanoshield"
 NanoShield.kNanoShieldEffect = PrecacheAsset("cinematics/marine/nanoshield/nanoshield_trigger.cinematic")
 
 NanoShield.kType = CommanderAbility.kType.Instant
-NanoShield.kSearchRange = 3
+NanoShield.kSearchRange = 6
 
 local networkVars = { }
 

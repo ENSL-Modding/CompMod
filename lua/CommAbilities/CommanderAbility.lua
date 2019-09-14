@@ -247,7 +247,7 @@ function CommanderAbility:GetClassesInRange(range, teamNumber, ...)
     
         local className = select(i, ...)
         local entities = GetEntitiesForTeamWithinRange(className, teamNumber, self:GetOrigin(), range)
-        for _, entity in ipairs(entities) do
+        for index, entity in ipairs(entities) do
             table.insert(result, entity)
         end
     
@@ -261,7 +261,7 @@ function CommanderAbility:GetClosestFromTable(entities, CheckFunc)
 
     Shared.SortEntitiesByDistance(self:GetOrigin(), entities)
     
-    for _, entity in ipairs(entities) do
+    for index, entity in ipairs(entities) do
 
         if not CheckFunc or CheckFunc(entity) then        
             return entity

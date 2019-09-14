@@ -31,6 +31,9 @@ function AmmoPack:OnInitialized()
 end
 
 function AmmoPack:OnTouch(recipient)
+
+    local weapon = recipient:GetActiveWeapon()
+    
     local consumedPack = false
     
     for i = 0, recipient:GetNumChildren() - 1 do

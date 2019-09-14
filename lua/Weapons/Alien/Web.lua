@@ -151,10 +151,6 @@ if Server then
         self:TriggerEffects("death")
     end
 
-    function Web:GetSendDeathMessageOverride()
-        return false
-    end
-
     function Web:SetVariant(gorgeVariant)
         self.variant = gorgeVariant
     end

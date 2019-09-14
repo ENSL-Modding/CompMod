@@ -43,7 +43,7 @@ do
     {
         { distance = 0.0, pelletCount = 1, pelletSize = 0.016, pelletDamage = 20 },
         { distance = 0.5, pelletCount = 5, pelletSize = 0.016, pelletDamage = 16 },
-        { distance = 1.5, pelletCount = 7, pelletSize = 0.016, pelletDamage = 10 },
+        { distance = 1.5, pelletCount = 7, pelletSize = 0.032, pelletDamage = 10 },
     }
 
     local function CalculateShotgunSpreadVectors()
