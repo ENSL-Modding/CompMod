@@ -1057,42 +1057,42 @@ end
 ========================
 ]]
 local function UpdateBindingData()
-  local globalControlBindings = Mod:GetLocalVariable(BindingsUI_GetBindingsData, "globalControlBindings")
-  local defaults = Mod:GetLocalVariable(GetDefaultInputValue, "defaults")
-  local bindingChanges = Mod:GetBindingAdditions()
+  -- local globalControlBindings = Mod:GetLocalVariable(BindingsUI_GetBindingsData, "globalControlBindings")
+  -- local defaults = Mod:GetLocalVariable(GetDefaultInputValue, "defaults")
+  -- local bindingChanges = Mod:GetBindingAdditions()
 
-  for _,v in ipairs(bindingChanges) do
-    local afterName = v[5]
+  -- for _,v in ipairs(bindingChanges) do
+  --   local afterName = v[5]
 
-    Mod:PrintDebug("Adding new bind \"" .. v[1].. "\" after " .. afterName)
+  --   Mod:PrintDebug("Adding new bind \"" .. v[1].. "\" after " .. afterName)
 
-    v[3] = Locale.ResolveString(v[3])
+  --   v[3] = Locale.ResolveString(v[3])
 
-    local index
+  --   local index
 
-    -- globalControlBindingss
+  --   -- globalControlBindingss
 
-    for i,v in ipairs(globalControlBindings) do
-      if v == afterName then
-        index = i + 4
-      end
-    end
+  --   for i,v in ipairs(globalControlBindings) do
+  --     if v == afterName then
+  --       index = i + 4
+  --     end
+  --   end
 
-    assert(index, "BindingChanges: Binding \"" .. afterName .. "\" does not exist.")
+  --   assert(index, "BindingChanges: Binding \"" .. afterName .. "\" does not exist.")
 
-    for i=0,3 do
-      table.insert(globalControlBindings, index + i, v[i + 1])
-    end
+  --   for i=0,3 do
+  --     table.insert(globalControlBindings, index + i, v[i + 1])
+  --   end
 
-    -- defaults
+  --   -- defaults
 
-    for i,def in pairs(defaults) do
-      if def[1] == afterName then
-        table.insert(defaults, i+1, {v[1], v[4]})
-        break
-      end
-    end
-  end
+  --   for i,def in pairs(defaults) do
+  --     if def[1] == afterName then
+  --       table.insert(defaults, i+1, {v[1], v[4]})
+  --       break
+  --     end
+  --   end
+  -- end
 end
 
 Event.Hook("LoadComplete", UpdateBindingData)

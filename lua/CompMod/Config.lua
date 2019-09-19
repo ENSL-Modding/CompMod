@@ -5,11 +5,7 @@ local modules = {
 	  ============================
 	]]
 
-	"Alien/Biomass",
 	"Alien/CaraSpecBugfix",
-
-		-- Drifter Modules
-		"Alien/Drifters/BlueprintPopFix",
 
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",
@@ -19,7 +15,6 @@ local modules = {
 		-- Lifeform Modules
 
 			-- Fade Modules
-			"Alien/Lifeforms/Fade/AdvancedMetabolize",
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
 			"Alien/Lifeforms/Fade/Stab",
 
@@ -29,23 +24,16 @@ local modules = {
 
 			-- Lerk Modules
 			"Alien/Lifeforms/Lerk/Base",
-			"Alien/Lifeforms/Lerk/Spores",
 
 			-- Onos Modules
 				-- BoneShield Modules
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
-				"Alien/Lifeforms/Onos/BoneShield/UIBar",
 
 			"Alien/Lifeforms/Onos/Stomp",
-
-	"Alien/ShellHealSound",
 
 		-- Structure Modules
 		"Alien/Structures/Cyst",
 		"Alien/Structures/GorgeTunnels",
-		"Alien/Structures/Harvester",
-
-	"Alien/SupplyChanges",
 
 		-- Upgrade Modules
 			-- Vamparism Modules
@@ -57,7 +45,7 @@ local modules = {
 	  ==========================
 	]]
 
-	"Global/Bindings",
+	-- "Global/Bindings",
 	"Global/HealthBars",
 	"Global/MucousHitsounds",
 	"Global/PrimePowerNodes",
@@ -78,28 +66,10 @@ local modules = {
 		"Marine/Structures/Observatory/BuildTime",
 
 	"Marine/MedpackHoT",
-	"Marine/PowerSurge",
-	"Marine/SupplyChanges",
-	"Marine/Walk",
+	-- "Marine/Walk",
 	"Marine/WeaponDropTime",
 
-		-- Weapons
-		"Marine/Weapons/AxeHitFix",
-
-			-- Grenades
-			"Marine/Weapons/Grenades/GrenadeQuickThrow",
-			"Marine/Weapons/Grenades/ClusterGrenade/PlayerDamageReduction",
-
-		"Marine/Weapons/Shotgun",
-
-	"Marine/WeaponExpire",
-
-	--[[
-	  ==============================
-	  		Spectator Modules
-	  ==============================
-	]]
-	"Spectator/KillFeedFix",
+	"Marine/WeaponExpire"
 }
 
 function GetModConfig(kLogLevels)
