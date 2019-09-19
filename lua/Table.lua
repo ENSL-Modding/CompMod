@@ -10,6 +10,7 @@
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
 Script.Load("lua/TableSort.lua") --jitable version of table.sort
+Script.Load("lua/StableSort.lua") -- stable sort implementation.
 Script.Load("lua/Set.lua")
 
 local type = type
@@ -20,6 +21,7 @@ local random = math.random
 --
 -- Return all arguments as a table
 --
+
 function table.pack(...)
     return { ... }
 end
@@ -485,8 +487,10 @@ end
 --
 -- Print the table to a string and returns it. Eg, "{ "element1", "element2", {1, 2} }".
 --
-function table.ToString(t)
 
+local tableStack = {} -- to prevent infinite loops of table printing
+function TableToString(t)
+    
     local buffer = {}
         
     insert(buffer, "{")
@@ -496,12 +500,28 @@ function table.ToString(t)
         local numElements = table.maxn(t)
         local currentElement = 1
         
-        for key, value in pairs(t) do
+        -- Keep track of a stack of tables we're printing (so we don't get infinite recursion).
+        tableStack[#tableStack+1] = t
         
+        for key, value in pairs(t) do
+            
             if(type(value) == "table") then
-            
-                insert(buffer, string.format("%s = %s", tostring(key), table.tostring(value)))
-            
+                
+                -- figure out if this table is already in the stack of tables being printed.
+                local tableInStack = false
+                for i=1, #tableStack do
+                    if tableStack[i] == value then
+                        tableInStack = true
+                        break
+                    end
+                end
+                
+                if tableInStack then
+                    insert(buffer, string.format("%s = %s", tostring(key), value))
+                else
+                    insert(buffer, string.format("%s = %s", tostring(key), ToString(value)))
+                end
+            --[==[
             elseif(type(value) == "number") then
 
                 --[[ For printing out lists of entity ids
@@ -522,10 +542,10 @@ function table.ToString(t)
                 if value.GetClassName then
                     insert(buffer, string.format("%s = class \"%s\"", tostring(key), value:GetClassName()))
                 end
-                
+                --]==]
             else
-            
-                insert(buffer, string.format("%s = \"%s\"", tostring(key), tostring(value)))
+                
+                insert(buffer, string.format("%s = \"%s\"", tostring(key), ToString(value)))
                 
             end
             
@@ -540,6 +560,9 @@ function table.ToString(t)
         
         end
         
+        -- Pop table from stack.
+        tableStack[#tableStack] = nil
+        
     else
     
         insert(buffer, "<data is \"" .. type(t) .. "\", not \"table\">")
@@ -551,6 +574,7 @@ function table.ToString(t)
     return table.concat(buffer)
 
 end
+table.tostring = TableToString
 
 -- Returns the numeric median of the given array of numbers
 function table.median( t )

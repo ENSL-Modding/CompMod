@@ -323,6 +323,7 @@ function GUIMarineBuyMenu:_InitializeBackground()
     self.repeatingBGTexture:SetSize(Vector(Client.GetScreenWidth(), Client.GetScreenHeight(), 0))
     self.repeatingBGTexture:SetTexture(GUIMarineBuyMenu.kRepeatingBackground)
     self.repeatingBGTexture:SetTexturePixelCoordinates(0, 0, Client.GetScreenWidth(), Client.GetScreenHeight())
+    self.repeatingBGTexture:SetColor(Color(1, 1, 1, 0.5))
     self.background:AddChild(self.repeatingBGTexture)
     
     self.content = GUIManager:CreateGraphicItem()

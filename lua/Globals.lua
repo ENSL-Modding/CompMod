@@ -8,6 +8,7 @@
 
 Script.Load("lua/Utility.lua")
 Script.Load("lua/GUIAssets.lua")
+Script.Load("lua/ItemUtils.lua")
 
 -- How often should Entity.OnUpdate be run
 kRealTimeUpdateRate = 0
@@ -25,6 +26,11 @@ kDecalMaxLifetime = 60
 
 -- All the layouts are based around this screen height.
 kBaseScreenHeight = 1080
+
+kDefaultRenderMask = 0x01
+kHiveVisionRenderMask = 0x02
+kEquipmentOutlineRenderMask = 0x04
+kCustomizeSceneRenderMask = 0x08
 
 -- Team types - corresponds with teamNumber in editor_setup.xml
 kNeutralTeamType = 0
@@ -333,7 +339,7 @@ kLastServerMapName  = "lastServerMapName"
 kPhysicsGpuAccelerationKey = "physics/gpu-acceleration"
 kGraphicsXResolutionOptionsKey = "graphics/display/x-resolution"
 kGraphicsYResolutionOptionsKey = "graphics/display/y-resolution"
-kAntiAliasingOptionsKey = "graphics/display/anti-aliasing"
+kAntiAliasingOptionsKey = "graphics/display/anti-aliasing-type"
 kAtmosphericsOptionsKey = "graphics/display/atmospherics"
 kShadowsOptionsKey = "graphics/display/shadows"
 kShadowFadingOptionsKey = "graphics/display/shadow-fading"
@@ -465,14 +471,6 @@ function GetHasDLC(productId, client)
 
 end
 
-function GetOwnsItem( item )
-    if Client then
-        return Client.GetOwnsItem( item )
-    else
-        return true
-    end
-end
-
 kSpecialEditionProductId = 4930
 kShadowProductId = 250893
 
@@ -514,7 +512,6 @@ kShadowOnosItemIds = {407, 408}
 kDeluxeArmorItemId=501
 kAssaultArmorItemId=502
 kReinforcedShoulderPatchItemId=503
-kAbyssSkulkItemId=601
 kRedRifleItemId=801
 kNS2WC14GlobeShoulderPatchItemId=901
 kGodarShoulderPatchItemId=902
@@ -566,6 +563,10 @@ kToxinLerkItemId = 7012
 kToxinFadeItemId = 7013
 kToxinOnosItemId = 7014
 
+-- Abyss
+kAbyssSkulkItemId = 601
+kAbyssGorgeItemId = 602
+
 kBlackArmorItemId = 9001
 
 kUnearthedCommanderItemId = 10001
@@ -605,7 +606,7 @@ kSkulkVariantData =
 }
 kDefaultSkulkVariant = kSkulkVariant.normal
 
-kGorgeVariant = enum({ "normal", "shadow", "reaper", "anniv", "toxin" })
+kGorgeVariant = enum({ "normal", "shadow", "reaper", "anniv", "toxin", "abyss" })
 kGorgeVariantData =
 {
     [kGorgeVariant.normal] = { displayName = "Normal", modelFilePart = "", viewModelFilePart = "" },
@@ -613,6 +614,7 @@ kGorgeVariantData =
     [kGorgeVariant.reaper] = { itemId = kReaperGorgeItemId, displayName = "Reaper", modelFilePart = "_albino", viewModelFilePart = "_albino" },
     [kGorgeVariant.anniv] =  { itemId = kAnnivGorgeItemId,  displayName = "Nocturne", modelFilePart = "_anniv", viewModelFilePart = "_anniv" },
     [kGorgeVariant.toxin] =  { itemId = kToxinGorgeItemId,  displayName = "Toxin", modelFilePart = "_toxin", viewModelFilePart = "_toxin" },
+    [kGorgeVariant.abyss] =  { itemId = kAbyssGorgeItemId,  displayName = "Abyss", modelFilePart = "_abyss",  viewModelFilePart = "_abyss" },
 }
 kDefaultGorgeVariant = kGorgeVariant.normal
 
@@ -949,7 +951,7 @@ function GetVariantModel( data, var )
     if data[var] then
         return data[var].modelFilePart .. ".model"
     end
-    return ""
+    return nil
 end
 
 function GetHasVariant(data, var, client)
@@ -1055,15 +1057,12 @@ kUpdateIntervalMedium = 0.05
 kUpdateIntervalAnimation = 0.02
 kUpdateIntervalFull = 0
 
---[[
--- concede sequence constants
-kConcedeTimeBeforeMontage = 1.0
-kConcedeMontageDuration = 5.0
-kConcedeTimeAfterMontage = 4.0
+kPlayerRankingRequestUrl = "http://hive2.ns2cdt.com/api/get/playerData/"
+kHiveWhitelistRequestUrl = "http://hive2.ns2cdt.com/api/get/whitelistedServers/"
 
-kConcedeNumAnglesToCheck = 64 -- adjust for performance
-kConcedeIdealDistance = {6.5, 6.5, 4.5} -- xz distance
-kConcedeIdealHeightOffset = {2.5, 2.0, 1.5} -- y distance
-kConcedeIdealCameraSpeed = 1.0
-kConcedeRelevancyDistance = 20 -- reduce relevancy distance for these sequences
---]]
+kFavoritesFileName = "FavoriteServers.json"
+kHistoryFileName = "HistoryServers.json"
+kRankedFileName = "RankedServers.json"
+kBlockedFileName = "BlockedServers.json"
+
+kMaxServerPasswordLength = 20

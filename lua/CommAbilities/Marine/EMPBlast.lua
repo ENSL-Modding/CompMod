@@ -15,7 +15,7 @@ class 'EMPBlast' (CommanderAbility)
 EMPBlast.kMapName = "empblast"
 
 local kSplashEffect = PrecacheAsset("cinematics/marine/mac/empblast.cinematic")
-local kRadius = kPowerSurgeDamageRadius
+local kRadius = kPowerSurgeEMPDamageRadius
 local kType = CommanderAbility.kType.Instant
 
 local networkVars =
@@ -43,8 +43,8 @@ if Server then
         self:TriggerEffects("comm_powersurge", { effecthostcoords = self:GetCoords() }) --TODO Refactor CommanderAbility to use EffectsManager, update this called event once done (add sound)
 
         for _, alien in ipairs(GetEntitiesForTeamWithinRange("Alien", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kRadius)) do
-            self:DoDamage(kPowerSurgeDamage, alien, alien:GetOrigin(), GetNormalizedVector(alien:GetOrigin() - self:GetOrigin()), "none")
-            alien:SetElectrified(kPowerSurgeElectrifiedDuration)
+            self:DoDamage(kPowerSurgeEMPDamage, alien, alien:GetOrigin(), GetNormalizedVector(alien:GetOrigin() - self:GetOrigin()), "none")
+            alien:SetElectrified(kPowerSurgeEMPElectrifiedDuration)
             alien:TriggerEffects("emp_blasted")
         end
 

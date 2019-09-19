@@ -47,8 +47,6 @@ function Initialize()
     -- Text items always manage their own rendering.
     text:SetOptionFlag(GUIItem.ManageRender)
     text:SetFontName(Fonts.kMicrogrammaDMedExt_Small)
-    text:SetFontIsBold(true)
-    text:SetFontSize(42)
     text:SetTextAlignmentX(GUIItem.Align_Center)
     text:SetTextAlignmentY(GUIItem.Align_Center)
     text:SetAnchor(GUIItem.Middle, GUIItem.Center)

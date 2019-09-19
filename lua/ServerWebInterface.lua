@@ -171,7 +171,7 @@ local function OnWebRequest(actions)
         
     elseif actions.request == "getmods" then
     
-        local url = "http://www.unknownworlds.com/spark/browse_workshop.php?appid=4920"
+        local url = "http://mods.ns2cdt.com/workshop/browse_workshop.php?appid=4920"
         local searchtext = actions.searchtext
         if type(searchtext) == "string" then
             url = url .. "&searchtext=" .. url_encode(searchtext)

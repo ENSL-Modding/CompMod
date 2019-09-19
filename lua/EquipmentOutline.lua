@@ -7,7 +7,7 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
-local _renderMask = 0x04
+local _renderMask = kEquipmentOutlineRenderMask
 local _invRenderMask = bit.bnot(_renderMask)
 
 local _maxDistance = 38
@@ -15,8 +15,8 @@ local _maxDistance_Commander = 60
 local _enabled = true
 
 kEquipmentOutlineColor = enum { [0]='TSFBlue', 'Green', 'Fuchsia', 'Yellow', 'Red' }
-kEquipmentOutlineColorCount = #kEquipmentOutlineColor+1
-    
+kEquipmentOutlineColorCount = #kEquipmentOutlineColor + 1
+
 local lookup = 
 { 
     "Shotgun", --kEquipmentOutlineColor.Green
@@ -37,6 +37,7 @@ function EquipmentOutline_Initialize()
     _camera:SetIsVisible(false)
     _camera:SetCullingMode(RenderCamera.CullingMode_Frustum)
     _camera:SetRenderSetup("shaders/EquipmentOutlineMask.render_setup")
+    _camera:SetUsesTAA(true) -- render camera _can_ be used with TAA (won't if option isn't set)
     
     _screenEffect = Client.CreateScreenEffect("shaders/EquipmentOutline.screenfx")
     _screenEffect:SetActive(false)

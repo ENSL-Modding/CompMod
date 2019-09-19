@@ -11,7 +11,7 @@
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
 Script.Load("lua/challenge/SteamLeaderboardManager.lua")
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 Script.Load("lua/GUIAssets.lua")
 
 local kDefaultLayer = 40
@@ -281,7 +281,7 @@ end
 
 function GUIReplayDownloader:Initialize()
     
-    self.items = US_Create()
+    self.items = UnorderedSet()
     self.buttons = {}
     
     self.callbacks = {}
@@ -390,8 +390,8 @@ function GUIReplayDownloader:Uninitialize()
     
     -- Cleanup is easy because every item created by the system is in one
     -- convenient set.
-    for i=1, #self.items.a do
-        GUI.DestroyItem(self.items.a[i])
+    for i=1, #self.items do
+        GUI.DestroyItem(self.items[i])
     end
     
     self.buttons = {}
@@ -492,7 +492,7 @@ end
 function GUIReplayDownloader:CreateGUIItem()
     
     local item = GUI.CreateItem()
-    US_Add(self.items, item)
+    self.items:Add(item)
     
     return item
     
@@ -527,7 +527,7 @@ end
 function GUIReplayDownloader:DestroyGUIItem(item)
     
     GUI.DestroyItem(item)
-    US_Remove(self.items, item)
+    self.items:RemoveElement(item)
     
 end
 

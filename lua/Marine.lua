@@ -504,7 +504,9 @@ local function PickupWeapon(self, weapon, wasAutoPickup)
     end
     
     self.timeOfLastPickUpWeapon = Shared.GetTime()
-    self.lastDroppedWeapon = oldWep
+    if oldWep then -- Ensure the last weapon in that slot actually existed and was dropped so you don't override a valid last weapon
+        self.lastDroppedWeapon = oldWep
+    end
     
 end
 

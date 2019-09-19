@@ -80,12 +80,48 @@ do
     end
 end
 
+
+--[[
+    The reserved slot system allows players marked as reserved players to join while
+    all non-reserved slots are taken and the server is not full.
+
+    Also we check if a player is banned here.
+]]
+
 local reservedSlotsConfigFileName = "ReservedSlotsConfig.json"
 local reservedSlotsDefaultConfig = { 
     amount = 0, 
-    ids = { }
+    ids = { } -- [name] = userid entries
 }
 local reservedSlotsConfig = LoadConfigFile(reservedSlotsConfigFileName, reservedSlotsDefaultConfig)
+
+local reservedSlotIds = {}
+
+local function LoadReservedSlotIds(config)
+    reservedSlotIds = {}
+
+    for _, id in pairs(reservedSlotsConfig.ids) do
+        reservedSlotIds[id] = true
+    end
+end
+
+do
+    LoadReservedSlotIds(reservedSlotsConfig)
+end
+
+function GetHasReservedSlotAccess(userId)
+    return reservedSlotIds[userId]
+end
+
+function Server.GetReservedSlotsConfig()
+    return reservedSlotsConfig
+end
+
+function Server.SaveReservedSlotsConfig()
+    LoadReservedSlotIds(reservedSlotsConfig)
+
+    SaveConfigFile(reservedSlotsConfigFileName, reservedSlotsConfig)
+end
 
 function Server.GetConfigSetting(name)
 
@@ -127,14 +163,6 @@ end
 
 function Server.SaveConfigSettings()
     SaveConfigFile(configFileName, config)
-end
-
-function Server.GetReservedSlotsConfig()
-    return reservedSlotsConfig
-end
-
-function Server.SaveReservedSlotsConfig()
-    SaveConfigFile(reservedSlotsConfigFileName, reservedSlotsConfig)
 end
 
 --[[

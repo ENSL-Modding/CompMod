@@ -718,7 +718,9 @@ function Alien:Buy()
 
     -- Don't allow display in the ready room, or as phantom
     -- Don't allow buy menu to be opened while help screen is displayed.
-    if self:GetIsLocalPlayer() and not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() then
+    if self:GetIsLocalPlayer() and
+       not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() and
+       not GetMainMenu():GetVisible() then
     
         -- The Embryo cannot use the buy menu in any case.
         if self:GetTeamNumber() ~= 0 and not self:isa("Embryo") then

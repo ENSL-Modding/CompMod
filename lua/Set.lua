@@ -97,7 +97,7 @@ function Set:GetCount()
 end
 
 function Set:GetList()
-     return self.list
+    return self.list
 end
 
 function Set:GetValueListIndex(Value)
@@ -119,8 +119,20 @@ do
         return state.list[ state.index ]
     end
 
+    -- Note: Not safe to be used to remove elements from the set, use IterateBackwards instead!
     function Set:Iterate()
         return Iterate, { list = self.list, index = 0 }
+    end
+end
+
+do
+    local function IterateBackwards( state )
+        state.index = state.index - 1
+        return state.list[ state.index ]
+    end
+
+    function Set:IterateBackwards()
+        return IterateBackwards, { list = self.list, index = #self.list }
     end
 end
 
@@ -194,6 +206,13 @@ function Queue:Dequeue()
     return Value
 end
 
+function Queue:SetFront(Value)
+    self.front = self.front - 1
+    self.list[self.front] = Value
+
+    self.size = self.size + 1
+end
+
 function Queue:GetFront()
     return self.list[self.front]
 end
@@ -239,6 +258,15 @@ function UniqueQueue:Enqueue(Value)
     return true
 end
 
+function UniqueQueue:SetFront(Value)
+    if self.map[Value] then return false end
+
+    Queue.SetFront(self, Value)
+    self.map[Value] = self.front
+
+    return true
+end
+
 function UniqueQueue:Dequeue()
     local Value = Queue.Dequeue(self)
 
@@ -259,6 +287,3 @@ function UniqueQueue:Clear()
     table.clear(self.map)
 end
 _G.unique_queue = UniqueQueue
-
-
-

@@ -321,7 +321,7 @@ function TrailCinematic:Update(deltaTime)
                 baseCoords.yAxis = baseCoords.xAxis:CrossProduct(baseCoords.zAxis)
             end
         
-            segment.coords = CopyCoords(baseCoords)
+            segment.coords = Coords(baseCoords)
             if segment.cinematic then
                 segment.cinematic:SetCoords(segment.coords)
             end
@@ -374,7 +374,7 @@ function TrailCinematic:Update(deltaTime)
             adjustedCoords = angles:GetCoords()
             adjustedCoords.origin = prevSegmentOrigin
             
-            self.segments[index - 1].coords = CopyCoords(adjustedCoords)
+            self.segments[index - 1].coords = Coords(adjustedCoords)
             
             if self.segments[index - 1].cinematic then
                 self.segments[index - 1].cinematic:SetCoords(adjustedCoords)

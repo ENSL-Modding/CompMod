@@ -337,7 +337,7 @@ if Client then
     end
     
     function GetCurrentVoteTimeLeft()
-        return math.max(0, currentVoteExpireTime - Shared.GetTime())
+        return (math.max(0, currentVoteExpireTime - Shared.GetTime()))
     end
     
     function GetLastVoteResults()
@@ -418,7 +418,7 @@ if Client then
     end
     Client.HookNetworkMessage("VoteCannotStart", OnVoteCannotStart)
     
-    -- Must be called after GUIStartVoteMenu is created.
+    -- Called after the vote menu is created.
     function OnGUIStartVoteMenuCreated(name, script)
     
         if name ~= "GUIStartVoteMenu" then
@@ -431,7 +431,6 @@ if Client then
         end
         
     end
-    ClientUI.AddScriptCreationEventListener(OnGUIStartVoteMenuCreated)
     
 end
 

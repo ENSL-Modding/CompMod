@@ -129,7 +129,7 @@ function GUIInventory:Update(_, parameters)
 
     PROFILE("GUIInventory:Update")
     
-    local fullMode = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullMode = Client.GetHudDetail() == kHUDMode.Full
     self.background:SetIsVisible(fullMode)
     
     if fullMode then

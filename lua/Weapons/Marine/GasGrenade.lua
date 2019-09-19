@@ -11,6 +11,9 @@ Script.Load("lua/OwnerMixin.lua")
 
 class 'GasGrenade' (PredictedProjectile)
 
+--Any speed below this will freeze the grenade in place
+GasGrenade.kMinVelocityToMove = 1
+
 GasGrenade.kMapName = "gasgrenadeprojectile"
 GasGrenade.kModelName = PrecacheAsset("models/marine/grenades/gr_nerve_world.model")
 GasGrenade.kUseServerPosition = true
@@ -52,6 +55,7 @@ function GasGrenade:OnCreate()
     end
     
     self.releaseGas = false
+    self.originRelease = nil
     self.clientGasReleased = false
     
 end
@@ -79,8 +83,9 @@ if Client then
 
 elseif Server then
     
-    function GasGrenade:ReleaseGas()  
-        self.releaseGas = true    
+    function GasGrenade:ReleaseGas()
+        self.releaseGas = true
+        self.originRelease = self:GetOrigin()
     end
     
     function GasGrenade:UpdateNerveGas()
@@ -90,8 +95,8 @@ elseif Server then
             local direction = Vector(math.random() - 0.5, 0.5, math.random() - 0.5)
             direction:Normalize()
             
-            local trace = Shared.TraceRay(self:GetOrigin() + Vector(0, 0.2, 0), self:GetOrigin() + direction * 7, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterAll())
-            local nervegascloud = CreateEntity(NerveGasCloud.kMapName, self:GetOrigin(), self:GetTeamNumber())
+            local trace = Shared.TraceRay( self.originRelease + Vector(0, 0.2, 0), self.originRelease + direction * 7, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterAll())
+            local nervegascloud = CreateEntity(NerveGasCloud.kMapName, self.originRelease, self:GetTeamNumber())
             nervegascloud:SetEndPos(trace.endPoint)
             
             local owner = self:GetOwner()
@@ -151,7 +156,10 @@ function NerveGasCloud:OnCreate()
         
     end
     
-    self:SetUpdates(true, kDefaultUpdateRate)
+    --Realtime required for position updates to be smooth
+    --Otherwise gas cloud will "hop" due to shit update rate.
+    self:SetUpdates(true, kRealTimeUpdateRate)
+    
     self:SetRelevancyDistance(kMaxRelevancyDistance)
 
 end

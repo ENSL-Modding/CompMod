@@ -348,61 +348,6 @@ local function CheckForDuplicateLocations()
     
 end
 
-local techPointSpawnPoints = {}
-function GetSpawnPointsForTechPoint(techPointId)
-    return techPointSpawnPoints[techPointId]
-end
-
--- Create structure, weapon, etc. near player.
-local function FindSpawnPoints(orig, number)
-    local extents = LookupTechData(kTechId.Marine, kTechDataMaxExtents)
-    local capsuleHeight, capsuleRadius = GetTraceCapsuleFromExtents(extents)
-    local range = Observatory.kDistressBeaconRange
-
-    local spawnPoints = {}
-
-    for _ = 1, number do
-
-        -- Persistence is the path to victory.
-        for _ = 1, 100 do
-            local position = GetRandomSpawnForCapsule(capsuleHeight, capsuleRadius, orig, 2, range, EntityFilterAll())
-            if position then
-                local tooClose = false -- check that new spawnPoint is not too close to rest
-                for i = 1, #spawnPoints do
-                    if (spawnPoints[i] - position):GetLengthSquared() < 0.5 * extents.y * extents.y then
-                        tooClose = true
-                        break
-                    end
-                end
-
-                if not tooClose then
-                    table.insert(spawnPoints, position)
-                    break
-                end
-            end
-
-        end
-
-    end
-
-    return spawnPoints
-end
-
-function CacheTechPointSpawnPoints()
-    local techpoints = GetEntities("TechPoint")
-    local offset = Vector(0, 1, 0)
-    for _, techpoint in ipairs(techpoints) do
-        local center = techpoint:GetOrigin() + offset
-        local spawnPoints = FindSpawnPoints(center, 150)
-
-        table.sort(spawnPoints, function(x, y)
-            return (x - center):GetLengthSquared() < (y - center):GetLengthSquared()
-        end)
-
-        techPointSpawnPoints[techpoint:GetId()] = spawnPoints
-    end
-end
-
 --
 -- Callback handler for when the map is finished loading.
 --
@@ -432,8 +377,7 @@ local function OnMapPostLoad()
     CheckForDuplicateLocations()
     
     GetGamerules():OnMapPostLoad()
-
-    CacheTechPointSpawnPoints()
+    
 end
 
 function GetTechTree(teamNumber)

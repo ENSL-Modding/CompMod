@@ -671,9 +671,11 @@ kPowerSurgeResearchTime = 45
 kPowerSurgeCooldown = 4
 kPowerSurgeDuration = 10
 kPowerSurgeCost = 2
-kPowerSurgeDamage = 0
-kPowerSurgeDamageRadius = 0
-kPowerSurgeElectrifiedDuration = 6
+
+kPowerSurgeTriggerEMP = false
+kPowerSurgeEMPDamage = 25
+kPowerSurgeEMPDamageRadius = 6
+kPowerSurgeEMPElectrifiedDuration = 6
 
 kArmoryInitialEnergy = 100  kArmoryMaxEnergy = 150
 

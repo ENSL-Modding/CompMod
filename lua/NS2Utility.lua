@@ -3223,9 +3223,9 @@ function GetAndSetVariantOptions()
 end
 
 function SendPlayerVariantUpdate()
-    
+
+    if Client.GetIsConnected() then
     local options = GetAndSetVariantOptions()
-    if MainMenu_IsInGame and MainMenu_IsInGame() then
         Client.SendNetworkMessage("SetPlayerVariant",
             {
                 marineVariant = options.marineVariant,
@@ -3256,7 +3256,7 @@ end
 function CheckCollectableAchievement()
     if Client.IsInventoryLoaded() then
         for _, itemId in ipairs(kCollectableItemIds) do
-            if not Client.GetOwnsItem( itemId ) then
+            if not GetOwnsItem( itemId ) then
                 return
             end
         end
@@ -3268,11 +3268,10 @@ function InventoryNewItemNotifyPush( item )
     local new = json.decode( Client.GetOptionString("inventory_new","[]") ) or {}
     new[#new+1] = item
     Client.SetOptionString("inventory_new", json.encode( new ) )
-
-    -- Main Menu Handling
-    local mm = GetGUIMainMenu and GetGUIMainMenu()
-    if mm then
-        mm:MaybeOpenPopup()
+    
+    local menu = GetMainMenu()
+    if menu and not menu:GetIsInGame() then
+        menu:CheckForNewNotifications()
     end
 end
 
@@ -3290,8 +3289,6 @@ function InventoryNewItemHandler( item, isDupe )
         InventoryNewItemNotifyPush( item )
         CheckCollectableAchievement()
     end
-
-    -- In-Game Handling
 end
 
 Event.Hook("InventoryNewItem", InventoryNewItemHandler )
@@ -3338,57 +3335,6 @@ function PrecacheAssetSafe( path, fallback )
 
 end
 
-
-if Client then
-
-    function GetNickName()
-
-        local name = Client.GetOptionString( kNicknameOptionsKey, "" )
-        if name == "" then
-            name = string.UTF8SanitizeForNS2( TrimName( Client.GetUserName() or "" ) )
-        end
-        if name == "" then
-            name = kDefaultPlayerName
-        end
-        return name
-
-    end
-
-    function SetNameWithSteamPersona()
-        local overrideEnabled = Client.GetOptionBoolean(kNicknameOverrideKey, false)
-        if overrideEnabled then return end
-
-        local name = string.UTF8SanitizeForNS2( TrimName( Client.GetUserName() or "" ) )
-        if name == "" or not string.IsValidNickname(name) then
-            name = kDefaultPlayerName
-        end
-
-        Client.SetOptionString(kNicknameOptionsKey, name)
-        return name
-    end
-
-    function OnSteamPersonaChanged()
-
-        local name = SetNameWithSteamPersona()
-        if name then
-            local player = Client.GetLocalPlayer()
-            if player and name ~= player:GetName() then
-                Client.SendNetworkMessage("SetName", { name = name }, true)
-            end
-
-            if GetGUIMainMenu and GetGUIMainMenu() then
-                GetGUIMainMenu().playerName:SetText(name)
-                GetGUIMainMenu().optionElements.NickName:SetValue(name)
-            end
-
-        end
-
-    end
-
-    Event.Hook("SteamPersonaChanged", OnSteamPersonaChanged )
-
-end
-
 function GetPlayerSkillTier(skill, isRookie, adagradSum, isBot)
     if isBot then return -1, "SKILLTIER_BOT" end
     if isRookie then return 0, "SKILLTIER_ROOKIE", 0 end
@@ -3412,6 +3358,25 @@ function GetPlayerSkillTier(skill, isRookie, adagradSum, isBot)
     if skill < 3001 then return 5, "SKILLTIER_COMMANDANT", skill end
     if skill < 4000 then return 6, "SKILLTIER_SPECIALOPS", skill end
     return 7, "SKILLTIER_SANJISURVIVOR", skill
+end
+
+local kSkillTierToDescMap =
+{
+    [-1] = "SKILLTIER_BOT",
+    [ 0] = "SKILLTIER_ROOKIE",
+    [ 1] = "SKILLTIER_RECRUIT",
+    [ 2] = "SKILLTIER_FRONTIERSMAN",
+    [ 3] = "SKILLTIER_SQUADLEADER",
+    [ 4] = "SKILLTIER_VETERAN",
+    [ 5] = "SKILLTIER_COMMANDANT",
+    [ 6] = "SKILLTIER_SPECIALOPS",
+    [ 7] = "SKILLTIER_SANJISURVIVOR",
+    unknown = "SKILLTIER_UNKNOWN",
+}
+
+function GetSkillTierDescription(tier)
+    assert(type(tier) == "number")
+    return kSkillTierToDescMap[tier] or kSkillTierToDescMap.unknown
 end
 
 local warmupActive = false

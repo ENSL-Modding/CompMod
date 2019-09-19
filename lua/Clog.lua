@@ -24,13 +24,15 @@ Clog.kMapName = "clog"
 Clog.kModelName = PrecacheAsset("models/alien/gorge/clog.model")
 Clog.kModelNameToxin = PrecacheAsset("models/alien/gorge/clog_toxin.model")
 Clog.kModelNameShadow = PrecacheAsset("models/alien/gorge/clog_shadow.model")
-local kClogModelVariants = 
+Clog.kModelNameAbyss = PrecacheAsset("models/alien/gorge/clog_abyss.model")
+local kClogModelVariants =
 { 
     [kGorgeVariant.normal] = Clog.kModelName, 
     [kGorgeVariant.shadow] = Clog.kModelNameShadow, 
     [kGorgeVariant.reaper] = Clog.kModelName,
     [kGorgeVariant.anniv] = Clog.kModelName,
     [kGorgeVariant.toxin] = Clog.kModelNameToxin,
+    [kGorgeVariant.abyss] = Clog.kModelNameAbyss,
 }
 
 local networkVars =
@@ -207,12 +209,15 @@ if Server then
         return false
     end
     
-    function Clog:OnCreatedByGorge(_)
-    
-        if self.variant == kGorgeVariant.shadow then
+    function Clog:OnCreatedByGorge()
+
+        local variant = self.variant
+        if variant == kGorgeVariant.shadow then
             self:TriggerEffects("clog_spawn_shadow", {effecthostcoords = self:GetCoords()})
-        elseif self.variant == kGorgeVariant.toxin then
+        elseif variant == kGorgeVariant.toxin then
             self:TriggerEffects("clog_spawn_toxin", {effecthostcoords = self:GetCoords()})
+        elseif variant == kGorgeVariant.abyss then
+            self:TriggerEffects("clog_spawn_abyss", {effecthostcoords = self:GetCoords()})
         else
             self:TriggerEffects("clog_spawn", {effecthostcoords = self:GetCoords()})
         end

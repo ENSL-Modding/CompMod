@@ -52,6 +52,7 @@ Hydra.kMapName = "hydra"
 
 Hydra.kModelName = PrecacheAsset("models/alien/hydra/hydra.model")
 Hydra.kModelNameShadow = PrecacheAsset("models/alien/hydra/hydra_shadow.model")
+Hydra.kModelNameAbyss = PrecacheAsset("models/alien/hydra/hydra_abyss.model")
 Hydra.kAnimationGraph = PrecacheAsset("models/alien/hydra/hydra.animation_graph")
 
 Hydra.kOffInfestationAutoBuildRate = 0.75
@@ -230,6 +231,8 @@ function Hydra:SetVariant(gorgeVariant)
 
     if gorgeVariant == kGorgeVariant.shadow then
         self:SetModel(Hydra.kModelNameShadow, Hydra.kAnimationGraph)
+    elseif gorgeVariant == kGorgeVariant.abyss then
+        self:SetModel(Hydra.kModelNameAbyss, Hydra.kAnimationGraph)
     else
         self:SetModel(Hydra.kModelName, Hydra.kAnimationGraph)
     end

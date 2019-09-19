@@ -6,7 +6,7 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
-local _renderMask       = 0x2
+local _renderMask       = kHiveVisionRenderMask
 local _invRenderMask    = bit.bnot(_renderMask)
 local _maxDistance      = 30
 local _maxDistance_Commander = 60
@@ -23,6 +23,7 @@ function HiveVision_Initialize()
     HiveVision_camera:SetIsVisible( false )
     HiveVision_camera:SetCullingMode( RenderCamera.CullingMode_Frustum )
     HiveVision_camera:SetRenderSetup( "shaders/HiveVisionMask.render_setup" )
+    HiveVision_camera:SetUsesTAA(true) -- render camera _can_ be used with TAA (won't if option isn't set)
     
     HiveVision_screenEffect = Client.CreateScreenEffect("shaders/HiveVision.screenfx")
     HiveVision_screenEffect:SetActive(false)    

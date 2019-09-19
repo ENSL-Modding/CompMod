@@ -9,7 +9,7 @@
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
 Script.Load("lua/GUIAssets.lua")
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 
 class 'GUIChallengeButton' (GUIScript)
 
@@ -45,7 +45,7 @@ end
 function GUIChallengeButton:CreateGUIItem()
     
     local item = GUI.CreateItem()
-    US_Add(self.items, item)
+    self.items:Add(item)
     
     return item
     
@@ -92,7 +92,7 @@ end
 
 function GUIChallengeButton:Initialize()
     
-    self.items = US_Create()
+    self.items = UnorderedSet()
     
     self.layer = self.kDefaultLayer
     self.opacity = 0.0 -- start faded out.
@@ -121,8 +121,8 @@ end
 
 function GUIChallengeButton:Uninitialize()
     
-    for i=1, #self.items.a do
-        GUI.DestroyItem(self.items.a[i])
+    for i=1, #self.items do
+        GUI.DestroyItem(self.items[i])
     end
     
     MouseTracker_SetIsVisible(false)

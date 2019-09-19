@@ -6,7 +6,11 @@
 --                  Brian Cronin (brianc@unknownworlds.com)
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
- 
+
+assert(false) -- should not be loaded any longer.
+
+Script.Load("lua/UnorderedSet.lua")
+
 Script.Load("lua/menu/WindowManager.lua")
 Script.Load("lua/GUIAnimatedScript.lua")
 Script.Load("lua/menu/MenuMixin.lua")
@@ -17,7 +21,6 @@ Script.Load("lua/menu/ProgressBar.lua")
 Script.Load("lua/menu/ContentBox.lua")
 Script.Load("lua/menu/Image.lua")
 Script.Load("lua/menu/Table.lua")
-Script.Load("lua/ServerBrowser.lua")
 Script.Load("lua/menu/Form.lua")
 Script.Load("lua/menu/ServerList.lua")
 Script.Load("lua/menu/ServerTabs.lua")
@@ -59,6 +62,7 @@ local kWindowModeNames       = { "WINDOWED", "FULLSCREEN", "FULLSCREEN WINDOWED"
 
 local kAmbientOcclusionModes = { "off", "medium", "high" }
 local kInfestationModes      = { "minimal", "rich" }
+local kAntiAliasingModes     = { "off", "fxaa", "taa" }
 local kParticleQualityModes  = { "low", "high" }
 local kRefractionQualityModes = { "high", "low" }
 local kRenderDevices         = Client.GetRenderDeviceNames()
@@ -186,7 +190,7 @@ function GUIMainMenu:Initialize()
         end,
         
         OnShow = function (self)
-            MainMenu_Open()
+            --MainMenu_Open()
         end,
         
         OnHide = function (self)
@@ -271,8 +275,6 @@ function GUIMainMenu:Initialize()
     Client.SetOptionString("input/MovementOverrideCom", MovementOverride)
 
     local gPlayerData = {}
-    local kPlayerRankingRequestUrl = "http://hive2.ns2cdt.com/api/get/playerData/"
-    local kHiveWhitelistRequestUrl = "http://hive2.ns2cdt.com/api/get/whitelistedServers/"
 
     local function PlayerDataResponse(steamId)
         return function (playerData)
@@ -2307,7 +2309,7 @@ local function InitOptions(self)
     optionElements.Atmospherics:SetOptionActive( BoolToIndex(atmospherics) )
     optionElements.AtmosphericDensity:SetValue(atmoDensity)
     optionElements.AnisotropicFiltering:SetOptionActive( BoolToIndex(anisotropicFiltering) )
-    optionElements.AntiAliasing:SetOptionActive( BoolToIndex(antiAliasing) )
+    optionElements.AntiAliasing:SetOptionActive( table.find(kAntiAliasingModes, antiAliasing) )
     optionElements.Detail:SetOptionActive(visualDetailIdx)
     optionElements.AmbientOcclusion:SetOptionActive( table.find(kAmbientOcclusionModes, ambientOcclusion) )
     optionElements.Reflections:SetOptionActive( BoolToIndex(reflections) )
@@ -2349,7 +2351,7 @@ local function SaveSecondaryGraphicsOptions(mainMenu)
     local bloom                 = mainMenu.optionElements.Bloom:GetActiveOptionIndex() > 1
     local atmospherics          = mainMenu.optionElements.Atmospherics:GetActiveOptionIndex() > 1
     local anisotropicFiltering  = mainMenu.optionElements.AnisotropicFiltering:GetActiveOptionIndex() > 1
-    local antiAliasing          = mainMenu.optionElements.AntiAliasing:GetActiveOptionIndex() > 1
+    local antiAliasingIdx       = mainMenu.optionElements.AntiAliasing:GetActiveOptionIndex()
     local particleQualityIdx    = mainMenu.optionElements.ParticleQuality:GetActiveOptionIndex()
     local reflections           = mainMenu.optionElements.Reflections:GetActiveOptionIndex() > 1
     local refractionQuality     = mainMenu.optionElements.RefractionQuality:GetActiveOptionIndex()
@@ -2368,7 +2370,7 @@ local function SaveSecondaryGraphicsOptions(mainMenu)
     Client.SetOptionBoolean ( kBloomOptionsKey, bloom )
     Client.SetOptionBoolean ( kAtmosphericsOptionsKey, atmospherics )
     Client.SetOptionBoolean ( kAnisotropicFilteringOptionsKey, anisotropicFiltering )
-    Client.SetOptionBoolean ( kAntiAliasingOptionsKey, antiAliasing )
+    Client.SetOptionString ( kAntiAliasingOptionsKey, kAntiAliasingModes[antiAliasingIdx] )
     Client.SetOptionString("graphics/device", kRenderDevices[renderDeviceIdx] )
     Client.SetOptionInteger("graphics/lightQuality", lightQuality)
     Client.SetOptionInteger("graphics/textureManagement", textureManagement)
@@ -2489,7 +2491,7 @@ local function SaveOptions(mainMenu)
     local bloom                 = mainMenu.optionElements.Bloom:GetActiveOptionIndex() > 1
     local atmospherics          = mainMenu.optionElements.Atmospherics:GetActiveOptionIndex() > 1
     local anisotropicFiltering  = mainMenu.optionElements.AnisotropicFiltering:GetActiveOptionIndex() > 1
-    local antiAliasing          = mainMenu.optionElements.AntiAliasing:GetActiveOptionIndex() > 1
+    local antiAliasingIdx       = mainMenu.optionElements.AntiAliasing:GetActiveOptionIndex()
     local textureManagement     = mainMenu.optionElements.TextureManagement:GetActiveOptionIndex()
     local lightQuality          = mainMenu.optionElements.LightQuality:GetActiveOptionIndex()
     local particleQuality       = mainMenu.optionElements.ParticleQuality:GetActiveOptionIndex()
@@ -2547,7 +2549,7 @@ local function SaveOptions(mainMenu)
         bloom,
         atmospherics,
         anisotropicFiltering,
-        antiAliasing,
+        kAntiAliasingModes[antiAliasingIdx],
         invMouse,
         voiceVol)
         
@@ -3107,7 +3109,7 @@ function GUIMainMenu:CreateOptionWindow()
                 label   = Locale.ResolveString("ANTI_ALIASING"),
                 tooltip = Locale.ResolveString("OPTION_ANTI_ALIASING"),
                 type    = "select",
-                values  = { Locale.ResolveString("OFF"), Locale.ResolveString("ON") },
+                values  = { Locale.ResolveString("OFF"), Locale.ResolveString("FXAA"), Locale.ResolveString("TAA") },
                 callback = autoApplyCallback
             },
             {

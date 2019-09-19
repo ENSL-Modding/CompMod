@@ -56,8 +56,6 @@ function TechNode:Initialize(techId, techType, prereq1, prereq2)
     
     self.addOnTechId = kTechId.None
     
-    self.cost = LookupTechData(self.techId, kTechDataCostKey, 0)
-    
     self.available = false
     
     self.time = 0
@@ -84,7 +82,7 @@ function TechNode:DumpNode()
     Print("self.prereq1 %s", ToString(self.prereq1))
     Print("self.prereq2 %s", ToString(self.prereq2))
     Print("self.addOnTechId %s", ToString(self.addOnTechId))
-    Print("self.cost %s", ToString(self.cost))
+    Print("self.cost %s", ToString(self:GetCost()))
     Print("self.time %s", ToString(self.time))
     Print("self.researchProgress %s", ToString(self.researchProgress))
     Print("self.prereqResearchProgress %s", ToString(self.prereqResearchProgress))
@@ -206,7 +204,7 @@ function TechNode:SetPrereq2(prereq2)
 end
 
 function TechNode:GetCost()
-    return self.cost
+    return LookupTechData(self.techId, kTechDataCostKey, 0)
 end
 
 function TechNode:SetResearchProgress(progress)

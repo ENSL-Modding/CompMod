@@ -24,10 +24,11 @@ kNewItemInfoDefs =
     [714]={"Calcified Babbler Egg","For use on TSF Priority Paper-related missions.","babblerweight"},
     [715]={"Vial of Kharaa Bacteria","For use against your worst enemy. Or simply as a fancy desk ornament.","vial"},
     [601]={"The Abyss Skulk", "Caged in the coldest corners of the facility, the Abyss Skulk stalks its prey. Be afraid, as you might be its next dessert.","abyssskulk"},
+    [602]={"The Abyss Gorge", "In Origin's labs, scientists have discovered a phenotype of the Kharaa rarely seen, the Abyss genetic marker. They are unsure of what causes this mutation in the species but warn it's not to be taken lightly, especially when a Gorge takes on this form. Stay alert marines.", "abyssgorge"},
 	[907]={"The Pumpkin Patch","When the wind is chilled and the moon is bright, the Pumpkin Patch will stir up a fright.","pumpkinpatch"},
 	[906]={"Eat your Greens Shoulder Patch","Getting your toes wet, a shoulder decal is what you get!","green_blood"},
 	[910]={"Summer Gorge Patch","Taking a break from the hot sun.","summergorge"},
-    [911]={"Haunted Babbler Patch","When the wind is chilled and the moon is bright, the Haunted Babbler will stir up a fright.","hauntedbabbler"},
+	[911]={"Haunted Babbler Patch","When the wind is chilled and the moon is bright, the Haunted Babbler will stir up a fright.","hauntedbabbler"},
     [10001]={"Unearthed Structure Skins","A new form of Kharaa has revealed itself in the crystal mines of Unearthed. Mesmerize both friend and foe with these alien structure skins.","unearthedskin"},
 }
 
