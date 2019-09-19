@@ -375,17 +375,23 @@ function ProjectileController:Update(deltaTime, projectile, predict)
         -- second part of leapfrog
         velocity.y = velocity.y - deltaTime * self.gravity * 0.5
 
+        if projectile and projectile.kMinVelocityToMove then --This fixes a grenade spazzing out
+            if velocity:GetLength() < projectile.kMinVelocityToMove then
+                velocity = Vector(0,0,0)
+            end
+        end
+
         local oldEnough = self.minLifeTime + self.creationTime <= Shared.GetTime()
         local hasBounced = self.hasBounced
 
         if impact then
 
             -- some projectiles may predict impact
-            if projectile and oldEnough and not hasBounced then
+            if projectile and oldEnough then --and not hasBounced
 
                 projectile:SetOrigin(endPoint)
 
-                if projectile.ProcessHit then
+                if projectile.ProcessHit and (hitEntity or not projectile.kNeedsHitEntity) then
                     projectile:ProcessHit(hitEntity, nil, normal, endPoint)
                 end
 

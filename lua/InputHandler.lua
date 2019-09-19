@@ -223,70 +223,79 @@ end
 -- the event should be stopped here.
 --
 local function OnSendKeyEvent(key, down, amount, repeated)
-
-    local stop = MouseTracker_SendKeyEvent(key, down, amount, keyEventBlocker ~= nil)
+    
+    local stop = false
+    
+    if not stop then
+        stop = MouseTracker_SendKeyEvent(key, down, amount, keyEventBlocker ~= nil)
+    end
+    
+    -- Handle old-system GUI first, since it blocks console bindings.
+    if not stop then
+        stop = GetGUIManager():SendKeyEvent(key, down, amount)
+    end
+    
+    -- Block console input if there is some widget in the new gui system being used to enter text.
+    if not stop and down and not GetIsTextBeingEntered() then
+        ConsoleBindingsKeyPressed(key)
+    end
     
     if not stop and keyEventBlocker then
         stop = keyEventBlocker:SendKeyEvent(key, down, amount)
     end
     
     if not stop then
-        stop = GetGUIManager():SendKeyEvent(key, down, amount)
+        stop = GetGUIInteractionManager():SendKeyEvent(key, down, amount, repeated)
     end
     
     if not stop then
-    
         local winMan = GetWindowManager()
         if winMan then
             stop = winMan:SendKeyEvent(key, down, amount)
         end
-        
     end
     
-    if not stop then
-    
-        if not Client.GetMouseVisible() then
+    -- Handle mouse look.
+    if not stop and not Client.GetMouseVisible() then
         
-            if key == InputKey.MouseX then
-                _cameraYaw = _cameraYaw - ApplyMouseAdjustments(amount, _sensitivityScalarX)
-            elseif key == InputKey.MouseY then
+        if key == InputKey.MouseX then
+            _cameraYaw = _cameraYaw - ApplyMouseAdjustments(amount, _sensitivityScalarX)
+        elseif key == InputKey.MouseY then
             
-                local limit = math.pi / 2 + 0.0001
-                _cameraPitch = Clamp(_cameraPitch + ApplyMouseAdjustments(amount, _sensitivityScalarY), -limit, limit)
-                
-            end
-            
+            local limit = math.pi / 2 + 0.0001
+            _cameraPitch = Clamp(_cameraPitch + ApplyMouseAdjustments(amount, _sensitivityScalarY), -limit, limit)
+        
         end
-
-        -- need to handle mousewheel actions in another way, those use only key up events
-        if key == InputKey.MouseWheelDown or key == InputKey.MouseWheelUp then
-        
+    
+    end
+    
+    -- need to handle mousewheel actions in another way, those use only key up events
+    if key == InputKey.MouseWheelDown or key == InputKey.MouseWheelUp then
+    
+        if not stop then
             _keyState[key] = true
             _keyPressed[key] = 1
+        end
         
         -- Filter out the OS key repeat for our general movement (but we'll use it for GUI).
-        elseif not repeated then
-        
+    elseif not repeated then
+    
+        -- If it's a key release, let it through, otherwise ensure it wasn't consumed by the gui
+        -- systems.
+        if not stop or not down then
             _keyState[key] = down
             if down and not moveInputBlocked then
                 _keyPressed[key] = amount
             end
-    
-        end    
+        end
     
     end
     
     if not stop then
-    
         local player = Client.GetLocalPlayer()
         if player then
             stop = player:SendKeyEvent(key, down)
         end
-        
-    end
-
-    if not stop and down then
-        ConsoleBindingsKeyPressed(key)
     end
     
     return stop
@@ -301,6 +310,10 @@ local function OnSendCharacterEvent(character)
     local winMan = GetWindowManager()
     if winMan then
         stop = winMan:SendCharacterEvent(character)
+    end
+    
+    if not stop then
+        stop = GetGUIInteractionManager():SendCharacterEvent(character)
     end
     
     if not stop then
@@ -559,7 +572,7 @@ local function GenerateMove()
         if _keyPressed[ _keyBinding.ESC ] then
             move.hotkey = Move.ESC
         end
-        
+    
         -- Allow the player to override move (needed for Commander)
         local player = Client.GetLocalPlayer()
         if player and Client.GetIsControllingPlayer() then

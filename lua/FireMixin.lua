@@ -77,6 +77,8 @@ function FireMixin:__initmixin()
         self.timeBurnDuration = 0
 
     end
+
+    self:AddFieldWatcher("isOnFire", FireMixin.OnFireStateChange)
     
 end
 
@@ -159,11 +161,7 @@ function FireMixin:UpdateFireState()
         self:_UpdateClientFireEffects()
     end
 
-    if not self:GetIsOnFire() then
-        return
-    end
-
-    if Server then
+    if Server and self:GetIsOnFire() then
         local time = Shared.GetTime()
         if self:GetIsAlive() and (not self.timeLastFireDamageUpdate or self.timeLastFireDamageUpdate + kBurnUpdateRate <= time) then
 
@@ -203,14 +201,21 @@ function FireMixin:UpdateFireState()
         end
 
     end
-end
 
-function FireMixin:OnUpdate()
-    self:UpdateFireState()
+    return self:GetIsOnFire() -- remove timed callback when we are not burning
 end
 
 function FireMixin:OnProcessMove()
     self:UpdateFireState()
+end
+
+-- using a timed callback to bypass the parents update rate
+function FireMixin:OnFireStateChange()
+    if self.isOnFire then
+        self:AddTimedCallback(FireMixin.UpdateFireState, kDefaultUpdateRate)
+    end
+
+    return true
 end
 
 if Client then
@@ -232,7 +237,6 @@ if Client then
                 self.fireMaterial = nil
 
             end
-
         end
 
         if self:isa("Player") and self:GetIsLocalPlayer() then

@@ -150,30 +150,19 @@ function OnCommandSetName(...)
     
     local overrideEnabled = Client.GetOptionBoolean(kNicknameOverrideKey, false)
     if not overrideEnabled then
-		Print( "Use 'sname <name>' to change your Steam Name")
-		return
-	end
-		
-	local name = StringConcatArgs(...)
-	name = string.UTF8SanitizeForNS2( TrimName(name) )
-	
-	if name == "" or not string.IsValidNickname(name) then
-		Print( "You have to enter a valid nickname or use the Options Menu!")
-		return
-	end
-	
-	Client.SetOptionString(kNicknameOptionsKey, name)
-	
-	local player = Client.GetLocalPlayer()
-	if player and name ~= player:GetName() then
-		Client.SendNetworkMessage("SetName", { name = name }, true)
-	end
+        Print( "Use 'sname <name>' to change your Steam Name")
+        return
+    end
+        
+    local name = StringConcatArgs(...)
+    SetNickName(name)
+    
 end
 
 function OnCommandSetSteamName(...)
     local overrideEnabled = Client.GetOptionBoolean(kNicknameOverrideKey, false)
     if overrideEnabled then
-		Print( "Use 'name <name>' to change your NS2 in-game alias, or enable 'Use Steam Name' in the option menu")
+		Print( "Use 'name <name>' to change your NS2 in-game alias, or disable 'Use Alternate Nickname' in the option menu")
 		return
 	end
 

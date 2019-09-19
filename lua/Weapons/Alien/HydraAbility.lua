@@ -30,6 +30,8 @@ function HydraStructureAbility:GetGhostModelName(ability)
         local variant = player:GetVariant()
         if variant == kGorgeVariant.shadow then
             return Hydra.kModelNameShadow
+        elseif variant == kGorgeVariant.abyss then
+            return Hydra.kModelNameAbyss
         end
         
     end

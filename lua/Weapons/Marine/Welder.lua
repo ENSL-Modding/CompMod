@@ -17,6 +17,7 @@ Script.Load("lua/WelderVariantMixin.lua")
 class 'Welder' (Weapon)
 
 Welder.kMapName = "welder"
+Welder.kModelName = PrecacheAsset("models/marine/welder/welder.model")
 
 local kViewModels = GenerateMarineViewModelPaths("welder")
 
@@ -72,6 +73,12 @@ function Welder:OnCreate()
 end
 
 function Welder:OnInitialized()
+    
+    -- Set model to be rendered in 3rd-person
+    local worldModel = LookupTechData(self:GetTechId(), kTechDataModel)
+    if worldModel ~= nil then
+        self:SetModel(worldModel)
+    end
     
     Weapon.OnInitialized(self)
     

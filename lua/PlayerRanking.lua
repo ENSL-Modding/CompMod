@@ -29,7 +29,6 @@ kMaxPrestige = 5;
 
 
 --client side utility functions
-
 function PlayerRanking_GetXPNeededForLevel( level )
     local base = ( (level - 1 ) % kMaxLevel ) + 1
     local prestige = math.max( 0, math.floor(( level - 1 ) / kMaxLevel ) )
@@ -39,9 +38,9 @@ function PlayerRanking_GetXPNeededForLevel( level )
     end
 
     return math.min( 16500,                    -- Maximum 16500 between levels
-        math.min( base, 7 ) * 1250             -- 1250 extra per level up to level 8
-                + Clamp( base - 7, 0, 14 - 7 ) * 750   -- 750 extra per level up to level 15
-                + math.max( 0, base - 14 ) * 500       -- 500 extra per level after
+            math.min( base, 7 ) * 1250             -- 1250 extra per level up to level 8
+                    + Clamp( base - 7, 0, 14 - 7 ) * 750   -- 750 extra per level up to level 15
+                    + math.max( 0, base - 14 ) * 500       -- 500 extra per level after
     )
 end
 
@@ -96,10 +95,7 @@ function PlayerRankingUI_GetLevelFraction()
 
 end
 
-
-
 class 'PlayerRanking'
-
 function PlayerRanking:StartGame()
 
     self.gameStartTime = Shared.GetTime()
@@ -191,7 +187,7 @@ function PlayerRanking:CalcCommanderScores()
     for i = 1,2 do
         if commanders[i][1] > 0 and stats[i][2] > 0 then
             self.capturedPlayerData[commanders[i][1]].score = math.max(self.capturedPlayerData[commanders[i][1]].score,
-                stats[i][1] / stats[i][2])
+                    stats[i][1] / stats[i][2])
         end
     end
 
@@ -229,7 +225,7 @@ function PlayerRanking:EndGame(winningTeam)
             self this gameEndTime
             args player
             player:SetExitTime( player:GetTeamNumber(), gameEndTime )
-            self:LogPlayer( player )
+            this:LogPlayer( player )
         ]=]{self, gameEndTime}
 
         GetGamerules():GetTeam1():ForEachPlayer(LogPlayer)

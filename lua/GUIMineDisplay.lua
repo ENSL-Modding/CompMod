@@ -29,7 +29,7 @@ function GUIMineDisplay:Initialize()
     -- Slightly larger copy of the text for a glow effect
     self.ammoTextBg = GUIManager:CreateTextItem()
     self.ammoTextBg:SetFontName(Fonts.kMicrogrammaDMedExt_Large)
-    self.ammoTextBg:SetScale(Vector(1.5, 1.5, 1.5))
+    self.ammoTextBg:SetScale(Vector(1.5, 1.5, 1.5) * Vector(1.18, 1.18,0))
     self.ammoTextBg:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextBg:SetTextAlignmentY(GUIItem.Align_Center)
     self.ammoTextBg:SetAnchor(GUIItem.Middle, GUIItem.Center)
@@ -38,14 +38,14 @@ function GUIMineDisplay:Initialize()
     -- Text displaying the amount of ammo in the clip
     self.ammoText = GUIManager:CreateTextItem()
     self.ammoText:SetFontName(Fonts.kMicrogrammaDMedExt_Large)
-    self.ammoText:SetScale(Vector(1.5, 1.5, 1.5))
+    self.ammoText:SetScale(Vector(1.5, 1.5, 1.5) * Vector(1.18, 1.18,0))
     self.ammoText:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoText:SetTextAlignmentY(GUIItem.Align_Center)
     self.ammoText:SetAnchor(GUIItem.Middle, GUIItem.Center)
     
     self.flashInOverlay = GUIManager:CreateGraphicItem()
     self.flashInOverlay:SetSize(Vector(256, 512, 0))
-    self.flashInOverlay:SetPosition(Vector(0, 0, 0))    
+    self.flashInOverlay:SetPosition(Vector(0, 0, 0))
     self.flashInOverlay:SetColor(Color(1, 1, 1, 0.7))
     
     -- Force an update so our initial state is correct.

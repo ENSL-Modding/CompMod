@@ -14,10 +14,10 @@ Script.Load("lua/Hud/HelpScreen/HelpScreenBinding.lua")
 Script.Load("lua/Hud/HelpScreen/MarineHelpTile.lua")
 Script.Load("lua/Hud/HelpScreen/AlienHelpTile.lua")
 Script.Load("lua/Hud/HelpScreen/HelpScreenContent.lua")
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 
 local helpScreenInstance
-local helpScreenObservers = US_Create() -- unordered set
+local helpScreenObservers = UnorderedSet()
 local kFont = Fonts.kAgencyFB_Large_Bordered
 
 local kReadTime = 0.5 -- time screen must be displayed before tiles present are marked as read.
@@ -122,7 +122,7 @@ end
 -- after the observer is added, to bring them up to speed.
 function HelpScreen_AddObserver(script)
     
-    US_Add(helpScreenObservers, script)
+    helpScreenObservers:Add(script)
     script:OnHelpScreenVisChange(HelpScreen_GetHelpScreen():GetIsBeingDisplayed())
     
 end
@@ -130,7 +130,7 @@ end
 -- Removes the given script from the observer set.
 function HelpScreen_RemoveObserver(script)
     
-    US_Remove(helpScreenObservers, script)
+    helpScreenObservers:RemoveElement(script)
     
 end
 
@@ -528,9 +528,8 @@ function HelpScreen:Hide()
         ClientUI.SetScriptVisibility(self.uiScriptsHidden[i], "HelpScreen", true)
     end
     
-    local a = US_GetArray(helpScreenObservers)
-    for i=1, #a do
-        a[i]:OnHelpScreenVisChange(false)
+    for i=1, #helpScreenObservers do
+        helpScreenObservers[i]:OnHelpScreenVisChange(false)
     end
     
 end
@@ -561,9 +560,8 @@ function HelpScreen:Display()
         ClientUI.SetScriptVisibility(self.uiScriptsHidden[i], "HelpScreen", false)
     end
     
-    local a = US_GetArray(helpScreenObservers)
-    for i=1, #a do
-        a[i]:OnHelpScreenVisChange(true)
+    for i=1, #helpScreenObservers do
+        helpScreenObservers[i]:OnHelpScreenVisChange(true)
     end
     
 end

@@ -300,117 +300,133 @@ CreateServerAdminCommand("Console_sv_tests", SetTests, "<boolean>, Turns tests m
 local bannedPlayersFileName = "BannedPlayers.json"
 local bannedPlayers = LoadConfigFile(bannedPlayersFileName) or { }
 
+local bannedPlayersMap = {}
+local function GenerateBannedPlayersMap()
+    for i, ban in ipairs(bannedPlayers) do
+        local id = ban.id
+        ban.index = i
+        bannedPlayersMap[id] = ban
+    end
+end
+
+local function RemoveExpiredBans()
+    local now = Shared.GetSystemTime()
+    for i = #bannedPlayers, 1, -1 do
+        local ban = bannedPlayers[i]
+        if ban.time > 0 and now >= ban.time then
+            table.remove(bannedPlayers, i)
+        end
+    end
+end
+
+do
+    RemoveExpiredBans()
+    GenerateBannedPlayersMap()
+end
+
 local function SaveBannedPlayers()
+    RemoveExpiredBans()
+    GenerateBannedPlayersMap()
+
     SaveConfigFile(bannedPlayersFileName, bannedPlayers)
 end
 
---[[
-    The reserved slot system allows players marked as reserved players to join while
-    all non-reserved slots are taken and the server is not full.
+function UnbanUser(userId)
+    local ban = bannedPlayersMap[userId]
+    if not ban then return false end
 
-    Also we check if a player is banned here.
-]]
+    table.remove(bannedPlayers, ban.index)
+    SaveBannedPlayers()
 
-local spectorIds = {}
-
-local reservedSlotIds = {}
-
-function GetHasReservedSlotAccess(userId)
-    return reservedSlotIds[userId]
+    return true
 end
+
+--[[
+    Returns if the user with the given userId is banned
+]]
+function GetIsUserBanned(userId)
+    local ban = bannedPlayersMap[userId]
+    if not ban then return false end
+
+    local now = Shared.GetSystemTime()
+    if ban.time == 0 or now < ban.time then
+        return true
+    end
+
+    return false -- ban expired, will be removed next time the banned players config gets loaded or saved
+end
+
+--[[
+    Returns if the user with the given userId is banned permanently
+]]
+function GetIsUserBannedPermanently(userId)
+    local ban = bannedPlayersMap[userId]
+    if not ban then return false end
+
+    return ban.time == 0
+end
+
+-- Flag clients as spectators during thec connection allowe check
+local spectorIds = {}
 
 local function OnCheckConnectionAllowed(userId)
 
     --check if the user is banned
-    for b = #bannedPlayers, 1, -1 do
-
-        local ban = bannedPlayers[b]
-        if ban.id == userId then
-
-            -- Check if enough time has passed on a temporary ban.
-            local now = Shared.GetSystemTime()
-            if ban.time == 0 or now < ban.time then
-
-                Shared.Message(string.format("Rejected connection to banned client %s", userId))
-                return false,  ban.time == 0 and "You have been banned." or "You are temporarily banned."
-                
-            else
-
-                -- No longer banned.
-                table.remove(bannedPlayers, b)
-                SaveBannedPlayers()
-                break
-
-            end
-
-        end
-
+    if GetIsUserBanned(userId) then
+        Shared.Message("Rejected connection to banned client %s", userId)
+        return false, GetIsUserBannedPermanently(userId) and "You are permanently banned." or "You are temporarily banned."
     end
 
-    --check the reserved slots
-    local reservedSlots = Server.GetReservedSlotsConfig()
-
-    if reservedSlots and reservedSlots.ids then
-        reservedSlotIds[userId] = nil
-
-        for _, id in pairs(reservedSlots.ids) do
-
-            if id == userId then
-
-                reservedSlotIds[userId] = true
-                break
-
-            end
-
-        end
-    end
-
-    local numPlayers = Server.GetNumPlayersTotal() - 1 -- NumTotal includes the player we are just checking right now
-    local numSpectator = Server.GetNumSpectators()
+    local numClients = Server.GetNumClientsTotal() - 1 -- NumTotal includes the player we are just checking right now
     local maxPlayers = Server.GetMaxPlayers()
     local maxSpectators = Server.GetMaxSpectators()
-    local numRes = Server.GetReservedSlotLimit()
+    local maxClients = maxPlayers + maxSpectators
 
-    --check for free player slots
+    if numClients >= maxClients then
+        Shared.Message("Rejected connection to client %s as there is no client slot available.", userId)
+        return false, "Server is currently full."
+    end
+
+    local numSpectator = Server.GetNumSpectators()
+    local numPlayers = numClients - numSpectator
+
+    -- Check for spectator count overflow issue
+    if numPlayers < 0 then
+        Shared.Message("Warning: Spectator count overflow detected!")
+        numPlayers = numClients
+    end
+
+    local numRes = Server.GetReservedSlotLimit()
+    -- Check for free player slots
     if numPlayers < (maxPlayers - numRes) then
         return true
     end
 
-    --check for free reserved slots
+    -- Check for free reserved slots
     if GetHasReservedSlotAccess(userId) and numPlayers < maxPlayers then
         return true
     end
 
-    spectorIds[userId] = nil
-
-    --check for free spectator slots
+    -- Check for free spectator slots
     if numSpectator < maxSpectators then
         spectorIds[userId] = true
         return true
     end
 
-    Shared.Message("Rejected connection to client %s as there are no free slots avaible.", userId)
+    Shared.Message("Rejected connection to client %s as there is no free slot available.", userId)
     return false, "Server is currently full."
 
 end
 Event.Hook("CheckConnectionAllowed", OnCheckConnectionAllowed)
 
+local function OnCheckConnectionIsSpectator(userId)
+    if not spectorIds[userId] then return false end
 
-local function OnConnect(client)
-    local clientId = client:GetUserId()
-
-    if not client:GetIsSpectator() and not spectorIds[clientId] then
-        return
-    end
-
-    local player = client:GetControllingPlayer()
-    if player then
-        player:SetIsSpectator(true)
-    else
-        client:SetIsSpectator(true)
-    end
+    spectorIds[userId] = nil
+    return true
 end
-Event.Hook("ClientConnect", OnConnect)
+Event.Hook("CheckConnectionIsSpectator", OnCheckConnectionIsSpectator)
+
 --[[
  * Duration is specified in minutes. Pass in 0 or nil to ban forever.
  * A reason string may optionally be provided.
@@ -458,7 +474,6 @@ end
 CreateServerAdminCommand("Console_sv_ban", Ban, "<player id> <duration in minutes> <reason text>, Bans the player from the server, pass in 0 for duration to ban forever")
 
 local function UnBan(client, steamId)
-
     if not steamId then
     
         ServerAdminPrint(client, "No Id passed into sv_unban")
@@ -466,22 +481,9 @@ local function UnBan(client, steamId)
         
     end
     
-    local found = false
-    for p = #bannedPlayers, 1, -1 do
+    local unbanned = UnbanUser(steamId)
     
-        if bannedPlayers[p].id == tonumber(steamId) then
-        
-            table.remove(bannedPlayers, p)
-            ServerAdminPrint(client, "Removed " .. steamId .. " from the ban list")
-            found = true
-            
-        end
-        
-    end
-    
-    if found then
-        SaveBannedPlayers()
-    else
+    if not unbanned then
         ServerAdminPrint(client, "No matching Steam Id in ban list: " .. steamId)
     end
     
@@ -508,11 +510,12 @@ local function ListBans(client)
     if #bannedPlayers == 0 then
         ServerAdminPrint(client, "No players are currently banned")
     end
-    
+
+    local now = Shared.GetSystemTime()
     for p = 1, #bannedPlayers do
     
         local ban = bannedPlayers[p]
-        local timeLeft = ban.time == 0 and "Forever" or (((ban.time - Shared.GetSystemTime()) / 60) .. " minutes")
+        local timeLeft = ban.time == 0 and "Forever" or (ban.time - now) / 60 .. " minutes"
         ServerAdminPrint(client, "Name: " .. ban.name .. " Id: " .. ban.id .. " Time Remaining: " .. timeLeft .. " Reason: " .. (ban.reason or "Not provided"))
         
     end

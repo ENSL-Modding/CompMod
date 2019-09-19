@@ -1,12 +1,33 @@
 -- ======= Copyright (c) 2017, Unknown Worlds Entertainment, Inc. All rights reserved. =======
 --
--- lua\Shared.lua
+-- lua\DebugUtils.lua
 --
 --    Created by:   Trevor Harris (trevor@naturalselection2.com)
 --
 --    Contains useful commands for debugging purposes.
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
+
+-- Prints out all the local variables of a function and the current line number.  Useful for tracing execution in lieu
+-- of a proper debugger. :(
+function DumpLocals(functionName)
+    local debuginfo = debug.getinfo(2, "nSlu")
+    local functionName = functionName or debuginfo.name
+    local numUpValues = debuginfo.nups
+    local lineNumber = debuginfo.currentline
+    
+    HPrint("%s() @ %s", functionName, lineNumber)
+    
+    local localIndex = 1
+    while true do
+        local localName, localValue = debug.getlocal(2, localIndex)
+        if not localName then break end
+        
+        HPrint("    %s = %s", localName, ToString(localValue))
+        localIndex = localIndex + 1
+    end
+    
+end
 
 local kDebugTablePrefix = "debug_entities_"
 

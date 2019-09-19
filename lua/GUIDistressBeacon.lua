@@ -8,6 +8,8 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
+-- TODO: is this class deprecated???  I think it is...
+
 class 'GUIDistressBeacon' (GUIScript)
 
 GUIDistressBeacon.kTextFontName = Fonts.kMicrogrammaDMedExt_Medium

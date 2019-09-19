@@ -9,7 +9,6 @@
 Script.Load("lua/Gamerules.lua")
 
 -- Called when player first connects to server
--- TODO: Move this into NS specific player class
 function Player:OnClientConnect(client)
     self:SetRequestsScores(true)   
 end
@@ -33,9 +32,9 @@ function Player:SetIsSpectator(isSpec)
 
     assert(self.client ~= nil)
 
-    if not self.client:SetIsSpectator(isSpec) then return end
+    self.client:SetIsSpectator(isSpec)
 
-    --Move spectating player to the spectator team
+    -- Move spectating player to the spectator team
     if not isSpec then return end
 
     local gamerules = GetGamerules()
@@ -885,8 +884,27 @@ function Player:SetRookie(isRookie)
 end
 
 function Player:GetIsRookie()
-    return self.isRookie
+    local isRookie = self.isRookie
+    if not isRookie and Shared.GetDevMode() then
+        isRookie = self.spoofRookie == true
+    end
+    return isRookie
 end
+
+Event.Hook("Console_spoof_rookie", function(client, state)
+    if not client then return end
+    local player = client:GetPlayer()
+    if not player then return end
+    
+    if state == nil then
+        state = not player.spoofRookie
+    else
+        state = state == "1"
+    end
+    
+    player.spoofRookie = state
+    
+end)
 
 function Player:OnClientUpdated(client)
     -- override me

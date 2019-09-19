@@ -141,7 +141,7 @@ if Client then
             self.lastTimeOccupied = now
         end
         
-        local displayHelpArrows = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+        local displayHelpArrows = Client.GetHudDetail() == kHUDMode.Full
         if player and displayHelpArrows then
         
             -- Display the help arrows (get into Comm structure) when the

@@ -5,7 +5,7 @@
 -- Max number of available badge columns
 kMaxBadgeColumns = 10
 
---List of all avaible badges
+--List of all available badges
 gBadges = {
     "disabled",
     "none",
@@ -200,19 +200,19 @@ do
     -- stats badges
     badgeData["skulk_challenge_1_bronze"] = MakeStatsBadgeData("skulk_challenge_1_bronze", "skulk_challenge_1", "INT",
         function(value)
-            return value >= 1
+            return value ~= nil and value >= 1
         end)
     badgeData["skulk_challenge_1_silver"] = MakeStatsBadgeData("skulk_challenge_1_silver", "skulk_challenge_1", "INT",
         function(value)
-            return value >= 2
+            return value ~= nil and value >= 2
         end)
     badgeData["skulk_challenge_1_gold"] = MakeStatsBadgeData("skulk_challenge_1_gold", "skulk_challenge_1", "INT",
         function(value)
-            return value >= 3
+            return value ~= nil and value >= 3
         end)
     badgeData["skulk_challenge_1_shadow"] = MakeStatsBadgeData("skulk_challenge_1_shadow", "skulk_challenge_1", "INT",
         function(value)
-            return value >= 4
+            return value ~= nil and value >= 4
         end)
 
     --custom badges
@@ -284,6 +284,11 @@ function Badges_GetBadgeData(badgeId)
     local enumVal = rawget(gBadges, badgeId)
     if not enumVal then return nil end
     return badgeData[enumVal]
+end
+
+function Badges_GetBadgeDataByName(badgeName)
+    assert(type(badgeName) == "string")
+    return badgeData[badgeName]
 end
 
 function Badges_SetName(badgeId, name)
@@ -404,7 +409,9 @@ function Badges_FetchBadgesFromStats(badges, client)
                     assert(false)
                 end
                 
-                statValue = apiFunc(client, data.statName)
+                pcall(function()
+                    statValue = apiFunc(client, data.statName)
+                end)
                 
             elseif Client then
                 
@@ -417,7 +424,9 @@ function Badges_FetchBadgesFromStats(badges, client)
                     assert(false)
                 end
                 
-                statValue = apiFunc(data.statName)
+                pcall(function()
+                    statValue = apiFunc(data.statName)
+                end)
                 
             else
                 assert(false)

@@ -586,7 +586,7 @@ end
 function GUIHiveStatus:Update( deltaTime ) 
     PROFILE("GUIHiveStatus:Update")
     
-    local fullMode = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullMode = Client.GetHudDetail() == kHUDMode.Full
     self.background:SetIsVisible( fullMode and self.visible )
     if not fullMode then
         return

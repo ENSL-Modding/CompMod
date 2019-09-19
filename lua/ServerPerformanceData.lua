@@ -303,6 +303,25 @@ function ServerPerformanceData.GetPerformanceText(quality, score)
     return result
 end
 
+-- same as above, but not wrapped in Locale.ResolveString().
+function ServerPerformanceData.GetPerformanceTextNoResolve(quality, score)
+    local result = "SERVER_PERF_UNKNOWN"
+    score = score * quality / 100
+
+    if quality >= kServerPerformanceDataUnknownQualityCutoff then
+        result = 
+            ( score < kLoaded and "SERVER_PERF_BAD" or
+            ( score < kOk and "SERVER_PERF_LOADED" or
+            ( score < kGood and "SERVER_PERF_OK" or "SERVER_PERF_GOOD")))
+    end
+    
+    if dbgServerPerfData then
+        Log("PerfText: Quality %s, Score %s, result %s", quality, score, result)
+    end
+    
+    return result
+end
+
 local kPerfIconIcons = {
     PrecacheAsset("ui/icons/smiley_good.dds"),
     PrecacheAsset("ui/icons/smiley_meh.dds"),

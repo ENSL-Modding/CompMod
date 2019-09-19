@@ -30,6 +30,14 @@ Babbler.kMapName = "babbler"
 
 Babbler.kModelName = PrecacheAsset("models/alien/babbler/babbler.model")
 Babbler.kModelNameShadow = PrecacheAsset("models/alien/babbler/babbler_shadow.model")
+Babbler.kModelNameAbyss= PrecacheAsset("models/alien/babbler/babbler_abyss.model")
+local kBabblerModelVariants =
+{
+    [kGorgeVariant.normal] = Babbler.kModelName,
+    [kGorgeVariant.shadow] = Babbler.kModelNameShadow,
+    [kGorgeVariant.abyss] = Babbler.kModelNameAbyss,
+}
+
 local kAnimationGraph = PrecacheAsset("models/alien/babbler/babbler.animation_graph")
 
 Babbler.kMass = 15
@@ -224,11 +232,8 @@ end
 
 function Babbler:SetVariant(gorgeVariant)
 
-    if gorgeVariant == kGorgeVariant.shadow then
-        self:SetModel(Babbler.kModelNameShadow, kAnimationGraph)
-    else
-        self:SetModel(Babbler.kModelName, kAnimationGraph)
-    end
+    local model = kBabblerModelVariants[gorgeVariant] or Babbler.kModelName
+    self:SetModel(model, kAnimationGraph)
 
     self.variant = gorgeVariant
     

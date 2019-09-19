@@ -11,7 +11,7 @@
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
 Script.Load("lua/GUIAssets.lua")
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 Script.Load("lua/challenge/GUIChallengeMedal.lua")
 
 class 'GUIChallengeResults' (GUIScript)
@@ -83,7 +83,7 @@ GUIChallengeResults.kMedalNameLocale =
 function GUIChallengeResults:CreateGUIItem()
     
     local item = GUI.CreateItem()
-    US_Add(self.items, item)
+    self.items:Add(item)
     
     return item
     
@@ -92,7 +92,7 @@ end
 function GUIChallengeResults:DestroyGUIItem(item)
     
     GUI.DestroyItem(item)
-    US_Remove(self.items, item)
+    self.items:RemoveElement(item)
     
 end
 
@@ -592,11 +592,11 @@ end
 function GUIChallengeResults:Initialize()
     
     -- To make cleanup easier, we keep track of which items belong to this script.
-    self.items = US_Create()
+    self.items = UnorderedSet()
     self.rows = {}
     self.buttons = {}
     self.namedButtons = {} -- easier access to buttons.
-    self.siblingScripts = US_Create()
+    self.siblingScripts = UnorderedSet()
     
     -- Initialize important values
     self.position = Vector(0,0,0)
@@ -625,8 +625,8 @@ end
 
 function GUIChallengeResults:Uninitialize()
     
-    for i=1, #self.items.a do
-        GUI.DestroyItem(self.items.a[i])
+    for i=1, #self.items do
+        GUI.DestroyItem(self.items[i])
     end
     
     self:ClearMedalScript()
@@ -634,8 +634,8 @@ function GUIChallengeResults:Uninitialize()
     MouseTracker_SetIsVisible(false)
     
     -- Sever our connection with any sibling scripts.
-    while US_GetSize(self.siblingScripts) > 0 do
-        self:RemoveSiblingScript(US_GetElement(self.siblingScripts, 1))
+    while #self.siblingScripts > 0 do
+        self:RemoveSiblingScript(self.siblingScripts[1])
     end
     
 end
@@ -1052,7 +1052,7 @@ end
 
 function GUIChallengeResults:RemoveSiblingScript(script)
     
-    if US_Remove(self.siblingScripts, script) then
+    if self.siblingScripts:RemoveElement(script) then
         -- we just removed them from our set, make sure they remove us.
         if script.RemoveSiblingScript then
             script:RemoveSiblingScript(self)
@@ -1065,7 +1065,7 @@ end
 
 function GUIChallengeResults:AddSiblingScript(script)
     
-    if US_Add(self.siblingScripts, script) then
+    if self.siblingScripts:Add(script) then
         -- we just added them to our list of siblings, make sure we're added to theirs.
         if script.AddSiblingScript then
             script:AddSiblingScript(self)

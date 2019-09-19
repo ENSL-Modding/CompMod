@@ -37,6 +37,14 @@ BabblerEgg.kDropRange = 3
 
 BabblerEgg.kModelName = PrecacheAsset("models/alien/babbler/babbler_egg.model")
 BabblerEgg.kModelNameShadow = PrecacheAsset("models/alien/babbler/babbler_egg_shadow.model")
+BabblerEgg.kModelNameAbyss = PrecacheAsset("models/alien/babbler/babbler_egg_abyss.model")
+local kBabblerEggModelVariants =
+{
+    [kGorgeVariant.normal] = BabblerEgg.kModelName,
+    [kGorgeVariant.shadow] = BabblerEgg.kModelNameShadow,
+    [kGorgeVariant.abyss] = BabblerEgg.kModelNameAbyss,
+}
+
 local kAnimationGraph = PrecacheAsset("models/alien/babbler/babbler_egg.animation_graph")
 PrecacheAsset("sound/NS2.fev/alien/babbler/hatch")
 
@@ -131,12 +139,8 @@ function BabblerEgg:SetVariant(gorgeVariant)
 
     self.variant = gorgeVariant
 
-    if gorgeVariant == kGorgeVariant.shadow then
-        self:SetModel(BabblerEgg.kModelNameShadow, kAnimationGraph)
-    else
-        self:SetModel(BabblerEgg.kModelName, kAnimationGraph)
-    end
-    
+    local model = kBabblerEggModelVariants[gorgeVariant] or BabblerEgg.kModelName
+    self:SetModel(model, kAnimationGraph)
 end
 
 function BabblerEgg:GetMaturityRate()
@@ -302,7 +306,7 @@ function BabblerEgg:OnUpdateRender()
         if self.variant == kGorgeVariant.toxin then
             self._renderModel:SetMaterialParameter("textureIndex", 1 )
         else
-            self._renderModel:SetMaterialParameter("textureIndex", 0 ) --??? Won't this generate an error for Shadow?
+            self._renderModel:SetMaterialParameter("textureIndex", 0 ) 
         end
     end
 

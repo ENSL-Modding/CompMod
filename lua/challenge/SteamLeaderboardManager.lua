@@ -39,7 +39,7 @@ end
 local function OnSteamNameReceived(steamId, name)
     
     local self = GetSteamLeaderboardManager()
-    US_Remove(self.requestedNames, steamId)
+    self.requestedNames:RemoveElement(steamId)
     self.knownSteamNames[steamId] = name
     
 end
@@ -54,7 +54,7 @@ function SteamLeaderboardManager:GetSteamName(steamId)
     end
     
     -- Ensure the name is being requested by steam
-    if not US_GetElementExists(self.requestedNames, steamId) then
+    if not self.requestedNames:GetIndex(steamId) then
         local result = {}
         if Client.RequestSteamName(steamId, result) then
             -- returned true, meaning we have a result immediately available.
@@ -62,7 +62,7 @@ function SteamLeaderboardManager:GetSteamName(steamId)
         else
             -- we've put out a request for the name, and must now wait for Steam to return.  Make note of requested
             -- names we're waiting on so we don't spam Steam.
-            US_Add(self.requestedNames, steamId)
+            self.requestedNames:Add(steamId)
         end
     end
     
@@ -316,7 +316,7 @@ function SteamLeaderboardManager:Init()
     self.boardNameToHandle = {} -- name -> handle lookup table
     self.badBoardNames = {} -- leaderboard names that have definitively failed, and should not be re-queried.
     
-    self.requestedNames = US_Create() -- names requested from Steam.
+    self.requestedNames = UnorderedSet() -- names requested from Steam.
     self.knownSteamNames = {} -- id -> name string lookup table.
     
     self.requestQueue = {} -- stores pending steam requests of various types.

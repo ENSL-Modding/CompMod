@@ -817,7 +817,7 @@ function GUIAlienHUD:Update(deltaTime)
 
     PROFILE("GUIAlienHUD:Update")
 
-    local fullMode = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullMode = Client.GetHudDetail() == kHUDMode.Full
 
     -- update resource display
     self.resourceDisplay:Update(deltaTime, { PlayerUI_GetTeamResources(), PlayerUI_GetPersonalResources(), CommanderUI_GetTeamHarvesterCount() } )

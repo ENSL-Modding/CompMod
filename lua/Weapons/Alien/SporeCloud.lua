@@ -76,6 +76,8 @@ function SporeCloud:OnCreate()
     -- note: let the cloud linger a little bit after it stops doing damage to let the animation play out
     self.endOfDamageTime = self.createTime + kSporesDustCloudLifetime 
     self.destroyTime = self.endOfDamageTime + 2
+    
+    self:SetRelevancyDistance(kMaxRelevancyDistance)
 
 end
 
@@ -91,7 +93,12 @@ function SporeCloud:OnDestroy()
     if Client then
         if self.sporeEffect then
             Client.DestroyCinematic(self.sporeEffect)
-            self.sporeEffect = nil        
+            self.sporeEffect = nil
+        end
+    
+        if self.sporeSpawnEffect then
+            Client.DestroyCinematic(self.sporeSpawnEffect)
+            self.sporeSpawnEffect = nil
         end
     end
     

@@ -274,12 +274,24 @@ if Server then
             end
         end
 
-        if not self.gameInfo:GetRookieMode() and not Shared.GetCheatsEnabled()
-                and not Server.IsDedicated() and not self.botTraining and newCommander:GetIsRookie() then
+        if not self.gameInfo:GetRookieMode() and not Shared.GetCheatsEnabled() and
+           Server.IsDedicated() and not self.botTraining and newCommander:GetIsRookie() then
+            
             Server.SendNetworkMessage(nil, "CommanderLoginError", {}, true)
         end
 
         return not commandStructure:GetTeam():GetHasCommander()
+    end
+
+    function NS2Gamerules:OnClientConnect(client)
+        local player = Gamerules.OnClientConnect(self, client) -- creates player entity
+
+        -- Move spectators into the spectator team
+        if client:GetIsSpectator() then
+            self:JoinTeam(player, kSpectatorIndex, true)
+        end
+
+        return player
     end
 
     function NS2Gamerules:OnClientDisconnect(client)
@@ -393,7 +405,7 @@ if Server then
         local notifyEntities = Shared.GetEntitiesWithTag("EntityChange")
         
         -- Tell notifyEntities this entity has changed ids or has been deleted (changed to nil).
-        for index, ent in ientitylist(notifyEntities) do
+        for _, ent in ientitylist(notifyEntities) do
         
             if ent:GetId() ~= oldId and ent.OnEntityChange then
                 ent:OnEntityChange(oldId, newId)
@@ -425,7 +437,7 @@ if Server then
     -- logs out any players currently as the commander
     function NS2Gamerules:LogoutCommanders()
 
-        for index, entity in ientitylist(Shared.GetEntitiesWithClassname("CommandStructure")) do
+        for _, entity in ientitylist(Shared.GetEntitiesWithClassname("CommandStructure")) do
             entity:Logout()
         end
         
@@ -489,7 +501,7 @@ if Server then
         -- the game (hives, command structures, initial resource towers, etc)
         -- We need to convert the EntityList to a table since we are destroying entities
         -- within the EntityList here.
-        for index, entity in ientitylist(Shared.GetEntitiesWithClassname("Entity")) do
+        for _, entity in ientitylist(Shared.GetEntitiesWithClassname("Entity")) do
         
             -- Don't reset/delete NS2Gamerules or TeamInfo.
             -- NOTE!!!
@@ -541,7 +553,7 @@ if Server then
         end
         
         -- add obstacles for resource points back in
-        for index, resourcePoint in ientitylist(resourcePoints) do        
+        for _, resourcePoint in ientitylist(resourcePoints) do
             resourcePoint:AddToMesh()        
         end
         
@@ -665,7 +677,7 @@ if Server then
         self.bannedPlayers:Clear()
         
         -- Send scoreboard and tech node update, ignoring other scoreboard updates (clearscores resets everything)
-        for index, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
+        for _, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
             Server.SendCommand(player, "onresetgame")
             player.sendTechTreeBase = true
         end
@@ -715,7 +727,7 @@ if Server then
         -- Check if the individual player's should be sent their own ping.
         if self.timeToSendIndividualPings == nil or now >= self.timeToSendIndividualPings then
         
-            for index, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
+            for _, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
                 Server.SendNetworkMessage(player, "Ping", BuildPingMessage(player:GetClientIndex(), player:GetPing()), false)
             end
             
@@ -726,7 +738,7 @@ if Server then
         -- Check if all player's pings should be sent to everybody.
         if self.timeToSendAllPings == nil or  now >= self.timeToSendAllPings then
         
-            for index, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
+            for _, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
                 Server.SendNetworkMessage("Ping", BuildPingMessage(player:GetClientIndex(), player:GetPing()), false)
             end
             
@@ -745,9 +757,9 @@ if Server then
             if spectators:GetSize() > 0 then
             
                 -- Send spectator all health
-                for index, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
+                for _, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
                 
-                    for index, spectator in ientitylist(spectators) do
+                    for _, spectator in ientitylist(spectators) do
                     
                         if not spectator:GetIsFirstPerson() then
                             Server.SendNetworkMessage(spectator, "Health", BuildHealthMessage(player), false)
@@ -842,10 +854,16 @@ if Server then
         
         -- Now allow script actors to hook post load
         local allScriptActors = Shared.GetEntitiesWithClassname("ScriptActor")
-        for index, scriptActor in ientitylist(allScriptActors) do
+        for _, scriptActor in ientitylist(allScriptActors) do
             scriptActor:OnMapPostLoad()
         end
         
+    end
+
+    local function MovePlayerToReadyRoom(player)
+        if not player:GetIsSpectator() then
+            GetGamerules():JoinTeam(player, kTeamReadyRoom)
+        end
     end
 
     function NS2Gamerules:UpdateToReadyRoom(force)
@@ -856,13 +874,9 @@ if Server then
                 -- Force the commanders to logout before we spawn people
                 -- in the ready room
                 self:LogoutCommanders()
-                
+
                 -- Set all players to ready room team
-                local function SetReadyRoomTeam(player)
-                    player:SetCameraDistance(0)
-                    self:JoinTeam(player, kTeamReadyRoom)
-                end
-                Server.ForAllPlayers(SetReadyRoomTeam)
+                Server.ForAllPlayers(MovePlayerToReadyRoom)
 
                 -- Spawn them there and reset teams
                 self:ResetGame()
@@ -1080,7 +1094,6 @@ if Server then
         if not self.nextTimeUpdateNumPlayersForScoreboard or self.nextTimeUpdateNumPlayersForScoreboard < kTime then
 
             local numClientsTotal = Server.GetNumClientsTotal and Server.GetNumClientsTotal() or 0
-            local numSpectator = Server.GetNumSpectators and Server.GetNumSpectators() or 0
 
             self.gameInfo:SetNumBots( #gServerBots )
             self.gameInfo:SetNumPlayers( Server.GetNumPlayingPlayers() )
@@ -1185,18 +1198,19 @@ if Server then
             if winningTeamType == kMarineTeamType then
 
                 self:SetGameState(kGameState.Team1Won)
+                Log("- Marine Team Victory")
                 PostGameViz("Marines Win!")
                 
             elseif winningTeamType == kAlienTeamType then
 
                 self:SetGameState(kGameState.Team2Won)
+                Log("- Alien Team Victory")
                 PostGameViz("Aliens Win!")
 
             else
-
                 self:SetGameState(kGameState.Draw)
+                Log("- Round Draw")
                 PostGameViz("Draw Game!")
-
             end
             
             Server.SendNetworkMessage( "GameEnd", { win = winningTeamType }, true)

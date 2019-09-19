@@ -543,7 +543,7 @@ local function AnimateFinalWaypoint(self)
     local finalWaypointData = PlayerUI_GetFinalWaypointInScreenspace()
     local showWayPoint = not PlayerUI_GetIsConstructing() and not PlayerUI_GetIsRepairing()
     
-    local fullHUD = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullHUD = Client.GetHudDetail() == kHUDMode.Full
     
     self.animatedCircle:SetIsVisible(self.visible and showWayPoint and fullHUD)
     self.finalWaypoint:SetIsVisible(self.visible and showWayPoint)

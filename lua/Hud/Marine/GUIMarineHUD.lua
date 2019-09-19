@@ -591,7 +591,7 @@ function GUIMarineHUD:Update(deltaTime)
 
     PROFILE("GUIMarineHUD:Update")
     
-    local fullMode = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullMode = Client.GetHudDetail() == kHUDMode.Full
     
     self:SetHUDMapEnabled(fullMode)
     
@@ -636,7 +636,7 @@ function GUIMarineHUD:Update(deltaTime)
     
         local notification = PlayerUI_GetRecentNotification()
         
-        if Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Minimal then
+        if Client.GetHudDetail() == kHUDMode.Minimal then
             notification = nil
         end
     
@@ -652,7 +652,7 @@ function GUIMarineHUD:Update(deltaTime)
     }
     self.inventoryDisplay:Update(deltaTime, inventoryUpdate)
 
-    if Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full then
+    if Client.GetHudDetail() == kHUDMode.Full then
     
         -- Update commander name
         local commanderName = PlayerUI_GetCommanderName()

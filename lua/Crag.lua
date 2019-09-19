@@ -327,7 +327,7 @@ end
 
 -- Look for nearby friendlies to heal
 function Crag:OnUpdate(deltaTime)
-
+    
     PROFILE("Crag:OnUpdate")
 
     ScriptActor.OnUpdate(self, deltaTime)

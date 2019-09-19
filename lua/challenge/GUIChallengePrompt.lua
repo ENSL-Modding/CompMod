@@ -9,7 +9,7 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 Script.Load("lua/challenge/GUIChallengeButton.lua")
 Script.Load("lua/menu/FancyUtilities.lua")
 
@@ -59,7 +59,7 @@ GUIChallengePrompt.kDimmerOpacity = 0.5
 function GUIChallengePrompt:CreateGUIItem()
     
     local item = GUI.CreateItem()
-    US_Add(self.items, item)
+    self.items:Add(item)
     
     return item
     
@@ -232,7 +232,7 @@ end
 
 function GUIChallengePrompt:Initialize()
     
-    self.items = US_Create()
+    self.items = UnorderedSet()
     self.buttons = {} -- table of button scripts
     
     -- start faded-out
@@ -257,8 +257,8 @@ function GUIChallengePrompt:Uninitialize()
     end
     
     -- Destroy gui items
-    for i=1, #self.items.a do
-        GUI.DestroyItem(self.items.a[i])
+    for i=1, #self.items do
+        GUI.DestroyItem(self.items[i])
     end
     
 end

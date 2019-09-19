@@ -85,6 +85,8 @@ function ClogAbility:GetGhostModelName(ability)
             return Clog.kModelNameShadow
         elseif variant == kGorgeVariant.toxin then
             return Clog.kModelNameToxin
+        elseif variant == kGorgeVariant.abyss then
+            return Clog.kModelNameAbyss
         end
         
     end

@@ -35,7 +35,7 @@ end
 --
 function ScoreDisplayUI_SetNewScore(score, res, wasKill)
 
-    if wasKill or Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full then
+    if wasKill or Client.GetHudDetail() == kHUDMode.Full then
 
         pendingScore = score
         pendingRes = res
