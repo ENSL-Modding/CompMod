@@ -227,6 +227,10 @@ if Server then
         self:Arm()
     end
 
+    function Mine:GetCanTakeDamage()
+        return self.active
+    end
+
     function Mine:OnKill(attacker, doer, point, direction)
 
         self:Arm()

@@ -251,7 +251,8 @@ local networkVars =
     
     primaryAttackLastFrame = "compensated boolean",
     secondaryAttackLastFrame = "compensated boolean",
-    
+    tertiaryAttackLastFrame = "compensated boolean",
+
     isUsing = "boolean",
     
     -- Reduce max player velocity in some cases (marine jumping)
@@ -358,7 +359,8 @@ function Player:OnCreate()
     self.modeTime = -1
     self.primaryAttackLastFrame = false
     self.secondaryAttackLastFrame = false
-    
+    self.tertiaryAttackLastFrame = false
+
     self.requestsScores = false
     self.viewModelId = Entity.invalidId
     
@@ -685,6 +687,10 @@ function Player:SecondaryAttack()
 
 end
 
+function Player:TertiaryAttack()
+
+end
+
 function Player:PrimaryAttackEnd()
 
     local weapon = self:GetActiveWeapon()
@@ -701,6 +707,10 @@ function Player:SecondaryAttackEnd()
         weapon:OnSecondaryAttackEnd(self)
     end
     
+end
+
+function Player:TertiaryAttackEnd()
+
 end
 
 function Player:SelectNextWeapon()
@@ -1845,7 +1855,7 @@ function Player:HandleAttacks(input)
     PROFILE("Player:HandleAttacks")
 
     if not self:GetCanAttack() then
-        input.commands = bit.band(input.commands, bit.bnot(bit.bor(Move.PrimaryAttack, Move.SecondaryAttack)))
+        input.commands = bit.band(input.commands, bit.bnot(bit.bor(Move.PrimaryAttack, Move.SecondaryAttack, Move.TertiaryAttack)))
     end
     
     self:WeaponUpdate()
@@ -1879,10 +1889,25 @@ function Player:HandleAttacks(input)
         
     end
 
+    if (bit.band(input.commands, Move.TertiaryAttack) ~= 0) then
+
+        self:TertiaryAttack()
+
+    else
+
+        if(self.tertiaryAttackLastFrame ~= nil and self.tertiaryAttackLastFrame) then
+
+            self:TertiaryAttackEnd()
+
+        end
+
+    end
+
     -- Remember if we attacked so we don't call AttackEnd() until mouse button is released
     self.primaryAttackLastFrame = (bit.band(input.commands, Move.PrimaryAttack) ~= 0)
     self.secondaryAttackLastFrame = (bit.band(input.commands, Move.SecondaryAttack) ~= 0)
-    
+    self.tertiaryAttackLastFrame = (bit.band(input.commands, Move.TertiaryAttack) ~= 0)
+
 end
 
 function Player:HandleDoubleTap(input)
@@ -1972,7 +1997,7 @@ function Player:HandleButtons(input)
                                                                    Move.Taunt, Move.Weapon1, Move.Weapon2,
                                                                    Move.Weapon3, Move.Weapon4, Move.Weapon5, 
                                                                    Move.Crouch, Move.Drop, Move.MovementModifier,
-                                                                   Move.GrenadeQuickThrow, Move.QuickSwitch)))
+                                                                   Move.TertiaryAttack, Move.QuickSwitch)))
                                                                    
         input.move.x = 0
         input.move.y = 0
@@ -1991,7 +2016,7 @@ function Player:HandleButtons(input)
     self.moveButtonPressed = input.move:GetLength() ~= 0
     
     local ableToUse = self:GetIsAbleToUse()
-    local attackLastFrame = self.primaryAttackLastFrame or self.secondaryAttackLastFrame
+    local attackLastFrame = self.primaryAttackLastFrame or self.secondaryAttackLastFrame or self.tertiaryAttackLastFrame
     local alienSecondaryAttacking = self:isa("Alien") and self.secondaryAttackLastFrame
 
     -- The only use case so far for the 'use' key to be pressed while using primary/secondary attack is

@@ -4,10 +4,11 @@
 function Render_SyncRenderOptions()
 
     local ambientOcclusion  = Client.GetOptionString("graphics/display/ambient-occlusion", "off")
-    local atmospherics      = Client.GetOptionBoolean("graphics/display/atmospherics", true)
+    local atmospherics      = Client.GetOptionBoolean(kAtmosphericsOptionsKey, true)
+    local atmoQuality       = Client.GetOptionString("graphics/atmospheric-quality", "low")
     local bloom             = Client.GetOptionBoolean("graphics/display/bloom_new", false)
     local shadows           = Client.GetOptionBoolean("graphics/display/shadows", true)
-    local antiAliasing      = Client.GetOptionBoolean("graphics/display/anti-aliasing", true)
+    local antiAliasing      = Client.GetOptionString(kAntiAliasingOptionsKey, "off")
     local fog               = Client.GetOptionBoolean("graphics/display/fog", false)
     local particleQuality   = Client.GetOptionString("graphics/display/particles", "low")
     local reflections       = Client.GetOptionBoolean("graphics/reflections", false)
@@ -17,6 +18,7 @@ function Render_SyncRenderOptions()
     Client.SetRenderSetting("mode", "lit")
     Client.SetRenderSetting("ambient_occlusion", ambientOcclusion)
     Client.SetRenderSetting("atmospherics", ToString(atmospherics))
+    Client.SetRenderSetting("atmosphericsQuality", atmoQuality)
     Client.SetRenderSetting("bloom"  , ToString(bloom))
     Client.SetRenderSetting("shadows", ToString(shadows))
     Client.SetRenderSetting("anti_aliasing", ToString(antiAliasing))
@@ -63,17 +65,26 @@ local function OnConsoleRenderMode(mode)
 end
 
 Client.ClearTextureLoadRules()
---Client.AddTextureLoadRule("*_spec.dds", 1)  -- Load all specular maps at 1/2 resolution
 Client.AddTextureLoadRule("ui/*.*", -100)   -- Don't reduce resolution on UI textures
+Client.AddTextureLoadRule("fonts/*.*", -100) -- Don't reduce resolution of font textures
 
 Event.Hook("Console_r_mode",            OnConsoleRenderMode )
 Event.Hook("Console_r_shadows",         RenderConsoleHandler("shadows", "graphics/display/shadows") )
 Event.Hook("Console_r_ao",              RenderConsoleHandler("ambient_occlusion", "graphics/display/ambient-occlusion") )
 Event.Hook("Console_r_atmospherics",    RenderConsoleHandler("atmospherics", "graphics/display/atmospherics") )
-Event.Hook("Console_r_aa",              RenderConsoleHandler("anti_aliasing", "graphics/display/anti-aliasing") )
 Event.Hook("Console_r_bloom",           RenderConsoleHandler("bloom", "graphics/display/bloom_new") )
 Event.Hook("Console_r_fog",             RenderConsoleHandler("fog", "graphics/display/fog") )
 Event.Hook("Console_r_glass",           RenderConsoleHandler("glass", "graphics/display/glass") )
+
+Event.Hook("Console_r_aa",
+    function(arg)
+        if arg == nil then
+            arg = "off"
+        end
+        Client.SetOptionString(kAntiAliasingOptionsKey, arg)
+        Client.SetRenderSetting("anti_aliasing", arg)
+        Render_SyncRenderOptions()
+    end)
 
 Event.Hook("Console_r_gamma",              
     function (arg)
@@ -101,3 +112,34 @@ Event.Hook("Console_r_pq",
         end
     end )
 
+-- DEBUB
+Event.Hook("Console_exclude_rect_enable", function(state)
+    
+    if state == nil then
+        Log("usage: exclude_rect_enable (true|1|false|0)")
+        return
+    end
+    
+    state = (state == "true" or state == "1")
+    Client.SetMainCameraExclusionRectEnabled(state)
+    Log("%s the main camera exclusion rectangle.", state and "Enabled" or "Disabled")
+    
+end)
+
+-- DEBUB
+Event.Hook("Console_exclude_rect", function(x0, y0, x1, y1)
+    
+    x0 = tonumber(x0)
+    y0 = tonumber(y0)
+    x1 = tonumber(x1)
+    y1 = tonumber(y1)
+    
+    if x0 == nil or y0 == nil or x1 == nil or y1 == nil then
+        Log("usage: exclude_rect x0, y0, x1, y1")
+        return
+    end
+    
+    Client.SetMainCameraExclusionRect(x0, y0, x1, y1)
+    Log("Setting the main camera exclusion rectangle to (%s, %s), (%s, %s)", x0, y0, x1, y1)
+    
+end)

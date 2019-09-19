@@ -14,7 +14,7 @@ kGreen = Color(0, 1, 0)
 kRed = Color(1, 0 ,0)
 
 -- this file is also used by GUIViews, which lack PrecacheAsset
-PrecacheAsset = PrecacheAsset or function(name) return name end
+PrecacheAsset = PrecacheAsset or function(name) return name end 
 
 local kScreenScaleAspect = 1080
 local kScreenScaleWeightAspect = 1920
@@ -32,7 +32,7 @@ function GUIItemCalculateScreenPosition(guiItem)
     local itemScreenPosition = guiItem:GetScreenPosition(Client.GetScreenWidth(), Client.GetScreenHeight())
     local itemText = guiItem:GetText()
     if itemText ~= "" then
-
+    
         local addX = 0
         local alignX = guiItem:GetTextAlignmentX()
         if alignX == GUIItem.Align_Center then
@@ -40,7 +40,7 @@ function GUIItemCalculateScreenPosition(guiItem)
         elseif alignX == GUIItem.Align_Max then
             addX = -guiItem:GetTextWidth(guiItem:GetText())
         end
-
+        
         local addY = 0
         local alignY = guiItem:GetTextAlignmentY()
         if alignY == GUIItem.Align_Center then
@@ -48,13 +48,13 @@ function GUIItemCalculateScreenPosition(guiItem)
         elseif alignY == GUIItem.Align_Max then
             addY = -guiItem:GetTextHeight(guiItem:GetText())
         end
-
+        
         itemScreenPosition = itemScreenPosition + Vector(addX, addY, 0)
-
+        
     end
-
+    
     return itemScreenPosition
-
+    
 end
 
 
@@ -66,7 +66,7 @@ function GUIItemContainsPoint(guiItem, pointX, pointY)
     ASSERT(guiItem ~= nil)
     ASSERT(pointX ~= nil)
     ASSERT(pointY ~= nil)
-
+    
     if not guiItem:GetIsVisible() then return false end
 
     local itemScreenPosition = GUIItemCalculateScreenPosition(guiItem)
@@ -76,13 +76,13 @@ function GUIItemContainsPoint(guiItem, pointX, pointY)
         itemScale = guiItem.scale
         itemSize = itemSize * itemScale
     end
-
+    
     local xWithin = pointX >= itemScreenPosition.x and pointX <= itemScreenPosition.x + itemSize.x
     local yWithin = pointY >= itemScreenPosition.y and pointY <= itemScreenPosition.y + itemSize.y
     if xWithin and yWithin then
         local xPositionWithin = pointX - itemScreenPosition.x
         local yPositionWithin = pointY - itemScreenPosition.y
-
+        
         return true, xPositionWithin / itemScale, yPositionWithin / itemScale, itemSize, itemScreenPosition
     end
     return false, 0, 0
@@ -92,7 +92,7 @@ end
 -- The following functions are global versions of the GUIItem member functions.
 -- They are useful for animation operations.
 function GUISetColor(item, color)
-    item:SetColor(color)
+    item:SetColor(color)   
 end
 
 function GUISetSize(item, size)
@@ -110,7 +110,7 @@ end
 function GUIGetSprite(col, row, width, height)
 
     return (col - 1) * width, (row - 1) * height, col * width, row * height
-
+    
 end
 
 -- Reduces any input value based on user resolution
@@ -141,14 +141,14 @@ local kRightClickCoords = { 52, 34, 75, 65 }
 local kMiddleClickCoords = { 93, 34, 115, 65 }
 local kOverrideBackground = { }
 kOverrideBackground["MouseButton0"] = { coords = kLeftClickCoords,
-    size = Vector(kLeftClickCoords[3] - kLeftClickCoords[1], kLeftClickCoords[4] - kLeftClickCoords[2], 0),
-    displayText = false }
+                                        size = Vector(kLeftClickCoords[3] - kLeftClickCoords[1], kLeftClickCoords[4] - kLeftClickCoords[2], 0),
+                                        displayText = false }
 kOverrideBackground["MouseButton1"] = { coords = kRightClickCoords,
-    size = Vector(kRightClickCoords[3] - kRightClickCoords[1], kRightClickCoords[4] - kRightClickCoords[2], 0),
-    displayText = false }
+                                        size = Vector(kRightClickCoords[3] - kRightClickCoords[1], kRightClickCoords[4] - kRightClickCoords[2], 0),
+                                        displayText = false }
 kOverrideBackground["MouseButton2"] = { coords = kMiddleClickCoords,
-    size = Vector(kMiddleClickCoords[3] - kMiddleClickCoords[1], kMiddleClickCoords[4] - kMiddleClickCoords[2], 0),
-    displayText = false }
+                                        size = Vector(kMiddleClickCoords[3] - kMiddleClickCoords[1], kMiddleClickCoords[4] - kMiddleClickCoords[2], 0),
+                                        displayText = false }
 local kKeyBackgroundHeight = 32
 local kKeyBackgroundSmallWidth = 32
 local kKeyBackgroundBigWidth = 64
@@ -159,25 +159,25 @@ function GUICreateButtonIcon(forAction, alienStyle)
 
     local forKey = GetPrettyInputName(forAction)
     local big = string.len(forKey) > 2
-
+    
     local textureName = kMarineKeyIconsTextureName
     local fontColor = kMarineFontColor
-
+    
     -- Default to the local player.
     if alienStyle == nil then
         alienStyle = GetIsAlienUnit(Client.GetLocalPlayer())
     end
-
+    
     if alienStyle then
-
+    
         textureName = kAlienKeyIconsTextureName
         fontColor = kAlienFontColor
-
-    end
-
+        
+    end    
+    
     local keyBackground = GUIManager:CreateGraphicItem()
     keyBackground:SetTexture(textureName)
-
+    
     local keyText = GUIManager:CreateTextItem()
     keyText:SetFontSize(kKeyFontSize)
     keyText:SetScale(GetScaledVector())
@@ -190,21 +190,21 @@ function GUICreateButtonIcon(forAction, alienStyle)
     keyText:SetFontName(Fonts.kAgencyFB_Small)
     keyText:SetInheritsParentAlpha(true)
     keyBackground:AddChild(keyText)
-
+    
     local width = kKeyBackgroundSmallWidth
-
+    
     if big then
     
         keyBackground:SetTexturePixelCoordinates(GUIUnpackCoords(kBackgroundBigCoords))
         local buttonTextWidth = keyText:GetTextWidth(forKey)
         width = ((kKeyBackgroundBigWidth > buttonTextWidth + kKeyBackgroundWidthBuffer) and kKeyBackgroundBigWidth) or (buttonTextWidth + kKeyBackgroundWidthBuffer)
-
+        
     else
         keyBackground:SetTexturePixelCoordinates(GUIUnpackCoords(kBackgroundSmallCoords))
     end
-
+    
     keyBackground:SetSize(GUIScale(Vector(width, kKeyBackgroundHeight, 0)))
-
+    
     -- Handle special case overrides (mouse button graphic for example).
     local nonPrettyKeyName = BindingsUI_GetInputValue(forAction)
     local override = kOverrideBackground[nonPrettyKeyName]
@@ -215,22 +215,22 @@ function GUICreateButtonIcon(forAction, alienStyle)
         if not override.displayText then
             keyText:SetIsVisible(false)
         end
-
+        
     end
-
+    
     return keyBackground, keyText
-
+    
 end
 
 function GetTextureCoordinatesForIcon(techId)
 
     local xOffset, yOffset = GetMaterialXYOffset(techId)
-
+    
     local x1 = 0
     local y1 = 0
     local x2 = 80
     local y2 = 80
-
+    
     if xOffset and yOffset then
         x1 = xOffset * 80
         y1 = yOffset * 80
@@ -248,89 +248,96 @@ function GUICreateCommanderPing()
     local frame = GetGUIManager():CreateGraphicItem()
     frame:SetTexture(kCommanderPingTexture)
     frame:SetTextureCoordinates(1,1,1,1) -- invisible
-
+    
     local mark = GetGUIManager():CreateGraphicItem()
     mark:SetTexture(kCommanderPingTexture)
     mark:SetTextureCoordinates(0.5, 0, 1, 1)
     mark:SetInheritsParentAlpha(true)
-
+    
     frame:AddChild(mark)
-
+    
     local border = GetGUIManager():CreateGraphicItem()
     border:SetTexture(kCommanderPingTexture)
     border:SetTextureCoordinates(0.0, 0, 0.5, 1)
     border:SetInheritsParentAlpha(true)
-
+    
     frame:AddChild(border)
-
+    
     -- Add text label that displays location name
     local location = GUIManager:CreateTextItem()
     location:SetFontName(kNeutralFontName)
     location:SetAnchor(GUIItem.Middle, GUIItem.Center)
-
+    
     location:SetTextAlignmentX(GUIItem.Align_Center)
     location:SetTextAlignmentY(GUIItem.Align_Center)
-
+    
     location:SetColor(kNeutralFontColor)
     location:SetInheritsParentAlpha(true)
-
+    
     frame:AddChild(location)
 
     return { Frame = frame, Mark = mark, Border = border, Location = location }
-
+    
 end
 
 local kBorderAnimationDuration = 0.5
 function GUIAnimateCommanderPing(markItem, borderItem, locationItem, defaultSize, timeSincePing, color1, color2)
 
-    timeSincePing = math.min(timeSincePing, kCommanderPingDuration)
-
+    timeSincePing = math.min(timeSincePing, kCommanderPingDuration)  
+  
     local borderAnimFraction = ConditionalValue(timeSincePing == kCommanderPingDuration, 0, 1 - ( (timeSincePing % kBorderAnimationDuration ) / kBorderAnimationDuration ) )
     local borderColor = Color(color1.r, color1.g, color1.b, borderAnimFraction)
-
+    
     borderItem:SetColor(borderColor)
     borderItem:SetSize(defaultSize * borderAnimFraction)
     borderItem:SetPosition(-defaultSize*.5 * borderAnimFraction)
-
+    
     local markColor = Color(color2.r, color2.g, color2.b, 1 - (timeSincePing / kCommanderPingDuration))
-
+    
     markItem:SetSize(defaultSize)
     markItem:SetPosition(-defaultSize * .5)
     markItem:SetColor(markColor)
-
+    
     locationItem:SetScale(GetScaledVector())
     locationItem:SetPosition(Vector(0, GUIScale(70), 0))
     locationItem:SetColor(markColor)
-
+    
     return timeSincePing == kCommanderPingDuration
 
 end
 
-if Locale then
-
+local kPrettyInputNames = nil
     local kPrettyInputNames
-    local function InitInputNames()
+local function InitInputNames()
+    
+    kPrettyInputNames = { }
+    kPrettyInputNames["MouseButton0"] = Locale.ResolveString("LEFT_MOUSE_BUTTON")
+    kPrettyInputNames["MouseButton1"] = Locale.ResolveString("RIGHT_MOUSE_BUTTON")
+    kPrettyInputNames["LeftShift"] = Locale.ResolveString("LEFT_SHIFT")
+    kPrettyInputNames["RightShift"] = Locale.ResolveString("RIGHT_SHIFT")
+end
 
-        kPrettyInputNames = { }
-        kPrettyInputNames["MouseButton0"] = Locale.ResolveString("LEFT_MOUSE_BUTTON")
-        kPrettyInputNames["MouseButton1"] = Locale.ResolveString("RIGHT_MOUSE_BUTTON")
-        kPrettyInputNames["LeftShift"] = Locale.ResolveString("LEFT_SHIFT")
-        kPrettyInputNames["RightShift"] = Locale.ResolveString("RIGHT_SHIFT")
-
-    end
-
+if Locale then
+    
     function GetPrettyInputName(inputName)
-
+    
         if not kPrettyInputNames then
             InitInputNames()
         end
-
+        
         local prettyInputName = BindingsUI_GetInputValue(inputName)
         local foundPrettyInputName = kPrettyInputNames[prettyInputName]
-        return foundPrettyInputName and foundPrettyInputName or prettyInputName
-
+        if foundPrettyInputName then
+            return foundPrettyInputName
+        else
+            if prettyInputName then
+                return CleanUpKeyName(prettyInputName)
+            else
+                return nil
+            end
+        end
     end
-
+    
 end
 
 function GetLinePositionForTechMap(techMap, fromTechId, toTechId)
@@ -340,28 +347,28 @@ function GetLinePositionForTechMap(techMap, fromTechId, toTechId)
     local foundTo = false
 
     for i = 1, #techMap do
-
+    
         local entry = techMap[i]
         if entry[1] == fromTechId then
-
+        
             positions[1] = entry[2]
             positions[2] = entry[3]
             foundFrom = true
-
+            
         elseif entry[1] == toTechId then
-
+        
             positions[3] = entry[2]
             positions[4] = entry[3]
             foundTo = true
-
+            
         end
 
         if foundFrom and foundTo then
             break
-        end
-
+        end 
+    
     end
-
+    
     return positions
 
 end
@@ -379,7 +386,7 @@ local function ChooseFontAndSize(fontFamily, targetSize)
             finalScale = targetSize/curFontSize
         end
     end
-
+    
     return finalFont, finalScale
 end
 
@@ -396,12 +403,12 @@ function GUIMakeFontScale(item, itemFontFamily, itemSize)
     if guiItem == nil then
         return
     end
-
+    
     if itemFontFamily and itemSize then
         local FontFamilies = FontFamilies
         if FontFamilies[itemFontFamily] then
             local finalFont, finalScale = ChooseFontAndSize(FontFamilies[itemFontFamily], itemSize)
-
+            
             guiItem:SetScale(Vector(1,1,1)*finalScale)
             guiItem:SetFontName(finalFont)
         end
@@ -409,7 +416,7 @@ function GUIMakeFontScale(item, itemFontFamily, itemSize)
         local fontName = guiItem:GetFontName()
         local fontFamily
         local size = 0
-
+        
         -- If it has a font name, then we're 99% confident this is an actual text item
         if fontName then
             local FontFamilies = FontFamilies
@@ -421,19 +428,19 @@ function GUIMakeFontScale(item, itemFontFamily, itemSize)
                     break
                 end
             end
-
+            
             -- Exit if we didn't find a match, let nature run its course
             if not fontFamily then
                 return
             end
-
+            
             -- We're going to assume that it is scaled uniformily, because it's easier that way
             -- Don't judge me
             local currentScale = guiItem:GetScale().x
             local targetSize = size * currentScale
-
+            
             local finalFont, finalScale = ChooseFontAndSize(fontFamily, targetSize)
-
+            
             guiItem:SetScale(Vector(1,1,1)*finalScale)
             guiItem:SetFontName(finalFont)
         end
@@ -448,6 +455,53 @@ function GUIMixColor(dst, src, scalar)
     return dst
 end
 
+function GetScreenSize()
+    return Vector(Client.GetScreenWidth(), Client.GetScreenHeight(), 0)
+end
+
 function GUIUnpackCoords(coords)
     return coords[1], coords[2], coords[3], coords[4]
+end
+
+-- For when the name itself isn't important.
+local guiViewAutoCount = 0
+function AutoGenerateBindTextureName()
+    local name = "*Auto_"..guiViewAutoCount
+    guiViewAutoCount = guiViewAutoCount + 1
+    return name
+end
+
+
+local gaussianBlurMinThreshold = 0.499999/255.0 -- a pixel at or below this has no effect on the output
+local gaussianBlurMinThresholdLn = math.log(gaussianBlurMinThreshold)
+-- Calculates the value of C^2 that should be used for a gaussian blur of the given radius.
+function CalculateCSquaredForGaussianBlur(blurRadius)
+    return (blurRadius * blurRadius * -0.5) / gaussianBlurMinThresholdLn
+end
+
+local kSpaceAdditions = {"Num","Pad","Left","Right","Page","App","Mouse","Button","Wheel","Print", "Joystick", "Rotation", "Pov", "Slider"}
+function CleanUpKeyName(keyName)
+    
+    if not kPrettyInputNames then
+        InitInputNames()
+    end
+    
+    -- Best case scenario, we can just use a name from the Locale.
+    if kPrettyInputNames[keyName] then
+        return kPrettyInputNames[keyName]
+    end
+    
+    -- We can't possibly include translations for all keys, but we can automatically clean up the
+    -- rest.  Add spaces to certain words to improve the appearance.
+    for i=1, #kSpaceAdditions do
+        local wordStart, wordEnd = string.find(keyName, kSpaceAdditions[i])
+        if wordStart ~= nil and wordEnd < #keyName then
+            local front = string.sub(keyName, 1, wordEnd)
+            local back = string.sub(keyName, wordEnd+1)
+            keyName = string.format("%s %s", front, back)
+        end
+    end
+    
+    return keyName
+    
 end

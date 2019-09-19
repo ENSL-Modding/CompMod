@@ -124,7 +124,7 @@ local function GenerateBlobCoords(infestation)
             local normalCoords = angles:GetCoords()
             normalCoords.origin = position
             
-            local coords = CopyCoords(normalCoords)
+            local coords = Coords(normalCoords)
             
             coords.xAxis  = coords.xAxis * xRadius
             coords.yAxis  = coords.yAxis * yRadius

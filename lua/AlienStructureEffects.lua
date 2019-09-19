@@ -293,7 +293,6 @@ kAlienStructureEffects =
     },
 
     clog_spawn_shadow =
-
     {
         clogSpawnEffects =
         {
@@ -301,6 +300,14 @@ kAlienStructureEffects =
         } 
     },
     
+    clog_spawn_abyss =
+    {
+        clogSpawnEffects =
+        {
+            {parented_cinematic = "cinematics/alien/gorge/clog_spawn_abyss.cinematic"},
+        } 
+    },
+
     hive_login =
     {
         hiveLoginEffects =

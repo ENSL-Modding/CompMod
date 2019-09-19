@@ -42,6 +42,11 @@ function CragUmbra:GetLifeSpan()
     return CragUmbra.kCragUmbraDuration
 end
 
+function CragUmbra:OnCreate()
+    CommanderAbility.OnCreate(self)
+    self:SetUpdates(true, kRealTimeUpdateRate) -- update frequently so effect trails don't stutter.
+end
+
 function CragUmbra:OnInitialized()
 
     CommanderAbility.OnInitialized(self)
@@ -120,6 +125,9 @@ if Server then
                     end
                     
                 end
+                
+                -- Reset update rate to throttled rate when the effect is done traveling.
+                self:SetUpdates(true, kDefaultUpdateRate)
             
             end
         

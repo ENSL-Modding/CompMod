@@ -269,7 +269,7 @@ function GUIExoHUD:Update(deltaTime)
 
     PROFILE("GUIExoHUD:Update")
 
-    local fullMode = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    local fullMode = Client.GetHudDetail() == kHUDMode.Full
 
     if fullMode then
     

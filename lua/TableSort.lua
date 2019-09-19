@@ -111,14 +111,26 @@ local function auxsort( t , l , u , sort_comp )
 end
 
 -- sort function.
-function table.sort( t , comp )
+function table.sort( t , comp, startIndex, endIndex )
 
 	assert( type( t ) == "table" )
+    
+    if startIndex then
+        assert( type(startIndex) == "number")
+        assert( math.floor(startIndex) == startIndex)
+        assert( type(endIndex) == "number")
+        assert( math.floor(endIndex) == endIndex)
+        assert( endIndex >= startIndex)
+        
+        if startIndex == endIndex then
+            return
+        end
+    end
 
 	if comp then
 		assert( type( comp ) == "function" )
 	end
 
-	auxsort( t , 1 , #t , comp or default_comp )
+	auxsort( t , startIndex or 1 , endIndex or #t , comp or default_comp )
 
 end

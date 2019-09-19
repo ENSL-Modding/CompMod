@@ -230,7 +230,7 @@ function OptionsDialogUI_SetValues(nickname, mouseSens, display, screenResIdx, v
     Client.SetOptionBoolean ( kBloomOptionsKey, bloom )
     Client.SetOptionBoolean ( kAtmosphericsOptionsKey, atmospherics )
     Client.SetOptionBoolean ( kAnisotropicFilteringOptionsKey, anisotropicFiltering )
-    Client.SetOptionBoolean ( kAntiAliasingOptionsKey, antiAliasing )
+    Client.SetOptionString ( kAntiAliasingOptionsKey, antiAliasing )
     
     -- Handle invMouse
     Client.SetOptionBoolean ( kInvertedMouseOptionsKey, invMouse )
@@ -307,7 +307,7 @@ end
 -- Get anti aliasing or not
 --
 function OptionsDialogUI_GetAntiAliasing()
-    return Client.GetOptionBoolean( kAntiAliasingOptionsKey, false )    
+    return Client.GetOptionString( kAntiAliasingOptionsKey, "off" )    
 end
 
 --

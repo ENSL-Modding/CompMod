@@ -152,7 +152,7 @@ function GUIObjectiveDisplay:Update(_)
 
         local screenPosFraction = (math.abs( (currentVision.Position - Vector(Client.GetScreenWidth() * .5, Client.GetScreenHeight() * .5, 0)):GetLength() ) / (self.screenDiagonalLength * 0.5))
         local color = teamType == kMarineTeamType and kAlienTeamColorFloat or kMarineTeamColorFloat --show objectives in color of the other team
-        color = CopyColor(color)
+        color = Color(color)
 
         color.a = GUIObjectiveDisplay.kMinAlpha + (GUIObjectiveDisplay.kMaxAlpha - GUIObjectiveDisplay.kMinAlpha) * screenPosFraction
 

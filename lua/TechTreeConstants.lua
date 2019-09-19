@@ -165,7 +165,7 @@ kTechId = enum {
     'Spit', 'Spray', 'BellySlide', 'BabblerTech', 'BuildAbility', 'BabblerAbility', 'Babbler', 'BabblerEgg', 'GorgeTunnelTech', 'BileBomb',  'WebTech', 'Web', 'HydraTech',
 
     -- lerk abilities
-    'LerkBite', 'Cling', 'Spikes', 'Umbra', 'Spores', 'Roost',
+    'LerkBite', 'Cling', 'Spikes', 'Umbra', 'Spores',
 
     -- fade abilities
     'Swipe', 'Blink', 'ShadowStep', 'Vortex', 'Stab', 'MetabolizeEnergy', 'MetabolizeHealth',

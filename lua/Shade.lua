@@ -237,10 +237,6 @@ function Shade:OnConsumeTriggered()
 end
 
 function Shade:OnOrderGiven(order)
-    --This will cancel Consume if it is running.
-    if self:GetIsConsuming() then
-        self:CancelResearch()
-    end
 end
 
 function Shade:PerformAction(techNode)
@@ -330,6 +326,11 @@ function Shade:GetCanBeUsed(player, useSuccessTable)
 end
 
 function Shade:OnOrderChanged()
+    --This will cancel Consume if it is running.
+    if self:GetIsConsuming() then
+        self:CancelResearch()
+    end
+
     local currentOrder = self:GetCurrentOrder()
     if GetIsUnitActive(self) and currentOrder and currentOrder:GetType() == kTechId.Move then
         self:SetUpdateRate(kRealTimeUpdateRate)

@@ -14,16 +14,20 @@ Script.Load("lua/Weapons/PredictedProjectile.lua")
 
 class 'Grenade' (PredictedProjectile)
 
+--Any speed below this will freeze the grenade in place
+Grenade.kMinVelocityToMove = 1
+
 Grenade.kMapName = "grenade"
 Grenade.kModelName = PrecacheAsset("models/marine/rifle/rifle_grenade.model")
 
-Grenade.kProjectileCinematic = PrecacheAsset("cinematics/marine/grenade.cinematic")
+--Grenade.kProjectileCinematic = PrecacheAsset("cinematics/marine/grenade.cinematic")
 
 Grenade.kRadius = 0.05
 Grenade.kDetonateRadius = 0.17
 Grenade.kMinLifeTime = 0
 Grenade.kClearOnImpact = false
 Grenade.kClearOnEnemyImpact = true
+Grenade.kNeedsHitEntity = true
 
 local kGrenadeCameraShakeDistance = 15
 local kGrenadeMinShakeIntensity = 0.02

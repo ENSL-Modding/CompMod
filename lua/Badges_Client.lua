@@ -72,7 +72,7 @@ Client.HookNetworkMessage("BadgeRows",
             ownedBadges[msg.badge] = nil
         else
             ownedBadges[msg.badge] = msg.columns
-
+            
             --Check for empty columns and autoselect available badge
             local columns = Badges_GetBadgeColumns(msg.columns)
             for i = 1, #columns do
@@ -88,6 +88,24 @@ Client.HookNetworkMessage("BadgeRows",
                 end
             end
         end
+        
+        -- Inform the badge customizer that the owned badges set might have changed.
+        -- Attempt to update the associated badge object, if available.
+        local badgeCustomizer = GetBadgeCustomizer()
+        if badgeCustomizer then
+            badgeCustomizer:UpdateOwnedBadges()
+            
+            local badgeName = gBadges[msg.badge]
+            if badgeName then
+                local badgeObj = badgeCustomizer:GetBadgeObjByName(badgeName)
+                if badgeObj then
+                    badgeObj:SetColumns(msg.columns)
+                end
+            end
+            
+            badgeCustomizer:UpdateActiveBadges()
+        end
+        
     end)
 
 Client.HookNetworkMessage("BadgeName",
@@ -126,7 +144,15 @@ end
 -- temp cache of often used function
 local StringFormat = string.format
 
+local badgeSentValueCache = {}
 function SelectBadge(badgeId, column)
+    
+    -- Check a cache of badge values to ensure we don't send unnecessary network messages.
+    if badgeSentValueCache[column] == badgeId then
+        return
+    end
+    badgeSentValueCache[column] = badgeId
+    
     Client.SetOptionString( StringFormat( "Badge%s", column ), gBadges[badgeId] )
     if Client.GetIsConnected() then
         Client.SendNetworkMessage( "SelectBadge", BuildSelectBadgeMessage(badgeId, column), true)
@@ -174,7 +200,7 @@ end
 
 --requests the in the config selected badges from the server
 local function OnLoadComplete()
-
+    
     local badges = {}
     badges = Badges_FetchBadgesFromItems(badges)
     badges = Badges_FetchBadgesFromStats(badges)
@@ -200,5 +226,6 @@ local function OnLoadComplete()
             end
         end
     end
+    
 end
 Event.Hook( "LoadComplete", OnLoadComplete )

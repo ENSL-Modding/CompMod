@@ -171,6 +171,10 @@ local function CollectPlayers(player)
     table.insert(playerList, player)
 end
 
+function Team:GetPlayerIds()
+    return self.playerIds
+end
+
 function Team:GetPlayers()
 
     table.clear(playerList)

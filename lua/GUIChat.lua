@@ -392,11 +392,16 @@ function GUIChat:AddMessage(playerColor, playerName, messageColor, messageText, 
     insertMessage["Message2"]:SetText(textWrap2)
 
     local textWrap1Height = math.max(insertMessage["Message"]:GetTextHeight(textWrap1) * insertMessage["Message"]:GetScale().x, defaultHeight)
-    local textWrap2Height = insertMessage["Message2"]:GetTextHeight(textWrap2) * insertMessage["Message2"]:GetScale().x
-
+    local textWrap2Height
+    if textWrap2 == "" then
+        textWrap2Height = 0
+    else
+        textWrap2Height = insertMessage["Message2"]:GetTextHeight(textWrap2) * insertMessage["Message2"]:GetScale().x
+    end
+    
     local textHeight = textWrap1Height + textWrap2Height
     local textWidth = math.max(insertMessage["Message"]:GetTextWidth(textWrap1) * insertMessage["Message"]:GetScale().x + messagePrefix, insertMessage["Message2"]:GetTextWidth(textWrap2) * insertMessage["Message2"]:GetScale().x)
-
+    
     -- If we had to wrap the text, we have to reposition as anchors are set up for one line only
     if textWrap2 ~= "" then
         insertMessage["Commander"]:SetPosition(Vector(0, textWrap1Height/2-textHeight/2, 0))

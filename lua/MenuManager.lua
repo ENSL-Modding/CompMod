@@ -10,6 +10,7 @@
 MenuManager = { }
 MenuManager.menuCinematic = nil
 MenuManager.storedCinematic = nil
+MenuManager.menuCinematicRenderMask = 0x01
 
 --
 -- Sets the cinematic that's displayed behind the main menu.
@@ -27,8 +28,8 @@ function MenuManager.SetMenuCinematic(fileName, storeMenu)
     if fileName ~= nil then
     
         MenuManager.menuCinematic = Client.CreateCinematic()
-        MenuManager.menuCinematic:SetRepeatStyle(Cinematic.Repeat_Loop)
-        MenuManager.menuCinematic:SetCinematic(fileName)
+        MenuManager.menuCinematic:SetRepeatStyle( Cinematic.Repeat_Loop )
+        MenuManager.menuCinematic:SetCinematic( fileName, MenuManager.menuCinematicRenderMask )
         if storeMenu and storeMenu == true then
             MenuManager.storedCinematic = fileName
         end
@@ -46,10 +47,10 @@ function MenuManager.RestoreMenuCinematic()
     end
     
     if MenuManager.storedCinematic ~= nil then
-    
+        
         MenuManager.menuCinematic = Client.CreateCinematic()
-        MenuManager.menuCinematic:SetRepeatStyle(Cinematic.Repeat_Loop)
-        MenuManager.menuCinematic:SetCinematic(MenuManager.storedCinematic)
+        MenuManager.menuCinematic:SetRepeatStyle( Cinematic.Repeat_Loop )
+        MenuManager.menuCinematic:SetCinematic( MenuManager.storedCinematic, MenuManager.menuCinematicRenderMask )
 
     end
     

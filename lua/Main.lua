@@ -10,12 +10,22 @@
 --=============================================================================
 decoda_name = "Main"
 
+--require("jit").off() -- disable lua-JIT for debugging.
+
 Script.Load("lua/ModLoader.lua")
 Script.Load("lua/Globals.lua")
 Script.Load("lua/Render.lua")
 Script.Load("lua/GUIManager.lua")
 Script.Load("lua/NS2Utility.lua")
+
+Script.Load("lua/OptionSavingManager.lua")
+
+Script.Load("lua/menu2/GUIMainMenu.lua")
 Script.Load("lua/MainMenu.lua")
+
+-- Precache current/active menu background before its set, helps combat asset pop-in
+PrecacheAsset(MenuBackgrounds.GetCurrentMenuBackgroundCinematicPath())
+
 Script.Load("lua/Utility.lua")
 Script.Load("lua/Matchmaking.lua")
 
@@ -23,44 +33,11 @@ Script.Load("lua/Analytics.lua")
 
 Script.Load("lua/menu/GUIVideoTutorialIntro.lua")
 
-local menusList = MainMenu_GetMenuBackgrounds()
-local menuMusicList = MainMenu_GetMusicList()
-local menu = Client.GetOptionInteger("menu/menuBackground", 1)
-local music = Client.GetOptionInteger("menu/menuMusic", 1)
-
-local renderCamera
-local kMenuCinematic = PrecacheAsset("cinematics/main_menu.cinematic")
-local menuNum = 1
-local musicNum = 1
-local kDefaultBackgroundIndex = 2 -- Unearthed
-local kDefaultMusic = "Eclipse Remix"
-local kMusicPath = kDefaultMusic
-
+-- Don't ask...
 math.randomseed(Shared.GetSystemTime())
 for i = 1, 20 do math.random() end
 
-if menu == 1 then
-    menuNum = kDefaultBackgroundIndex
-elseif menu == #menusList then
-    menuNum = math.random(2, #menusList-1)
-else
-    menuNum = menu
-end
-
-if music == #menuMusicList then
-    local number = math.random(1, #menuMusicList-1)
-    musicNum = number
-else
-    musicNum = music
-end
-
-if menuNum and menuNum > 1 then
-    kMenuCinematic = PrecacheAsset("cinematics/menus/main_menu_" .. menusList[menuNum] .. ".cinematic")
-end
-
-if musicNum and musicNum > 1 then
-    kMusicPath = menuMusicList[musicNum]
-end
+local renderCamera = nil
 
 PrecacheAsset('ui/menu/arrow_vert.dds')
 PrecacheAsset('ui/menu/tv_glare.dds')
@@ -93,7 +70,12 @@ PrecacheAsset("shaders/Decal_emissive.surface_shader")
 
 local function InitializeRenderCamera()
     renderCamera = Client.CreateRenderCamera()
-    renderCamera:SetRenderSetup("renderer/Deferred.render_setup") 
+    renderCamera:SetRenderSetup("renderer/Deferred.render_setup")
+    renderCamera:SetNearPlane(0.01)
+    renderCamera:SetFarPlane(10000.0)
+    --Required in order to not render any customize camera content, default of 0, will render everything.
+    renderCamera:SetRenderMask( kDefaultRenderMask )
+    renderCamera:SetUsesTAA(true) -- render camera _can_ be used with TAA (won't if option isn't set)
 end
 
 local function OnUpdateRender()
@@ -102,14 +84,10 @@ local function OnUpdateRender()
     local camera = MenuManager.GetCinematicCamera()
     
     if camera ~= false then
-    
         renderCamera:SetCoords(camera:GetCoords())
         renderCamera:SetFov(camera:GetFov())
-        renderCamera:SetNearPlane(0.01)
-        renderCamera:SetFarPlane(10000.0)
         renderCamera:SetCullingMode(cullingMode)
         Client.SetRenderCamera(renderCamera)
-        
     else
         Client.SetRenderCamera(nil)
     end
@@ -120,18 +98,57 @@ local function OnVideoEnded(message, watchedTime)
 
     Client.SetOptionBoolean( "introViewed", true )
     Client.SetOptionBoolean( "system/introViewed", true )
-        
+    
     g_introVideoWatchTime = watchedTime
     
     MouseTracker_SetIsVisible(false)
     
-    MenuManager.SetMenuCinematic(kMenuCinematic, true)
-    MenuMenu_PlayMusic("sound/NS2.fev/" .. kMusicPath .. " Menu")
-    MainMenu_Open()
-
+    MenuManager.SetMenuCinematic(MenuBackgrounds.GetCurrentMenuBackgroundCinematicPath(), true)
+    
+    -- "Re-roll" the menu background for next time, in case it's set to random, we need to know
+    -- which one to pre-load ahead of time.
+    MenuBackgrounds.PickNextMenuBackgroundPath()
+    
+    CreateMainMenu()
+    local menu = GetMainMenu()
+    menu:PlayMusic(MenuData.GetCurrentMenuMusicSoundName())
+    
     if message then
-        MainMenu_SetAlertMessage(message)
+        PlayMenuSound("Notification")
+        
+        -- If the message is an invalid password, prompt the user to try again, otherwise just do
+        -- the standard popup.
+        local invalidPasswordMessage = Locale.ResolveString("DISCONNECT_REASON_2")
+        if message == invalidPasswordMessage then
+        
+            local serverBrowser = GetServerBrowser()
+            local address = Client.GetOptionString(kLastServerConnected, "")
+            local prevPassword = Client.GetOptionString(kLastServerPassword, "")
+            
+            if address ~= "" and serverBrowser ~= nil then
+            
+                serverBrowser:_AttemptToJoinServer(
+                {
+                    address = address,
+                    prevPassword = prevPassword,
+                
+                    -- The user has presumably already clicked through all the checks (eg unranked
+                    -- warning, network settings warning, etc.)  No need to hit them with it again.
+                    onlyPassword = true,
+                
+                })
+        
+            end
+    
+        else
+            
+            menu:DisplayPopupMessage(message, Locale.ResolveString("DISCONNECTED"))
+            
+        end
+        
     end
+    
+    Client.SetOptionString(kLastServerPassword, "")
     
 end
 
@@ -152,13 +169,14 @@ local function LoadRemotePatch( data )
 end
 
 local function OnLoadComplete(message)
+    
     Render_SyncRenderOptions()
     OptionsDialogUI_SyncSoundVolumes()
     
     kRemoteConfig = {}
     Shared.SendHTTPRequest( "http://storage.naturalselection2.com/game/main_patch_v2.lua", "GET", {}, LoadRemotePatch )
     
-    SetNameWithSteamPersona()
+    UpdatePlayerNicknameFromOptions()
     
     local introViewed = 
         Client.GetOptionBoolean("introViewed", false )

@@ -13,7 +13,7 @@
 local kSteamProfileURL = "http://steamcommunity.com/profiles/"
 
 Script.Load("lua/GUIAssets.lua")
-Script.Load("lua/UnsortedSet.lua")
+Script.Load("lua/UnorderedSet.lua")
 
 class 'GUIChallengeLeaderboard' (GUIScript)
 
@@ -282,7 +282,7 @@ function GUIChallengeLeaderboard:CreateButtonCommon(onClick, tooltip, disabledTo
         button.enabled = state
     end
     
-    US_Add(self.buttons, newButton)
+    self.buttons:Add(newButton)
     
     return newButton
     
@@ -526,7 +526,7 @@ end
 function GUIChallengeLeaderboard:CreateGUIItem()
     
     local item = GUI.CreateItem()
-    US_Add(self.items, item)
+    self.items:Add(item)
     
     return item
     
@@ -595,8 +595,8 @@ end
 function GUIChallengeLeaderboard:DestroyGUIItem(item)
     
     GUI.DestroyItem(item)
-    US_Remove(self.items, item)
-    US_Remove(self.buttons, item) -- just in case.
+    self.items:RemoveElement(item)
+    self.buttons:RemoveElement(item) -- just in case.
     
 end
 
@@ -776,7 +776,7 @@ end
 
 function GUIChallengeLeaderboard:AddSiblingScript(script)
     
-    if US_Add(self.siblingScripts, script) then
+    if self.siblingScripts:Add(script) then
         -- we just added them to our list of siblings, make sure we're added to theirs.
         if script.AddSiblingScript then
             script:AddSiblingScript(self)
@@ -787,7 +787,7 @@ end
 
 function GUIChallengeLeaderboard:RemoveSiblingScript(script)
     
-    if US_Remove(self.siblingScripts, script) then
+    if self.siblingScripts:RemoveElement(script) then
         -- we just removed them from our set, make sure they remove us.
         if script.RemoveSiblingScript then
             script:RemoveSiblingScript(self)
@@ -838,9 +838,8 @@ function GUIChallengeLeaderboard:UpdateVisibility()
     self.highlightItem:SetIsVisible(self.visible and self.highlightVis)
     
     -- update button visibilities (their update function takes into account the leaderboard's visibility)
-    local buttonsArray = US_GetArray(self.buttons)
-    for i=1, #buttonsArray do
-        buttonsArray[i]:UpdateVisibility()
+    for i=1, #self.buttons do
+        self.buttons[i]:UpdateVisibility()
     end
     
 end
@@ -892,9 +891,9 @@ function GUIChallengeLeaderboard:Initialize()
     self.tooltipHoverTime = 0.0
     
     -- To make cleanup easier, we keep track of which items belong to this script.
-    self.items = US_Create()
-    self.buttons = US_Create()
-    self.siblingScripts = US_Create()
+    self.items = UnorderedSet()
+    self.buttons = UnorderedSet()
+    self.siblingScripts = UnorderedSet()
     
     -- Initialize important values
     self.position = Vector(0,0,0)
@@ -988,15 +987,15 @@ function GUIChallengeLeaderboard:Uninitialize()
     
     -- Cleanup is easy because every item created by the system is in one
     -- convenient set.
-    for i=1, #self.items.a do
-        GUI.DestroyItem(self.items.a[i])
+    for i=1, #self.items do
+        GUI.DestroyItem(self.items[i])
     end
     
     MouseTracker_SetIsVisible(false)
     
     -- Sever our connection with any sibling scripts.
-    while US_GetSize(self.siblingScripts) > 0 do
-        self:RemoveSiblingScript(US_GetElement(self.siblingScripts, 1))
+    while #self.siblingScripts > 0 do
+        self:RemoveSiblingScript(self.siblingScripts[1])
     end
     
 end
@@ -1145,11 +1144,10 @@ end
 function GUIChallengeLeaderboard:CheckForButtonClicks()
     
     self:UpdateButtonsRollovers()
-    local buttonsArray = US_GetArray(self.buttons)
     local button
-    for i=1, #buttonsArray do
-        if buttonsArray[i].over and buttonsArray[i].enabled and buttonsArray[i]:GetIsVisible() then
-            button = buttonsArray[i]
+    for i=1, #self.buttons do
+        if self.buttons[i].over and self.buttons[i].enabled and self.buttons[i]:GetIsVisible() then
+            button = self.buttons[i]
             break
         end
     end
@@ -1430,9 +1428,8 @@ function GUIChallengeLeaderboard:UpdateButtonsRollovers(mousePos)
         mousePos.x, mousePos.y = Client.GetCursorPosScreen()
     end
     
-    local buttonsArray = US_GetArray(self.buttons)
-    for i=1, #buttonsArray do
-        self:UpdateButtonRollover(buttonsArray[i], mousePos)
+    for i=1, #self.buttons do
+        self:UpdateButtonRollover(self.buttons[i], mousePos)
     end
     
 end
@@ -1639,11 +1636,10 @@ function GUIChallengeLeaderboard:Update(deltaTime)
     self:UpdateButtonsRollovers(mousePos)
     
     -- Update tooltip
-    local buttonsArray = US_GetArray(self.buttons)
     local button
-    for i=1, #buttonsArray do
-        if buttonsArray[i].over then
-            button = buttonsArray[i]
+    for i=1, #self.buttons do
+        if self.buttons[i].over then
+            button = self.buttons[i]
             break
         end
     end

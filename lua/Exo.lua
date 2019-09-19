@@ -1472,7 +1472,9 @@ elseif Client then
         -- Don't allow display in the ready room
         if self:GetTeamNumber() ~= 0 and Client.GetLocalPlayer() == self then
         
-            if not self.buyMenu and not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() then
+            if not self.buyMenu and
+               not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() and 
+               not GetMainMenu():GetVisible() then
             
                 self.buyMenu = GetGUIManager():CreateGUIScript("GUIMarineBuyMenu")
                 

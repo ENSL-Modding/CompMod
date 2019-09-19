@@ -33,6 +33,38 @@ TeleportMixin.networkVars = {
     
 }
 
+function TeleportMixin:OnIsTeleportingChanged()
+    
+    -- Update rate isn't sync'd, so when we start updating faster during an echo, also increase the
+    -- client update rate.
+    
+    if self.isTeleporting and not self.clientTeleportingCallback then
+        
+        -- Create a callback that will update the teleporting in real-time (rather than adjusting
+        -- the update rate).
+        self.clientTeleportingCallback = true
+        self:AddTimedCallback(self.ClientTeleportingCallback, kRealTimeUpdateRate)
+        
+    end
+    
+    return true -- preserve field watcher
+    
+end
+
+-- Prevent sleeper mixin from sleeping this entity while being teleported.
+local function TeleportMixin_GetCanSleep(self)
+
+    local result = true
+    if self.isTeleporting then
+        result = false
+    elseif self.oldGetCanSleep then
+        result = self.oldGetCanSleep(self)
+    end
+    
+    return result
+    
+end
+
 function TeleportMixin:__initmixin()
     
     PROFILE("TeleportMixin:__initmixin")
@@ -42,6 +74,7 @@ function TeleportMixin:__initmixin()
     if Client then
     
         self.clientIsTeleporting = false
+        self:AddFieldWatcher("isTeleporting", self.OnIsTeleportingChanged)
         
     elseif Server then
     
@@ -49,6 +82,11 @@ function TeleportMixin:__initmixin()
         self.destinationEntityId = Entity.invalidId
         self.timeUntilPort = 0
         self.teleportDelay = 0
+    
+        if self.GetCanSleep then
+            self.oldGetCanSleep = self.GetCanSleep
+            self.GetCanSleep = TeleportMixin_GetCanSleep
+        end
         
     end
     
@@ -234,7 +272,7 @@ local function PerformTeleport(self)
 end 
 
 local function SharedUpdate(self, deltaTime)
-
+    
     if Server then
     
         if self.isTeleporting then 
@@ -250,9 +288,9 @@ local function SharedUpdate(self, deltaTime)
     
         if self.isTeleporting then        
             self:UpdateTeleportClientEffects(deltaTime)
-         
-        elseif self.clientIsTeleporting then        
-            self.clientIsTeleporting = false            
+            
+        elseif self.clientIsTeleporting then
+            self.clientIsTeleporting = false
         end 
         
     end
@@ -265,8 +303,32 @@ function TeleportMixin:OnProcessMove(input)
 end
 
 function TeleportMixin:OnUpdate(deltaTime)
+    
     PROFILE("TeleportMixin:OnUpdate")
+    
+    if Server then
+        SharedUpdate(self, deltaTime)
+    end
+    
+    -- Use normal OnUpdate to call SharedUpdate for client, but only if we're not telporting.
+    -- Otherwise, use full-speed update callback below.
+    if Client and not self.isTeleporting then
+        SharedUpdate(self, deltaTime)
+    end
+    
+end
+
+function TeleportMixin:ClientTeleportingCallback(deltaTime)
+    
+    if not self.isTeleporting then
+        self.clientTeleportingCallback = false
+        return false -- terminate the callback
+    end
+
     SharedUpdate(self, deltaTime)
+    
+    return true -- preserve the callback
+
 end
 
 function TeleportMixin:TriggerTeleport(delay, destinationEntityId, destinationPos, cost)
@@ -280,11 +342,9 @@ function TeleportMixin:TriggerTeleport(delay, destinationEntityId, destinationPo
         self.isTeleporting = true
         self.teleportCost = cost
         
-        --Print("%s:TriggerTeleport ", self:GetClassName())
-        
         if self.OnTeleport then
             self:OnTeleport()
-        end    
+        end
         
     end
     

@@ -8,6 +8,8 @@
 --
 -- ========= For more information, visit us at http://www.unknownworlds.com =====================
 
+Script.Load("lua/SpecialSkillTierRecipients.lua")
+
 class 'GUIScoreboard' (GUIScript)
 
 -- Horizontal size for the game time background is irrelevant as it will be expanded to SB width
@@ -76,6 +78,7 @@ local kPlayerBadgeRightPadding = 4
 
 local kPlayerSkillIconSize = Vector(62, 20, 0)
 local kPlayerSkillIconTexture = PrecacheAsset("ui/skill_tier_icons.dds")
+local kPlayerSkillIconSizeOverride = Vector(58, 20, 0) -- slightly smaller so it doesn't overlap.
 
 local lastScoreboardVisState = false
 
@@ -888,17 +891,49 @@ function GUIScoreboard:UpdateTeam(updateTeam)
         end
 
         -- Set player skill icon
-        local isBot = steamId == 0
-        local skillTier, tierName, cappedSkill = GetPlayerSkillTier(playerSkill, isRookie, adagradSum, isBot)
-        player.SkillIcon.tooltipText = string.format(Locale.ResolveString("SKILLTIER_TOOLTIP"), Locale.ResolveString(tierName), skillTier)
-
-        local iconIndex = skillTier + 2
-        player.SkillIcon:SetTexturePixelCoordinates(0, iconIndex * 32, 100, (iconIndex + 1) * 32 - 1)
-
-        if cappedSkill then
-            sumPlayerSkill = sumPlayerSkill + cappedSkill
-            numPlayerSkill = numPlayerSkill + 1
+        local skillIconOverrideSettings = CheckForSpecialBadgeRecipient(steamId)
+        if skillIconOverrideSettings then
+            
+            -- User has a special skill-tier icon tied to their steam Id.
+    
+            -- Reset the skill icon's texture coordinates to the default normalized coordinates (0, 0), (1, 1).
+            -- The shader depends on them being this way.
+            player.SkillIcon:SetTextureCoordinates(0, 0, 1, 1)
+    
+            -- Change the skill icon's shader to the one that will animate.
+            player.SkillIcon:SetShader(skillIconOverrideSettings.shader)
+            player.SkillIcon:SetTexture(skillIconOverrideSettings.tex)
+            player.SkillIcon:SetFloatParameter("frameCount", skillIconOverrideSettings.frameCount)
+    
+            -- Change the size so it doesn't touch the weapon name text.
+            player.SkillIcon:SetSize(kPlayerSkillIconSizeOverride * GUIScoreboard.kScalingFactor)
+    
+            -- Change the tooltip of the skill icon.
+            player.SkillIcon.tooltipText = skillIconOverrideSettings.tooltip
+            
+        else
+            
+            -- User has no special skill-tier icon.
+    
+            -- Reset the shader and texture back to the default one.
+            player.SkillIcon:SetShader("shaders/GUIBasic.surface_shader")
+            player.SkillIcon:SetTexture(kPlayerSkillIconTexture)
+            player.SkillIcon:SetSize(kPlayerSkillIconSize * GUIScoreboard.kScalingFactor)
+    
+            local isBot = steamId == 0
+            local skillTier, tierName, cappedSkill = GetPlayerSkillTier(playerSkill, isRookie, adagradSum, isBot)
+            player.SkillIcon.tooltipText = string.format(Locale.ResolveString("SKILLTIER_TOOLTIP"), Locale.ResolveString(tierName), skillTier)
+    
+            local iconIndex = skillTier + 2
+            player.SkillIcon:SetTexturePixelCoordinates(0, iconIndex * 32, 100, (iconIndex + 1) * 32 - 1)
+    
+            if cappedSkill then
+                sumPlayerSkill = sumPlayerSkill + cappedSkill
+                numPlayerSkill = numPlayerSkill + 1
+            end
+            
         end
+        
 
         numRookies = numRookies + (isRookie and 1 or 0)
         numBots = numBots + (isBot and 1 or 0)

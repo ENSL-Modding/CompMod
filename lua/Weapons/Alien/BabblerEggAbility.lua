@@ -22,6 +22,8 @@ function BabblerEggAbility:GetGhostModelName(ability)
         local variant = player:GetVariant()
         if variant == kGorgeVariant.shadow then
             return BabblerEgg.kModelNameShadow
+        elseif variant == kGorgeVariant.abyss then
+            return BabblerEgg.kModelNameAbyss
         end
         
     end

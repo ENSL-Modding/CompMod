@@ -14,6 +14,12 @@ Script.Load("lua/TeamDeathMessageMixin.lua")
 
 class 'ReadyRoomTeam' (Team)
 
+function ReadyRoomTeam:Initialize(teamName, teamNumber)
+    Team.Initialize(self, teamName, teamNumber)
+    self:OnCreate()
+    self:OnInitialized()
+end
+
 function ReadyRoomTeam:OnInitialized()
     Team.OnInitialized(self)
 

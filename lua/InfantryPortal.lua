@@ -137,11 +137,11 @@ local function CreateSpinEffect(self)
         self.fakeMarineModel:SetAnimationInput("body_yaw", 30)
         self.fakeMarineModel:SetAnimationInput("body_pitch", -8)
 
-        self.fakeMarineModel:InstanceGDMMaterials()
-        self.fakeMarineModel:SetGDMMaterialParameter("hiddenAmount", 0)
-        self.fakeMarineModel:SetGDMMaterialParameter("patchIndex", -2)
+        self.fakeMarineModel:InstanceMaterials()
+        self.fakeMarineModel:SetMaterialParameter("hiddenAmount", 0)
+        self.fakeMarineModel:SetMaterialParameter("patchIndex", -2)
         
-        self.fakeMarineMaterial = self.fakeMarineModel:AddGDMMaterial(kHoloMarineMaterialname)
+        self.fakeMarineMaterial = self.fakeMarineModel:AddMaterial(kHoloMarineMaterialname)
 
     end
     
@@ -157,7 +157,7 @@ local function CreateSpinEffect(self)
     
     if self.fakeMarineModel and self.fakeMarineMaterial then
         local spawnProgress = Clamp((Shared.GetTime() - self.timeSpinStarted) / kMarineRespawnTime, 0, 1)
-        self.fakeMarineMaterial:SetParameter("spawnProgress", spawnProgress+0.2)    -- Add a little so it always fills up
+        self.fakeMarineMaterial:SetParameter("spawnProgress", spawnProgress + 0.2)    -- Add a little so it always fills up
     end
 
 end
@@ -171,7 +171,7 @@ local function DestroySpinEffect(self)
     
     end
     
-    if self.fakeMarineModel then    
+    if self.fakeMarineModel then
         DestroyGraphDrivenModel(self.fakeMarineModel)
         self.fakeMarineModel = nil
         self.fakeMarineMaterial = nil

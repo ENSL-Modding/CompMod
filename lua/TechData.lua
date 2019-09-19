@@ -694,7 +694,6 @@ function BuildTechData()
             [kTechDataModel] = AmmoPack.kModelName,
             [kTechDataTooltipInfo] = "AMMO_PACK_TOOLTIP",
             [kTechDataSpawnHeightOffset] = kCommanderDropSpawnHeight,
-            [kCommanderSelectRadius] = 0.375,
             [kTechDataOverrideCoordsMethod] = AlignDroppack,
         },
 
@@ -723,7 +722,6 @@ function BuildTechData()
             [kTechDataModel] = CatPack.kModelName,
             [kTechDataTooltipInfo] = "CAT_PACK_TOOLTIP",
             [kTechDataSpawnHeightOffset] = kCommanderDropSpawnHeight,
-            [kCommanderSelectRadius] = 0.375,
             [kTechDataOverrideCoordsMethod] = AlignDroppack,
         },
 
@@ -1265,7 +1263,7 @@ function BuildTechData()
             [kTechDataTooltipInfo] = "RIFLE_TOOLTIP",
             [kTechDataMapName] = Rifle.kMapName,
             [kTechDataDisplayName] = "RIFLE",
-            [kTechDataModel] = RifleVariantMixin.kModelNames.rifle[RifleVariantMixin.kDefaultModelName],
+            [kTechDataModel] = Rifle.kModelName,
             [kTechDataDamageType] = kRifleDamageType,
             [kTechDataCostKey] = kRifleCost,
         },
@@ -1298,7 +1296,7 @@ function BuildTechData()
             [kTechDataMapName] = Shotgun.kMapName,
             [kTechDataDisplayName] = "SHOTGUN",
             [kTechDataTooltipInfo] = "SHOTGUN_TOOLTIP",
-            [kTechDataModel] = ShotgunVariantMixin.kModelNames.shotgun[ShotgunVariantMixin.kDefaultModelName],
+            [kTechDataModel] = Shotgun.kModelName,
             [kTechDataDamageType] = kShotgunDamageType,
             [kTechDataCostKey] = kShotgunCost,
             [kStructureAttachId] = kTechId.Armory,
@@ -1992,15 +1990,6 @@ function BuildTechData()
         },
 
         -- tier 1
-
-        {
-            [kTechDataId] = kTechId.Roost,
-            [kTechDataCategory] = kTechId.Lerk,
-            [kTechDataCostKey] = kRoostResearchCost,
-            [kTechDataResearchTimeKey] = kRoostResearchTime,
-            [kTechDataDisplayName] = "ROOST_ABILITY",
-            [kTechDataTooltipInfo] = "ROOST_TOOLTIP",
-        },
         {
             [kTechDataId] = kTechId.Umbra,
             [kTechDataCategory] = kTechId.Lerk,

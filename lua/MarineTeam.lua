@@ -270,7 +270,7 @@ end
 function MarineTeam:AddPlayer(player)
     PlayingTeam.AddPlayer(self, player)
 
-    if self.startTechPoint and self.spawnedInfantryPortal == 1 and #self.playerIds >= kSecondInitialInfantryPortalMinPlayerCount then
+    if self.startTechPoint and self.spawnedInfantryPortal == 1 and self.playerIds:GetCount() >= kSecondInitialInfantryPortalMinPlayerCount then
 
         -- check that the initial tech point is still controlled by the marines
         local techPoint = self.startTechPoint

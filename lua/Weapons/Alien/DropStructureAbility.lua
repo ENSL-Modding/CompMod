@@ -54,10 +54,6 @@ function DropStructureAbility:OnCreate()
     self.mouseDown = false
     self.activeStructure = nil
 
-    if Server then
-        self.lastCreatedId = Entity.invalidId
-    end
-
     -- for GUI
     self.numHydrasLeft = 0
     self.numWebsLeft = 0
@@ -301,15 +297,15 @@ function DropStructureAbility:DropStructure(player, origin, direction, structure
 
                     structure:SetAngles(angles)
 
+                    if structure.SetVariant then
+                        structure:SetVariant(player:GetVariant())
+                    end
+
                     if structure.OnCreatedByGorge then
-                        structure:OnCreatedByGorge(self.lastCreatedId)
+                        structure:OnCreatedByGorge()
                     end
 
                     player:AddResources(-cost)
-
-                    if structureAbility:GetStoreBuildId() then
-                        self.lastCreatedId = structure:GetId()
-                    end
 
                     player:DeductAbilityEnergy(energyCost)
                     player:TriggerEffects("spit_structure", {effecthostcoords = Coords.GetLookIn(origin, direction)} )
@@ -665,7 +661,7 @@ if Client then
         end
 
         if self.buildMenu then
-            self.buildMenu:SetIsVisible(player and localPlayer == player and player:isa("Gorge") and self.menuActive and not HelpScreen_GetHelpScreen():GetIsBeingDisplayed())
+            self.buildMenu:SetIsVisible(player and localPlayer == player and player:isa("Gorge") and self.menuActive and not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() and not GetMainMenu():GetVisible())
         end
 
     end

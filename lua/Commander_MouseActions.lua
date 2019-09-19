@@ -181,7 +181,7 @@ end
 local function OnMouseDown(_, button, doubleClick)
 
     local isCommander, player = GetLocalPlayerIsACommander()
-    if not isCommander or CommanderUI_GetMouseIsOverUI() then
+    if not isCommander or CommanderUI_GetMouseIsOverUI() or GetMainMenu():GetVisible() then
         return
     end
     
@@ -213,7 +213,7 @@ end
 local function OnMouseUp(_, button)
 
     local isCommander, player = GetLocalPlayerIsACommander()
-    if not isCommander then
+    if not isCommander or GetMainMenu():GetVisible() then
         return
     end
     
@@ -234,7 +234,7 @@ end
 local function OnMouseMove()
 
     local isCommander, player = GetLocalPlayerIsACommander()
-    if not isCommander or CommanderUI_GetMouseIsOverUI() then
+    if not isCommander or CommanderUI_GetMouseIsOverUI() or GetMainMenu():GetVisible() then
         return
     end
     

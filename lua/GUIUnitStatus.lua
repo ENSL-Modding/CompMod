@@ -135,7 +135,7 @@ function GUIUnitStatus:Initialize()
     self.dirtyBlipList = {}
 
     self.useMarineStyle = false
-    self.fullHUD = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+    self.fullHUD = Client.GetHudDetail() == kHUDMode.Full
     
     UpdateItemsGUIScale(self)
     
@@ -849,7 +849,7 @@ function GUIUnitStatus:Update(deltaTime)
 
         self.nextUnitStatusUpdate = now + kUnitStatusUpdateInterval
         
-        local fullHUD = Client.GetOptionInteger("hudmode", kHUDMode.Full) == kHUDMode.Full
+        local fullHUD = Client.GetHudDetail() == kHUDMode.Full
         if self.fullHUD ~= fullHUD then
             
             self.fullHUD = fullHUD

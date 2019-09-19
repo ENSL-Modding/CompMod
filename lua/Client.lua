@@ -9,8 +9,13 @@
 -- Set the name of the VM for debugging
 decoda_name = "Client"
 
+kInGame = true -- Client.GetIsConnected() doesn't work until you're loaded in...
+
+--require("jit").off() -- disable lua-JIT for debugging.
+
 Script.Load("lua/PreLoadMod.lua")
 
+Script.Load("lua/OptionSavingManager.lua")
 Script.Load("lua/ClientResources.lua")
 Script.Load("lua/Shared.lua")
 Script.Load("lua/GUIAssets.lua")
@@ -28,11 +33,14 @@ Script.Load("lua/AlienBuy_Client.lua")
 Script.Load("lua/MarineBuy_Client.lua")
 Script.Load("lua/Tracer_Client.lua")
 Script.Load("lua/GUIManager.lua")
+
+Script.Load("lua/menu2/GUIMainMenuInGame.lua") -- load the in-game version of the main menu.
+Script.Load("lua/MainMenu.lua")
+
 Script.Load("lua/GUIDebugText.lua")
 Script.Load("lua/TrailCinematic.lua")
 Script.Load("lua/MenuManager.lua")
 Script.Load("lua/BindingsDialog.lua")
-Script.Load("lua/MainMenu.lua")
 Script.Load("lua/ConsoleBindings.lua")
 Script.Load("lua/ServerAdmin.lua")
 Script.Load("lua/ClientUI.lua")
@@ -128,16 +136,17 @@ end
 local function InitializeRenderCamera()
     gRenderCamera = Client.CreateRenderCamera()
     gRenderCamera:SetRenderSetup("renderer/Deferred.render_setup")
+    gRenderCamera:SetUsesTAA(true) -- render camera _can_ be used with TAA (won't if option isn't set)
+    gRenderCamera:SetRenderMask( kDefaultRenderMask )
+    --RenderMask must be set in order for multi-cam scenes to not overlap
 end
 
 function GetRenderCameraCoords()
-
     if gRenderCamera then
         return gRenderCamera:GetCoords()
     end
 
-    return Coords.GetIdentity()    
-    
+    return Coords.GetIdentity()
 end
 
 -- Client tech tree
@@ -248,11 +257,11 @@ function ExitPressed()
     
         -- Close buy menu if open, otherwise show in-game menu
         if MainMenu_GetIsOpened() then
-            MainMenu_ReturnToGame()
+            --MainMenu_ReturnToGame()
         else
         
             if not Client.GetLocalPlayer():CloseMenu() then
-                MainMenu_Open()
+                GetMainMenu():Open()
             end
             
         end
@@ -815,19 +824,47 @@ local function UpdateDebugTrace()
 
 end
 
+local hudDetail = nil
+function Client.SetHudDetail(value)
+    hudDetail = value
+end
+
+function Client.GetHudDetail()
+    if not hudDetail then
+        hudDetail = Client.GetOptionInteger("hudmode", kHUDMode.Full)
+    end
+    return hudDetail
+end
+
+local fovAdjustment = nil
+function Client.SetFOVAdjustment(adjustment)
+    fovAdjustment = Clamp(adjustment, 0, 20)
+end
+
+function Client.GetFOVAdjustment()
+    if not fovAdjustment then
+        fovAdjustment = Client.GetOptionFloat("fov-adjustment", Client.GetOptionFloat("graphics/display/fov-adjustment", 0) * 20)
+    end
+    return fovAdjustment
+end
+
 -- Return effective fov for the player, including options adjustment and scaling for screen resolution
 function Client.GetEffectiveFov(player)
     
-    local adjustValue   = Clamp( Client.GetOptionFloat("graphics/display/fov-adjustment",0), 0, 1 )
-    local adjustRadians = math.rad(
-        (1-adjustValue)*kMinFOVAdjustmentDegrees + adjustValue*kMaxFOVAdjustmentDegrees)
-    
-    -- Don't adjust the FOV for the commander.
-    if player:isa("Commander") then
-        adjustRadians = 0
+    local adjustRadians
+    if gAdjustRadians ~= nil then
+        adjustRadians = gAdjustRadians
+    else
+        local adjustValue = Client.GetFOVAdjustment() / 20
+        adjustRadians = math.rad((1-adjustValue)*kMinFOVAdjustmentDegrees + adjustValue*kMaxFOVAdjustmentDegrees)
+        
+        -- Don't adjust the FOV for the commander.
+        if player:isa("Commander") then
+            adjustRadians = 0
+        end
     end
         
-    return player:GetRenderFov()+adjustRadians
+    return player:GetRenderFov() + adjustRadians
 end
 
 --
@@ -864,16 +901,7 @@ local function OnUpdateRender()
         
         camera:SetCoords(coords)
         
-        local adjustValue   = Clamp( Client.GetOptionFloat("graphics/display/fov-adjustment",0), 0, 1 )
-        local adjustRadians = math.rad(
-            (1-adjustValue)*kMinFOVAdjustmentDegrees + adjustValue*kMaxFOVAdjustmentDegrees)
-        
-        -- Don't adjust the FOV for the commander or spectator
-        if player:isa("Commander") or player:isa("Spectator") then
-            adjustRadians = 0
-        end
-            
-        camera:SetFov(player:GetRenderFov()+adjustRadians)
+        camera:SetFov(Client.GetEffectiveFov(player))
         
         -- In commander mode use frustum culling since the occlusion geometry
         -- isn't generally setup for viewing the level from the outside (and
@@ -1045,48 +1073,38 @@ local function SendAddBotCommands()
     ------------------------------------------
     --  If bots were requested via the main menu, add them now
     ------------------------------------------
-    if Client.GetOptionBoolean("botsSettings_enableBots", false) then
-        Client.SetOptionBoolean("botsSettings_enableBots", false)
 
-        Shared.ConsoleCommand( "sv_maxbots 12 true" )
+    assert(kListenServerStartedViaMenuOptionKey) -- should have loaded w/ menu.
+    assert(kStartServer_AddBotsKey) -- should have loaded w/ menu.
+    
+    -- Only load bots if the option is set, AND this listen server was started via the Start Server
+    -- menu (instead of the map console command, for example).
+    local startedFromMenu = Client.GetOptionBoolean(kListenServerStartedViaMenuOptionKey, false)
+    Client.SetOptionBoolean(kListenServerStartedViaMenuOptionKey, false)
+    
+    if not startedFromMenu then
+        return
     end
-
-    if Client.GetOptionBoolean("sendBotsCommands", false) then
-        Client.SetOptionBoolean("sendBotsCommands", false)
-
-        local numMarineBots = Client.GetOptionInteger("botsSettings_numMarineBots", 0)
-        local numAlienBots = Client.GetOptionInteger("botsSettings_numAlienBots", 0)
-        local addMarineCom = Client.GetOptionBoolean("botsSettings_marineCom", false)
-        local addAlienCom = Client.GetOptionBoolean("botsSettings_alienCom", false)
-        local marineSkill = Client.GetOptionString("botsSettings_marineSkillLevel", "Intermediate")
-
-        if numMarineBots > 0 then
-            Shared.ConsoleCommand( string.format("addbot %d 1", numMarineBots) )
-        end
-
-        if numAlienBots > 0 then
-            Shared.ConsoleCommand( string.format("addbot %d 2", numAlienBots) )
-        end
-
-        if addMarineCom then
-            Shared.ConsoleCommand("addbot 1 1 com")
-        end
-
-        if addAlienCom then
-            Shared.ConsoleCommand("addbot 1 2 com")
-        end
-
-        local skill2jitter =
-        {
-            Beginner = 1.2,
-            Intermediate = 0.8,
-            Expert = 0.4
-        }
-        Shared.ConsoleCommand(string.format("marinejitter %f", skill2jitter[marineSkill]))
-
-        Shared.ConsoleCommand("bottraining")
+    
+    local addBotsOption = Client.GetOptionBoolean(kStartServer_AddBotsKey, false)
+    if not addBotsOption then
+        return
     end
-
+    
+    local botCount = Client.GetOptionInteger(kStartServer_PlayerLimitKey, kStartServer_DefaultPlayerLimit)
+    Shared.ConsoleCommand(string.format("sv_maxbots %d true", botCount))
+    
+    -- Add commander bots.
+    Shared.ConsoleCommand("addbot 1 1 com")
+    Shared.ConsoleCommand("addbot 1 2 com")
+    botCount = botCount - 2
+    
+    -- Add regular bots.
+    local marineBotCount = math.floor(botCount * 0.5)
+    Shared.ConsoleCommand(string.format("addbots %d 1", marineBotCount))
+    botCount = botCount - marineBotCount
+    Shared.ConsoleCommand(string.format("addbots %d 2", botCount))
+    
 end
 
 
@@ -1094,22 +1112,21 @@ local function OnLoadComplete()
     
     Client.fullyLoaded = true
     
+    -- Successfully connected, clear the password used.
+    Client.SetOptionString(kLastServerPassword, "")
+    
+    CreateMainMenu()
+    
     Render_SyncRenderOptions()
     Input_SyncInputOptions()
     HitSounds_SyncOptions()
     OptionsDialogUI_SyncSoundVolumes()
-    MainMenu_Preload()
-
+    
     HiveVision_Initialize()
     EquipmentOutline_Initialize()
     
-    
-    -- In case name changed during load
-    SetNameWithSteamPersona()
-    local playerName = GetNickName()
-    
-    Client.SendNetworkMessage("SetName", { name = playerName }, true)
-    
+    UpdatePlayerNicknameFromOptions()
+
     Lights_UpdateLightMode()
     
     SendAddBotCommands()
@@ -1173,10 +1190,54 @@ local function TimeoutDecals(materialName, origin, distance)
 
 end
 
-function Client.CreateTimeLimitedDecal(materialName, coords, scale, lifeTime)
+-- Called whenever the option lifetime changes.
+function Client.UpdateTimeLimitedDecals()
+    
+    local lifetimeOption = Client.GetDefaultDecalLifetime()
+    
+    for i=1, #Client.timeLimitedDecals do
+        
+        local decalEntry = Client.timeLimitedDecals[i]
+        local oldEndTime = decalEntry[2]
+        local renderMaterial = decalEntry[3]
+        local usesOptionLifetime = decalEntry[5]
+        local decalLifetime = decalEntry[6]
+        if usesOptionLifetime then
+            local startTime = oldEndTime - decalLifetime
+            local newEndTime = startTime + lifetimeOption
+            renderMaterial:SetParameter("endTime", newEndTime)
+            decalEntry[2] = newEndTime
+            decalEntry[6] = lifetimeOption
+        end
+        
+    end
+    
+end
 
+local decalLifetime
+function Client.GetDefaultDecalLifetime()
+    
+    if not decalLifetime then
+        decalLifetime = Client.GetOptionFloat("graphics/decallifetime", 0.2) * kDecalMaxLifetime
+    end
+    
+    return decalLifetime
+    
+end
+
+function Client.SetDefaultDecalLifetime(lifetime)
+    
+    decalLifetime = lifetime
+    Client.UpdateTimeLimitedDecals()
+    
+end
+
+function Client.CreateTimeLimitedDecal(materialName, coords, scale, lifeTime)
+    
+    local usesOptionLifetime = false
     if not lifeTime then
-        lifeTime = Client.GetOptionFloat("graphics/decallifetime", 0.2) * kDecalMaxLifetime
+        lifeTime = Client.GetDefaultDecalLifetime()
+        usesOptionLifetime = true
     end
         
     if lifeTime ~= 0 then
@@ -1200,7 +1261,7 @@ function Client.CreateTimeLimitedDecal(materialName, coords, scale, lifeTime)
             TimeoutDecals(materialName, coords.origin, scale * 0.5)
         end
         
-        table.insert(Client.timeLimitedDecals, {decal, endTime, material, materialName})
+        table.insert(Client.timeLimitedDecals, {decal, endTime, material, materialName, usesOptionLifetime, lifeTime})
 
     end
 

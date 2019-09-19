@@ -585,11 +585,15 @@ end
 function ColorIntToColor(color)
 
     local red = bit.rshift(bit.band(color, 0xFF0000), 16)
-    local blue = bit.rshift(bit.band(color, 0x00FF00), 8)
-    local green = bit.band(color, 0x0000FF)
+    local green = bit.rshift(bit.band(color, 0x00FF00), 8)
+    local blue = bit.band(color, 0x0000FF)
 
-    return Color(red / 0xFF, blue / 0xFF, green / 0xFF, 1)
+    return Color(red / 0xFF, green / 0xFF, blue / 0xFF, 1)
 
+end
+
+function ColorToColorInt(color)
+    return bit.bor(bit.lshift(color.r * 255, 16), bit.lshift(color.g * 255, 8), color.b * 255)
 end
 
 -- Returns table of bit masks 
@@ -1011,6 +1015,10 @@ function SlerpVector(current, target, rate)
 
 end
 
+function Lerp(a, b, t)
+    return a * (1.0 - t) + b * t
+end
+
 function LerpColor(startColor, targetColor, percentage)
 
     return Color(startColor.r + (targetColor.r - startColor.r) * percentage,
@@ -1079,8 +1087,137 @@ function IsBoolean(var)
     return var ~= nil and type(var) == "boolean"
 end
 
-function CopyColor(source)
-    return Color(source)
+local cDataTypes =
+{
+    "Vector",
+    "Color",
+    "Trace",
+    "Angles",
+    "Coords",
+}
+function GetCDataClassName(x)
+    for i=1, #cDataTypes do
+        if x:isa(cDataTypes[i]) then
+            return cDataTypes[i]
+        end
+    end
+    return "UnknownType"
+end
+
+local function ExpandedPrintHelper(v, vName, seen, indent)
+    
+    vName = vName or "value"
+    
+    if v == nil then
+        HPrint("%s%s = nil", string.rep("  ", indent), vName)
+        return
+    end
+    
+    local seenBefore = seen[v] ~= nil
+    seen[v] = true
+    
+    if type(v) == "table" and not seenBefore then
+        if vName then
+            HPrint("%s%s =", string.rep("  ", indent), vName)
+        end
+        HPrint("%s{", string.rep("  ", indent))
+        for key, value in pairs(v) do
+            ExpandedPrintHelper(value, key, seen, indent + 1)
+        end
+        HPrint("%s}", string.rep("  ", indent))
+    else
+        HPrint("%s%s = %s", string.rep("  ", indent), vName, ToString(v))
+    end
+    
+end
+
+-- Prints value and all sub-values.  Tables are neatly indented and formatted across multiple lines.
+function ExpandedPrint(v, name)
+    ExpandedPrintHelper(v, name, {}, 0)
+end
+
+function ToString(t)
+    
+    if t == nil then
+        return "nil"
+    elseif type(t) == "string" then
+        return t
+    elseif type(t) == "table" then
+        if t.classname then
+            if type(t.__tostring) == "function" then
+                return t:__tostring()
+            else
+                return string.format("class %s", t.classname)
+            end
+        else
+            return TableToString(t)
+        end
+    elseif type(t) == "function" then
+        return DebugFunctionToString(t)
+
+    elseif type(t) == "cdata" then
+        if t.isa then
+            if t:isa("Vector") then
+                return StringFormat("%f, %f, %f", t.x, t.y, t.z)
+            elseif t:isa("Trace") then
+                return StringFormat("trace fraction: %.2f entity: %s", t.fraction, SafeClassName(t.entity))
+            elseif t:isa("Color") then
+                return StringFormat("color rgba: %.2f, %.2f, %.2f, %.2f", t.r, t.g, t.b, t.a)
+            elseif t:isa("Angles") then
+                return StringFormat("angles yaw/pitch/roll: %.2f, %.2f, %.2f", t.yaw, t.pitch, t.roll)
+            elseif t:isa("Coords") then
+                return CoordsToString(t)
+            end
+        end
+
+        --defer to __tostring
+        return tostring(t)
+
+    elseif type(t) == "userdata" then
+        if t.__tostring then
+            return t:__tostring()
+        elseif type(getmetatable(t)) ~= "table" then
+            return tostring(t)
+        elseif t.isa and t:isa("Entity") then
+            return t:GetClassName() .. "-" .. t:GetId()
+        elseif t.GetClassName then
+            return t:GetClassName()
+        elseif t.GetTagName then
+            return StringFormat("tag: %s CSS class: %s", t:GetTagName(), SafeCSSClassName(t))
+        else
+            return tostring(t)
+        end
+    elseif type(t) == "boolean" then
+        return tostring(t)
+    elseif type(t) == "number" then
+
+        --Insert commas in proper places
+        local s = tostring(t)
+        local suffix = ""
+
+        local index = string.len(s) - 3
+
+        --Take into account decimal place, if any
+        local decimalIndex = string.find(s, "(%.)")
+        if decimalIndex ~= nil then
+            index = decimalIndex - 4
+            suffix = string.sub(s, decimalIndex)
+            s = string.sub(s, 1, decimalIndex - 1)
+        end
+
+        while index >= 1 do
+
+            local prefix = string.sub(s, 1, index)
+            local postfix = string.sub(s, index + 1)
+            s = StringFormat("%s,%s", prefix, postfix)
+            index = index - 3
+
+        end
+
+        return s .. suffix
+    end
+
+    Print("ToString() on type \"%s\" failed.", type(t))
 end
 
 function CopyCData(cdata)
@@ -1100,12 +1237,21 @@ function CopyCData(cdata)
 end
 
 function Copy(t)
-    if type(t) == "string" then
+    
+    PROFILE("Utility:Copy")
+    
+    if t == nil then
+        return nil
+    elseif type(t) == "string" then
         return t
     elseif type(t) == "table" then
-        local newTable = {}
+        if type(t.__copy) == "function" then
+            return t:__copy()
+        else
+            local newTable = {}
         table.copy(t, newTable, true)
-        return newTable
+            return newTable
+        end
     elseif type(t) == "cdata" then
         return CopyCData(t)
     end
@@ -1217,10 +1363,6 @@ end
 -- Draws angles as a coordinate frame
 function DebugDrawAngles(angles, origin, length, duration, colorScale)
     DebugDrawAxes( angles:GetCoords(), origin, length, duration, colorScale )
-end
-
-function CopyCoords(coords)
-    return Coords(coords)
 end
 
 -- Returns degrees between -360 and 360
@@ -1712,7 +1854,7 @@ function PrecacheAsset(effectName)
 
     if type(effectName) ~= "string" then
 
-        error("PrecacheAsset(%s): effect name isn't a string (%s instead).", tostring(effectName), type(effectName))
+        error(string.format("PrecacheAsset(%s): effect name isn't a string (%s instead).", tostring(effectName), type(effectName)))
         return nil
 
     end
@@ -2150,19 +2292,23 @@ end
 local gAtmosphericsEnabled = true
 
 function ApplyAtmosphericDensity()
-
-    local atmoModifier = Client.GetOptionFloat("graphics/atmospheric-density", 1.0)
-
-    if gAtmosphericsEnabled then
-        for index, light in ipairs(Client.lightList) do
-
-            if light.originalAtmosphericDensity then
-                light:SetAtmosphericDensity(light.originalAtmosphericDensity * atmoModifier)
+    
+    if Client and Client.lightList and gAtmosphericsEnabled then
+        
+        local atmoModifier = Client.GetOptionFloat("graphics/atmospheric-density", 0.5)
+        
+        if gAtmosphericsEnabled then
+            for index, light in ipairs(Client.lightList) do
+                
+                if light.originalAtmosphericDensity then
+                    light:SetAtmosphericDensity(light.originalAtmosphericDensity * atmoModifier)
+                end
+                
             end
-
         end
+        
     end
-
+    
 end
 
 function DisableAtmosphericDensity()
@@ -2614,40 +2760,6 @@ function CopyRelevancyMask(fromEnt, toEnt)
 
 end
 
-
-queue = {}
-function queue.new()
-    return setmetatable( { first = 0; last = -1; }, { __index = queue } )
-end
-
-function queue.pushleft( list, value )
-    local first = list.first - 1
-    list.first = first
-    list[first] = value
-end
-
-function queue.pushright( list, value )
-    local last = list.last + 1
-    list.last = last
-    list[last] = value
-end
-
-function queue.popleft(list)
-    local value
-    if list.first <= list.last then
-        value, list.first, list[list.first] = list[list.first], list.first + 1, nil
-    end
-    return value
-end
-
-function queue.popright(list)
-    local value
-    if list.first <= list.last then
-        value, list.last, list[list.last] = list[list.last], list.last - 1, nil
-    end
-    return value
-end
-
 local kGamemode
 function GetGamemode()
     if kGamemode then return kGamemode end
@@ -2672,14 +2784,14 @@ function GetGamemode()
 end
 
 function IsValid(obj)
-    return debug.isvalid(obj)
+    return (debug.isvalid(obj))
 end
 
 function HexToColor(hx, alpha)
     
     if #hx ~= 6 then
         error("Not a valid hexadecimal color string!")
-        return Color(1,1,1,1)
+        return (Color(1,1,1,1))
     end
     
     alpha = alpha or 1.0
@@ -2693,13 +2805,13 @@ function HexToColor(hx, alpha)
     local dec = tonumber(hx)
     if not dec then
         error("Not a valid hexadecimal color string!")
-        return Color(1,1,1,1)
+        return (Color(1,1,1,1))
     end
     local red = bit.rshift(dec, 16) / 255
     local green = bit.band(bit.rshift(dec, 8),255) / 255
     local blue = bit.band(dec, 255) / 255
     
-    return Color(red, green, blue, alpha)
+    return (Color(red, green, blue, alpha))
     
 end
 
@@ -2734,4 +2846,78 @@ end
 function SortEntitiesBasedOn2DXYDistance(viewCoords, list)
     _xyCompareCoords = viewCoords -- ugh... but no other way without creating a new sort function every time :(
     table.sort(list, CompareXYDistance)
+end
+
+local function ReadOnlyToString(self)
+    return "read-only table."
+end
+
+-- Returns a read-only copy of the given table.
+function ReadOnly(tbl)
+    return (setmetatable({},
+    {
+        __index = tbl,
+        __tostring = getmetatable(tbl) and getmetatable(tbl).__tostring or nil,
+        __newindex = function(t, key, value)
+           error("attempting to change constant " .. tostring(key) .. " to " .. tostring(value), 2)
+        end,
+    }))
+end
+
+-- Returns a string representation of a function containing enough information to (hopefully)
+-- figure out where a function was defined.
+function DebugFunctionToString(func)
+    
+    assert(type(func) == "function")
+    
+    local infoTable = debug.getinfo(func, "nS")
+    local result
+    if infoTable.namewhat == "" then
+        result = string.format("function defined at line %s of %s", infoTable.linedefined, infoTable.short_src)
+    else
+        result =  string.format("%s function named %s, defined at line %s of %s", infoTable.namewhat, infoTable.name, infoTable.linedefined, infoTable.short_src)
+    end
+    
+    return result
+end
+
+-- Returns true if the given substring is found inside the given string.  Does not need to be
+-- contiguous, just needs to be in the same order.  Case insensitive by default, can be changed.
+-- Example:
+--  SubStringInString("hello", "H-E-L-asdfasdf-L-O") -- returns true.
+--
+function SubStringInString(substr, str, caseSensitive)
+    
+    if not caseSensitive then
+        str = string.UTF8Lower(str)
+        substr = string.UTF8Lower(substr)
+    end
+    
+    local uStr = string.UTF8Encode(str)
+    local uSubstr = string.UTF8Encode(substr)
+    
+    if #str < #substr then
+        return false
+    end
+    
+    -- Search for the substring inside the string..  Don't assume the string will be in one piece
+    -- either.  Someone could name their server "M Y   A W E S O M E   S E R V E R"... People can
+    -- be stupid like that... :(
+    local j = 1 -- substr index
+    for i=1, #uStr do
+        if uStr[i] == uSubstr[j] then
+            j = j + 1
+        end
+        
+        if #uSubstr - (j-1) > (#uStr - i) then
+            return false -- not enough characters left to match substring.
+        end
+        
+        if j > #uSubstr then
+            return true -- all characters of substring matched up to string.
+        end
+    end
+    
+    return false
+
 end

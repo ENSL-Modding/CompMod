@@ -4,6 +4,9 @@ Script.Load("lua/GUIAssets.lua")
 Script.Load("lua/GUIUtility.lua")
 Script.Load("lua/Table.lua")
 
+-- Ensure cinematic background is preloaded, otherwise we get pop-in.
+Script.Load("lua/menu2/MenuBackgrounds.lua")
+
 local kFontAgencyFB_Large = Fonts.kAgencyFB_Large
 local kIntroScreen = "screens/IntroScreen.jpg"
 local kSpinner = PrecacheAsset("ui/loading/spinner.dds")

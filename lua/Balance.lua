@@ -279,7 +279,7 @@ kShotgunFireRate = 0.88
 kShotgunDamage = 11.33
 kShotgunDamageType = kDamageType.Normal
 kShotgunClipSize = 6
-kShotgunBulletsPerShot = 14
+kShotgunBulletsPerShot = 13
 kShotgunSpreadDistance = 10 --Gets used as z-axis value for spread vectors before normalization
 
 kNadeLauncherClipSize = 4
@@ -640,8 +640,6 @@ kBileBombResearchCost = 15
 kBileBombResearchTime = 40
 kShadowStepResearchCost = 15
 kShadowStepResearchTime = 40
-kRoostResearchCost = 10
-kRoostResearchTime = 30
 kUmbraResearchCost = 20
 kUmbraResearchTime = 45
 kBoneShieldResearchCost = 20
@@ -673,9 +671,11 @@ kPowerSurgeResearchTime = 45
 kPowerSurgeCooldown = 4
 kPowerSurgeDuration = 10
 kPowerSurgeCost = 2
-kPowerSurgeDamage = 0
-kPowerSurgeDamageRadius = 0
-kPowerSurgeElectrifiedDuration = 6
+
+kPowerSurgeTriggerEMP = false
+kPowerSurgeEMPDamage = 25
+kPowerSurgeEMPDamageRadius = 6
+kPowerSurgeEMPElectrifiedDuration = 6
 
 kArmoryInitialEnergy = 100  kArmoryMaxEnergy = 150
 

@@ -311,15 +311,13 @@ function Crag:GetMaxSpeed()
 end
 
 function Crag:OnOrderChanged()
+    if self:GetIsConsuming() then
+        self:CancelResearch()
+    end
+
     local currentOrder = self:GetCurrentOrder()
     if GetIsUnitActive(self) and currentOrder and currentOrder:GetType() == kTechId.Move then
         self:SetUpdateRate(kRealTimeUpdateRate)
-    end
-end
-
-function Crag:OnOrderGiven(order)
-    if self:GetIsConsuming() then
-        self:CancelResearch()
     end
 end
 
@@ -329,7 +327,7 @@ end
 
 -- Look for nearby friendlies to heal
 function Crag:OnUpdate(deltaTime)
-
+    
     PROFILE("Crag:OnUpdate")
 
     ScriptActor.OnUpdate(self, deltaTime)
