@@ -69,7 +69,7 @@ local modules = {
 	-- "Marine/Walk",
 	"Marine/WeaponDropTime",
 
-	"Marine/WeaponExpire"
+	"Marine/WeaponStepping"
 }
 
 function GetModConfig(kLogLevels)
