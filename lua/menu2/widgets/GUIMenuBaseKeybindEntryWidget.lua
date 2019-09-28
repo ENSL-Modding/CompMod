@@ -79,7 +79,7 @@ function GUIMenuBaseKeybindEntryWidget:OnFXStateChangedOverride(state, prevState
         self:AnimateProperty("Color", MenuStyle.kDarkGrey, MenuAnimations.Fade)
         return true -- override behavior was invoked, no need to run default behaviors.
     elseif state == "editing" then
-        self:AnimateProperty("Color", nil, MenuAnimations.PulseOpacityLight, "pulse")
+        self:AnimateProperty("Color", nil, MenuAnimations.PulseColor, "pulse")
         -- Deliberately NOT returning true here.  Still want to do the default color change.
     end
     

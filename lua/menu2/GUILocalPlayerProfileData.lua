@@ -101,7 +101,7 @@ function GUILocalPlayerProfileData:Initialize(params, errorDepth)
     
     profileDataObject = self
     
-    self:SetPlayerName(GetNickName())
+    UpdatePlayerNicknameFromOptions() -- ensure the nickname has been initialized.
     
     RequestDataFromHive(self)
     

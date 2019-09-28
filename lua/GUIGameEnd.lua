@@ -162,6 +162,20 @@ local function GetTeamSkills()
     return averagePlayerSkills
 end
 
+-- Increased round stats and grants given promo item if limit is reached
+function CheckRoundStatsPromoItem(statsKey, itemId, roundLimit)
+    local rounds = Client.GetUserStat_Int(statsKey) or 0
+    rounds = rounds + 1
+    Client.SetUserStat_Int(statsKey, rounds + 1)
+
+    if itemId > 0 and rounds >= roundLimit and not GetOwnsItem(itemId) then
+
+        Client.AddPromoItem(itemId)
+        InventoryNewItemNotifyPush(itemId)
+
+    end
+end
+
 local function OnGameEnd(message)
 
     local localPlayer = Client.GetLocalPlayer()
@@ -222,37 +236,15 @@ local function OnGameEnd(message)
         --Client.showFeedback = true
 
         if GetGameInfoEntity():GetIsDedicated() and gameLength > 300 then
-            local halloweenRounds = Client.GetUserStat_Int("halloween_18_rounds_played") or 0
-            Client.SetUserStat_Int("halloween_18_rounds_played", halloweenRounds + 1)
-            if halloweenRounds >= 5 and not GetOwnsItem( kHauntedBabblerPatchItemId ) then
 
-                Client.AddPromoItem( kHauntedBabblerPatchItemId )
-                InventoryNewItemNotifyPush( kHauntedBabblerPatchItemId )
-
-            end
+            -- Todo: Set itemId to 0 when item doesn't drop any longer
+            CheckRoundStatsPromoItem("halloween_18_rounds_played", 0, 5) --kHauntedBabblerPatchItemId
 
             local mapname = Shared.GetMapName()
             if mapname == "ns2_unearthed" then
-                local rounds = Client.GetUserStat_Int("unearthed_release_rounds_played") or 0
-                Client.SetUserStat_Int("unearthed_release_rounds_played", rounds + 1)
-
-                if rounds >= 5 and not GetOwnsItem( kUnearthedCommanderItemId ) then
-
-                    Client.AddPromoItem( kUnearthedCommanderItemId )
-                    InventoryNewItemNotifyPush( kUnearthedCommanderItemId )
-
-                end
-
+                CheckRoundStatsPromoItem("unearthed_release_rounds_played", 0, 5) --kUnearthedCommanderItemId
             elseif mapname == "ns2_origin" then
-                local rounds = Client.GetUserStat_Int("origin_release_rounds_played") or 0
-                Client.SetUserStat_Int("origin_release_rounds_played", rounds + 1)
-
-                if rounds >= 5 and not GetOwnsItem( kAbyssGorgeItemId ) then
-
-                    Client.AddPromoItem( kAbyssGorgeItemId )
-                    InventoryNewItemNotifyPush( kAbyssGorgeItemId )
-
-                end
+                CheckRoundStatsPromoItem("origin_release_rounds_played", kAbyssGorgeItemId, 5)
             end
 
         end

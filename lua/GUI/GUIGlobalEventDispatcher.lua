@@ -108,6 +108,10 @@ Event.Hook("AvatarDownloaded", function(textureName)
     GetGlobalEventDispatcher():FireEvent("OnAvatarDownloaded", textureName)
 end)
 
+Event.Hook("AvatarDeactivated", function(textureName)
+    GetGlobalEventDispatcher():FireEvent("OnAvatarDeactivated", textureName)
+end)
+
 function SendOnGUIObjectClicked(obj)
     GetGlobalEventDispatcher():FireEvent("OnGUIObjectClicked", obj)
 end

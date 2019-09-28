@@ -294,14 +294,18 @@ local function OnBadgeScaleAnimationFinished(badgeObj, animationLayerName)
     badgeObj:UnHookEvent(badgeObj, "OnAnimationFinished", OnBadgeScaleAnimationFinished)
     
     -- Make badge reappear in its slot (likely unseen), and with tray as the parent.
-    local customizer = badgeObj:GetParent()
+    local customizer = GetBadgeCustomizer()
     assert(GetTypeName(customizer) == "GUIMenuBadgesCustomizer")
     badgeObj:SetParent(customizer.tray)
     badgeObj:AnimateProperty("Scale", nil, MenuAnimations.ScaleIn)
     badgeObj:ClearPropertyAnimations("Position")
     badgeObj:SetPosition(badgeObj.positionInTray)
     badgeObj:SetLayer(kBadgeLayer)
-
+    
+    -- avoid the off-by-one issue where the badge appears full-size at the other location, and then
+    -- goes back to 0 to scale-up.
+    badgeObj:GetRootItem():SetScale(0.0001, 0.0001)
+    
 end
 
 local function ReturnBadgeToTray(self, badgeObj)

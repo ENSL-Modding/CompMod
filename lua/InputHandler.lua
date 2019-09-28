@@ -231,7 +231,7 @@ local function OnSendKeyEvent(key, down, amount, repeated)
     end
     
     -- Handle old-system GUI first, since it blocks console bindings.
-    if not stop then
+    if not stop and not MainMenu_GetIsOpened() then
         stop = GetGUIManager():SendKeyEvent(key, down, amount)
     end
     

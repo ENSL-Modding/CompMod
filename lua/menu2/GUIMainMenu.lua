@@ -277,7 +277,8 @@ function LeaveMenu()
 end
 
 function MainMenu_GetIsOpened()
-    local result = GetMainMenu():GetVisible()
+    local menu = GetMainMenu()
+    local result = menu ~= nil and menu:GetVisible()
     return result
 end
 

@@ -246,8 +246,14 @@ end
 Event.Hook("SteamPersonaChanged", UpdatePlayerNicknameFromOptions )
 
 function GetNickName()
-    local result = UpdatePlayerNicknameFromOptions()
-    return result
+    
+    local localPlayerData = GetLocalPlayerProfileData()
+    if localPlayerData then
+        return (localPlayerData:GetPlayerName())
+    else
+        return (UpdatePlayerNicknameFromOptions())
+    end
+    
 end
 
 function SetNickName(name)
@@ -260,7 +266,6 @@ function SetNickName(name)
     if optionsMenu then
         local textBox = optionsMenu:GetOptionWidget("nickname")
         if textBox then
-            textBox:SetEditing(false)
             textBox:SetValue(name)
         end
     end

@@ -34,6 +34,9 @@ local kMinListHeight = 32
 -- Refresh friends list every 15 seconds.
 local kFriendsListRefreshInterval = 15
 
+-- Debug tool to prevent list from changing.
+local freezeFriendsList = false
+
 local function UpdateLayout(self)
     
     local currentY = 0
@@ -86,6 +89,10 @@ end
 local function OnSteamFriendsUpdated(self, friendsTbl)
     
     PROFILE("GUIMenuFriendsList_OnSteamFriendsUpdated")
+    
+    if freezeFriendsList then
+        return
+    end
     
     -- Update the friends objects, creating new ones if we don't have enough.
     local oldFriendEntries = self.friendEntries
@@ -190,3 +197,9 @@ function GUIMenuFriendsList:Initialize(params, errorDepth)
     RefreshFriendsList(self)
     
 end
+
+-- DEBUG
+Event.Hook("Console_freeze_friends_list", function()
+    freezeFriendsList = not freezeFriendsList
+    Log("freezeFriendsList set to %s", freezeFriendsList)
+end)

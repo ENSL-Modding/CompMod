@@ -257,11 +257,18 @@ local function LinearAnimation(obj, time, params, currentValue, startValue, endV
     return currentValue + diff * (1.0 - t), t >= 1
 end
 
-local function PulseOpacityAnimation(obj, time, params, currentValue, startValue, endValue, startTime)
+local function PulseColorAnimation(obj, time, params, currentValue, startValue, endValue, startTime)
     local mult = math.cos(time * math.pi * 2 * params.frequency) -- in range -1..1
     mult = mult * 0.5 + 0.5 -- in range 0..1
     mult = mult * params.strength + (1.0 - params.strength) -- in range 1-strength..1
     return currentValue * Color(1, 1, 1, mult), false
+end
+
+local function PulseOpacityAnimation(obj, time, params, currentValue, startValue, endValue, startTime)
+    local mult = math.cos(time * math.pi * 2 * params.frequency) -- in range -1..1
+    mult = mult * 0.5 + 0.5 -- in range 0..1
+    mult = mult * params.strength + (1.0 - params.strength) -- in range 1-strength..1
+    return currentValue * mult, false
 end
 
 local function HighlightFlashAnimation(obj, time, params, currentValue, startValue, endValue, startTime)
@@ -329,7 +336,14 @@ MenuAnimations.Linear = ReadOnly
     speed = 200,
 }
 
-MenuAnimations.PulseOpacityLight = ReadOnly
+MenuAnimations.PulseColor = ReadOnly
+{
+    func = PulseColorAnimation,
+    strength = 0.25,
+    frequency = 2.0,
+}
+
+MenuAnimations.PulseOpacity = ReadOnly
 {
     func = PulseOpacityAnimation,
     strength = 0.25,

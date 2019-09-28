@@ -20,7 +20,6 @@ Script.Load("lua/menu2/MenuStyles.lua")
 ---@class GUIMenuMicVolumeVisualizationWidget : GUIObject
 class "GUIMenuMicVolumeVisualizationWidget" (GUIObject)
 
-GUIMenuMicVolumeVisualizationWidget:AddClassProperty("_Intensity", 0)
 GUIMenuMicVolumeVisualizationWidget:AddCompositeClassProperty("Label", "label", "Text")
 
 local kMeterShader = PrecacheAsset("shaders/GUI/menu/outlinedShadowedBox.surface_shader")
