@@ -69,8 +69,6 @@ local function DefineMethod(name, method)
     GUIMenuNumberInputWidget[name] = method
 end
 
-AddCompositeClassProperties("_CursorColor", "cursor", "Color")
-AddCompositeClassProperties("_CursorPosition", "cursor", "Position")
 AddCompositeClassProperties("_SelectionBoxColor", "selectionBox", "Color")
 AddCompositeClassProperties("_SelectionBoxPosition", "selectionBox", "Position")
 AddCompositeClassProperties("_SelectionBoxSize", "selectionBox", "Size")
@@ -92,13 +90,13 @@ local function UpdateSelectionVisuals(self)
     end
     
     -- Fade out cursor when selection box is visible, and back up when it's not.
-    local cursorColor = Color(self:Get_CursorColor(true))
+    local cursorColor = Color(self.cursor:GetColor(true))
     if self:GetSelectionSize() == 0 then
         cursorColor.a = 1
     else
         cursorColor.a = 0
     end
-    self:AnimateProperty("_CursorColor", cursorColor, MenuAnimations.Fade)
+    self.cursor:AnimateProperty("Color", cursorColor, MenuAnimations.Fade)
     
     -- Move selection box to cover selection.
     local xPos = self:GetLocalXOffsetByCursorIndex(self:GetCursorIndex())
@@ -125,7 +123,7 @@ local function UpdateCursorVisuals(self)
         animationParams = MenuAnimations.FlyIn
     end
     
-    self:AnimateProperty("_CursorPosition", cursorPos, animationParams)
+    self.cursor:AnimateProperty("Position", cursorPos, animationParams)
     
 end
 
@@ -143,25 +141,24 @@ local function OnFXStateChanged(self, state, prevState)
         PlayMenuSound("BeginChoice")
         
         -- Make cursor flash
-        self:Set_CursorColor(MenuStyle.kOffWhite)
-        self:AnimateProperty("_CursorColor", nil, MenuAnimations.HighlightFlashColor)
+        self.cursor:ClearPropertyAnimations("Opacity")
+        self.cursor:SetOpacity(1)
+        self.cursor:AnimateProperty("Color", nil, MenuAnimations.HighlightFlashColor)
         
         -- Make cursor pulse
-        self:AnimateProperty("_CursorColor", nil, MenuAnimations.PulseOpacityLight)
+        self.cursor:AnimateProperty("Opacity", nil, MenuAnimations.PulseOpacity)
         
         -- Fade up selection box.
         self:AnimateProperty("_SelectionBoxColor", kSelectionBoxColor, MenuAnimations.Fade)
         
         -- Clear cursor animation so it is instantly where it should be.
-        self:ClearPropertyAnimations("_CursorPosition")
+        self.cursor:ClearPropertyAnimations("Position")
     
     else
         
         -- Make cursor fade out.
-        self:ClearPropertyAnimations("_CursorColor")
-        local cursorColor = Color(MenuStyle.kOffWhite)
-        cursorColor.a = 0
-        self:AnimateProperty("_CursorColor", cursorColor, MenuAnimations.Fade)
+        self.cursor:ClearPropertyAnimations("Opacity")
+        self.cursor:AnimateProperty("Opacity", 0, MenuAnimations.Fade)
         
         -- Make selection box fade out.
         local boxColor = Color(kSelectionBoxColor)
@@ -173,10 +170,9 @@ end
 
 DefineMethod("SetupVisuals", function(self)
     
-    self.cursor = self:CreateTextGUIItem()
-    self.cursor:SetFontName(self:GetFontName())
+    self.cursor = CreateGUIObject("cursor", GUIText, self)
     self.cursor:SetText(self:GetCursorCharacter())
-    self.cursor:SetColor(kNormalColor)
+    self.cursor:SetColor(MenuStyle.kOffWhite)
     self.cursor:SetOpacity(0)
     self.cursor:AlignLeft()
     
@@ -205,7 +201,7 @@ DefineMethod("SetupVisuals", function(self)
 end)
 
 DefineMethod("GetCursorPosition", function(self, static)
-    local result = self:Get_CursorPosition(static)
+    local result = self.cursor:GetPosition(static)
     return result
 end)
 
@@ -231,7 +227,7 @@ end
 
 DefineMethod("SetFont", function(self, ...)
     self.displayText:SetFont(...)
-    self.cursor:SetFontName(self.displayText.text:GetFontName())
-    self.cursor:SetScale(self.displayText.text:GetScale())
+    self.cursor:SetFontFamily(self.displayText:GetFontFamily())
+    self.cursor:SetFontSize(self.displayText:GetFontSize())
     self:SetFontName(self.displayText.text:GetFontName())
 end)

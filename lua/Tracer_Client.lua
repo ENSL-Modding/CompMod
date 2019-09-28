@@ -76,7 +76,7 @@ end
 function Tracer:GetTimeToDie()
     return self.timePassed >= self.lifetime
 end
-    
+
 function BuildTracer(startPoint, endPoint, velocity, effectName, residueEffectName)
 
     local tracer = Tracer()
@@ -96,6 +96,10 @@ function BuildTracer(startPoint, endPoint, velocity, effectName, residueEffectNa
     -- Calculate how long we should live so we can animate to that target
     tracer.lifetime = (endPoint - startPoint):GetLength() / velocity:GetLength()
     tracer.timePassed = 0
+    
+    -- Put a hard-limit on the lifetime of a tracer.  This is more than generous, and also serves
+    -- to protect against NaNs and Infs.
+    tracer.lifetime = math.min(kMaxTracerLifetime, tracer.lifetime)
     
     return tracer
     

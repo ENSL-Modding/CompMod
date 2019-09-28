@@ -24,6 +24,7 @@
 --                      commander talk key is, by default, inherited from the regular talk key.
 --                      Changing the default talk key also changes the commander talk key when it
 --                      is in this state.
+--      disabledKeys    Optional list of keys to disable as inputs for this.
 --  
 --  Properties
 --      Value           The _string_ of the current keybind for this widget (or "None" if
@@ -283,6 +284,9 @@ function GUIBaseKeybindEntryWidget.InitValidation(params, errorDepth)
     -- Must be either "None" or the name of a key.
     RequireType("string", params.default, "params.default", errorDepth)
     
+    -- disabledKeys is optional.
+    RequireType({"table", "nil"}, params.disabledKeys, "params.disabledKeys", errorDepth)
+    
     if params.default ~= "None" and StringToKeyValue(params.default) == nil then
         error(string.format("GUIBaseKeybindEntryWidget params.default invalid!  Must be either 'None' or a valid InputKey name.  Got '%s' instead.", params.default), errorDepth)
     end
@@ -324,6 +328,10 @@ function GUIBaseKeybindEntryWidget:Initialize(params, errorDepth)
     
     self:HookEvent(self, "OnValueChanged", OnValueChanged)
     self:HookEvent(self, "OnIsConflictedChanged", OnIsConflictedChanged)
+    
+    if params.disabledKeys then
+        self.disabledKeys = params.disabledKeys
+    end
     
     if self.default ~= "None" then
         self:SetValue(self.default)
@@ -467,6 +475,17 @@ function GUIBaseKeybindEntryWidget:OnKey(key, down)
             self:FireEvent("OnEditCancelled")
         self:ResumeEvents()
         return true
+    end
+    
+    -- Allow certain keys to be disabled for this keybind input (eg don't let user bind mouse1 to
+    -- the console).
+    if self.disabledKeys then
+        for i=1, #self.disabledKeys do
+            local disabledKey = self.disabledKeys[i]
+            if disabledKey == key then
+                return
+            end
+        end
     end
     
     self:PauseEvents()

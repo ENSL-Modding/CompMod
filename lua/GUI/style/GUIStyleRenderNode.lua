@@ -25,6 +25,7 @@ function GUIStyleRenderNode:Initialize(childNodes)
 end
 
 function GUIStyleRenderNode:Uninitialize()
+    
     self:DestroyGUIView()
     self.destroyed = true
 end
@@ -97,6 +98,9 @@ function GUIStyleRenderNode:UpdateChildren()
     end
 end
 
+function GUIStyleRenderNode:SetIsRootNode()
+    self.isRoot = true -- will clean up children when done rendering.
+end
 
 function GUIStyleRenderNode:Update()
     
@@ -125,6 +129,18 @@ function GUIStyleRenderNode:Update()
     -- see if we've just finished rendering.
     if self.childrenDone and self.guiView:GetRenderCondition() == GUIView.RenderNever then
         self.renderDone = true
+        
+        -- If this is the root node, cleanup/free all children.
+        if self.isRoot then
+            local childNodes = UnorderedSet()
+            self:GatherAllNodes(childNodes)
+            childNodes:RemoveElement(self)
+            for i=1, #childNodes do
+                childNodes[i]:Uninitialize()
+            end
+            self.children = {}
+        end
+        
         return
     end
     
