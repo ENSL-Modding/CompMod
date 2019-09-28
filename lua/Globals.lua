@@ -63,6 +63,8 @@ kHitEffectOffset = 0.13
 -- max distance of blood from impact point to nearby geometry
 kBloodDistance = 3.5
 
+kMaxTracerLifetime = 2.0
+
 kCommanderPingDuration = 15
 
 kCommanderColor = 0xFFFF00

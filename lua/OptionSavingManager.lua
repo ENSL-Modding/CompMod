@@ -77,19 +77,25 @@ local function ReplaceAllCharsInStringWith(str, char, repWith)
 end
 
 local function SanitizePathStringForOptionName(str)
-
-    local sanitizedString = str
+    
+    -- Add something to end if the last element is blank.
+    local lastChar = string.sub(str, #str, #str)
+    if lastChar == "" or lastChar == "/" then
+        str = str .. "__blank"
+    end
+    
+    -- Replace disallowed characters.
     for i=1, #kInsaneChars do
         local char = kInsaneChars[i][1]
         local repWith = kInsaneChars[i][2]
-        sanitizedString = ReplaceAllCharsInStringWith(sanitizedString, char, repWith)
+        str = ReplaceAllCharsInStringWith(str, char, repWith)
     end
     
-    return sanitizedString
+    return str
 
 end
 
--- Replace the 4 Client.LoadOption_____ functions with ones that sanitize the paths.
+-- Replace the 4 Client.GetOption_____ functions with ones that sanitize the paths.
 local old_Client_GetOptionBoolean = Client.GetOptionBoolean
 local old_Client_GetOptionFloat = Client.GetOptionFloat
 local old_Client_GetOptionInteger = Client.GetOptionInteger

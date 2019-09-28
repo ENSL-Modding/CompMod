@@ -824,24 +824,6 @@ function MenuData.GetCurrentMenuMusicSoundName()
     return result
 end
 
-local kDeviceLocales =
-{
-    D3D9 = Locale.ResolveString("DIRECTX9"),
-    D3D11 = Locale.ResolveString("DIRECTX11"),
-    OpenGL = Locale.ResolveString("OPENGL"),
-}
-function MenuData.GetRenderDeviceChoices()
-    
-    local renderDevices = Client.GetRenderDeviceNames()
-    local choices = {}
-    for i=1, #renderDevices do
-        choices[#choices+1] = { value = renderDevices[i], displayString = kDeviceLocales[renderDevices[i]] }
-    end
-    
-    return choices
-    
-end
-
 local resolutions
 local function GetResolutionsTable()
     if not resolutions then

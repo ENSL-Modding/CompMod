@@ -253,16 +253,6 @@ MenuData.Config.OptionsMenu.General = MenuData.CreateDefaultOptionsLayout
                         optionPath = kNicknameOptionsKey,
                         optionType = "string",
                         default = "New Player",
-                        alternateSetter =
-                            function(value)
-                                SetNickName(value)
-                                UpdatePlayerNicknameFromOptions()
-                            end,
-                        immediateUpdate =
-                            function(self, value)
-                                Client.SetOptionString(kNicknameOptionsKey, value)
-                                UpdatePlayerNicknameFromOptions()
-                            end,
                         
                         expansionMargin = 4, -- prevent outer stroke effect from being cropped away.
                         
@@ -289,6 +279,13 @@ MenuData.Config.OptionsMenu.General = MenuData.CreateDefaultOptionsLayout
                         -- Inform the GUILocalPlayerProfileData whenever there is a change to the player name.
                         function(self)
                             GetLocalPlayerProfileData():HookEvent(self, "OnValueChanged", GetLocalPlayerProfileData().SetPlayerName)
+                        end,
+                        
+                        -- Update nickname when editing changes.
+                        function(self)
+                            self:HookEvent(self, "OnEditEnd", function(self2)
+                                SetNickName(self2:GetValue())
+                            end)
                         end
                     },
                 },
@@ -1365,6 +1362,10 @@ MenuData.Config.OptionsMenu.Controls = MenuData.CreateControlsLayout
                         default = "Grave",
                         
                         bindGroup = "general",
+
+                        -- Don't allow users to use LMB for console.  This prevents them from ever
+                        -- clicking again.
+                        disabledKeys = {InputKey.MouseButton0},
                     },
                     properties =
                     {
@@ -1796,24 +1797,6 @@ MenuData.Config.OptionsMenu.Graphics = MenuData.CreateDefaultOptionsLayout
     
     regularChildren =
     {
-        -- RENDER DEVICE
-        {
-            name = "renderDevice",
-            class = OP_Choice,
-            params =
-            {
-                optionPath = "graphics/device_329",
-                optionType = "string",
-                default = "D3D11",
-                fullRestart = true,
-            },
-            
-            properties =
-            {
-                {"Label", Locale.ResolveString("DEVICE")..": "},
-                {"Choices", MenuData.GetRenderDeviceChoices()},
-            },
-        },
         
         -- DISPLAY / MONITOR
         {
@@ -1994,7 +1977,7 @@ MenuData.Config.OptionsMenu.Graphics = MenuData.CreateDefaultOptionsLayout
             {
                 optionPath = kAntiAliasingOptionsKey,
                 optionType = "string",
-                default = Client.GetRenderDeviceName() == "D3D11" and "taa" or "fxaa",
+                default = "fxaa",
                 immediateUpdate = function(self)
                     local value = self:GetValue()
                     Client.SetRenderSetting("anti_aliasing", value)
@@ -2251,7 +2234,7 @@ MenuData.Config.OptionsMenu.Graphics = MenuData.CreateDefaultOptionsLayout
                 -- ATMOSPHERICS QUALITY
                 {
                     name = "atmoQuality",
-                    class = OP_Expandable_Choice,
+                    class = OP_TT_Expandable_Choice,
                     params =
                     {
                         optionPath = "graphics/atmospheric-quality",
@@ -2270,10 +2253,11 @@ MenuData.Config.OptionsMenu.Graphics = MenuData.CreateDefaultOptionsLayout
                         {"Choices",
                             {
                                 { value = "low", displayString = Locale.ResolveString("LOW"),},
-                                { value = "med", displayString = Locale.ResolveString("MEDIUM"),},
-                                { value = "high", displayString = Locale.ResolveString("HIGH"),},
+                                { value = "med", displayString = Locale.ResolveString("HIGH"),},
+                                { value = "high", displayString = Locale.ResolveString("EXTREME"),},
                             },
                         },
+                        {"Tooltip", Locale.ResolveString("ATMO_QUALITY_TT")},
                     },
                     postInit =
                     {

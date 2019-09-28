@@ -48,7 +48,8 @@ class "GMSBColumnContentsPlayers" (GMSBColumnContents)
 local function UpdatePlayerCount(self)
     local exists = self.entry:GetExists()
     local playerCount = self.entry:GetPlayerCount()
-    local playerMax = self.entry:GetPlayerMax()
+    local reservedSlotCount = self.entry:GetReservedSlotCount()
+    local playerMax = self.entry:GetPlayerMax() - reservedSlotCount
     if exists then
         self.playerCount:SetText(string.format("  %d/%d", math.max(0, playerCount), playerMax))
     else
@@ -125,6 +126,7 @@ function GMSBColumnContentsPlayers:Initialize(params, errorDepth)
     assert(self.entry)
     self:HookEvent(self.entry, "OnPlayerCountChanged", UpdatePlayerCount)
     self:HookEvent(self.entry, "OnPlayerMaxChanged", UpdatePlayerCount)
+    self:HookEvent(self.entry, "OnReservedSlotCountChanged", UpdatePlayerCount)
     self:HookEvent(self.entry, "OnExistsChanged", UpdateShared)
     self:HookEvent(self.entry, "OnSpectatorCountChanged", UpdateSpectatorCount)
     self:HookEvent(self.entry, "OnSpectatorMaxChanged", UpdateSpectatorCount)

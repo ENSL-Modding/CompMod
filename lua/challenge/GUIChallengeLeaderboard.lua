@@ -99,6 +99,54 @@ GUIChallengeLeaderboard.kFadeTime = 1.0
 GUIChallengeLeaderboard.kButtonHoverSound = PrecacheAsset("sound/NS2.fev/common/hovar")
 GUIChallengeLeaderboard.kButtonClickSound = PrecacheAsset("sound/NS2.fev/common/button_click")
 
+local avatarRequests = {} -- set of steamId64 that have active requests.
+
+local function ActivateAvatarRequest(steamId)
+    
+    if not steamId then
+        return
+    end
+    
+    local steamId64 = Client.ConvertSteamId32To64(steamId)
+    
+    if avatarRequests[steamId64] then
+        return -- already active
+    end
+    
+    avatarRequests[steamId64] = true
+    
+    Client.ActivateAvatarRequest(steamId64)
+
+end
+
+local function DeactivateAvatarRequest(steamId)
+    
+    if not steamId then
+        return
+    end
+    
+    local steamId64 = Client.ConvertSteamId32To64(steamId)
+    
+    if not avatarRequests[steamId64] then
+        return -- already inactive.
+    end
+    
+    avatarRequests[steamId64] = nil
+    
+    Client.DeactivateAvatarRequest(steamId64)
+    
+end
+
+local function DeactivateAllAvatarRequests()
+    
+    for steamId64, __ in pairs(avatarRequests) do
+        Client.DeactivateAvatarRequest(steamId64)
+    end
+    
+    avatarRequests = {}
+
+end
+
 function GUIChallengeLeaderboard:UpdateRowTransform(rowIndex)
     
     local shadowOffset = self.kShadowOffset * self.scale
@@ -248,12 +296,6 @@ function GUIChallengeLeaderboard:OnProfileButtonClicked(rowIndex)
     
     local steamId = entry.steamId
     Client.ShowWebpage(string.format("%s[U:1:%s]", kSteamProfileURL, steamId))
-    
-end
-
-function GUIChallengeLeaderboard:GetTextureNameForAvatar(rowIndex)
-    
-    return "*avatar"..tostring(rowIndex)
     
 end
 
@@ -985,6 +1027,8 @@ end
 
 function GUIChallengeLeaderboard:Uninitialize()
     
+    DeactivateAllAvatarRequests()
+    
     -- Cleanup is easy because every item created by the system is in one
     -- convenient set.
     for i=1, #self.items do
@@ -1073,6 +1117,8 @@ function GUIChallengeLeaderboard:SetRowData(rowIndex, data)
     
     local row = self.rows[rowIndex]
     
+    local prevSteamId = row.playerSteamId
+    
     row.playerSteamId = data.steamId
     if row.playerSteamId then
         row.playerName = self:GetPlayerNameForSteamId(row.playerSteamId)
@@ -1092,7 +1138,12 @@ function GUIChallengeLeaderboard:SetRowData(rowIndex, data)
     self:UpdateRowVisibility(rowIndex)
     
     row.playerItemTable.iconButton:SetTexture(self.kMissingAvatarTexture)
-    Client.RequestAvatarImageForPlayer(row.playerSteamId, self:GetTextureNameForAvatar(rowIndex))
+    
+    -- Deactivate previous avatar request.
+    DeactivateAvatarRequest(prevSteamId) -- performs a nil check, so this is okay.
+    
+    -- Activate new avatar request.
+    ActivateAvatarRequest(row.playerSteamId)
     
 end
 
@@ -1448,13 +1499,16 @@ function GUIChallengeLeaderboard:UpdatePlayerItems()
             end
         end
         
+        local steamId64
+        if row.playerSteamId then
+            steamId64 = Client.ConvertSteamId32To64(row.playerSteamId)
+        end
+        
         -- Ensure garbage data isn't being displayed as the player avatar.
-        local avatarName = self:GetTextureNameForAvatar(i)
-        if Client.GetIsAvatarActiveByTextureName(avatarName) then
-            
-            playerItems.iconButton:SetTexture(avatarName)
+        if steamId64 and Client.GetIsAvatarReady(steamId64) then
+            local textureName = Client.GetTextureNameForAvatar(steamId64)
+            playerItems.iconButton:SetTexture(textureName)
         else
-            
             playerItems.iconButton:SetTexture(self.kMissingAvatarTexture)
         end
         

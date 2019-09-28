@@ -3,6 +3,7 @@ Script.Load("lua/Utility.lua")
 Script.Load("lua/GUIAssets.lua")
 Script.Load("lua/GUIUtility.lua")
 Script.Load("lua/Table.lua")
+Script.Load("lua/PrecacheList.lua")
 
 -- Ensure cinematic background is preloaded, otherwise we get pop-in.
 Script.Load("lua/menu2/MenuBackgrounds.lua")

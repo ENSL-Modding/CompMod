@@ -106,6 +106,7 @@ function GUIStyle.ApplyToText(config, text, fontFile, fontScale, renderScale)
     fontNode:Initialize(text, fontFile, fontScale * renderScale, renderedTextSize)
     
     local rootNode = GUIStyle.ReadConfig(config, fontNode, renderedTextSize, renderScale)
+    rootNode:SetIsRootNode()
     
     return rootNode, renderedTextSize
     

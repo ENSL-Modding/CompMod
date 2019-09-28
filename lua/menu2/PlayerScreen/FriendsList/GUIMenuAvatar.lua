@@ -28,27 +28,10 @@ class "GUIMenuAvatar" (baseClass)
 local kMissingAvatarTexture = PrecacheAsset("ui/missing_avatar.dds")
 
 GUIMenuAvatar:AddClassProperty("SteamID64", "")
-
-local function RequestAvatar(self)
-    
-    local steam64 = self:GetSteamID64()
-    if steam64 == "" then
-        return -- invalid steam ID, nothing to do right now.
-    end
-    
-    local steam32 = Client.ConvertSteamId64To32(steam64)
-    self.textureName = "*"..steam64
-    
-    -- Set texture to the missing texture in the interim.
-    self:SetTexture(kMissingAvatarTexture)
-    
-    Client.RequestAvatarImageForPlayer(steam32, self.textureName)
-    
-end
+GUIMenuAvatar:AddClassProperty("_IsRendering", false)
 
 local function OnAvatarDownloaded(self, textureName)
     
-    assert(textureName ~= nil)
     if self.textureName == textureName then
         self:SetTexture(textureName)
     end
@@ -57,10 +40,99 @@ end
 
 local function OnAvatarDeactivated(self, textureName)
     
-    assert(textureName ~= nil)
     if self.textureName == textureName then
         self:SetTexture(kMissingAvatarTexture)
-        self.textureName = nil
+    end
+    
+end
+
+local function OnRenderingStarted(self)
+    self:Set_IsRendering(true)
+end
+
+local function OnRenderingStopped(self)
+    self:Set_IsRendering(false)
+end
+
+-- Activate the request for the avatar image with the given steam Id... IF it's actually requested.
+-- Safe to call this to your heart's content.
+local function ActivateRequest(self, steamId)
+    
+    if self.requestActive then
+        return -- No request active
+    end
+    
+    if steamId == "" then
+        return -- Invalid steamId
+    end
+    
+    -- Set the texture name we're expecting to receive with OnAvatarDownloaded.  To cover the case
+    -- where the avatar is already available, set the texture now, as we won't receive an
+    -- OnAvatarDownloaded event, since it's already happened.
+    self.textureName = Client.GetTextureNameForAvatar(steamId)
+    
+    if Client.GetIsAvatarReady(steamId) then
+        self:SetTexture(self.textureName)
+    else
+        self:SetTexture(kMissingAvatarTexture)
+    end
+    
+    Client.ActivateAvatarRequest(steamId)
+    self.requestActive = true
+    
+end
+
+-- Deactivate the request for the avatar image with the given steam Id... IF it's actually
+-- requested.  Safe to call this to your heart's content.
+local function DeactivateRequest(self, steamId)
+    
+    if not self.requestActive then
+        return -- Request already inactive.
+    end
+    
+    if steamId == "" then
+        return -- Invalid steamId
+    end
+    
+    -- Don't clear self.textureName just yet.  The deactivation might be because the avatar stopped
+    -- being rendered, not because the steam Id changed.  In this case, we'll be perfectly happy to
+    -- keep using the image until it's no longer available, even though we're not asking for it to
+    -- be kept around anymore.
+    
+    Client.DeactivateAvatarRequest(steamId)
+    self.requestActive = false
+    
+end
+
+-- When the steamId changes, we need to make sure we deactivate the previous request, and then maybe
+-- request for the new Id.
+local function OnSteamID64Changed(self, steamId, prevSteamId)
+    
+    local steamIdIsValid = steamId ~= ""
+    local isRendering = self:Get_IsRendering()
+    
+    local shouldBeRequested = isRendering and steamIdIsValid
+    
+    -- The steamId just changed, that means the previous request -- if any -- is no longer valid.
+    -- Deactivate the request made with the previous steamId.
+    DeactivateRequest(self, prevSteamId)
+    self:SetTexture(kMissingAvatarTexture)
+    self.textureName = ""
+    
+    if shouldBeRequested then
+        ActivateRequest(self, steamId)
+    end
+    
+end
+
+local function On_IsRenderingChanged(self, isRendering)
+    
+    local steamId = self:GetSteamID64()
+    
+    if isRendering then
+        ActivateRequest(self, steamId)
+    else
+        DeactivateRequest(self, steamId)
     end
     
 end
@@ -72,14 +144,15 @@ function GUIMenuAvatar:Initialize(params, errorDepth)
     
     baseClass.Initialize(self, params, errorDepth)
     
-    -- Whenever this object becomes visible, request the avatar.  Don't bother with un-requesting it
-    -- when we stop rendering.  No point... it'll get kicked out automatically if other avatars need
-    -- the slots.
-    self:HookEvent(self, "OnRenderingStarted", RequestAvatar)
+    -- Keep track of the "is rendering" status with a property.
+    self:HookEvent(self, "OnRenderingStarted", OnRenderingStarted)
+    self:HookEvent(self, "OnRenderingStopped", OnRenderingStopped)
     self:TrackRenderStatus()
     
-    -- Whenever the steamid changes, request the avatar.
-    self:HookEvent(self, "OnSteamID64Changed", RequestAvatar)
+    -- Only request an avatar if the steam Id is valid (not empty), and the avatar graphic is
+    -- visible (eg on-screen, not cropped away, etc).
+    self:HookEvent(self, "OnSteamID64Changed", OnSteamID64Changed)
+    self:HookEvent(self, "On_IsRenderingChanged", On_IsRenderingChanged)
     
     self:SetTexture(kMissingAvatarTexture)
     self:SetColor(1, 1, 1, 1)
@@ -95,5 +168,14 @@ function GUIMenuAvatar:Initialize(params, errorDepth)
     if params.steamId64 then
         self:SetSteamID64(params.steamId64)
     end
+    
+end
+
+function GUIMenuAvatar:Uninitialize()
+    
+    -- Ensure we've released our request for an avatar image.
+    DeactivateRequest(self, self:GetSteamID64())
+    
+    baseClass.Uninitialize(self)
     
 end

@@ -28,16 +28,7 @@ Script.Load("lua/menu2/GUIMenuTruncatedText.lua")
 ---@field public RemoveFXReceiver function @From FXState wrapper
 local baseClass = GUIObject
 baseClass = GetCursorInteractableWrappedClass(baseClass)
-
--- DEBUG
-gDebugFXStateWrapper = (gDebugFXStateWrapper or 0) + 1
-
 baseClass = GetFXStateWrappedClass(baseClass)
-
--- DEBUG
-gDebugFXStateWrapper = gDebugFXStateWrapper - 1
-if gDebugFXStateWrapper == 0 then gDebugFXStateWrapper = nil end
-
 class "GUIMenuCheckboxWidgetLabeled" (baseClass)
 
 local kMaxLabelWidth = 700

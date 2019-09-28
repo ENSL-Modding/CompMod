@@ -349,10 +349,11 @@ end
 
 local function GetNeedsManualRestart(self)
     
-    -- Currently only one option requires a manual restart to be applied.
-    local actualRenderDevice = Client.GetRenderDeviceName()
-    local desiredRenderDevice = self:GetOptionWidget("renderDevice"):GetValue()
-    return actualRenderDevice ~= desiredRenderDevice
+    -- Used to have multiple render APIs (eg DX9, DX11, OpenGL), which would require a manual
+    -- restart.  This function would return true if the actual device being used wasn't the same one
+    -- that was selected.  Now, since we're DX11-only, this is no longer needed.  Leaving this here
+    -- in case we get another option in the future that requires a manual client restart.
+    return false
     
 end
 

@@ -39,17 +39,11 @@ for i = 1, 20 do math.random() end
 
 local renderCamera = nil
 
+PrecacheAsset("ui/newMenu/mainNavBarBack.dds")
+PrecacheAsset("ui/newMenu/mainNavBarButtonLight.dds")
+PrecacheAsset("ui/newMenu/logoHuge.dds")
 PrecacheAsset('ui/menu/arrow_vert.dds')
-PrecacheAsset('ui/menu/tv_glare.dds')
-PrecacheAsset('ui/menu/logo.dds')
-PrecacheAsset('ui/menu/buttonbg.dds')
-PrecacheAsset('ui/menu/checked.dds')
 PrecacheAsset('ui/menu/tabbackground.dds')
-PrecacheAsset('ui/menu/server_select_bg.dds')
-PrecacheAsset('ui/menu/main_link_bg.dds')
-PrecacheAsset('ui/menu/profile_bg.dds')
-PrecacheAsset('ui/menu/link_bg.dds')
-PrecacheAsset('ui/menu/link_icon_bg.dds')
 PrecacheAsset('cinematics/menu/dropship_thrusters_flight.cinematic')
 PrecacheAsset('cinematics/menu/dropship_thrusters_down.cinematic')
 PrecacheAsset('models/marine/Dropship/dropship_fx_thrusters_02.model')
