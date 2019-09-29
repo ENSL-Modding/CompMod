@@ -36,6 +36,7 @@ local modules = {
 		"Alien/Structures/GorgeTunnels",
 
 		-- Upgrade Modules
+			"Alien/Upgrades/Carapace",
 			-- Vamparism Modules
 			"Alien/Upgrades/Vamparism/FriendlyFireFix",
 
