@@ -122,8 +122,7 @@ PhysicsMask = enum
                                            PhysicsGroup.DroppedWeaponGroup,
                                            PhysicsGroup.CommanderBuildGroup,
                                            PhysicsGroup.PathingGroup,
-                                           PhysicsGroup.WebsGroup,
-                                           PhysicsGroup.MarinePlayerGroup),
+                                           PhysicsGroup.WebsGroup),
     
     -- For Drifters, MACs
     AIMovement = CreateMaskExcludingGroups(PhysicsGroup.MediumStructuresGroup,

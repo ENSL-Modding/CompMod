@@ -31,6 +31,7 @@ local modules = {
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
 
 			"Alien/Lifeforms/Onos/Stomp",
+			"Alien/Lifeforms/Onos/Charge",
 
 		-- Structure Modules
 		"Alien/Structures/Cyst",
