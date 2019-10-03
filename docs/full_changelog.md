@@ -1,4 +1,9 @@
 # Full Changelog for CompMod
+## CompMod 2.8.0 - (01/10/2019)  
+##### Alien
+* Removed Carapace again
+* Removed Onos Charge Knockback
+
 ## CompMod 2.7.7 - (12/08/2019)
 ##### Alien
 * Carapace
