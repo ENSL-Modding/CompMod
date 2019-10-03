@@ -1,6 +1,6 @@
 # Changes between Vanilla (Build 328)
 ## Changes between ns2_beta Revision 2 and Vanilla (Build 328)
-A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](ns2_beta_rev2).
+A list of changes between ns2_beta Revision 2 and Build 328 can be found [here](ns2_beta_rev2.md).
 ## Changes between CompMod and Vanilla (Build 328)
 ### Alien
 * Embryos
