@@ -29,15 +29,13 @@ local modules = {
 				-- BoneShield Modules
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
 
-			"Alien/Lifeforms/Onos/Stomp",
-
 		-- Structure Modules
 		"Alien/Structures/Cyst",
 		"Alien/Structures/GorgeTunnels",
 
 		-- Upgrade Modules
-			-- Vamparism Modules
-			"Alien/Upgrades/Vamparism/FriendlyFireFix",
+			-- Vampirism Modules
+			"Alien/Upgrades/Vampirism/FriendlyFireFix",
 
 	--[[
 	  ==========================
@@ -66,9 +64,8 @@ local modules = {
 		"Marine/Structures/Observatory/BuildTime",
 
 	"Marine/MedpackHoT",
-	-- "Marine/Walk",
+	"Marine/Walk",
 	"Marine/WeaponDropTime",
-
 	"Marine/WeaponStepping"
 }
 
@@ -78,7 +75,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "8.7"
+	config.kModBuild = "8.0"
 	config.disableRanking = true
 	config.use_config = "none"
 
