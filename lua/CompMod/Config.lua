@@ -72,7 +72,15 @@ local modules = {
 	"Marine/MedpackHoT",
 	"Marine/Walk",
 	"Marine/WeaponDropTime",
-	"Marine/WeaponStepping"
+	"Marine/WeaponStepping",
+
+    --[[
+      ==========================
+			Changelog Module
+	  ==========================
+    ]]
+
+    "Changelog",
 }
 
 function GetModConfig(kLogLevels)
