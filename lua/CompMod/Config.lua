@@ -28,6 +28,8 @@ local modules = {
 			-- Onos Modules
 				-- BoneShield Modules
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
+			-- Charge Modules
+			"Alien/Lifeforms/Onos/Charge",
 
 		-- Structure Modules
 		"Alien/Structures/Cyst",
@@ -52,6 +54,7 @@ local modules = {
 	"Global/ReadyRoomPanels",
 	"Global/ResponsiveGUI",
 	"Global/SupplyDisplay",
+	"Global/Physics",
 
 	--[[
 	  ==========================
