@@ -36,6 +36,8 @@ local modules = {
 		-- Upgrade Modules
 			-- Vampirism Modules
 			"Alien/Upgrades/Vampirism/FriendlyFireFix",
+			-- Carapace Modules
+			"Alien/Upgrades/Carapace",
 
 	--[[
 	  ==========================
