@@ -1,6 +1,3 @@
---Check for diabling global
-if gDisableUWEBalance then return end
-
 local rootPath = "lua/ns2_beta"
 
 -- Use powershell's dir -Directory or similair to get the list for now

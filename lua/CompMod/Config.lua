@@ -21,6 +21,7 @@ local modules = {
 			-- Gorge Modules
 				-- Web Modules
 				"Alien/Lifeforms/Gorge/Webs/DestroyOnTouch",
+				"Alien/Lifeforms/Gorge/Webs/RemoveFromKillfeed",
 
 			-- Lerk Modules
 			"Alien/Lifeforms/Lerk/Base",
@@ -28,6 +29,8 @@ local modules = {
 			-- Onos Modules
 				-- BoneShield Modules
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
+			-- Charge Modules
+			"Alien/Lifeforms/Onos/Charge",
 
 		-- Structure Modules
 		"Alien/Structures/Cyst",
@@ -36,6 +39,8 @@ local modules = {
 		-- Upgrade Modules
 			-- Vampirism Modules
 			"Alien/Upgrades/Vampirism/FriendlyFireFix",
+			-- Carapace Modules
+			"Alien/Upgrades/Carapace",
 
 	--[[
 	  ==========================
@@ -50,6 +55,7 @@ local modules = {
 	"Global/ReadyRoomPanels",
 	"Global/ResponsiveGUI",
 	"Global/SupplyDisplay",
+	"Global/Physics",
 
 	--[[
 	  ==========================
