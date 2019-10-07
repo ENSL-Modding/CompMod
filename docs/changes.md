@@ -19,7 +19,11 @@
     * BoneShield
         * Add BoneShield initial cost 
         * Moving with BoneShield active will consume BoneFuel faster
+    * Charge
+        * Knockback removed
+        
 * Heal sound will no longer play when shells are built.
+* Carapace removed
 
 ### Marine
 * Medpacks
