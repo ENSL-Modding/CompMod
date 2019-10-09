@@ -73,6 +73,7 @@ local modules = {
 	"Marine/Walk",
 	"Marine/WeaponDropTime",
 	"Marine/WeaponStepping",
+	"Marine/Weapons/Shotgun",
 
     --[[
       ==========================
