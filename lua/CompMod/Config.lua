@@ -71,6 +71,7 @@ local modules = {
 
 	"Marine/MedpackHoT",
 	"Marine/Walk",
+	"Marine/Weapons/Shotgun",
 	"Marine/WeaponDropTime",
 	"Marine/WeaponStepping",
 
