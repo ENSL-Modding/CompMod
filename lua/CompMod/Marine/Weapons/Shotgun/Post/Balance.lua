@@ -1,0 +1,1 @@
+kShotgunBulletsPerShot = 17

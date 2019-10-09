@@ -101,9 +101,7 @@ local networkVars =
     
     timeMetabolize = "private compensated time",
     
-    timeOfLastPhase = "time",
-
-    crouchBlinked = "private compensated boolean",
+    timeOfLastPhase = "time"
     
 }
 
@@ -154,7 +152,6 @@ function Fade:OnCreate()
     self.etherealEndTime = 0
     self.ethereal = false
     self.landedAfterBlink = true
-    self.crouchBlinked = false
     
 end
 
@@ -322,7 +319,7 @@ end
 
 function Fade:GetAirFriction()
     return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.17
-end 
+end
 
 function Fade:ModifyVelocity(input, velocity, deltaTime)
 
@@ -330,7 +327,7 @@ function Fade:ModifyVelocity(input, velocity, deltaTime)
     
         local wishDir = self:GetViewCoords().zAxis
         local maxSpeedTable = { maxSpeed = kBlinkMaxSpeed }
-        self:ModifyMaxSpeed(maxSpeedTable, input)  
+        self:ModifyMaxSpeed(maxSpeedTable, input)
         local prevSpeed = velocity:GetLength()
 
         -- the following block will set the acceleration to either the minimum blink ethereal force speed or
@@ -344,13 +341,13 @@ function Fade:ModifyVelocity(input, velocity, deltaTime)
         --velocity:Add(velocity)
         --velocity:Add(wishDir * 17)
         velocity:Add(wishDir * kBlinkAcceleration * deltaTime)
-        
+
         if velocity:GetLength() > speedCeiling then
 
             velocity:Normalize()
             velocity:Scale(speedCeiling)
-            
-        end 
+
+        end
         
         -- additional acceleration when holding down blink to exceed max speed
         --velocity:Add(wishDir * kBlinkAddAcceleration * deltaTime)
@@ -381,7 +378,7 @@ function Fade:GetMaxSpeed(possible)
     end
     
     if self:GetIsBlinking() then
-        return kBlinkMaxSpeed
+        return kEtherealForce
     end
     
     -- Take into account crouching.
@@ -522,10 +519,6 @@ function Fade:OnProcessMove(input)
         end
         self.previousweapon = nil
     end
-
-    if self.crouchBlinked and self:GetIsOnGround() and bit.band(input.commands, Move.Jump) == 0  then
-        self.crouchBlinked = false
-    end
     
 end
 
@@ -631,30 +624,9 @@ function Fade:ModifyHeal(healTable)
 end
 --]]
 
-function Fade:OverrideVelocityGoal(velocityGoal)
-    
-    if not self:GetIsOnGround() and self:GetCrouching() then
-        velocityGoal:Scale(0)
-    end
-    
-end
-
--- start the auto-crouch if player blinks and hold crouch for them
 function Fade:HandleButtons(input)
 
     Alien.HandleButtons(self, input)
-
-    if bit.band(input.commands, Move.Crouch) == 0 then
-        if self:GetIsBlinking() then
-            self.crouchBlinked = true
-        end
-    else
-        self.crouchBlinked = false
-    end
-
-    if self.crouchBlinked then
-        input.commands = bit.bor(input.commands, Move.Crouch)
-    end
 
 end
 

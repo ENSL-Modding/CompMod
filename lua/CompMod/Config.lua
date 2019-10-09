@@ -29,8 +29,7 @@ local modules = {
 			-- Onos Modules
 				-- BoneShield Modules
 				"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
-
-			"Alien/Lifeforms/Onos/Stomp",
+			-- Charge Modules
 			"Alien/Lifeforms/Onos/Charge",
 
 		-- Structure Modules
@@ -38,9 +37,10 @@ local modules = {
 		"Alien/Structures/GorgeTunnels",
 
 		-- Upgrade Modules
+			-- Vampirism Modules
+			"Alien/Upgrades/Vampirism/FriendlyFireFix",
+			-- Carapace Modules
 			"Alien/Upgrades/Carapace",
-			-- Vamparism Modules
-			"Alien/Upgrades/Vamparism/FriendlyFireFix",
 
 	--[[
 	  ==========================
@@ -55,6 +55,7 @@ local modules = {
 	"Global/ReadyRoomPanels",
 	"Global/ResponsiveGUI",
 	"Global/SupplyDisplay",
+	"Global/Physics",
 
 	--[[
 	  ==========================
@@ -69,10 +70,18 @@ local modules = {
 		"Marine/Structures/Observatory/BuildTime",
 
 	"Marine/MedpackHoT",
-	-- "Marine/Walk",
+	"Marine/Walk",
 	"Marine/WeaponDropTime",
+	"Marine/WeaponStepping",
+	"Marine/Weapons/Shotgun",
 
-	"Marine/WeaponStepping"
+    --[[
+      ==========================
+			Changelog Module
+	  ==========================
+    ]]
+
+    "Changelog",
 }
 
 function GetModConfig(kLogLevels)
@@ -81,7 +90,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "8.8"
+	config.kModBuild = "8.0"
 	config.disableRanking = true
 	config.use_config = "none"
 

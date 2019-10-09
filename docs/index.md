@@ -9,11 +9,12 @@ To do this the team commits to remaining transparent in all changes, to be open 
 For a full list of changes from vanilla see [here](changes "CompMod ChangeLog").
 To see the full CompMod changelog see [here](full_changelog "CompMod Full Changelog")
 
-CompMod utilizes the changes made in [ns2_beta](https://github.com/taekwonjoe01/ns2_beta "NS2 Beta Github Repository"). 
-
-The included version of ns2_beta is Revision 3, the changes for which can be found [here](ns2_beta_rev3 "NS2 Beta Revision 2 Changes")
-
 # Recent Changes
+## CompMod 2.8.0 - (01/10/2019)  
+##### Alien
+* Removed Carapace again
+* Removed Onos Charge Knockback
+
 ## CompMod 2.7.7 - (12/08/2019)
 ##### Alien
 * Carapace
@@ -63,7 +64,7 @@ The included version of ns2_beta is Revision 3, the changes for which can be fou
 ##### Bug Fixes and Improvements
 * Fix carapace being shown incorrectly in spectate view.
 * Fix mucous hitsounds.
-* Fix Vamparism doing friendly fire.
+* Fix Vampirism doing friendly fire.
 * Fixed that Cluster Grenades were not having the FlameAble multiplier applied.
 * Fixed that the commander actions panel would overlap with the supply display on a Marine's HUD
 * Fixed that the scoreboard would sometimes be slow to open.

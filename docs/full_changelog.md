@@ -1,4 +1,9 @@
 # Full Changelog for CompMod
+## CompMod 2.8.0 - (01/10/2019)  
+##### Alien
+* Removed Carapace again
+* Removed Onos Charge Knockback
+
 ## CompMod 2.7.7 - (12/08/2019)
 ##### Alien
 * Carapace
@@ -48,7 +53,7 @@
 ##### Bug Fixes and Improvements
 * Fix carapace being shown incorrectly in spectate view.
 * Fix mucous hitsounds.
-* Fix Vamparism doing friendly fire.
+* Fix Vampirism doing friendly fire.
 * Fixed that Cluster Grenades were not having the FlameAble multiplier applied.
 * Fixed that the commander actions panel would overlap with the supply display on a Marine's HUD
 * Fixed that the scoreboard would sometimes be slow to open.
