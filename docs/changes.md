@@ -15,11 +15,15 @@
         * Upgrades the normal swipe damage to 81 from 70
         * Can be researched at Biomass 7 
         * Costs 25 tres and takes 60 seconds to research
+    * Removed Auto-crouch
 * Onos
     * BoneShield
         * Add BoneShield initial cost 
         * Moving with BoneShield active will consume BoneFuel faster
+    * Charge
+        * Knockback removed
 * Heal sound will no longer play when shells are built.
+* Carapace removed
 
 ### Marine
 * Medpacks
@@ -28,9 +32,7 @@
 * Walk added
     * Default key is CapsLock
 * Grenade
-    * Improved Grenade Quick Throw
-        * Implements an improved version of the grenade quick throw found in ns2_beta
-        * Allows Marines to throw the grenade instantly, without waiting for the deploy animations.
+    * Throw the grenade instantly, without waiting for the deploy animations.
 * Weapon Lifetime
     * Reduced weapon lifetime to 18 seconds from 25 seconds
     * Stepping on a dropped weapon no longer refreshes the weapon timer
