@@ -1,4 +1,11 @@
 # Full Changelog for CompMod
+## CompMod 2.8.1 - (09/10/2019)
+##### Alien
+* Removed Fade autocrouch
+
+##### Marine
+* Grenades are deploy instantly again
+
 ## CompMod 2.8.0 - (01/10/2019)  
 ##### Alien
 * Removed Carapace again
