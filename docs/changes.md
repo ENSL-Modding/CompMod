@@ -36,6 +36,7 @@
 * Weapon Lifetime
     * Reduced weapon lifetime to 18 seconds from 25 seconds
     * Stepping on a dropped weapon no longer refreshes the weapon timer
+    * Standing near a weapon slows decay rate by 50%
 * Mucous Membrane
     * Added hitsounds for Aliens with mucous
 * PowerNodes

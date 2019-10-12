@@ -3,6 +3,7 @@
 ## CompMod 2.8.2 - (12/10/2019)
 ##### Marine
 * Nanoshield duration on players reduced to 4 seconds (from 5)
+* Standing near a weapon slows decay rate by 50%
 
 ## CompMod 2.8.1 - (09/10/2019)
 ##### Alien
