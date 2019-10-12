@@ -42,6 +42,8 @@
     * Removed the flashlight requirement for finish power nodes without a structure in the room
 * Observatory
     * Changed build time to 10 seconds from 15 seconds
+* Nanoshield
+    * Duration on players reduced to 4 seconds from 5 seconds
 
 ### Alien Commander
 * Lifeform egg drops removed
