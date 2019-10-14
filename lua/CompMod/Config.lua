@@ -74,6 +74,7 @@ local modules = {
 	"Marine/WeaponDropTime",
 	"Marine/Weapons/SlowExpirationRate",
 	"Marine/Weapons/Shotgun",
+	"Marine/Weapons/HMG",
 	"Marine/Nanoshield",
 
     --[[
