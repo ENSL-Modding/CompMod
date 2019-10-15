@@ -57,6 +57,9 @@
     * Tunnels are infested tunnels by default
     * Tunnel cost changed to 8 tres up from 6 tres
 
+### Marine Commander
+* Advanced Assistance Tres cost increased to 25 from 20
+
 ### Global
 * Player healthbars are disabled.
 * Team supply is now visible on the player HUD
