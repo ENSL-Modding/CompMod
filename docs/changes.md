@@ -47,6 +47,9 @@
     * Duration on players reduced to 2 seconds from 5 seconds
 * Mines
     * Damage reduced to 130 normal damage from 150 normal damage
+* Pistol
+    * Damage type changed to NORMAL from LIGHT
+    * Damage reduced to 20 from 25
 
 ### Alien Commander
 * Lifeform egg drops removed
