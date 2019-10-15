@@ -44,7 +44,7 @@
 * Observatory
     * Changed build time to 10 seconds from 15 seconds
 * Nanoshield
-    * Duration on players reduced to 4 seconds from 5 seconds
+    * Duration on players reduced to 2 seconds from 5 seconds
 * Mines
     * Damage reduced to 130 normal damage from 150 normal damage
 

@@ -1,4 +1,4 @@
-local kNanoShieldPlayerDuration = 4
+local kNanoShieldPlayerDuration = 2
 local kNanoShieldStructureDuration = kNanoShieldDuration
 
 local function GetNanoShieldTimeRemaining(self)
