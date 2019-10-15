@@ -1,0 +1,1 @@
+kMineDamage = 130
