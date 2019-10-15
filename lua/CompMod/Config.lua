@@ -79,6 +79,7 @@ local modules = {
 		"Marine/Weapons/HMG",
 		"Marine/Weapons/Mine",
 	"Marine/Nanoshield",
+	"Marine/AdvancedAssistance",
 
     --[[
       ==========================
