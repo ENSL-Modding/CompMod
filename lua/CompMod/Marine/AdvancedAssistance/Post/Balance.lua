@@ -1,0 +1,1 @@
+kAdvancedMarineSupportResearchCost = 25

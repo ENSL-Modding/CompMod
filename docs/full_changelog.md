@@ -3,6 +3,7 @@
 ## CompMod 2.8.3 - (15/10/2019)
 ##### Marine
 * Mine damage reduced to 130 normal damage (from 150)
+* Advanced Assistance Tres cost increased to 25 from 20
 
 ## CompMod 2.8.2 - (12/10/2019)
 ##### Marine
