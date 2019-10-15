@@ -4,6 +4,7 @@
 ##### Marine
 * Mine damage reduced to 130 normal damage (from 150)
 * Advanced Assistance Tres cost increased to 25 from 20
+* Reduced NanoShield duration on players to 2s from 4s
 
 ## CompMod 2.8.2 - (12/10/2019)
 ##### Marine
