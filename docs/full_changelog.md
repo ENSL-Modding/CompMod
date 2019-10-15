@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.3 - (15/10/2019)
+##### Marine
+* Mine damage reduced to 130 normal damage (from 150)
+
 ## CompMod 2.8.2 - (12/10/2019)
 ##### Marine
 * Nanoshield duration on players reduced to 4 seconds (from 5)

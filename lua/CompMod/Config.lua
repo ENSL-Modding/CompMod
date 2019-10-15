@@ -71,10 +71,13 @@ local modules = {
 
 	"Marine/MedpackHoT",
 	"Marine/Walk",
-	"Marine/WeaponDropTime",
-	"Marine/Weapons/SlowExpirationRate",
-	"Marine/Weapons/Shotgun",
-	"Marine/Weapons/HMG",
+
+	-- Weapon Modules
+		"Marine/WeaponDropTime",
+		"Marine/Weapons/SlowExpirationRate",
+		"Marine/Weapons/Shotgun",
+		"Marine/Weapons/HMG",
+		"Marine/Weapons/Mine",
 	"Marine/Nanoshield",
 
     --[[
