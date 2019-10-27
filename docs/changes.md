@@ -18,13 +18,14 @@
         * Can be researched at Biomass 7 
         * Costs 25 tres and takes 60 seconds to research
     * Removed Auto-crouch
+    * Blink
+        * No longer gain speed on successive blinks without celerity
 * Onos
     * BoneShield
         * Add BoneShield initial cost 
         * Moving with BoneShield active will consume BoneFuel faster
     * Charge
         * Knockback removed
-* Heal sound will no longer play when shells are built.
 * Carapace removed
 
 ### Marine
@@ -78,6 +79,6 @@
 ### Bug Fixes & Improvements
 * Carapace now shows correctly in spectate
 * ARCs now take corrode damage after deploying and undeploying.
-* Vampirism no longer does friendly fire.
+* Vampirism no longer triggers from friendly fire damage.
 * Fixed that the scoreboard would sometimes be slow to open.
  
