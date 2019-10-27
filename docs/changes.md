@@ -52,6 +52,10 @@
 * Pistol
     * Damage type changed to NORMAL from LIGHT
     * Damage reduced to 20 from 25
+* Shotgun
+    * Nostalgia spread
+    * Shotgun base aggregate damage reduced to 130 from 170
+    * Shotgun rate of fire increased to 1.49 from 1.14
 * Heavy Machine Gun
     * Reload is now cancel-able with alt-fire
 
