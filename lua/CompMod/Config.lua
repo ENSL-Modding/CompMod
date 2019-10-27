@@ -68,6 +68,8 @@ local modules = {
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
 		-- Observatory
 		"Marine/Structures/Observatory/BuildTime",
+		-- Infantry Portals
+		"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
 
 	"Marine/MedpackHoT",
 	"Marine/Walk",
