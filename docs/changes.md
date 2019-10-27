@@ -18,6 +18,8 @@
         * Can be researched at Biomass 7 
         * Costs 25 tres and takes 60 seconds to research
     * Removed Auto-crouch
+    * Blink
+        * No longer gain speed on successive blinks without celerity
 * Onos
     * BoneShield
         * Add BoneShield initial cost 
