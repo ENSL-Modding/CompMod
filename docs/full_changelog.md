@@ -4,6 +4,9 @@
 #### Marine
 * Fixed expiration timer bug where a large amount of time can be added
 
+#### Alien
+* Skulk model/hitbox size reduced by 10%
+
 ## CompMod 2.8.3 - (15/10/2019)
 ##### Marine
 * Mine damage reduced to 130 normal damage (from 150)

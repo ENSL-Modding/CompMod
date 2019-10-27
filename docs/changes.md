@@ -3,6 +3,8 @@
 * Embryos
     * Hive's don't heal eggs, only embryos
     * Embyro HP scales depending on lifeform.
+* Skulk
+    * Model/hitbox size reduced by 10%
 * Gorge
     * Web
         * Webs break when marines walk through them
