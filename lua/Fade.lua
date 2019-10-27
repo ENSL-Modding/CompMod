@@ -68,7 +68,7 @@ local kShadowStepForce = 4
 local kShadowStepSpeed = 30
 
 local kMaxSpeed = 6.2
-local kBlinkMaxSpeed = 25
+local kBlinkMaxSpeed = 19
 local kBlinkAcceleration = 40
 local kMetabolizeAnimationDelay = 0.65
 
