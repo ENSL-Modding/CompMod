@@ -3,6 +3,8 @@
 ## CompMod 2.8.4 - (27/10/2019)
 #### Marine
 * Fixed expiration timer bug where a large amount of time can be added
+* Shotgun base aggregate damage reduced to 130 from 170
+* Shotgun rate of fire increased to 1.49 from 1.14
 
 #### Alien
 * Skulk model/hitbox size reduced by 10%
