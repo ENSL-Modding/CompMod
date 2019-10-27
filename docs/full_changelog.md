@@ -8,6 +8,7 @@
 
 #### Alien
 * Skulk model/hitbox size reduced by 10%
+* Fade no longer gets bonuses from successive blinks without celerity
 
 ## CompMod 2.8.3 - (15/10/2019)
 ##### Marine
