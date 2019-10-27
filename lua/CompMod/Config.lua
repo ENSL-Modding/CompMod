@@ -68,6 +68,8 @@ local modules = {
 		"Marine/Structures/ARC/ARCCorrodeBugFix",
 		-- Observatory
 		"Marine/Structures/Observatory/BuildTime",
+		-- Infantry Portals
+		"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
 
 	"Marine/MedpackHoT",
 	"Marine/Walk",
@@ -97,7 +99,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "8.3"
+	config.kModBuild = "8.4"
 	config.disableRanking = true
 	config.use_config = "none"
 
