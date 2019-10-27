@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.4 - (27/10/2019)
+#### Marine
+* Fixed expiration timer bug where a large amount of time can be added
+
 ## CompMod 2.8.3 - (15/10/2019)
 ##### Marine
 * Mine damage reduced to 130 normal damage (from 150)

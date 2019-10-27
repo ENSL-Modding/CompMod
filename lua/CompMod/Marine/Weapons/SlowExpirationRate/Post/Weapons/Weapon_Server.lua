@@ -1,6 +1,8 @@
 local kMarineWeaponExpirationSlowDistance = 4
 local kMarineWeaponExpirationSlowRate = 0.5
+local minMarineWithinRangeTime = 1
 
+-- OVERRIDING TO FIX CALLBACK MEMORY LEAK
 -- Set to true for being a world weapon, false for when it's carried by a player
 function Weapon:SetWeaponWorldState(state, preventExpiration)
 
@@ -67,15 +69,19 @@ function Weapon:CheckExpireTime()
         return false
     end
 
+    local timeSinceLastCheck = Shared.GetTime() - self.weaponWorldStateTime
+    local timeUntilExpiration = self.expireTime - Shared.GetTime()
+
+    -- Only slow expiration when marine player in range
     if #GetEntitiesForTeamWithinRange("Marine", self:GetTeamNumber(), self:GetOrigin(), kMarineWeaponExpirationSlowDistance) > 0 then
-        local timeSinceLastCheck = Shared.GetTime() - self.weaponWorldStateTime
-        local timeUntilExpiration = self.expireTime - Shared.GetTime()
         local adjustedStayTime = timeUntilExpiration + (timeSinceLastCheck * kMarineWeaponExpirationSlowRate)
         self:StartExpiration(adjustedStayTime)
         return false
     end
 
-    return true
+    -- Always create a new callback to update weaponWorldStateTime
+    self:StartExpiration(timeUntilExpiration)
+    return false
 end
 
 function Weapon:StartExpiration(stayTime)
