@@ -50,6 +50,8 @@
 * Pistol
     * Damage type changed to NORMAL from LIGHT
     * Damage reduced to 20 from 25
+* Heavy Machine Gun
+    * Reload is now cancel-able with alt-fire
 
 ### Alien Commander
 * Lifeform egg drops removed

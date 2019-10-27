@@ -7,11 +7,13 @@
 * Reduced NanoShield duration on players to 2s from 4s
 * Pistol damage to Normal type
 * Pistol damage to 20 normal damage from 25 light damage
+* Heavy Machine Gun reload is now cancel-able with alt-fire
 
 ## CompMod 2.8.2 - (12/10/2019)
 ##### Marine
 * Nanoshield duration on players reduced to 4 seconds (from 5)
 * Standing near a weapon slows decay rate by 50%
+* Shotgun changed to nostalgia code (hotfix to fix damage bug - 13/10/2019)
 
 ## CompMod 2.8.1 - (09/10/2019)
 ##### Alien
@@ -19,6 +21,7 @@
 
 ##### Marine
 * Grenades are deploy instantly again
+* Shotgun spread to nostalgia spread approximated in new spread code
 
 ## CompMod 2.8.0 - (01/10/2019)  
 ##### Alien
