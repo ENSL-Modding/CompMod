@@ -6,6 +6,7 @@
 * Skulk
     * Model/hitbox size reduced by 10%
     * Sneak speed reduced to 4 from 4.8
+    * Skulks no longer get a speed bonus on their first jump from the ground
 * Gorge
     * Web
         * Webs break when marines walk through them

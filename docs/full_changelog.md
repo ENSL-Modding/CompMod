@@ -4,6 +4,7 @@
 #### Alien
 * No longer cloaked while moving with camouflage
 * Skulk sneak speed reduced to 4 from 4.8
+* Skulks no longer get a speed bonus on their first jump from the ground
 
 ## CompMod 2.8.4 - (27/10/2019)
 #### Marine
