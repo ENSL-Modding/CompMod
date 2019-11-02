@@ -3,6 +3,7 @@
 ## CompMod 2.8.5 - (02/11/2019)
 #### Alien
 * No longer cloaked while moving with camouflage
+* Skulk sneak speed reduced to 4 from 4.8
 
 ## CompMod 2.8.4 - (27/10/2019)
 #### Marine
