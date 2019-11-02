@@ -41,6 +41,8 @@ local modules = {
 			"Alien/Upgrades/Vampirism/FriendlyFireFix",
 			-- Carapace Modules
 			"Alien/Upgrades/Carapace",
+            -- Cloaking Modules
+            "Alien/Upgrades/Cloaking/MoveSpeed",
 
 	--[[
 	  ==========================
