@@ -13,7 +13,8 @@ local modules = {
 		"Alien/Eggs/LifeformEggDrops",
 
 		-- Lifeform Modules
-
+            -- Skulk Modules
+            "Alien/Lifeforms/Skulk/Movement/SneakSpeed",
 			-- Fade Modules
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
 			"Alien/Lifeforms/Fade/Stab",

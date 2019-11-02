@@ -5,6 +5,7 @@
     * Embyro HP scales depending on lifeform.
 * Skulk
     * Model/hitbox size reduced by 10%
+    * Sneak speed reduced to 4 from 4.8
 * Gorge
     * Web
         * Webs break when marines walk through them
