@@ -27,6 +27,7 @@
     * Charge
         * Knockback removed
 * Carapace removed
+* No longer cloaked while moving with camouflage
 
 ### Marine
 * Medpacks

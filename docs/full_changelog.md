@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.5 - (02/11/2019)
+#### Alien
+* No longer cloaked while moving with camouflage
+
 ## CompMod 2.8.4 - (27/10/2019)
 #### Marine
 * Fixed expiration timer bug where a large amount of time can be added
