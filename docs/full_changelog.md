@@ -1,6 +1,9 @@
 # Full Changelog for CompMod
 
 ## CompMod 2.8.5 - (02/11/2019)
+#### Marine
+* Fixed shotgun fire rate while moving
+
 #### Alien
 * No longer cloaked while moving with camouflage
 * Skulk sneak speed reduced to 4 from 4.8
