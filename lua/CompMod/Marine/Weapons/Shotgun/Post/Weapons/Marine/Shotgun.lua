@@ -20,8 +20,6 @@ class 'Shotgun' (ClipWeapon)
 
 Shotgun.kMapName = "shotgun"
 
-local kBulletSize = 0.016
-
 local networkVars =
 {
     emptyPoseParam = "private float (0 to 1 by 0.01)",
@@ -32,37 +30,43 @@ AddMixinNetworkVars(LiveMixin, networkVars)
 AddMixinNetworkVars(ShotgunVariantMixin, networkVars)
 
 -- higher numbers reduces the spread
-local kSpreadDistance = 10
-local kStartOffset = 0
-local kSpreadVectors =
-{
-    GetNormalizedVector(Vector(-0.01, 0.01, kSpreadDistance)),
+Shotgun.kStartOffset = 0
+Shotgun.kBulletSize = 0.016
 
-    GetNormalizedVector(Vector(-0.45, 0.45, kSpreadDistance)),
-    GetNormalizedVector(Vector(0.45, 0.45, kSpreadDistance)),
-    GetNormalizedVector(Vector(0.45, -0.45, kSpreadDistance)),
-    GetNormalizedVector(Vector(-0.45, -0.45, kSpreadDistance)),
+Shotgun.kDamageFalloffStart = 6 -- in meters, full damage closer than this.
+Shotgun.kDamageFalloffEnd = 12 -- in meters, minimum damage further than this, gradient between start/end.
+Shotgun.kDamageFalloffReductionFactor = 0.75 -- 25% reduction
 
-    GetNormalizedVector(Vector(-1, 0, kSpreadDistance)),
-    GetNormalizedVector(Vector(1, 0, kSpreadDistance)),
-    GetNormalizedVector(Vector(0, -1, kSpreadDistance)),
-    GetNormalizedVector(Vector(0, 1, kSpreadDistance)),
+Shotgun.kSpreadVectors = {
+    GetNormalizedVector(Vector(-0.01, 0.01, kShotgunSpreadDistance)),
 
-    GetNormalizedVector(Vector(-0.35, 0, kSpreadDistance)),
-    GetNormalizedVector(Vector(0.35, 0, kSpreadDistance)),
-    GetNormalizedVector(Vector(0, -0.35, kSpreadDistance)),
-    GetNormalizedVector(Vector(0, 0.35, kSpreadDistance)),
+    GetNormalizedVector(Vector(-0.45, 0.45, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.45, 0.45, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.45, -0.45, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(-0.45, -0.45, kShotgunSpreadDistance)),
 
-    GetNormalizedVector(Vector(-0.8, -0.8, kSpreadDistance)),
-    GetNormalizedVector(Vector(-0.8, 0.8, kSpreadDistance)),
-    GetNormalizedVector(Vector(0.8, 0.8, kSpreadDistance)),
-    GetNormalizedVector(Vector(0.8, -0.8, kSpreadDistance)),
+    GetNormalizedVector(Vector(-1, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(1, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, -1, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, 1, kShotgunSpreadDistance)),
+
+    GetNormalizedVector(Vector(-0.35, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.35, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, -0.35, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, 0.35, kShotgunSpreadDistance)),
+
+    GetNormalizedVector(Vector(-0.8, -0.8, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(-0.8, 0.8, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.8, 0.8, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.8, -0.8, kShotgunSpreadDistance)),
 
 }
 
 Shotgun.kModelName = PrecacheAsset("models/marine/shotgun/shotgun.model")
 local kViewModels = GenerateMarineViewModelPaths("shotgun")
-local kAnimationGraph = PrecacheAsset("models/marine/shotgun/shotgun_view.animation_graph")
+
+local kShotgunFireAnimationLength = 0.8474577069282532 -- defined by art asset.
+Shotgun.kFireDuration = 0.62 -- TODO delete kShotgunFireRate in Balance.lua
 
 local kMuzzleEffect = PrecacheAsset("cinematics/marine/shotgun/muzzle_flash.cinematic")
 local kMuzzleAttachPoint = "fxnode_shotgunmuzzle"
@@ -92,7 +96,11 @@ if Client then
 end
 
 function Shotgun:GetPrimaryMinFireDelay()
-    return kShotgunFireRate
+    return Shotgun.kFireDuration
+end
+
+function Shotgun:GetPickupOrigin()
+    return self:GetCoords():TransformPoint(Vector(0.19319871068000793, 0.0, 0.04182741045951843))
 end
 
 function Shotgun:GetAnimationGraphName()
@@ -132,7 +140,7 @@ function Shotgun:GetBulletDamage()
     return kShotgunDamage
 end
 
-function Shotgun:GetHasSecondary(player)
+function Shotgun:GetHasSecondary()
     return false
 end
 
@@ -147,6 +155,17 @@ end
 function Shotgun:UpdateViewModelPoseParameters(viewModel)
 
     viewModel:SetPoseParam("empty", self.emptyPoseParam)
+
+end
+
+function Shotgun:OnUpdateAnimationInput(modelMixin)
+
+    ClipWeapon.OnUpdateAnimationInput(self, modelMixin)
+
+    -- TODO This is constantly recalculated for the benefit of the balance team so they can tweak it
+    -- in real-time.  Eventually, this should just be computed once on load.
+    local fireSpeedMult = kShotgunFireAnimationLength / math.max(Shotgun.kFireDuration, 0.01)
+    modelMixin:SetAnimationInput("attack_mult", fireSpeedMult)
 
 end
 
@@ -213,30 +232,29 @@ function Shotgun:FirePrimary(player)
     local filter = EntityFilterTwo(player, self)
     local range = self:GetRange()
 
-    if GetIsVortexed(player) then
-        range = 5
-    end
-
     local numberBullets = self:GetBulletsPerShot()
-    local startPoint = player:GetEyePos()
 
     self:TriggerEffects("shotgun_attack_sound")
     self:TriggerEffects("shotgun_attack")
 
-    for bullet = 1, math.min(numberBullets, #kSpreadVectors) do
 
-        if not kSpreadVectors[bullet] then
+    for bullet = 1, math.min(numberBullets, #self.kSpreadVectors) do
+
+        if not self.kSpreadVectors[bullet] then
             break
         end
 
-        local spreadDirection = shootCoords:TransformVector(kSpreadVectors[bullet])
+        local spreadVector = self.kSpreadVectors[bullet]
+        local pelletSize = 0.016
+        local spreadDamage = kShotgunDamage
 
-        local endPoint = startPoint + spreadDirection * range
-        startPoint = player:GetEyePos() + shootCoords.xAxis * kSpreadVectors[bullet].x * kStartOffset + shootCoords.yAxis * kSpreadVectors[bullet].y * kStartOffset
+        local spreadDirection = shootCoords:TransformVector(spreadVector)
 
-        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter)
+        local startPoint = player:GetEyePos() + shootCoords.xAxis * spreadVector.x * self.kStartOffset + shootCoords.yAxis * spreadVector.y * self.kStartOffset
 
-        local damage = 0
+        local endPoint = player:GetEyePos() + spreadDirection * range
+
+        local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, pelletSize, filter)
 
         HandleHitregAnalysis(player, startPoint, endPoint, trace)
 
@@ -261,11 +279,13 @@ function Shotgun:FirePrimary(player)
             local target = targets[i]
             local hitPoint = hitPoints[i]
 
-            self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, kShotgunDamage, "", showTracer and i == numTargets)
+            local thisTargetDamage = spreadDamage
+
+            self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, thisTargetDamage, "", showTracer and i == numTargets)
 
             local client = Server and player:GetClient() or Client
             if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
-                RegisterHitEvent(player, bullet, startPoint, trace, damage)
+                RegisterHitEvent(player, bullet, startPoint, trace, thisTargetDamage)
             end
 
         end
@@ -334,7 +354,7 @@ if Client then
 
 end
 
-function Shotgun:ModifyDamageTaken(damageTable, attacker, doer, damageType)
+function Shotgun:ModifyDamageTaken(damageTable, _, _, damageType)
     if damageType ~= kDamageType.Corrode then
         damageTable.damage = 0
     end
@@ -351,8 +371,8 @@ end
 
 if Server then
 
-    function Shotgun:OnKill()
-        DestroyEntity(self)
+    function Shotgun:GetDestroyOnKill()
+        return true
     end
 
     function Shotgun:GetSendDeathMessageOverride()
