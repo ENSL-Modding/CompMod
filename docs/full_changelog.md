@@ -1,8 +1,9 @@
 # Full Changelog for CompMod
 
-## CompMod 2.8.5 - (02/11/2019)
+## CompMod 2.8.5 - (04/11/2019)
 #### Marine
 * Fixed shotgun fire rate while moving
+* Mines can now be killed before arming
 
 #### Alien
 * No longer cloaked while moving with camouflage
@@ -14,6 +15,7 @@
 * Fixed expiration timer bug where a large amount of time can be added
 * Shotgun base aggregate damage reduced to 130 from 170
 * Shotgun rate of fire increased to 1.49 from 1.14
+* Fixed bug where multiple IPs would spawn
 
 #### Alien
 * Skulk model/hitbox size reduced by 10%

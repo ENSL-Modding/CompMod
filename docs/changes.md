@@ -84,4 +84,6 @@
 * ARCs now take corrode damage after deploying and undeploying.
 * Vampirism no longer triggers from friendly fire damage.
 * Fixed that the scoreboard would sometimes be slow to open.
+* Fixed bug where multiple IPs would sometimes spawn with few players
+* Mines can now be killed before arming
  
