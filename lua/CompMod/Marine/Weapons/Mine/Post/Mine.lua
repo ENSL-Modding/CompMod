@@ -3,12 +3,18 @@ if Server then
         return true
     end
 
-    function Mine:OnKill(attacker, doer, point, direction)
-        self:Arm()
-
-        ScriptActor.OnKill(self, attacker, doer, point, direction)
+    function Mine:GetDestroyOnKill()
         if not self.active and not self.armed then
-            DestroyEntity(self)
+            return true
         end
+        return false
     end
+
+    -- TODO: Figure out when death messages should be displayed
+    --function Mine:GetSendDeathMessageOverride()
+    --    if not self.active and not self.armed then
+    --        return false
+    --    end
+    --    return true
+    --end
 end
