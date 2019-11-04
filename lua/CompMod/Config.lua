@@ -13,7 +13,9 @@ local modules = {
 		"Alien/Eggs/LifeformEggDrops",
 
 		-- Lifeform Modules
-
+            -- Skulk Modules
+            "Alien/Lifeforms/Skulk/Movement/SneakSpeed",
+            "Alien/Lifeforms/Skulk/Movement/InitJump",
 			-- Fade Modules
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
 			"Alien/Lifeforms/Fade/Stab",
@@ -41,6 +43,8 @@ local modules = {
 			"Alien/Upgrades/Vampirism/FriendlyFireFix",
 			-- Carapace Modules
 			"Alien/Upgrades/Carapace",
+            -- Cloaking Modules
+            "Alien/Upgrades/Cloaking/MoveSpeed",
 
 	--[[
 	  ==========================
