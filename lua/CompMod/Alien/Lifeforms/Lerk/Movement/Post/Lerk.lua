@@ -1,0 +1,1 @@
+Lerk.kFlapForceStrafe = 8.3

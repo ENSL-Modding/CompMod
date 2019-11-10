@@ -3,11 +3,17 @@
 ## CompMod 2.8.6 - (11/11/2019)
 #### Marine
 * Shotgun
+    * Fire rate reverted to vanilla
+    * Aggregate damage changed to 140
 
 #### Alien
 * Echo
     * Echo upgrade cost increased to 2 from 1
     * Echo egg cost reduced to 1 from 2
+* Lerk
+    * Increase lerk strafe force to 8.3 from 7
+    * Spike damage increased to 6 from 5 (to 12 from 10 to players)
+    * Spike spread increased to 3.8 radians from 3.6 radians (Nostalgia spread was 4.0 radians)
 
 ## CompMod 2.8.5 - (04/11/2019)
 #### Marine

@@ -27,6 +27,8 @@ local modules = {
 
 			-- Lerk Modules
 			"Alien/Lifeforms/Lerk/Base",
+			"Alien/Lifeforms/Lerk/Spikes",
+			"Alien/Lifeforms/Lerk/Movement",
 
 			-- Onos Modules
 				-- BoneShield Modules
