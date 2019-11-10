@@ -1,6 +1,9 @@
 # Full Changelog for CompMod
 
 ## CompMod 2.8.6 - (11/11/2019)
+#### Marine
+* Shotgun
+
 #### Alien
 * Echo
     * Echo upgrade cost increased to 2 from 1
