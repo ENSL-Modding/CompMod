@@ -1,5 +1,11 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.6 - (11/11/2019)
+#### Alien
+* Echo
+    * Echo upgrade cost increased to 2 from 1
+    * Echo egg cost reduced to 1 from 2
+
 ## CompMod 2.8.5 - (04/11/2019)
 #### Marine
 * Fixed shotgun fire rate while moving

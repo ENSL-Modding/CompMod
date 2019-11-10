@@ -46,6 +46,9 @@ local modules = {
             -- Cloaking Modules
             "Alien/Upgrades/Cloaking/MoveSpeed",
 
+		-- Structure Ability Modules
+		"Alien/Echo",
+
 	--[[
 	  ==========================
 			Global Modules

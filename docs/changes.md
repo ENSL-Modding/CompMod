@@ -28,6 +28,10 @@
         * Moving with BoneShield active will consume BoneFuel faster
     * Charge
         * Knockback removed
+* Structure Abilities
+    * Echo
+        * Echo upgrade cost increased to 2 from 1
+        * Echo egg cost reduced to 1 from 2
 * Carapace removed
 * No longer cloaked while moving with camouflage
 
