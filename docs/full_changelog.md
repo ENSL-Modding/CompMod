@@ -5,6 +5,8 @@
 * Shotgun
     * Fire rate reverted to vanilla
     * Aggregate damage changed to 140
+* Flamethrower
+    * Removed friendly fire of flame puddles
 
 #### Alien
 * Echo

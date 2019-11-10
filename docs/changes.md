@@ -63,6 +63,8 @@
 * Shotgun
     * Nostalgia spread
     * Shotgun base aggregate damage reduced to 140 from 170
+* Flamethrower
+    * Removed friendly fire of flame puddles
 * Heavy Machine Gun
     * Reload is now cancel-able with alt-fire
 
