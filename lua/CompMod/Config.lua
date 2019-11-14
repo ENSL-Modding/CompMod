@@ -46,7 +46,9 @@ local modules = {
 			-- Carapace Modules
 			"Alien/Upgrades/Carapace",
             -- Cloaking Modules
-            "Alien/Upgrades/Cloaking/MoveSpeed",
+			"Alien/Upgrades/Cloaking/MoveSpeed",
+			-- Aura Module
+			"Alien/Upgrades/Aura",
 
 		-- Structure Ability Modules
 		"Alien/Echo",
