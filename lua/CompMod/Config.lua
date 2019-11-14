@@ -5,8 +5,6 @@ local modules = {
 	  ============================
 	]]
 
-	"Alien/CaraSpecBugfix",
-
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",
 		"Alien/Eggs/HiveEggHeal",
@@ -63,7 +61,6 @@ local modules = {
 	"Global/PrimePowerNodes",
 	"Global/ReadyRoomPanels",
 	"Global/ResponsiveGUI",
-	"Global/SupplyDisplay",
 	"Global/Physics",
 
 	--[[
@@ -73,8 +70,6 @@ local modules = {
 	]]
 
 	-- Structure Modules
-		-- ARCs
-		"Marine/Structures/ARC/ARCCorrodeBugFix",
 		-- Observatory
 		"Marine/Structures/Observatory/BuildTime",
 		-- Infantry Portals
