@@ -59,7 +59,6 @@ local modules = {
 	"Global/HealthBars",
 	"Global/MucousHitsounds",
 	"Global/PrimePowerNodes",
-	"Global/ReadyRoomPanels",
 	"Global/ResponsiveGUI",
 	"Global/Physics",
 
@@ -104,7 +103,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "8.6"
+	config.kModBuild = "8.7"
 	config.disableRanking = true
 	config.use_config = "none"
 
