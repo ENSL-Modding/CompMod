@@ -82,11 +82,8 @@
 
 ### Global
 * Player healthbars are disabled.
-* Team supply is now visible on the player HUD
 
 ### Bug Fixes & Improvements
-* Carapace now shows correctly in spectate
-* ARCs now take corrode damage after deploying and undeploying.
 * Vampirism no longer triggers from friendly fire damage.
 * Fixed that the scoreboard would sometimes be slow to open.
 * Fixed bug where multiple IPs would sometimes spawn with few players

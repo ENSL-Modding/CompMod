@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.7 - (14/11/2019)
+#### Global
+* Update for build 331
+
 ## CompMod 2.8.6 - (11/11/2019)
 #### Marine
 * Shotgun
