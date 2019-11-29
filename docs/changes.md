@@ -34,6 +34,7 @@
         * Echo egg cost reduced to 1 from 2
 * Carapace removed
 * No longer cloaked while moving with camouflage
+* Vampirism now heals eHP rather than by point value
 
 ### Marine
 * Medpacks

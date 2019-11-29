@@ -41,6 +41,7 @@ local modules = {
 		-- Upgrade Modules
 			-- Vampirism Modules
 			"Alien/Upgrades/Vampirism/FriendlyFireFix",
+			"Alien/Upgrades/Vampirism/EffectiveHPHealFix",
 			-- Carapace Modules
 			"Alien/Upgrades/Carapace",
             -- Cloaking Modules
@@ -103,7 +104,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "8.7"
+	config.kModBuild = "8.8"
 	config.disableRanking = true
 	config.use_config = "none"
 
