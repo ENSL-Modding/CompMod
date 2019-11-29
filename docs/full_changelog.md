@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.8.8 - (28/11/2019)
+#### Alien
+* Vampirism now heals eHP rather than by point value (this is a nerf)
+
 ## CompMod 2.8.7 - (14/11/2019)
 #### Global
 * Update for build 331
