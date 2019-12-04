@@ -62,6 +62,7 @@ local modules = {
 	"Global/PrimePowerNodes",
 	"Global/ResponsiveGUI",
 	"Global/Physics",
+	"Global/SupplyDisplay",
 
 	--[[
 	  ==========================
