@@ -63,6 +63,7 @@ local modules = {
 	"Global/ResponsiveGUI",
 	"Global/Physics",
 	"Global/SupplyDisplay",
+	"Global/SpectatorEdgePanning",
 
 	--[[
 	  ==========================
