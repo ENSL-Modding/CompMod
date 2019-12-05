@@ -1,5 +1,6 @@
 CompMod:AddTech({
     [kTechDataId] = kTechId.AdvancedSwipe,
+    [kTechDataCategory] = kTechId.Fade,
     [kTechDataCostKey] = kAdvancedSwipeCost,
     [kTechDataResearchTimeKey] = kAdvancedSwipeResearchTime,
     [kTechDataDisplayName] = "Advanced Swipe",

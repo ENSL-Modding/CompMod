@@ -567,6 +567,8 @@ end
 
 -- TODO: funcs to add tech
 -- TODO: Make tech tree changes automatic
+-- TODO: Autogenerate TeamInfo from TechIds
+-- TODO: Auto add events to GUIEvent
 
 local kTechIdToMaterialOffsetAdditions = {}
 
