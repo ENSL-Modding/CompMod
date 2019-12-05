@@ -64,6 +64,7 @@ local modules = {
 	"Global/Physics",
 	"Global/SupplyDisplay",
 	"Global/SpectatorEdgePanning",
+	"Global/HelpText",
 
 	--[[
 	  ==========================
