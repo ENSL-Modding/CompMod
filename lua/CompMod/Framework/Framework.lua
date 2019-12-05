@@ -576,6 +576,41 @@ function Mod:AddTechIdToMaterialOffset(techId, offset)
   table.insert(kTechIdToMaterialOffsetAdditions, {techId, offset})
 end
 
+function Mod:GetLinePositionForTechMap(techMap, fromTechId, toTechId)
+  Mod:PrintDebug("fromTechId: %s", fromTechId)
+  Mod:PrintDebug("toTechId: %s", toTechId)
+
+  local positions = { 0, 0, 0, 0 }
+  local foundFrom = false
+  local foundTo = false
+
+  for i = 1, #techMap do
+
+    local entry = techMap[i]
+    if entry[1] == fromTechId then
+
+      positions[1] = entry[2]
+      positions[2] = entry[3]
+      foundFrom = true
+
+    elseif entry[1] == toTechId then
+
+      positions[3] = entry[2]
+      positions[4] = entry[3]
+      foundTo = true
+
+    end
+
+    if foundFrom and foundTo then
+      break
+    end
+
+  end
+
+  return positions
+
+end
+
 -- alien techmap
 local kAlienTechmapTechToChange = {}
 local kAlienTechmapTechToAdd = {}
@@ -584,6 +619,7 @@ local kAlienTechmapTechToRemove = {}
 local kAlienTechmapLinesToChange = {}
 local kAlienTechmapLinesToAdd = {}
 local kAlienTechmapLinesToRemove = {}
+local kAlienTechmapLinesToRemoveByNodes = {}
 
 function Mod:ChangeAlienTechmapTech(techId, x, y)
   table.insert(kAlienTechmapTechToChange, techId, { techId, x, y } )
@@ -607,6 +643,10 @@ end
 
 function Mod:DeleteAlienTechmapLine(line)
   table.insert(kAlienTechmapLinesToRemove, line )
+end
+
+function Mod:DeleteAlienTechmapLineByNodes(node1, node2)
+  table.insert(kAlienTechmapLinesToRemoveByNodes, {node1, node2})
 end
 
 -- marine techmap
@@ -871,6 +911,10 @@ end
 
 function Mod:GetAlienTechMapLineDeletions()
   return kAlienTechmapLinesToRemove
+end
+
+function Mod:GetAlienTechMapLineToDeleteByNodes()
+  return kAlienTechmapLinesToRemoveByNodes
 end
 
 function Mod:GetMarineTechMapChanges()
