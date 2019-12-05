@@ -1,4 +1,4 @@
-# Changes between CompMod and Vanilla (Build 330)
+# Changes between CompMod and Vanilla (Build 331)
 ### Alien
 * Embryos
     * Hive's don't heal eggs, only embryos
@@ -32,9 +32,15 @@
     * Echo
         * Echo upgrade cost increased to 2 from 1
         * Echo egg cost reduced to 1 from 2
-* Carapace removed
-* No longer cloaked while moving with camouflage
-* Vampirism now heals eHP rather than by point value
+* Upgrades
+    * Carapace
+        * Upgrade removed
+        * Removed upgrade from Tech Map
+    * Vampirism
+        * Now heals eHP rather than by point value
+        * No longer triggers from friendly-fire damage
+    * Camouflage
+        * No longer fully cloaked while moving
 
 ### Marine
 * Medpacks
@@ -85,8 +91,11 @@
 * Player healthbars are disabled.
 
 ### Bug Fixes & Improvements
-* Vampirism no longer triggers from friendly fire damage.
 * Fixed that the scoreboard would sometimes be slow to open.
 * Fixed bug where multiple IPs would sometimes spawn with few players
 * Mines can now be killed before arming
+* Added team supply to top bar
+* Fixed edge pan jitter when following a player -- click to unfollow
+* Advanced Swipe will now appear in the researched tech at the bottom of the screen
+* Defaulted help text at bottom of the screen to a collapsed state
  

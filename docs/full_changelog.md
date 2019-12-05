@@ -1,5 +1,16 @@
 # Full Changelog for CompMod
 
+## CompMod 2.9.0 - (5/12/2019)
+#### Spectator
+* Added team supply to top bar
+* Fixed edge pan jitter when following a player -- click to unfollow
+* Advanced Swipe will now appear in the researched tech at the bottom of the screen
+* Removed Carapace from Alien Tech Map
+* Defaulted help text at bottom of the screen to a collapsed state
+
+#### Alien
+* Removed Carapace from Alien Tech Map
+
 ## CompMod 2.8.8 - (28/11/2019)
 #### Alien
 * Vampirism now heals eHP rather than by point value (this is a nerf)
