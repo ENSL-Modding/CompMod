@@ -8,6 +8,8 @@
     * Sneak speed reduced to 4 from 4.8
     * Skulks no longer get a speed bonus on their first jump from the ground
 * Gorge
+    * Babblers
+        * No longer scale with biomass
     * Web
         * Webs break when marines walk through them
 * Lerk
