@@ -4,6 +4,8 @@ local modules = {
 			Alien Modules
 	  ============================
 	]]
+        -- Babbler Modules
+        "Alien/Babblers/BiomassScaling",
 
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",

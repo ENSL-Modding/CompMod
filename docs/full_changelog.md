@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.10.0 - (25/12/2019)
+#### Alien
+* Babblers no longer scale with biomass
+
 ## CompMod 2.9.0 - (5/12/2019)
 #### Spectator
 * Added team supply to top bar
