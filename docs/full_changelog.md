@@ -4,6 +4,9 @@
 #### Alien
 * Babblers no longer scale with biomass
 
+#### Marine
+* Increased shotgun damage to 150 from 140
+
 ## CompMod 2.9.0 - (5/12/2019)
 #### Spectator
 * Added team supply to top bar

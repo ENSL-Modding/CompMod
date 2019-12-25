@@ -71,7 +71,7 @@
     * Damage reduced to 20 from 25
 * Shotgun
     * Nostalgia spread
-    * Shotgun base aggregate damage reduced to 140 from 170
+    * Shotgun base aggregate damage reduced to 150 from 170
 * Flamethrower
     * Removed friendly fire of flame puddles
 * Heavy Machine Gun
