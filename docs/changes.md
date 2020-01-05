@@ -41,6 +41,7 @@
     * Vampirism
         * Now heals eHP rather than by point value
         * No longer triggers from friendly-fire damage
+        * Reduced value on Skulk and Fade to 2 shell vanilla value
     * Camouflage
         * No longer fully cloaked while moving
 
