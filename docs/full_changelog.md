@@ -1,8 +1,9 @@
 # Full Changelog for CompMod
 
-## CompMod 2.10.0 - (25/12/2019)
+## CompMod 2.10.0 - (5/1/2020)
 #### Alien
 * Babblers no longer scale with biomass
+* Vampirism value reduced to 2 shell vanilla values on Skulk and Fade
 
 #### Marine
 * Increased shotgun damage to 150 from 140
