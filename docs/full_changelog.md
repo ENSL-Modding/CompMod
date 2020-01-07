@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.11.0
+#### Alien
+* Reduced Mucous cloud radius from 8 to 5 (reduces area by 60%)
+
 ## CompMod 2.10.0 - (5/1/2020)
 #### Alien
 * Babblers no longer scale with biomass
