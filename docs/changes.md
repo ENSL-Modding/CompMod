@@ -30,6 +30,10 @@
         * Moving with BoneShield active will consume BoneFuel faster
     * Charge
         * Knockback removed
+* Drifters
+    * Abilities
+        * Mucous
+            * Reduced Mucous cloud radius from 8 to 5 (reduces area by 60%)
 * Structure Abilities
     * Echo
         * Echo upgrade cost increased to 2 from 1

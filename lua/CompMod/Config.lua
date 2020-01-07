@@ -7,6 +7,9 @@ local modules = {
         -- Babbler Modules
         "Alien/Babblers/BiomassScaling",
 
+		-- Drifter Modules
+		"Alien/Drifters/Abilities/Mucous",
+
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",
 		"Alien/Eggs/HiveEggHeal",
