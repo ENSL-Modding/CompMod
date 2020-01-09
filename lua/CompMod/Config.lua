@@ -6,6 +6,7 @@ local modules = {
 	]]
         -- Babbler Modules
         "Alien/Babblers/BiomassScaling",
+		"Alien/Babblers/Flammable",
 
 		-- Drifter Modules
 		"Alien/Drifters/Abilities/Mucous",
