@@ -10,6 +10,7 @@
 * Gorge
     * Babblers
         * No longer scale with biomass
+        * Are flammable (die in one welder tick)
     * Web
         * Webs break when marines walk through them
 * Lerk
@@ -33,8 +34,8 @@
 * Drifters
     * Abilities
         * Mucous
-            * Reduced Mucous cloud radius from 8 to 5 (reduces area by 60%)
-            * Mucous shield matches babbler shield values (except skulk - remains at 15 hp)
+            * Reduced cloud radius from 8 to 5 (reduces area by 60%)
+            * Shield matches babbler shield values (except skulk - remains at 15 hp)
 * Structure Abilities
     * Echo
         * Echo upgrade cost increased to 2 from 1

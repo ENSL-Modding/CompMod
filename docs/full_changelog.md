@@ -2,8 +2,11 @@
 
 ## CompMod 2.11.0 - (8/1/2020)
 #### Alien
-* Reduced Mucous cloud radius from 8 to 5 (reduces area by 60%)
-* Mucous shield matches babbler shield values (except skulk - remains at 15 hp)
+*Mucous
+    * Reduced cloud radius from 8 to 5 (reduces area by 60%)
+    * Shield matches babbler shield values (except skulk - remains at 15 hp)
+* Babblers
+    * Are flammable (die in one welder tick)
 
 ## CompMod 2.10.0 - (5/1/2020)
 #### Alien
