@@ -1,8 +1,9 @@
 # Full Changelog for CompMod
 
-## CompMod 2.11.0
+## CompMod 2.11.0 - (8/1/2020)
 #### Alien
 * Reduced Mucous cloud radius from 8 to 5 (reduces area by 60%)
+* Mucous shield matches babbler shield values (except skulk - remains at 15 hp)
 
 ## CompMod 2.10.0 - (5/1/2020)
 #### Alien
