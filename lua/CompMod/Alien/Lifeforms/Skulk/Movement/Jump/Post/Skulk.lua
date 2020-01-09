@@ -46,7 +46,6 @@ function Skulk:ModifyJump(input, velocity, jumpVelocity)
 
         bonusVec:Scale(force)
 
-        bonusVec.y = viewCoords.zAxis.y * verticalForce
         jumpVelocity:Add(bonusVec)
     end
 

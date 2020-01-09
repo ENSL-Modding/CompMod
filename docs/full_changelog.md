@@ -7,6 +7,8 @@
     * Shield matches babbler shield values (except skulk - remains at 15 hp)
 * Babblers
     * Are flammable (die in one welder tick)
+* Skulk
+    * Can longer jump at various heights from the floor
     
 #### Marine
 * HMG
