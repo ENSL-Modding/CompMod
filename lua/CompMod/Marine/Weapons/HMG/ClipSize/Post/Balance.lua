@@ -1,0 +1,1 @@
+kHeavyMachineGunClipSize = 100
