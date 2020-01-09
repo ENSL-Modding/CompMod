@@ -12,6 +12,7 @@
 * HMG
     * Decrease clip size to 100 rounds
     * Increase reload speed to 4.5s from 5.0s
+    * Can no longer interrupt reload with secondary fire
 
 ## CompMod 2.10.0 - (5/1/2020)
 #### Alien
