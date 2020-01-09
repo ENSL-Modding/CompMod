@@ -93,7 +93,6 @@ local modules = {
 		"Marine/WeaponDropTime",
 		"Marine/Weapons/SlowExpirationRate",
 		"Marine/Weapons/Shotgun",
-		"Marine/Weapons/HMG/ReloadCancel",
 		"Marine/Weapons/HMG/ClipSize",
 		"Marine/Weapons/HMG/ReloadSpeed",
 		"Marine/Weapons/Mine",

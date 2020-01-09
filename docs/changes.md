@@ -82,7 +82,6 @@
 * Flamethrower
     * Removed friendly fire of flame puddles
 * Heavy Machine Gun
-    * Reload is now cancel-able with alt-fire
     * Decrease clip size to 100 rounds
     * Increase reload speed to 4.5s from 5.0s
 
