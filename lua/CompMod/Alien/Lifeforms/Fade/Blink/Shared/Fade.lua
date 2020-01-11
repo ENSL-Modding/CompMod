@@ -1,5 +1,4 @@
 local kMaxSpeed = 6.2
-local kBlinkMaxSpeed = 25
 local kFadeGravityMod = 1.0
 local kFadeScanDuration = 4
 
@@ -69,7 +68,7 @@ function Fade:GetMaxSpeed(possible)
     end
 
     if self:GetIsBlinking() then
-        return kBlinkMaxSpeed
+        return kEtherealForce
     end
 
     -- Take into account crouching.
