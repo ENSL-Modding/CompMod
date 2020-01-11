@@ -1,6 +1,6 @@
 HeavyMachineGun.kReloadAnimationLength = 5.0 -- from art asset.
 HeavyMachineGun.kReloadLength = 4.5 -- desired reload time.
-local reloadMultiplier = HeavyMachineGun.kReloadAnimationLength / HeavyMachineGun.kReloadLength
+local reloadMultiplier = 1.1111
 local kIdleChangeThrottle = 0.25
 local idleWeights =
 {

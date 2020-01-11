@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.11.2 - (11/1/2020)
+#### Marine
+* Hotfix HMG reload speed bug
+
 ## CompMod 2.11.1 - (10/1/2020)
 #### Alien
 * Hotfix Fade blink speed
