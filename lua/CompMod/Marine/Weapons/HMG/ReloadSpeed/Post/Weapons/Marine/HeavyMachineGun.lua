@@ -1,6 +1,5 @@
 HeavyMachineGun.kReloadAnimationLength = 5.0 -- from art asset.
 HeavyMachineGun.kReloadLength = 4.5 -- desired reload time.
-local reloadMultiplier = 1.1111
 local kIdleChangeThrottle = 0.25
 local idleWeights =
 {
@@ -39,6 +38,7 @@ function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
 
     modelMixin:SetAnimationInput("idleName", self.idleName)
 
+    local reloadMultiplier = HeavyMachineGun.kReloadAnimationLength / HeavyMachineGun.kReloadLength
     if self.GetCatalystSpeedBase then
         reloadMultiplier = reloadMultiplier * self:GetCatalystSpeedBase()
     end
@@ -48,6 +48,7 @@ function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
             reloadMultiplier = reloadMultiplier * kCatPackWeaponSpeed
         end
     end
+
     modelMixin:SetAnimationInput("reload_mult", reloadMultiplier)
 
 end
