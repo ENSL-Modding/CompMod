@@ -23,9 +23,11 @@
         * Upgrades the normal swipe damage to 81 from 70
         * Can be researched at Biomass 7 
         * Costs 25 tres and takes 60 seconds to research
-    * Removed Auto-crouch
     * Blink
-        * No longer gain speed on successive blinks without celerity
+        * Removed Auto-crouch
+        * Tweaked movement when traveling faster than base blink speed
+            * Will lose velocity more quickly when moving faster than 16.25
+            * Rate at which you lose velocity is reduced when using celerity
 * Onos
     * BoneShield
         * Add BoneShield initial cost 

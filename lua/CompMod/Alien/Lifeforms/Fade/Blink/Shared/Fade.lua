@@ -1,6 +1,8 @@
 local kMaxSpeed = 6.2
 local kFadeGravityMod = 1.0
 local kFadeScanDuration = 4
+local kCelerityFrictionFactor = 0.04
+local kFastMovingAirFriction = 0.40
 
 local networkVars =
 {
@@ -102,4 +104,9 @@ function Fade:HandleButtons(input)
 
     Alien.HandleButtons(self, input)
 
+end
+
+function Fade:GetAirFriction()
+    local currentVelocityVector = self:GetVelocityLength()
+    return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or GetHasCelerityUpgrade(self) and (kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())) or currentVelocityVector > kEtherealForce and kFastMovingAirFriction or 0.17
 end
