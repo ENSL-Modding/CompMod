@@ -6,6 +6,10 @@
     * Tweaked movement when traveling faster than base blink speed
         * Will lose velocity more quickly when moving faster than 16.25
         * Rate at which you lose velocity is reduced when using celerity
+* Hallucinations
+    * No longer affected by mucous
+    * Can no longer have babblers attached
+    * Reduced Onos HP to 100 eHP
 
 ## CompMod 2.11.2 - (11/1/2020)
 #### Marine

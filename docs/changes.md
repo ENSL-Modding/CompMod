@@ -39,6 +39,10 @@
         * Mucous
             * Reduced cloud radius from 8 to 5 (reduces area by 60%)
             * Shield matches babbler shield values (except skulk - remains at 15 hp)
+        * Hallucinations
+            * No longer affected by mucous
+            * Can no longer have babblers attached
+            * Reduced Onos HP to 100 eHP
 * Structure Abilities
     * Echo
         * Echo upgrade cost increased to 2 from 1
