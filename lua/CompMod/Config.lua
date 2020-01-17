@@ -116,7 +116,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "11.2"
+	config.kModBuild = "12.0"
 	config.disableRanking = true
 	config.use_config = "none"
 

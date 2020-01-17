@@ -1,5 +1,12 @@
 # Full Changelog for CompMod
 
+## CompMod 2.12.0 - (16/1/2020)
+#### Alien
+* Fade
+    * Tweaked movement when traveling faster than base blink speed
+        * Will lose velocity more quickly when moving faster than 16.25
+        * Rate at which you lose velocity is reduced when using celerity
+
 ## CompMod 2.11.2 - (11/1/2020)
 #### Marine
 * Hotfix HMG reload speed bug
