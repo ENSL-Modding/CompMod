@@ -24,6 +24,7 @@ local modules = {
             -- Skulk Modules
             "Alien/Lifeforms/Skulk/Movement/SneakSpeed",
             "Alien/Lifeforms/Skulk/Movement/Jump",
+			"Alien/Lifeforms/Skulk/BiteCone",
 			-- Fade Modules
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
 			"Alien/Lifeforms/Fade/Stab",

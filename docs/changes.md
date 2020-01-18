@@ -8,6 +8,7 @@
     * Sneak speed reduced to 4 from 4.8
     * Skulks no longer get a speed bonus on their first jump from the ground
     * Can no longer jump at various heights from the floor
+    * Reduced range of outer bite cone by 65%
 * Gorge
     * Babblers
         * No longer scale with biomass

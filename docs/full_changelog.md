@@ -2,6 +2,8 @@
 
 ## CompMod 2.12.0 - (16/1/2020)
 #### Alien
+* Skulk
+    * Reduced range of outer bite cone by 65%
 * Fade
     * Tweaked movement when traveling faster than base blink speed
         * Will lose velocity more quickly when moving faster than 16.25
