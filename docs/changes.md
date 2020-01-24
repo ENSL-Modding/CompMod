@@ -17,6 +17,11 @@
         * Webs break when marines walk through them
 * Lerk
     * HP changed to 180/25 from 180/30
+    * Increase strafe force to 8.3 from 7
+    * Spikes
+        * Penetrate soft targets
+         * Damage increased to 6 from 5 (to 12 from 10 to players)
+         * Spread increased to 3.8 radians from 3.6 radians (Nostalgia spread was 4.0 radians)
 * Fade
     * Advanced Metabolise
         * Now required biomass 4 down from 5)

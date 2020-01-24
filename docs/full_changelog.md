@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 2.13.0 - (23/1/2020)
+#### Alien
+* Lerk
+    * Spikes penetrate soft targets
+
 ## CompMod 2.12.0 - (16/1/2020)
 #### Alien
 * Skulk
