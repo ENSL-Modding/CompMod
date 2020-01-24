@@ -12,8 +12,6 @@ local modules = {
 			-- Drifter Abilities
 			"Alien/Drifters/Abilities/Mucous",
 			"Alien/Drifters/Abilities/Hallucination/HealthAndShields",
-			"Alien/Drifters/Abilities/Hallucination/BabblerCling",
-			"Alien/Drifters/Abilities/Hallucination/PreventMucousShield",
 
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",
@@ -39,6 +37,7 @@ local modules = {
 			"Alien/Lifeforms/Lerk/Base",
 			"Alien/Lifeforms/Lerk/Spikes",
 			"Alien/Lifeforms/Lerk/Movement",
+			"Alien/Lifeforms/Lerk/SofTargets",
 
 			-- Onos Modules
 				-- BoneShield Modules
