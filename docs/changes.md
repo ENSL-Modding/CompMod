@@ -50,6 +50,7 @@
             * No longer affected by mucous
             * Can no longer have babblers attached
             * Reduced Onos HP to 100 eHP
+            * Reduced hallucination drifter's hover height to match real drifter
 * Structure Abilities
     * Echo
         * Echo upgrade cost increased to 2 from 1
