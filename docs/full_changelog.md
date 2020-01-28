@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 2.14.0 - (27/1/2020)
+#### Alien
+* Drifter
+    * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
+
 ## CompMod 2.13.0 - (23/1/2020)
 #### Alien
 * Lerk

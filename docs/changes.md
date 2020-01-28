@@ -41,6 +41,7 @@
     * Charge
         * Knockback removed
 * Drifters
+    * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
     * Abilities
         * Mucous
             * Reduced cloud radius from 8 to 5 (reduces area by 60%)
