@@ -9,9 +9,11 @@ local modules = {
 		"Alien/Babblers/Flammable",
 
 		-- Drifter Modules
+		"Alien/Drifters/HoverHeight",
 			-- Drifter Abilities
 			"Alien/Drifters/Abilities/Mucous",
 			"Alien/Drifters/Abilities/Hallucination/HealthAndShields",
+			"Alien/Drifters/Abilities/Hallucination/DrifterHeight",
 
 		-- Egg Modules
 		"Alien/Eggs/EmbryoHP",
@@ -120,7 +122,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "12.0"
+	config.kModBuild = "14.0"
 	config.disableRanking = true
 	config.use_config = "none"
 
