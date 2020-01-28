@@ -29,8 +29,12 @@
     * Increase strafe force to 8.3 from 7
     * Spikes
         * Penetrate soft targets
-         * Damage increased to 6 from 5 (to 12 from 10 to players)
-         * Spread increased to 3.8 radians from 3.6 radians (Nostalgia spread was 4.0 radians)
+        * Damage increased to 6 from 5 (to 12 from 10 to players)
+        * Spread increased to 3.8 radians from 3.6 radians (Nostalgia spread was 4.0 radians)
+    * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
+    * After 0.64 seconds, scale friction value linearly from 0.08 to 0.5 over 3.36 seconds (total of 4 seconds)
+        * This change minimizes the effectiveness of silent lerk ambushes. A lerk will have to flap in order to quickly catch a marine
+        * Lerk movement mid-fight while flapping often is unaffected
 * Fade
     * Advanced Metabolise
         * Now required biomass 4 down from 5)

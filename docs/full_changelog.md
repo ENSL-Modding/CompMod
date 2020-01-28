@@ -10,6 +10,11 @@
 * Skulk
     * Reduced width of cone from 1.2 to 0.8
     * Reduced Height of cone from 1.2 to 1.0
+* Lerk
+    * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
+    * After 0.64 seconds, scale friction value linearly from 0.08 to 0.5 over 3.36 seconds (total of 4 seconds)
+        * This change minimizes the effectiveness of silent lerk ambushes. A lerk will have to flap in order to quickly catch a marine
+        * Lerk movement mid-fight while flapping often is unaffected
 * Increased starting Pres to 15 from 12
 * Lifeform Costs
     * Gorge to 8 from 10
