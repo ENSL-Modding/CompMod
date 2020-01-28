@@ -23,7 +23,6 @@ function SpikesMixin:FireSpikes()
 
         local endPoint = startPoint + spreadDirection * range
         local targets, trace, hitPoints = GetSpikeTargets(startPoint, endPoint, spreadDirection, kSpikeSize, filter)
-        local damage = kSpikeDamage
 
         HandleHitregAnalysis(player, startPoint, endPoint, trace)
 
