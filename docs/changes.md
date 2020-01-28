@@ -1,5 +1,11 @@
 # Changes between CompMod and Vanilla (Build 331)
 ### Alien
+* Increased starting Pres to 15 from 12
+* Lifeform Costs
+    * Gorge to 8 from 10
+    * Lerk to 18 from 21
+    * Fade to 35 from 37
+    * Onos to 55 from 62
 * Embryos
     * Hive's don't heal eggs, only embryos
     * Embyro HP scales depending on lifeform.
@@ -102,6 +108,7 @@
 * Heavy Machine Gun
     * Decrease clip size to 100 rounds
     * Increase reload speed to 4.5s from 5.0s
+* Increased starting Pres to 20 from 15
 
 ### Alien Commander
 * Lifeform egg drops removed
@@ -117,6 +124,7 @@
 
 ### Global
 * Player healthbars are disabled.
+* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
 
 ### Bug Fixes & Improvements
 * Fixed that the scoreboard would sometimes be slow to open.

@@ -80,6 +80,7 @@ local modules = {
 	"Global/SupplyDisplay",
 	"Global/SpectatorEdgePanning",
 	"Global/HelpText",
+	"Global/Resources",
 
 	--[[
 	  ==========================
