@@ -8,8 +8,13 @@
         * Hallucinations
             * Reduced hallucination drifter's hover height to match real drifter
 * Skulk
-    * Reduced width of cone from 1.2 to 0.8
-    * Reduced Height of cone from 1.2 to 1.0
+    * Bite cone
+        * Reduced width of cone to 0.8 from 1.2
+        * Reduced Height of cone to 1.0 from 1.2
+    * Movement
+        * Reduced kWallJumpForce to 5 from 6.4
+            * The velocity gained while wallhopping scales with this variable and how fast you are going
+            * This results in taking ~1.5 more jumps to reach top speed
 * Lerk
     * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
     * After 0.64 seconds, scale friction value linearly from 0.08 to 0.5 over 3.36 seconds (total of 4 seconds)

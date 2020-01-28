@@ -11,9 +11,13 @@
     * Embyro HP scales depending on lifeform.
 * Skulk
     * Model/hitbox size reduced by 10%
-    * Sneak speed reduced to 4 from 4.8
-    * Skulks no longer get a speed bonus on their first jump from the ground
-    * Can no longer jump at various heights from the floor
+    * Movement
+        * Reduced kWallJumpForce to 5 from 6.4
+            * The velocity gained while wallhopping scales with this variable and how fast you are going
+            * This results in taking ~1.5 more jumps to reach top speed
+        * Sneak speed reduced to 4 from 4.8
+        * No longer get a speed bonus on their first jump from the ground
+        * Can no longer jump at various heights from the floor
     * Bite cone
         * Reduced width of cone from 1.2 to 0.8
         * Reduced Height of cone from 1.2 to 1.0
