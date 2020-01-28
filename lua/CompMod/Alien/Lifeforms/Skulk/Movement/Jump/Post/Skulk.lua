@@ -1,3 +1,6 @@
+Skulk.kBunnyHopMaxGroundTouchDuration = 0.5
+Skulk.kWallJumpForce = 5
+
 function Skulk:ModifyJump(input, velocity, jumpVelocity)
     -- we add the bonus in the direction the move is going
     local viewCoords = self:GetViewAngles():GetCoords()
@@ -30,11 +33,10 @@ function Skulk:ModifyJump(input, velocity, jumpVelocity)
 
         self.timeLastWallJump = Shared.GetTime()
 
-    elseif not self:GetRecentlyJumped() and (self:GetJumpedKindaRecently() or (self:GetSpeedScalar() > 7.3)) then
+    elseif not self:GetRecentlyJumped() and self:GetTimeGroundTouched() > Shared.GetTime() - Skulk.kBunnyHopMaxGroundTouchDuration then
 
         local minimumForce = Skulk.kMinBunnyHopForce
         local scalableForce = Skulk.kBunnyHopForce
-        local verticalForce = Skulk.kVerticalBunnyHopForce
         local maxSpeed = self:GetMaxBunnyHopSpeed()
 
         local fraction = 1 - Clamp( velocity:GetLengthXZ() / maxSpeed, 0, 1)
@@ -49,8 +51,4 @@ function Skulk:ModifyJump(input, velocity, jumpVelocity)
         jumpVelocity:Add(bonusVec)
     end
 
-end
-
-function Skulk:GetJumpedKindaRecently()
-    return self.timeOfLastJump ~= nil and self.timeOfLastJump + 1 > Shared.GetTime()
 end
