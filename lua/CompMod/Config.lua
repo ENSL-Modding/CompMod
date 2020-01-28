@@ -40,7 +40,7 @@ local modules = {
 			"Alien/Lifeforms/Lerk/Base",
 			"Alien/Lifeforms/Lerk/Spikes",
 			"Alien/Lifeforms/Lerk/Movement",
-			"Alien/Lifeforms/Lerk/SofTargets",
+			"Alien/Lifeforms/Lerk/SoftTargets",
 
 			-- Onos Modules
 				-- BoneShield Modules
