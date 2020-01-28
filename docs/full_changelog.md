@@ -7,6 +7,9 @@
     * Abilities
         * Hallucinations
             * Reduced hallucination drifter's hover height to match real drifter
+* Skulk
+    * Reduced width of cone from 1.2 to 0.8
+    * Reduced Height of cone from 1.2 to 1.0
 
 ## CompMod 2.13.0 - (23/1/2020)
 #### Alien
