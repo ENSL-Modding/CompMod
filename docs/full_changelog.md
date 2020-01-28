@@ -10,6 +10,18 @@
 * Skulk
     * Reduced width of cone from 1.2 to 0.8
     * Reduced Height of cone from 1.2 to 1.0
+* Increased starting Pres to 15 from 12
+* Lifeform Costs
+    * Gorge to 8 from 10
+    * Lerk to 18 from 21
+    * Fade to 35 from 37
+    * Onos to 55 from 62
+
+#### Marine
+* Increased starting Pres to 20 from 15
+
+#### Global
+* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
 
 ## CompMod 2.13.0 - (23/1/2020)
 #### Alien
