@@ -7,6 +7,7 @@
 #### Alien
 * Drifter
     * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
+    * Shade hive drifters will now uncloak from further away (to 7 from 1.5) (You won't run through without seeing them anymore)
     * Abilities
         * Hallucinations
             * Reduced hallucination drifter's hover height to match real drifter
