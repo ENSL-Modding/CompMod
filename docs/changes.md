@@ -123,6 +123,7 @@
 * Cyst
     * Build time increased to 6 seconds from 3.33 seconds
     * Unconnected cysts now take 20 damage/second up from 12 damage/second
+    * Shade hive cysts are now visible from further away (to 10 from 6)
 * Tunnels
     * Tunnels are infested tunnels by default
     * Tunnel cost changed to 8 tres up from 6 tres
