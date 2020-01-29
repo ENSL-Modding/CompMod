@@ -1,6 +1,9 @@
 # Full Changelog for CompMod
 
 ## CompMod 2.14.0 - (27/1/2020)
+#### Global
+* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
+
 #### Alien
 * Drifter
     * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
@@ -30,8 +33,9 @@
 #### Marine
 * Increased starting Pres to 20 from 15
 
-#### Global
-* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
+#### Alien Commander
+* Cysts
+    * Shade hive cysts are now visible from further away (to 10 from 6)
 
 ## CompMod 2.13.0 - (23/1/2020)
 #### Alien

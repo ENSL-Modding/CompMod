@@ -18,3 +18,7 @@ function Cyst:OnKill()
     end
 
 end
+
+local kDetectRange = 10
+
+CompMod:ReplaceLocal(Cyst.ScanForNearbyEnemy, "kDetectRange", kDetectRange)
