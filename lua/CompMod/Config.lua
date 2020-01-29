@@ -10,6 +10,7 @@ local modules = {
 
 		-- Drifter Modules
 		"Alien/Drifters/HoverHeight",
+		"Alien/Drifters/Uncloak",
 			-- Drifter Abilities
 			"Alien/Drifters/Abilities/Mucous",
 			"Alien/Drifters/Abilities/Hallucination/HealthAndShields",
