@@ -1,5 +1,5 @@
 kGorgeCost = 8
-kLerkCost = 18
+kLerkCost = 20
 kFadeCost = 35
 kOnosCost = 55
 

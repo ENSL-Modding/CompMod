@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 2.14.1 - (30/1/2020)
+#### Alien
+* Lifeform Costs
+    * Correct Lerk cost to 20 from 18
+
 ## CompMod 2.14.0 - (27/1/2020)
 #### Global
 * Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
