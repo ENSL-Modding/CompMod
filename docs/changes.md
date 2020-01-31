@@ -3,7 +3,7 @@
 * Increased starting Pres to 15 from 12
 * Lifeform Costs
     * Gorge to 8 from 10
-    * Lerk to 18 from 21
+    * Lerk to 20 from 21
     * Fade to 35 from 37
     * Onos to 55 from 62
 * Embryos
