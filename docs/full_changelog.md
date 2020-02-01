@@ -1,5 +1,16 @@
 # Full Changelog for CompMod
 
+## CompMod 2.14.3 - (1/2/2020)
+#### Alien
+* Lerk
+    * Fixed inflated spike accuracies
+
+## CompMod 2.14.2 - (31/1/2020)
+#### Alien
+* Lerk
+    * Increased flap grace period
+    * Fixed bug with lerk hallucinations
+
 ## CompMod 2.14.1 - (30/1/2020)
 #### Alien
 * Lifeform Costs

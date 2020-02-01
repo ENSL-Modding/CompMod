@@ -27,13 +27,13 @@ function SpikesMixin:FireSpikes()
         HandleHitregAnalysis(player, startPoint, endPoint, trace)
 
         local numTargets = #targets
+        local direction = (trace.endPoint - startPoint):GetUnit()
 
         for i = 1, numTargets do
             local target = targets[i]
             local hitPoint = hitPoints[i]
 
             local damage = kSpikeDamage
-            local direction = (trace.endPoint - startPoint):GetUnit()
             self:DoDamage(damage, target, hitPoint - direction * kHitEffectOffset, direction, trace.surface, true, math.random() < 0.75)
 
             local client = Server and player:GetClient() or Client
@@ -41,6 +41,11 @@ function SpikesMixin:FireSpikes()
                 RegisterHitEvent(player, spike, startPoint, trace, damage)
             end
 
+        end
+
+        if not numTargets and trace.fraction < 1 then
+            local damage = 0
+            self:DoDamage(damage, trace.entity, trace.endPoint - direction * kHitEffectOffset, direction, trace.surface, true, math.random() < 0.75)
         end
 
     end
