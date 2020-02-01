@@ -9,9 +9,12 @@ Lerk.kMaxAirFriction = 0.5
 -- Reach full friction in this many seconds
 Lerk.timeToFullFriction = 4
 
+-- Time before friction is higher than vanilla
+Lerk.flapGracePeriod = 0.75
+
 function Lerk:GetAirFriction()
     -- Scale air friction linearly by time, from a minimum value to a maximum value
     -- Reaches full friction value in Lerk.timeToFullFriction seconds
     local timeSinceLastFlap = Shared.GetTime() - self:GetTimeOfLastFlap()
-    return Clamp(Lerk.kMaxAirFriction * (timeSinceLastFlap - Lerk.kMinAirFriction / Lerk.timeToFullFriction), Lerk.kMinAirFriction, Lerk.kMaxAirFriction)
+    return Clamp((Lerk.kMaxAirFriction / Lerk.timeToFullFriction) * (timeSinceLastFlap - Lerk.flapGracePeriod), Lerk.kMinAirFriction, Lerk.kMaxAirFriction)
 end

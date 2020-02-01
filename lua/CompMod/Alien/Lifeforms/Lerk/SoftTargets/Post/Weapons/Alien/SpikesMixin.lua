@@ -37,7 +37,7 @@ function SpikesMixin:FireSpikes()
             self:DoDamage(damage, target, hitPoint - direction * kHitEffectOffset, direction, trace.surface, true, math.random() < 0.75)
 
             local client = Server and player:GetClient() or Client
-            if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
+            if client and not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
                 RegisterHitEvent(player, spike, startPoint, trace, damage)
             end
 
