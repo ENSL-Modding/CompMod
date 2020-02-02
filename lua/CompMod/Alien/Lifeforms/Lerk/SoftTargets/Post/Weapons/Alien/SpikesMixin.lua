@@ -43,7 +43,7 @@ function SpikesMixin:FireSpikes()
 
         end
 
-        if not numTargets and trace.fraction < 1 then
+        if numTargets == 0 and trace.fraction < 1 then
             local damage = 0
             self:DoDamage(damage, trace.entity, trace.endPoint - direction * kHitEffectOffset, direction, trace.surface, true, math.random() < 0.75)
         end
