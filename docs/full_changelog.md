@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 2.14.4 - (2/2/2020)
+#### Alien
+* Lerk
+    * Really fixed inflated spike accuracies
+
 ## CompMod 2.14.3 - (1/2/2020)
 #### Alien
 * Lerk
