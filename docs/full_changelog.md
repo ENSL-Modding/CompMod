@@ -1,5 +1,13 @@
 # Full Changelog for CompMod
 
+## CompMod 2.15.0 - (10/2/2020)
+#### Alien
+* Fixed bug where armor healing was reduced
+* Vampirism
+    * Refactored code to keep armor healing at eHP rate
+* Advanced Metabolize
+    * Refactored code to keep armor healing at eHP rate
+
 ## CompMod 2.14.4 - (2/2/2020)
 #### Alien
 * Lerk

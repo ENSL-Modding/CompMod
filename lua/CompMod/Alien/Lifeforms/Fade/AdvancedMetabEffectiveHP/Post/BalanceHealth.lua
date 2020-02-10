@@ -1,0 +1,1 @@
+kMetabArmorHealScalar = 0.5

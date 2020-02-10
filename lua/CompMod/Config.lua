@@ -31,6 +31,7 @@ local modules = {
 			"Alien/Lifeforms/Fade/AdvancedSwipe",
 			"Alien/Lifeforms/Fade/Stab",
 			"Alien/Lifeforms/Fade/Blink",
+			"Alien/Lifeforms/Fade/AdvancedMetabEffectiveHP",
 
 			-- Gorge Modules
 				-- Web Modules
@@ -82,6 +83,7 @@ local modules = {
 	"Global/SpectatorEdgePanning",
 	"Global/HelpText",
 	"Global/Resources",
+	"Global/AllowVariableArmorHealRate",
 
 	--[[
 	  ==========================
@@ -125,7 +127,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "14.4"
+	config.kModBuild = "15.0"
 	config.disableRanking = true
 	config.use_config = "none"
 
