@@ -1,1 +1,1 @@
-kArmorHealScalar = 0.5
+kVampArmorHealScalar = 0.5

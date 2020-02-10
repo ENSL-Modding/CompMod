@@ -42,6 +42,7 @@
 * Fade
     * Advanced Metabolise
         * Now required biomass 4 down from 5)
+        * Now heals eHP rather than by point value
     * Stab replaced by Advanced Swipe
         * Upgrades the normal swipe damage to 81 from 70
         * Can be researched at Biomass 7 
