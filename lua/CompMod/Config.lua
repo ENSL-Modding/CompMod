@@ -84,6 +84,7 @@ local modules = {
 	"Global/HelpText",
 	"Global/Resources",
 	"Global/AllowVariableArmorHealRate",
+	"Global/ClampHealing",
 
 	--[[
 	  ==========================

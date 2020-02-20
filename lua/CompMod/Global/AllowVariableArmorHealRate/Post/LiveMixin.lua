@@ -29,11 +29,7 @@ function LiveMixin:AddHealth(health, playSound, noArmor, hideEffect, healer, arm
 
     if self:AmountDamaged() > 0 then
 
-        if HasMixin( self, "Team") then
-            if self:GetTeamType() == kAlienTeamType then
-                health = self:ClampHealing( health, noArmor )
-            end
-        end
+        health = self:ClampHealing( health, noArmor, healer)
 
         -- Add health first, then armor if we're full
         local healthAdded = math.min(health, self:GetMaxHealth() - self:GetHealth())

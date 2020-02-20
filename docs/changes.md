@@ -1,6 +1,7 @@
 # Changes between CompMod and Vanilla (Build 331)
 ### Alien
 * Increased starting Pres to 15 from 12
+* Softcap healing above 14% in a short period of time - more healing is applied at 50% value
 * Lifeform Costs
     * Gorge to 8 from 10
     * Lerk to 20 from 21
