@@ -2,6 +2,7 @@
 
 ## CompMod 2.15.0 - (10/2/2020)
 #### Alien
+* Softcap healing above 14% in a short period of time - more healing is applied at 50% value (Thanks Ghoul)
 * Fixed bug where armor healing was reduced
 * Vampirism
     * Refactored code to keep armor healing at eHP rate
