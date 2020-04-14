@@ -3,9 +3,12 @@
 ## CompMod 2.17.0 - (14/4/2020)
 #### Alien
 * Gorge
+    * Pres cost to 10 from 8
     * Babblers
         * Reduced spawn rate to 3 sec/babbler from 2.5 sec/babbler
 * Lerk
+    * Pres cost to 21 from 20
+    * Health to 180/30 from 180/25
     * Spores
         * Requires biomass 6 from 5
 * Fade
