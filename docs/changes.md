@@ -3,8 +3,6 @@
 * Increased starting Pres to 15 from 12
 * Softcap healing above 14% in a short period of time - more healing is applied at 50% value
 * Lifeform Costs
-    * Gorge to 8 from 10
-    * Lerk to 20 from 21
     * Fade to 35 from 37
     * Onos to 55 from 62
 * Embryos
@@ -31,7 +29,6 @@
     * Web
         * Webs break when marines walk through them
 * Lerk
-    * HP changed to 180/25 from 180/30
     * Increase strafe force to 8.3 from 7
     * Spikes
         * Penetrate soft targets
