@@ -1,3 +1,3 @@
-local kDetectRange = 7
+local kDetectRange = 5
 
 CompMod:ReplaceLocal(Drifter.OnUpdate, "kDetectRange", kDetectRange, true)
