@@ -2,6 +2,9 @@
 
 ## CompMod 2.17.0 - (14/4/2020)
 #### Alien
+* Skulk
+    * Leap
+        * Energy cost to 55 from 45
 * Gorge
     * Pres cost to 10 from 8
     * Babblers

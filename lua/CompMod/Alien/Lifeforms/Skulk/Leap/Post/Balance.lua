@@ -1,0 +1,1 @@
+kLeapEnergyCost = 55

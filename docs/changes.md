@@ -10,6 +10,8 @@
     * Embyro HP scales depending on lifeform.
 * Skulk
     * Model/hitbox size reduced by 10%
+    * Leap
+        * Energy cost increased to 55 from 45
     * Movement
         * Reduced kWallJumpForce to 5 from 6.4
             * The velocity gained while wallhopping scales with this variable and how fast you are going
