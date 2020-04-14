@@ -114,7 +114,6 @@ local modules = {
 		"Marine/Weapons/Pistol",
 		"Marine/Weapons/Flamethrower",
 	"Marine/Nanoshield",
-	"Marine/AdvancedAssistance",
 
     --[[
       ==========================

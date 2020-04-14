@@ -13,6 +13,8 @@
         * Requires biomass to 5 from 4
 
 #### Marine
+* Advanced Assistance
+    * Research cost reverted to 20 from 25
 
 ## CompMod 2.16.0 - (20/2/2020)
 #### Alien
