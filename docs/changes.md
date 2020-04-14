@@ -63,7 +63,7 @@
         * Knockback removed
 * Drifters
     * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
-    * Shade hive drifters will now uncloak from further away (to 7 from 1.5)
+    * Shade hive drifters will now uncloak from further away (to 5 from 1.5)
     * Abilities
         * Mucous
             * Reduced cloud radius from 8 to 5 (reduces area by 60%)

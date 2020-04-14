@@ -17,6 +17,8 @@
 * Fade
     * Advanced Metab
         * Requires biomass to 5 from 4
+* Drifter
+    * Reduced uncloak radius from 7 to 5
 
 #### Marine
 * Advanced Assistance
