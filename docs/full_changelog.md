@@ -5,6 +5,13 @@
 * Gorge
     * Babblers
         * Reduced spawn rate to 3 sec/babbler from 2.5 sec/babbler
+* Lerk
+    * Spores
+        * Requires biomass 6 from 5
+* Fade
+    * Advanced Metab
+        * Requires biomass to 5 from 4
+
 #### Marine
 
 ## CompMod 2.16.0 - (20/2/2020)

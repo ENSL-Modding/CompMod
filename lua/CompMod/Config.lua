@@ -33,6 +33,7 @@ local modules = {
 			"Alien/Lifeforms/Fade/Stab",
 			"Alien/Lifeforms/Fade/Blink",
 			"Alien/Lifeforms/Fade/AdvancedMetabEffectiveHP",
+			"Alien/Lifeforms/Fade/AdvancedMetabBiomass",
 
 			-- Gorge Modules
 				-- Web Modules
@@ -44,6 +45,7 @@ local modules = {
 			"Alien/Lifeforms/Lerk/Spikes",
 			"Alien/Lifeforms/Lerk/Movement",
 			"Alien/Lifeforms/Lerk/SoftTargets",
+			"Alien/Lifeforms/Lerk/SporesBiomass",
 
 			-- Onos Modules
 				-- BoneShield Modules
