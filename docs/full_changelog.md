@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.17.0 - (14/4/2020)
+#### Alien
+#### Marine
+
 ## CompMod 2.16.0 - (20/2/2020)
 #### Alien
 * Fade
