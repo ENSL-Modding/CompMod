@@ -2,6 +2,9 @@
 
 ## CompMod 2.17.0 - (14/4/2020)
 #### Alien
+* Gorge
+    * Babblers
+        * Reduced spawn rate to 3 sec/babbler from 2.5 sec/babbler
 #### Marine
 
 ## CompMod 2.16.0 - (20/2/2020)

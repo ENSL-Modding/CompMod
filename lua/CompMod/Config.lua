@@ -7,6 +7,7 @@ local modules = {
         -- Babbler Modules
         "Alien/Babblers/BiomassScaling",
 		"Alien/Babblers/Flammable",
+		"Alien/Babblers/SpawnRate",
 
 		-- Drifter Modules
 		"Alien/Drifters/HoverHeight",
