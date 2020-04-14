@@ -1,0 +1,1 @@
+CompMod:ChangeAlienTechmapTech(kTechId.MetabolizeHealth, 7, 8)

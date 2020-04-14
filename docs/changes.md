@@ -27,6 +27,7 @@
     * Babblers
         * No longer scale with biomass
         * Are flammable (die in one welder tick)
+        * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
     * Web
         * Webs break when marines walk through them
 * Lerk
@@ -40,9 +41,11 @@
     * After 0.75 seconds, scale friction value linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
         * This change minimizes the effectiveness of silent lerk ambushes. A lerk will have to flap in order to quickly catch a marine
         * Lerk movement mid-fight while flapping often is unaffected
+    * Spores
+        * Requires biomass 6 from 5
 * Fade
     * Advanced Metabolise
-        * Now required biomass 4 down from 5)
+        * Now required biomass 5 up from 4
         * Now heals eHP rather than by point value
     * Stab replaced by Advanced Swipe
         * Upgrades the normal swipe damage to 81 from 70

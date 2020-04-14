@@ -1,0 +1,1 @@
+CompMod:ChangeAlienTechmapTech(kTechId.Spores, 8, 10)
