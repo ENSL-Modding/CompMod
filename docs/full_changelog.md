@@ -19,6 +19,10 @@
         * Requires biomass to 5 from 4
 * Drifter
     * Reduced uncloak radius from 7 to 5
+* Upgrades
+    * Regeneration
+        * Reduced from 8% per tick to 6% per tick
+        * Removed heal effect (visual and audio)
 
 #### Marine
 * Advanced Assistance
