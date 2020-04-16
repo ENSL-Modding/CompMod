@@ -1,5 +1,5 @@
 HeavyMachineGun.kReloadAnimationLength = 5.0 -- from art asset.
-HeavyMachineGun.kReloadLength = 4.5 -- desired reload time.
+HeavyMachineGun.kReloadLength = 3.5 -- desired reload time.
 local kIdleChangeThrottle = 0.25
 local idleWeights =
 {
