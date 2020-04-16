@@ -2,9 +2,11 @@
 ### Alien
 * Increased starting Pres to 15 from 12
 * Softcap healing above 14% in a short period of time - more healing is applied at 50% value
-* Lifeform Costs
-    * Fade to 35 from 37
-    * Onos to 55 from 62
+* Lifeforms
+    * Pres costs
+        * Fade to 35 from 37
+        * Onos to 55 from 62
+    * Lifeform egg drops removed
 * Embryos
     * Hive's don't heal eggs, only embryos
     * Embyro HP scales depending on lifeform.
@@ -73,10 +75,18 @@
             * Can no longer have babblers attached
             * Reduced Onos HP to 100 eHP
             * Reduced hallucination drifter's hover height to match real drifter
-* Structure Abilities
-    * Echo
-        * Echo upgrade cost increased to 2 from 1
-        * Echo egg cost reduced to 1 from 2
+* Structures
+    * Cyst
+        * Build time increased to 6 seconds from 3.33 seconds
+        * Unconnected cysts now take 20 damage/second up from 12 damage/second
+        * Shade hive cysts are now visible from further away (to 10 from 6)
+    * Tunnels
+        * Tunnels are infested tunnels by default
+        * Tunnel cost changed to 8 tres up from 6 tres
+    * Abilities
+        * Echo
+            * Echo upgrade cost increased to 2 from 1
+            * Echo egg cost reduced to 1 from 2
 * Upgrades
     * Carapace
         * Upgrade removed
@@ -89,51 +99,42 @@
         * No longer fully cloaked while moving
 
 ### Marine
-* Medpacks
-    * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
-    * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP. 
+* Weapons
+    * Pistol
+        * Damage type changed to NORMAL from LIGHT
+        * Damage reduced to 20 from 25
+    * Shotgun
+        * Nostalgia spread
+        * Reduced weapon upgrade scaling to 5% per upgrade from 10% (Damage is now 170, 180, 190, 200)
+    * Heavy Machine Gun
+        * Decrease clip size to 100 rounds
+        * Increase reload speed to 4.5s from 5.0s
+    * Flamethrower
+        * Removed friendly fire of flame puddles
+    * Grenade
+        * Throw the grenade instantly, without waiting for the deploy animations.
+    * Mines
+        * Damage reduced to 130 normal damage from 150 normal damage
+    * Weapon Lifetime
+        * Reduced weapon lifetime to 18 seconds from 25 seconds
+        * Stepping on a dropped weapon no longer refreshes the weapon timer
+        * Standing near a weapon slows decay rate by 50%
+* Commander Assistance
+    * Medpacks
+        * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
+        * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
+    * Nanoshield
+        * Duration on players reduced to 2 seconds from 5 seconds
+* Structures
+    * Observatory
+        * Changed build time to 10 seconds from 15 seconds
+    * PowerNodes
+        * Removed the flashlight requirement for finish power nodes without a structure in the room
 * Walk added
     * Default key is CapsLock
-* Grenade
-    * Throw the grenade instantly, without waiting for the deploy animations.
-* Weapon Lifetime
-    * Reduced weapon lifetime to 18 seconds from 25 seconds
-    * Stepping on a dropped weapon no longer refreshes the weapon timer
-    * Standing near a weapon slows decay rate by 50%
 * Mucous Membrane
     * Added hitsounds for Aliens with mucous
-* PowerNodes
-    * Removed the flashlight requirement for finish power nodes without a structure in the room
-* Observatory
-    * Changed build time to 10 seconds from 15 seconds
-* Nanoshield
-    * Duration on players reduced to 2 seconds from 5 seconds
-* Mines
-    * Damage reduced to 130 normal damage from 150 normal damage
-* Pistol
-    * Damage type changed to NORMAL from LIGHT
-    * Damage reduced to 20 from 25
-* Shotgun
-    * Nostalgia spread
-    * Shotgun base aggregate damage reduced to 150 from 170
-* Flamethrower
-    * Removed friendly fire of flame puddles
-* Heavy Machine Gun
-    * Decrease clip size to 100 rounds
-    * Increase reload speed to 4.5s from 5.0s
 * Increased starting Pres to 20 from 15
-
-### Alien Commander
-* Lifeform egg drops removed
-* Cyst
-    * Build time increased to 6 seconds from 3.33 seconds
-    * Unconnected cysts now take 20 damage/second up from 12 damage/second
-    * Shade hive cysts are now visible from further away (to 10 from 6)
-* Tunnels
-    * Tunnels are infested tunnels by default
-    * Tunnel cost changed to 8 tres up from 6 tres
-
-### Marine Commander
 
 ### Global
 * Player healthbars are disabled.

@@ -23,6 +23,10 @@
 #### Marine
 * Advanced Assistance
     * Research cost reverted to 20 from 25
+* Weapons
+    * Shotgun
+        * Base damage to 10 per pellet (170 total) from 8.824 (150 total)
+        * Reduced weapon upgrade scaling to 5% per upgrade from 10% (Damage is now 170, 180, 190, 200)
 
 ## CompMod 2.16.0 - (20/2/2020)
 #### Alien
