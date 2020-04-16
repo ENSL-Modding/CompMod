@@ -67,6 +67,9 @@ local modules = {
 			"Alien/Upgrades/Carapace",
             -- Cloaking Modules
             "Alien/Upgrades/Cloaking/MoveSpeed",
+			-- Regen Modules
+			"Alien/Upgrades/Regen/Noise",
+			"Alien/Upgrades/Regen/RegenRate",
 
 		-- Structure Ability Modules
 		"Alien/Echo",

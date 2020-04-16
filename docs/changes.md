@@ -97,6 +97,9 @@
         * Reduced value on Skulk and Fade to 2 shell vanilla value
     * Camouflage
         * No longer fully cloaked while moving
+    * Regeneration
+        * Reduced from 8% per tick to 6% per tick
+        * Removed heal effect (visual and audio)
 
 ### Marine
 * Weapons
