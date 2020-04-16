@@ -1,0 +1,1 @@
+kHeavyMachineGunDamage = 7

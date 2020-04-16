@@ -111,6 +111,7 @@ local modules = {
 		"Marine/Weapons/Shotgun",
 		"Marine/Weapons/HMG/ClipSize",
 		"Marine/Weapons/HMG/ReloadSpeed",
+		"Marine/Weapons/HMG/Damage",
 		"Marine/Weapons/Mine",
 		"Marine/Weapons/Pistol",
 		"Marine/Weapons/Flamethrower",

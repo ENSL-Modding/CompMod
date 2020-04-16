@@ -108,7 +108,8 @@
         * Reduced weapon upgrade scaling to 5.9% per upgrade from 10% (Damage is now 170, 180, 190, 200)
     * Heavy Machine Gun
         * Decrease clip size to 100 rounds
-        * Increase reload speed to 4.5s from 5.0s
+        * Reduced damage to 7 from 8
+        * Increased reload speed to 3.5s from 4.5s (The sound does not match the animation currently)
     * Flamethrower
         * Removed friendly fire of flame puddles
     * Grenade
