@@ -105,7 +105,7 @@
         * Damage reduced to 20 from 25
     * Shotgun
         * Nostalgia spread
-        * Reduced weapon upgrade scaling to 5% per upgrade from 10% (Damage is now 170, 180, 190, 200)
+        * Reduced weapon upgrade scaling to 5.9% per upgrade from 10% (Damage is now 170, 180, 190, 200)
     * Heavy Machine Gun
         * Decrease clip size to 100 rounds
         * Increase reload speed to 4.5s from 5.0s
