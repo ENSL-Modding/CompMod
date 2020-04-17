@@ -109,12 +109,17 @@
     * Shotgun
         * Nostalgia spread
         * Reduced weapon upgrade scaling to 5.9% per upgrade from 10% (Damage is now 170, 180, 190, 200)
+        * Now unlocked on the Advanced Armory with 'Munitions' research
     * Heavy Machine Gun
         * Decrease clip size to 100 rounds
         * Reduced damage to 7 from 8
         * Increased reload speed to 3.5s from 4.5s (The sound does not match the animation currently)
+        * Now unlocked on the Advanced Armory with 'Munitions' research
     * Flamethrower
         * Removed friendly fire of flame puddles
+        * Now unlocked on the Advanced Armory with 'Demolitions' research
+    * Grenade Launcher
+        * Now unlocked on the Advanced Armory with 'Demolitions' research
     * Grenade
         * Throw the grenade instantly, without waiting for the deploy animations.
     * Mines
@@ -134,6 +139,19 @@
         * Changed build time to 10 seconds from 15 seconds
     * PowerNodes
         * Removed the flashlight requirement for finish power nodes without a structure in the room
+    * Armory
+        * Shotgun research removed
+        * Advanced Armory
+            * Research cost to 10 tres from 25 tres
+            * Research time to 60 seconds from 90 seconds
+            * Added new research 'Munitions'
+                * Research cost 25 tres
+                * Research time 45 seconds
+                * Unlocks Shotgun and Heavy Machine Gun purchase from the Advanced Armory
+            * Added new research 'Demolitions'
+                * Research cost 15 tres
+                * Research time 45 seconds
+                * Unlocks Flamethrower and Grenade Launcher purchase from the Advanced Armory
 * Walk added
     * Default key is CapsLock
 * Mucous Membrane
