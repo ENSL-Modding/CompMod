@@ -11,21 +11,15 @@ function recalculateTechTreeLines()
 		-- observatory:
 		{ 6, 5, 7, 5 },
 		{ 7, 7, 9, 7 },
-		-- nano shield:
-		{ 7, 4.5, 8, 4.5},
-		-- cat pack tech:
-		{ 7, 5.5, 8, 5.5},
 
-		-- power surge tech
-		{ 7, 6.5, 8, 6.5},
+		-- AdvancedMarineSupport:
+		{ 7, 4.5, 8, 4.5},
 
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.GrenadeTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.MinesTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.ShotgunTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.Welder),
 
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.AdvancedArmory),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.AdvancedWeaponry),
 		--GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.HeavyMachineGunTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.PrototypeLab),
 
@@ -50,6 +44,9 @@ function recalculateTechTreeLines()
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.MAC),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryBattery),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.SentryBattery, kTechId.Sentry),
+
+		{ 2.5, 5, 3.5, 5.5 },
+		{ 2.5, 6, 3.5, 5.5 },
 
 	}
 

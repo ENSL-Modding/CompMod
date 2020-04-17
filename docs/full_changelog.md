@@ -1,6 +1,24 @@
 # Full Changelog for CompMod
 
-## CompMod 2.17.0 - (14/4/2020)
+## CompMod 2.17.1 - (16/4/2020)
+#### Marine
+* Structures
+    * Armory
+        * Shotgun research removed
+        * Advanced Armory
+            * Research cost to 10 tres from 25 tres
+            * Research time to 60 seconds from 90 seconds
+            * Added new research 'Munitions'
+                * Research cost 25 tres
+                * Research time 45 seconds
+                * Unlocks Shotgun and Heavy Machine Gun purchase from the Advanced Armory
+            * Added new research 'Demolitions'
+                * Research cost 15 tres
+                * Research time 45 seconds
+                * Unlocks Flamethrower and Grenade Launcher purchase from the Advanced Armory
+* Updated tech tree to reflect above changes
+
+## CompMod 2.17.0 - (16/4/2020)
 #### Alien
 * Skulk
     * Leap

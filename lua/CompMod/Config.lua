@@ -121,6 +121,8 @@ local modules = {
 		"Marine/Weapons/WeaponScaling",
 	"Marine/Nanoshield",
 
+	"Marine/AdvancedWeapons",
+
     --[[
       ==========================
 			Changelog Module
@@ -136,12 +138,14 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "2"
-	config.kModBuild = "17.0"
+	config.kModBuild = "17.1"
 	config.disableRanking = true
 	config.use_config = "none"
 
 	config.techIdsToAdd = {
 		"AdvancedSwipe",
+		"MunitionsTech",
+		"DemolitionsTech",
 	}
 
 	config.modules = modules
