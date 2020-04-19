@@ -83,6 +83,7 @@
     * Tunnels
         * Tunnels are infested tunnels by default
         * Tunnel cost changed to 8 tres up from 6 tres
+        * Decreased height check for tunnel placement
     * Abilities
         * Echo
             * Echo upgrade cost increased to 2 from 1

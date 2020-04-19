@@ -1,0 +1,6 @@
+CompMod:ChangeTech(kTechId.BuildTunnelEntryOne, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})
+CompMod:ChangeTech(kTechId.BuildTunnelEntryTwo, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})
+CompMod:ChangeTech(kTechId.BuildTunnelEntryThree, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})
+CompMod:ChangeTech(kTechId.BuildTunnelEntryFour, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})
+CompMod:ChangeTech(kTechId.Tunnel, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})
+CompMod:ChangeTech(kTechId.TunnelRelocate, {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)})

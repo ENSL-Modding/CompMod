@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 2.18.0 - (19/4/2020)
+#### Alien
+* Decreased height check for tunnel placement
+    * This should resolve the issues with placement on Jambi. Please note and report if check is too lenient/allows unacceptable tunnel locations
+
 ## CompMod 2.17.1 - (16/4/2020)
 #### Marine
 * Structures
