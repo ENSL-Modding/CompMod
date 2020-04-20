@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 2.18.1 - (20/4/2020)
+#### Alien
+* Require Metabolize before you can research Advanced Metabolize
+
 ## CompMod 2.18.0 - (19/4/2020)
 #### Alien
 * Decreased height check for tunnel placement
