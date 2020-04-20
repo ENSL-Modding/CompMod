@@ -1,6 +1,9 @@
 # Full Changelog for CompMod
 
 ## CompMod 2.18.1 - (20/4/2020)
+#### Global
+* Fix spawn view angle bug.. maybe? (Thanks Beige!)
+
 #### Alien
 * Require Metabolize before you can research Advanced Metabolize
 

@@ -171,4 +171,5 @@
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Advanced Swipe will now appear in the researched tech at the bottom of the screen
 * Defaulted help text at bottom of the screen to a collapsed state
+* Fix spawn view angle bug (Thanks Beige!)
  
