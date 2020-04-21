@@ -143,7 +143,7 @@
     * Armory
         * Shotgun research removed
         * Advanced Armory
-            * Research cost to 10 tres from 25 tres
+            * Research cost to 15 tres from 25 tres
             * Research time to 60 seconds from 90 seconds
             * Added new research 'Munitions'
                 * Research cost 25 tres
