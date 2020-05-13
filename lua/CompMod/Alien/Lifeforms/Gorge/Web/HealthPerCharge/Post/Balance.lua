@@ -1,0 +1,1 @@
+kWebHealthPerCharge = 5

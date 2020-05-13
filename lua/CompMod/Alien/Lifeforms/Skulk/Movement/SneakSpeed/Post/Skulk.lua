@@ -1,1 +1,0 @@
-Skulk.kSneakSpeedModifier = 0.5517
