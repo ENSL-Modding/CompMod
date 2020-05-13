@@ -1,7 +1,7 @@
 kBiteLeapWidth = 0.8
-kBiteLeapHeight = 1.0
+kBiteLeapHeight = 1.2
 
 function BiteLeap:GetMeleeBase()
     -- width, height
-    return 0.8, 1.0
+    return kBiteLeapWidth, kBiteLeapHeight
 end

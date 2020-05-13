@@ -1,0 +1,1 @@
+kNumMines = 1

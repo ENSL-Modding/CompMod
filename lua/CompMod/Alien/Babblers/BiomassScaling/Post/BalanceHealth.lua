@@ -1,1 +1,0 @@
-kBabblerHealthPerBioMass = 0

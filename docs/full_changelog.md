@@ -1,5 +1,32 @@
 # Full Changelog for CompMod
 
+## CompMod 3.0.0 - (13/5/2020)
+#### Alien
+* Lifeforms
+    * Skulk
+        * Bite Cone
+            * Increase bite cone height to 1.2 from 1.0 to align with vanilla b332
+            * Removed reduction of outer edge of bite cone
+    * Gorge
+        * Webs
+            * Imported vanilla b332 mechanical changes
+            * HP gain per charge to 5 from 10
+    * Lerk
+        * Spikes
+            * Imported vanilla b332 method of penetrating soft targets
+* Upgrades
+    * Vampirism
+        * Imported vanilla b332 mechanical changes (shield generation)
+
+#### Marine
+* Weapons
+    * Shotgun
+        * Truncated cone (shouldn't hit things behind/in you)
+    * Mines
+        * Imported vanilla b332 mechanical changes
+        * Limit capacity to 1 from 2
+        * Cost reduced to 5 from 10
+
 ## CompMod 2.18.2 - (21/4/2020)
 #### Alien
 * Correctly require biomass 6 for spores
