@@ -107,7 +107,6 @@ local modules = {
 	"Global/MucousHitsounds",
 	"Global/ResponsiveGUI",
 	"Global/Resources",
-	"Global/AllowVariableArmorHealRate",
 	"Global/KeepLightsOnAtStart",
 
 	--[[

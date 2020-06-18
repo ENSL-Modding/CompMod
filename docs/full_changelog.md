@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 3.0.1 - (18/06/2020)
+#### Global
+* Fixed script errors when using advanced metabolise
+
 ## CompMod 3.0.0 - (13/5/2020)
 #### Alien
 * Lifeforms
