@@ -123,7 +123,7 @@
         * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
         * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
     * Nanoshield
-        * Duration on players reduced to 2 seconds from 5 seconds
+        * Duration on players reduced to 2 seconds from 3 seconds
 * Structures
     * Observatory
         * Changed build time to 10 seconds from 15 seconds

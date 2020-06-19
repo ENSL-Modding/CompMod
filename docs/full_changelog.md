@@ -1,5 +1,9 @@
 # Full Changelog for CompMod
 
+## CompMod 3.0.2 - (19/06/2020)
+#### Global
+* Fixed script errors when using NanoShield.
+
 ## CompMod 3.0.1 - (18/06/2020)
 #### Global
 * Fixed script errors when using advanced metabolise
