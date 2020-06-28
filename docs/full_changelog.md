@@ -1,5 +1,8 @@
 # Full Changelog for CompMod
 
+## CompMod 3.0.3 - (28/06/2020)
+* Fixed script errors when a fade model is created
+
 ## CompMod 3.0.2 - (19/06/2020)
 #### Global
 * Fixed script errors when using NanoShield.

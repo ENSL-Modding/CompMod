@@ -41,10 +41,6 @@ function Fade:OnCreate()
     InitMixin(self, BabblerClingMixin)
     InitMixin(self, FadeVariantMixin)
 
-    if Client then
-        InitMixin(self, RailgunTargetMixin)
-    end
-
     self.shadowStepDirection = Vector()
 
     if Server then
