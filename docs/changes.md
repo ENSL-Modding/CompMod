@@ -27,6 +27,7 @@
     * Web
         * HP gain per charge to 5 from 10
         * Webbed duration lowered to 2.5 seconds from 5 seconds
+        * Web charges lowered to 1 from 3
 * Lerk
     * Increase strafe force to 8.3 from 7
     * Spikes

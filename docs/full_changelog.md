@@ -4,8 +4,8 @@
 * Lifeforms
     * Gorge
         * Web
-            * HP gain per charge to 5 from 10
             * Webbed duration lowered to 2.5 seconds from 5 seconds
+            * Web charges lowered to 1 from 3
 * Upgrades
     * Aura
         * Range decreased to 20 from 30
