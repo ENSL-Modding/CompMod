@@ -67,6 +67,7 @@ local modules = {
 			"Alien/Upgrades/Regen/Noise",
 			"Alien/Upgrades/Regen/RegenRate",
 		-- Shade Modules
+		 "Alien/Upgrades/Aura/Range",
 		 "Alien/Upgrades/Cloaking/MoveSpeed",
 
 	--[[
