@@ -26,6 +26,7 @@
         * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
     * Web
         * HP gain per charge to 5 from 10
+        * Webbed duration lowered to 2.5 seconds from 5 seconds
 * Lerk
     * Increase strafe force to 8.3 from 7
     * Spikes
@@ -83,6 +84,8 @@
             * Echo upgrade cost increased to 2 from 1
             * Echo egg cost reduced to 1 from 2
 * Upgrades
+    * Aura
+        * Range decreased to 20 from 30
     * Carapace
         * Upgrade removed
         * Removed upgrade from Tech Map

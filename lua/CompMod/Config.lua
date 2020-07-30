@@ -36,6 +36,7 @@ local modules = {
 		-- Gorge Modules
 			-- Web Modules
 			"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
+			"Alien/Lifeforms/Gorge/Web/SlowDuration",
 			-- Babbler Modules
 				"Alien/Babblers/Flammable",
 				"Alien/Babblers/SpawnRate",
