@@ -21,7 +21,7 @@
 
 * Upgrades
     * Aura
-        * Range decreased to 20 from 30
+        * Max range decreased to 20 from 30 (to 6.67 per veil from 10 per veil)
 
 #### Marine
 * ARCs
