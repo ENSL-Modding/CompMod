@@ -15,6 +15,7 @@
 * Structures
     * RoboticsFactory
         * Cost reduced to 5 from 10
+        * ARC Factory upgrade cost increased to 15 from 5
 
 ## CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
