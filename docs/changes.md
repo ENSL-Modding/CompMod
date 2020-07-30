@@ -142,8 +142,9 @@
     * Armory
         * Shotgun research removed
         * Advanced Armory
+            * Health decreased to 2000/200 from 3000/200
             * Research cost to 15 tres from 25 tres
-            * Research time to 60 seconds from 90 seconds
+            * Research time to 45 seconds from 90 seconds
             * Added new research 'Munitions'
                 * Research cost 25 tres
                 * Research time 45 seconds

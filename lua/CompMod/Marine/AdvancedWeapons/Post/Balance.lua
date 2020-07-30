@@ -7,4 +7,4 @@ kDemolitionsTechResearchCost = 15
 kDemolitionsTechResearchTime = 45
 
 kAdvancedArmoryUpgradeCost = 15
-kAdvancedArmoryResearchTime = 60
+kAdvancedArmoryResearchTime = 45

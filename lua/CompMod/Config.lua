@@ -79,6 +79,8 @@ local modules = {
 	]]
 
 	-- Structure Modules
+		-- Advanced Armory
+		"Marine/Structures/AdvancedArmory/Health",
 		-- Observatory
 		"Marine/Structures/Observatory/BuildTime",
 		-- Infantry Portals
