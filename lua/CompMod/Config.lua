@@ -102,6 +102,8 @@ local modules = {
 		"Marine/Weapons/Mines/Cost",
 		"Marine/Weapons/Mines/NumMines",
 		"Marine/AdvancedWeapons",
+	-- ARC Changes
+		"Marine/ARC/Health",
 
 	--[[
 	  ==========================

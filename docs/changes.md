@@ -100,6 +100,9 @@
         * Removed heal effect (visual and audio)
 
 ### Marine
+* ARCs
+    * Health
+        * Health lowered to 2200/400 from 2600/400
 * Weapons
     * Pistol
         * Damage type changed to NORMAL from LIGHT

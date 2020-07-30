@@ -12,6 +12,9 @@
         * Range decreased to 20 from 30
 
 #### Marine
+* ARCs
+    * Health
+        * Health lowered to 2200/400 from 2600/400
 * Structures
     * RoboticsFactory
         * Cost reduced to 5 from 10
