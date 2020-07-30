@@ -1,5 +1,10 @@
 # Full Changelog for CompMod
 
+## CompMod 3.1.0 - (30/07/2020)
+* Upgrades
+    * Aura
+        * Range decreased to 20 from 30
+
 ## CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
 
