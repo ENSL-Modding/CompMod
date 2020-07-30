@@ -139,6 +139,7 @@
     * RoboticsFactory
         * Cost reduced to 5 from 10
         * ARC Factory upgrade cost increased to 15 from 5
+        * Removed Armory requirement for ARC Factory upgrade
     * Armory
         * Shotgun research removed
         * Added new research 'Munitions'

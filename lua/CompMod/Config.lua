@@ -89,6 +89,7 @@ local modules = {
 		"Marine/Structures/PrototypeLab/Cost",
 		-- Robotics
 		"Marine/Structures/RoboticsFactory/Cost",
+		"Marine/Structures/RoboticsFactory/ARCFactoryResearch",
 
 	-- Commander Assistance
 		"Marine/MedpackHoT",

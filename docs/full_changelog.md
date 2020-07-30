@@ -7,7 +7,7 @@
         * Web
             * Webbed duration lowered to 2.5 seconds from 5 seconds
             * Web charges lowered to 1 from 3
-            
+
 * Upgrades
     * Aura
         * Range decreased to 20 from 30
@@ -33,6 +33,7 @@
     * RoboticsFactory
         * Cost reduced to 5 from 10
         * ARC Factory upgrade cost increased to 15 from 5
+        * Removed Armory requirement for ARC Factory upgrade
 
 ## CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
