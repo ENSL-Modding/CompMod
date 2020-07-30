@@ -16,6 +16,8 @@
     * Health
         * Health lowered to 2200/400 from 2600/400
 * Structures
+    * PrototypeLab
+        * Cost reduced to 25 from 35
     * RoboticsFactory
         * Cost reduced to 5 from 10
         * ARC Factory upgrade cost increased to 15 from 5

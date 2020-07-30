@@ -134,6 +134,8 @@
 * Structures
     * Observatory
         * Changed build time to 10 seconds from 15 seconds
+    * PrototypeLab
+        * Cost reduced to 25 from 35
     * RoboticsFactory
         * Cost reduced to 5 from 10
         * ARC Factory upgrade cost increased to 15 from 5
