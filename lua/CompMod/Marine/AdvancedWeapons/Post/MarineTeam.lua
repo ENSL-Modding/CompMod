@@ -86,8 +86,8 @@ function MarineTeam:InitTechTree()
     self.techTree:AddTargetedBuyNode(kTechId.HeavyMachineGun,            kTechId.MunitionsTech)
     self.techTree:AddTargetedActivation(kTechId.DropHeavyMachineGun,     kTechId.MunitionsTech)
 
-    self.techTree:AddResearchNode(kTechId.MunitionsTech,      kTechId.AdvancedArmory,      kTechId.None)
-    self.techTree:AddResearchNode(kTechId.DemolitionsTech,      kTechId.AdvancedArmory,      kTechId.None)
+    self.techTree:AddResearchNode(kTechId.MunitionsTech,        kTechId.Armory,                 kTechId.None)
+    self.techTree:AddResearchNode(kTechId.DemolitionsTech,      kTechId.AdvancedArmory,         kTechId.None)
 
     self.techTree:AddTargetedBuyNode(kTechId.GrenadeLauncher,  kTechId.DemolitionsTech)
     self.techTree:AddTargetedActivation(kTechId.DropGrenadeLauncher,  kTechId.DemolitionsTech)

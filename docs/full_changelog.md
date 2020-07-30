@@ -1,5 +1,40 @@
 # Full Changelog for CompMod
 
+## CompMod 3.1.0 - (30/07/2020)
+#### Alien
+* Lifeforms
+    * Gorge
+        * Web
+            * Webbed duration lowered to 2.5 seconds from 5 seconds
+            * Web charges lowered to 1 from 3
+
+* Upgrades
+    * Aura
+        * Range decreased to 20 from 30
+
+#### Marine
+* ARCs
+    * Health
+        * Health lowered to 2200/400 from 2600/400
+
+* Munitions
+    * Research cost increased to 35 tres from 25 tres 
+    * Research time increased to 90 seconds from 45 seconds
+    * Research moved to Armory, guns can be purchased from Armory after researching
+
+* Structures
+    * Advanced Armory
+        * Health lowered to 2000/200 from 3000/200
+        * Research time lowered to 45 seconds from 60 seconds
+        * Demolitions
+            * Research time decreased to 30 seconds from 45 seconds
+    * PrototypeLab
+        * Cost reduced to 25 from 35
+    * RoboticsFactory
+        * Cost reduced to 5 from 10
+        * ARC Factory upgrade cost increased to 15 from 5
+        * Removed Armory requirement for ARC Factory upgrade
+
 ## CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
 

@@ -36,6 +36,8 @@ local modules = {
 		-- Gorge Modules
 			-- Web Modules
 			"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
+			"Alien/Lifeforms/Gorge/Web/SlowDuration",
+			"Alien/Lifeforms/Gorge/Web/MaxCharges",
 			-- Babbler Modules
 				"Alien/Babblers/Flammable",
 				"Alien/Babblers/SpawnRate",
@@ -67,6 +69,7 @@ local modules = {
 			"Alien/Upgrades/Regen/Noise",
 			"Alien/Upgrades/Regen/RegenRate",
 		-- Shade Modules
+		 "Alien/Upgrades/Aura/Range",
 		 "Alien/Upgrades/Cloaking/MoveSpeed",
 
 	--[[
@@ -76,10 +79,17 @@ local modules = {
 	]]
 
 	-- Structure Modules
+		-- Advanced Armory
+		"Marine/Structures/AdvancedArmory/Health",
 		-- Observatory
 		"Marine/Structures/Observatory/BuildTime",
 		-- Infantry Portals
 		"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
+		-- Proto
+		"Marine/Structures/PrototypeLab/Cost",
+		-- Robotics
+		"Marine/Structures/RoboticsFactory/Cost",
+		"Marine/Structures/RoboticsFactory/ARCFactoryResearch",
 
 	-- Commander Assistance
 		"Marine/MedpackHoT",
@@ -97,6 +107,8 @@ local modules = {
 		"Marine/Weapons/Mines/Cost",
 		"Marine/Weapons/Mines/NumMines",
 		"Marine/AdvancedWeapons",
+	-- ARC Changes
+		"Marine/ARC/Health",
 
 	--[[
 	  ==========================
@@ -134,7 +146,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "3"
-	config.kModBuild = "0.3"
+	config.kModBuild = "1.0"
 	config.disableRanking = true
 	config.use_config = "none"
 

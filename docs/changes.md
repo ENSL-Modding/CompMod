@@ -26,6 +26,8 @@
         * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
     * Web
         * HP gain per charge to 5 from 10
+        * Webbed duration lowered to 2.5 seconds from 5 seconds
+        * Web charges lowered to 1 from 3
 * Lerk
     * Increase strafe force to 8.3 from 7
     * Spikes
@@ -83,6 +85,8 @@
             * Echo upgrade cost increased to 2 from 1
             * Echo egg cost reduced to 1 from 2
 * Upgrades
+    * Aura
+        * Range decreased to 20 from 30
     * Carapace
         * Upgrade removed
         * Removed upgrade from Tech Map
@@ -96,6 +100,9 @@
         * Removed heal effect (visual and audio)
 
 ### Marine
+* ARCs
+    * Health
+        * Health lowered to 2200/400 from 2600/400
 * Weapons
     * Pistol
         * Damage type changed to NORMAL from LIGHT
@@ -127,18 +134,25 @@
 * Structures
     * Observatory
         * Changed build time to 10 seconds from 15 seconds
+    * PrototypeLab
+        * Cost reduced to 25 from 35
+    * RoboticsFactory
+        * Cost reduced to 5 from 10
+        * ARC Factory upgrade cost increased to 15 from 5
+        * Removed Armory requirement for ARC Factory upgrade
     * Armory
         * Shotgun research removed
+        * Added new research 'Munitions'
+            * Research cost 35 tres
+            * Research time 90 seconds
+            * Unlocks Shotgun and Heavy Machine Gun purchase from the Advanced Armory
         * Advanced Armory
+            * Health decreased to 2000/200 from 3000/200
             * Research cost to 15 tres from 25 tres
-            * Research time to 60 seconds from 90 seconds
-            * Added new research 'Munitions'
-                * Research cost 25 tres
-                * Research time 45 seconds
-                * Unlocks Shotgun and Heavy Machine Gun purchase from the Advanced Armory
+            * Research time to 45 seconds from 90 seconds
             * Added new research 'Demolitions'
                 * Research cost 15 tres
-                * Research time 45 seconds
+                * Research time 30 seconds
                 * Unlocks Flamethrower and Grenade Launcher purchase from the Advanced Armory
 * Mucous Membrane
     * Added hitsounds for Aliens with mucous

@@ -1,0 +1,2 @@
+CompMod:ChangeUpgrade(kTechId.UpgradeRoboticsFactory, kTechId.RoboticsFactory)
+CompMod:ChangeBuildNode(kTechId.ARCRoboticsFactory, kTechId.RoboticsFactory)

@@ -2,7 +2,7 @@ function Armory:GetTechButtons(techId)
 
     local techButtons = {
         kTechId.None, kTechId.MinesTech, kTechId.GrenadeTech, kTechId.None,
-        kTechId.None, kTechId.None, kTechId.None, kTechId.None
+        kTechId.None, kTechId.MunitionsTech, kTechId.None, kTechId.None
     }
 
     -- Show button to upgraded to advanced armory
@@ -12,7 +12,6 @@ function Armory:GetTechButtons(techId)
 
     if self:GetTechId() == kTechId.AdvancedArmory then
         techButtons[5] = kTechId.DemolitionsTech
-        techButtons[6] = kTechId.MunitionsTech
     end
 
     return techButtons
@@ -24,6 +23,8 @@ function Armory:GetItemList(forPlayer)
     local itemList = {
         kTechId.Welder,
         kTechId.LayMines,
+        kTechId.Shotgun,
+        kTechId.HeavyMachineGun,
         kTechId.ClusterGrenade,
         kTechId.GasGrenade,
         kTechId.PulseGrenade

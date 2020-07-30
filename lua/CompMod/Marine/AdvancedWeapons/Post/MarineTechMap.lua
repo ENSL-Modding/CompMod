@@ -8,11 +8,11 @@ kMarineTechMap =
     { kTechId.SentryBattery, 10, 4 },{ kTechId.Sentry, 11, 4 },
 
 
-    { kTechId.GrenadeTech, 2, 3 },{ kTechId.MinesTech, 3, 3 },{ kTechId.ShotgunTech, 4, 3 },{ kTechId.Welder, 5, 3 },
+    { kTechId.GrenadeTech, 2, 3 },{ kTechId.MinesTech, 3, 3 },{ kTechId.MunitionsTech, 4, 3 },{ kTechId.Welder, 5, 3 },
 
     { kTechId.Armory, 3.5, 4 },
 
-    { kTechId.MunitionsTech, 2.5, 5 }, { kTechId.DemolitionsTech, 2.5, 6 }, { kTechId.AdvancedArmory, 3.5, 5.5 },
+    { kTechId.DemolitionsTech, 2.5, 6 }, { kTechId.AdvancedArmory, 3.5, 5.5 },
 
     --{ kTechId.HeavyMachineGunTech, 4.5, 5.5 },
 
