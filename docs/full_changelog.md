@@ -16,6 +16,11 @@
     * Health
         * Health lowered to 2200/400 from 2600/400
 * Structures
+    * Advanced Armory
+        * Health lowered to 2000/200 from 3000/200
+        * Research time lowered to 45 seconds from 60 seconds
+        * Demolitions
+            * Research time 30 seconds
     * PrototypeLab
         * Cost reduced to 25 from 35
     * RoboticsFactory

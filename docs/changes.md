@@ -151,7 +151,7 @@
                 * Unlocks Shotgun and Heavy Machine Gun purchase from the Advanced Armory
             * Added new research 'Demolitions'
                 * Research cost 15 tres
-                * Research time 45 seconds
+                * Research time 30 seconds
                 * Unlocks Flamethrower and Grenade Launcher purchase from the Advanced Armory
 * Mucous Membrane
     * Added hitsounds for Aliens with mucous
