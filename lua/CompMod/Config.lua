@@ -83,6 +83,8 @@ local modules = {
 		"Marine/Structures/Observatory/BuildTime",
 		-- Infantry Portals
 		"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
+		-- Robotics
+		"Marine/Structures/RoboticsFactory/Cost",
 
 	-- Commander Assistance
 		"Marine/MedpackHoT",

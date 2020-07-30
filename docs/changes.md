@@ -131,6 +131,8 @@
 * Structures
     * Observatory
         * Changed build time to 10 seconds from 15 seconds
+    * RoboticsFactory
+        * Cost reduced to 5 from 10
     * Armory
         * Shotgun research removed
         * Advanced Armory

@@ -1,6 +1,7 @@
 # Full Changelog for CompMod
 
 ## CompMod 3.1.0 - (30/07/2020)
+#### Alien
 * Lifeforms
     * Gorge
         * Web
@@ -9,6 +10,11 @@
 * Upgrades
     * Aura
         * Range decreased to 20 from 30
+
+#### Marine
+* Structures
+    * RoboticsFactory
+        * Cost reduced to 5 from 10
 
 ## CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
