@@ -107,8 +107,12 @@ local modules = {
 		"Marine/Weapons/Mines/Cost",
 		"Marine/Weapons/Mines/NumMines",
 		"Marine/AdvancedWeapons",
+
 	-- ARC Changes
 		"Marine/ARC/Health",
+
+	-- MAC Changes
+		"Marine/MAC/Cost",
 
 	--[[
 	  ==========================
@@ -146,7 +150,7 @@ function GetModConfig(kLogLevels)
 	config.kLogLevel = kLogLevels.info
 	config.kShowInFeedbackText = true
 	config.kModVersion = "3"
-	config.kModBuild = "1.0"
+	config.kModBuild = "1.1"
 	config.disableRanking = true
 	config.use_config = "none"
 

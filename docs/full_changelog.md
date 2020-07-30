@@ -1,5 +1,16 @@
 # Full Changelog for CompMod
 
+## CompMod 3.1.1 - (30/07/2020)
+#### Alien
+* Lifeforms
+    * Gorge
+        * Web
+            * Web charges lowered to 0 from 1
+#### Marine
+* MAC
+    * Cost
+        * Cost reduced to 3 tres from 5 tres
+
 ## CompMod 3.1.0 - (30/07/2020)
 #### Alien
 * Lifeforms
@@ -10,7 +21,7 @@
 
 * Upgrades
     * Aura
-        * Range decreased to 20 from 30
+        * Max range decreased to 20 from 30 (to 6.67 per veil from 10 per veil)
 
 #### Marine
 * ARCs
