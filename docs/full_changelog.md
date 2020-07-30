@@ -7,6 +7,7 @@
         * Web
             * Webbed duration lowered to 2.5 seconds from 5 seconds
             * Web charges lowered to 1 from 3
+            
 * Upgrades
     * Aura
         * Range decreased to 20 from 30
@@ -15,6 +16,12 @@
 * ARCs
     * Health
         * Health lowered to 2200/400 from 2600/400
+
+* Munitions
+    * Research cost increased to 35 tres from 25 tres 
+    * Research time increased to 90 seconds from 45 seconds
+    * Research moved to Armory, guns can be purchased from Armory after researching
+
 * Structures
     * Advanced Armory
         * Health lowered to 2000/200 from 3000/200

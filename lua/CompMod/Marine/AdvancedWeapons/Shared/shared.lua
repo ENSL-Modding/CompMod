@@ -23,7 +23,7 @@ CompMod:AddTech({
     [kTechDataCostKey] = kMunitionsTechResearchCost,
     [kTechDataResearchTimeKey] = kMunitionsTechResearchTime,
     [kTechDataDisplayName] = "Research Munitions",
-    [kTechDataTooltipInfo] = "Allows shotguns and heavy machine guns to be purchased at the Advanced Armory",
+    [kTechDataTooltipInfo] = "Allows shotguns and heavy machine guns to be purchased at the Armory",
 })
 CompMod:AddTechIdToMaterialOffset(kTechId.MunitionsTech, 85)
 
@@ -36,5 +36,5 @@ CompMod:AddTech({
 })
 CompMod:AddTechIdToMaterialOffset(kTechId.DemolitionsTech, 140)
 
-CompMod:ChangeTech(kTechId.Shotgun, {[kStructureAttachId] = kTechId.AdvancedArmory})
-CompMod:ChangeTech(kTechId.DropShotgun, {[kStructureAttachId] = kTechId.AdvancedArmory})
+CompMod:ChangeTech(kTechId.Shotgun, {[kStructureAttachId] = kTechId.Armory})
+CompMod:ChangeTech(kTechId.DropShotgun, {[kStructureAttachId] = kTechId.Armory})

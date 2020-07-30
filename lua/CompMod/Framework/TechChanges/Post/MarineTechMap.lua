@@ -17,11 +17,13 @@ function recalculateTechTreeLines()
 
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.GrenadeTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.MinesTech),
+		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.MunitionsTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.Welder),
 
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.AdvancedArmory),
 		--GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.HeavyMachineGunTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.PrototypeLab),
+		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.DemolitionsTech),
 
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExosuitTech),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.JetpackTech),
@@ -45,8 +47,8 @@ function recalculateTechTreeLines()
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryBattery),
 		GetLinePositionForTechMap(kMarineTechMap, kTechId.SentryBattery, kTechId.Sentry),
 
-		{ 2.5, 5, 3.5, 5.5 },
-		{ 2.5, 6, 3.5, 5.5 },
+		-- { 2.5, 5, 3.5, 5.5 },
+		-- { 2.5, 6, 3.5, 5.5 },
 
 	}
 
