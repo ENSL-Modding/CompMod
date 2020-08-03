@@ -1,3 +1,5 @@
+-- TODO: Implement this properly by implementing Alien:GetCanVampirismBeUsedOn, removing Exo:GetCanVampirismBeUsedOn and removing the below
+
 --Utility function to apply chamber-upgraded modifications to alien damage
 --Note: this should _always_ be called BEFORE damage-type specific modifications are done (i.e. Light vs Normal vs Structural, etc)
 function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, armorFractionUsed, _, damageType )
@@ -11,15 +13,15 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     if isAffectedByCrush then --Crush
         local crushLevel = attacker:GetSpurLevel()
         if crushLevel > 0 then
-            if target:isa("Exo") or target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
+            if target:isa("Exo") or target:isa("Exosuit") or target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
                 damage = damage + ( damage * ( crushLevel * kAlienCrushDamagePercentByLevel ) )
             elseif target:isa("Player") then
                 armorFractionUsed = kBaseArmorUseFraction + ( crushLevel * kAlienCrushDamagePercentByLevel )
             end
         end
-
+        
     end
-
+    
     if Server then
 
         -- Vampirism
@@ -37,13 +39,14 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
 
                         local maxHealth = attacker:GetMaxHealth()
                         local leechedHealth =  maxHealth * vampirismLevel * scalar * focusBonus
-                        attacker:AddHealth( leechedHealth, true, kAlienVampirismNotHealArmor, false, nil, kHealthPointsPerArmor)
+
+                        attacker:AddOverShield(leechedHealth)
 
                     end
                 end
             end
         end
-
+        
     end
 
     --Focus
@@ -52,8 +55,8 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
         local damageBonus = doer:GetMaxFocusBonusDamage()
         damage = damage * (1 + (veilLevel/3) * damageBonus) --1.0, 1.333, 1.666, 2
     end
-
+    
     --!!!Note: if more than damage and armor fraction modified, be certain the calling-point of this function is updated
     return damage, armorFractionUsed
-
+    
 end
