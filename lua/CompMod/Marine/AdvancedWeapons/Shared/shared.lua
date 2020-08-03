@@ -36,5 +36,4 @@ CompMod:AddTech({
 })
 CompMod:AddTechIdToMaterialOffset(kTechId.DemolitionsTech, 140)
 
-CompMod:ChangeTech(kTechId.Shotgun, {[kStructureAttachId] = kTechId.Armory})
-CompMod:ChangeTech(kTechId.DropShotgun, {[kStructureAttachId] = kTechId.Armory})
+CompMod:ChangeTech(kTechId.DropHeavyMachineGun, {[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }})
