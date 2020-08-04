@@ -1,0 +1,1 @@
+kSentryCost = 6 -- 5

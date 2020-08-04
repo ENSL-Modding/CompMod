@@ -34,6 +34,8 @@ local modules = {
 		"Alien/Lifeforms/Fade/AdvancedMetabBiomass",
 
 		-- Gorge Modules
+			-- BileBomb
+			"Alien/Lifeforms/Gorge/BileBomb/Research",
 			-- Web Modules
 			"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
 			"Alien/Lifeforms/Gorge/Web/SlowDuration",
@@ -90,6 +92,11 @@ local modules = {
 		-- Robotics
 		"Marine/Structures/RoboticsFactory/Cost",
 		"Marine/Structures/RoboticsFactory/ARCFactoryResearch",
+		-- Sentries
+		"Marine/Structures/Sentry/Cost",
+		"Marine/Structures/Sentry/SporesConfusion",
+		-- Sentry Battery
+		"Marine/Structures/SentryBattery/Cost",
 
 	-- Commander Assistance
 		"Marine/MedpackHoT",
@@ -113,6 +120,9 @@ local modules = {
 
 	-- MAC Changes
 		"Marine/MAC/Cost",
+
+	-- SupplyChanges
+		"Marine/SupplyChanges",
 
 	--[[
 	  ==========================
