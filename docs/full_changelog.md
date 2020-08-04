@@ -1,5 +1,36 @@
 # Full Changelog for CompMod
 
+## CompMod 3.2 - (04/08/2020)
+#### Alien
+* BileBomb
+    * Research changed to Biomass 2 from Biomass 3
+* Spores
+    * Opacity of cloud lowered by 50%
+
+#### Marine
+* MACs
+    * Supply cost increased to 15 from 5
+* Structures
+    * Observatory
+        * Supply cost increased to 30 from 25
+    * Robotics Factory
+        * ARC Factory upgrade cost lowered to 10 tres from 15 tres
+        * Supply cost increased to 15 from 5
+    * Sentry
+        * Supply cost increased to 15 from 10
+        * Cost increased to 6 tres from 5 tres
+        * Confusion from Spores
+            * Duration increased to 8 seconds from 4 seconds
+            * Time until next attack increased to 4 seconds from 2 seconds
+    * Sentry Battery
+        * Cost increased to 12 tres from 10 tres
+        * Supply cost increased to 25 from 15
+
+#### Bug Fixes
+* Fixed that Shotguns could only be dropped from an Armory
+* Fixed that HMGs could only be dropped from an Advanved Armory
+* Fixed that vampirism didn't apply shielding effect added in vanilla
+
 ## CompMod 3.1.1 - (30/07/2020)
 #### Alien
 * Lifeforms
