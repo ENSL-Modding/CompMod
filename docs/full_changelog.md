@@ -25,7 +25,6 @@
     * Sentry Battery
         * Cost increased to 12 tres from 10 tres
         * Supply cost increased to 25 from 15
-        
 
 #### Bug Fixes
 * Fixed that Shotguns could only be dropped from an Armory
