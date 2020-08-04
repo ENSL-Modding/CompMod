@@ -24,6 +24,8 @@
     * Babblers
         * Are flammable (die in one welder tick)
         * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
+    * BileBomb
+        * Research changed to Biomass 2 from Biomass 3
     * Web
         * HP gain per charge to 5 from 10
         * Webbed duration lowered to 2.5 seconds from 5 seconds
@@ -40,6 +42,7 @@
         * Lerk movement mid-fight while flapping often is unaffected
     * Spores
         * Requires biomass 6 from 5
+        * Opacity of cloud lowered by 50%
 * Fade
     * Advanced Metabolise
         * Now required biomass 5 up from 4
@@ -106,6 +109,8 @@
 * MACs
     * Cost
         * Cost reduced to 3 tres from 5 tres
+    * Supply
+        * Supply cost increased to 15 from 5
 * Weapons
     * Pistol
         * Damage type changed to NORMAL from LIGHT
@@ -137,12 +142,22 @@
 * Structures
     * Observatory
         * Changed build time to 10 seconds from 15 seconds
+        * Supply cost increased to 30 from 25
     * PrototypeLab
         * Cost reduced to 25 from 35
     * RoboticsFactory
-        * Cost reduced to 5 from 10
+        * Supply cost increased to 15 from 5
         * ARC Factory upgrade cost increased to 15 from 5
         * Removed Armory requirement for ARC Factory upgrade
+    * Sentry
+        * Supply cost increased to 15 from 10
+        * Cost increased to 6 tres from 5 tres
+        * Confusion from Spores
+            * Duration increased to 8 seconds from 4 seconds
+            * Time until next attack increased to 4 seconds from 2 seconds
+    * Sentry Battery
+        * Cost increased to 12 tres from 10 tres
+        * Supply cost increased to 25 from 15
     * Armory
         * Shotgun research removed
         * Added new research 'Munitions'
@@ -167,7 +182,6 @@
 ### Spectator
 * Added team supply to top bar
 * Fixed edge pan jitter when following a player -- click to unfollow
-* Advanced Swipe will now appear in the researched tech at the bottom of the screen
 * Defaulted help text at bottom of the screen to a collapsed state
 
 ### Bug Fixes & Improvements
