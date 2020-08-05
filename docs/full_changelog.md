@@ -1,5 +1,16 @@
 # Full Changelog for CompMod
 
+## CompMod 3.2.1 - (05/08/2020)
+#### Alien
+* Spores
+    * Opacity of burning cinematic lowered by 50%
+
+* BileBomb
+    * Opacity of burning cinematic lowered by 50%
+
+* Umbra
+    * Opacity of burning cinematic lowered by 50%
+
 ## CompMod 3.2 - (04/08/2020)
 #### Alien
 * BileBomb
