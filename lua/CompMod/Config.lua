@@ -1,157 +1,79 @@
 local modules = {
-	--[[
-	  ============================
-			Alien Modules
-	  ============================
-	]]
-	-- Drifter Modules
+	"Alien/Babblers/Flammable",
+	"Alien/Babblers/SpawnRate",
+	"Alien/Drifters/Abilities/Enzyme/Cooldown",
+	"Alien/Drifters/Abilities/Mucous/Cooldown",
+	"Alien/Drifters/Abilities/Mucous/Radius",
+	"Alien/Drifters/Abilities/Mucous/ShieldPercent",
+	"Alien/Drifters/Abilities/Hallucination/HealthAndShields",
+	"Alien/Drifters/Abilities/Hallucination/DrifterHeight",
 	"Alien/Drifters/HoverHeight",
 	"Alien/Drifters/Uncloak",
-		-- Drifter Abilities
-			-- Enzyme
-			"Alien/Drifters/Abilities/Enzyme/Cooldown",
-			-- Mucous
-			"Alien/Drifters/Abilities/Mucous/Cooldown",
-			"Alien/Drifters/Abilities/Mucous/Radius",
-			"Alien/Drifters/Abilities/Mucous/ShieldPercent",
-			-- Hallucination
-			"Alien/Drifters/Abilities/Hallucination/HealthAndShields",
-			"Alien/Drifters/Abilities/Hallucination/DrifterHeight",
-
-	-- Egg Modules
 	"Alien/Eggs/EmbryoHP",
 	"Alien/Eggs/HiveEggHeal",
 	"Alien/Eggs/LifeformEggDrops",
-
-	-- Lifeform Modules
-		-- Skulk Modules
-		"Alien/Lifeforms/Skulk/Leap",
-		"Alien/Lifeforms/Skulk/BiteConeSize",
-		-- Fade Modules
-		"Alien/Lifeforms/Fade/AdvancedSwipe",
-		"Alien/Lifeforms/Fade/Stab",
-		"Alien/Lifeforms/Fade/Blink",
-		"Alien/Lifeforms/Fade/AdvancedMetabBiomass",
-
-		-- Gorge Modules
-			-- BileBomb
-			"Alien/Lifeforms/Gorge/BileBomb/Research",
-			-- Web Modules
-			"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
-			"Alien/Lifeforms/Gorge/Web/SlowDuration",
-			"Alien/Lifeforms/Gorge/Web/MaxCharges",
-			-- Babbler Modules
-				"Alien/Babblers/Flammable",
-				"Alien/Babblers/SpawnRate",
-
-		-- Lerk Modules
-		"Alien/Lifeforms/Lerk/Base",
-		"Alien/Lifeforms/Lerk/Spikes",
-		"Alien/Lifeforms/Lerk/Movement",
-		"Alien/Lifeforms/Lerk/SporesBiomass",
-
-		-- Onos Modules
-			-- BoneShield Modules
-			"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
-			-- Charge Modules
-			"Alien/Lifeforms/Onos/Charge/CollideWithPlayers",
-
-	-- Structure Modules
+	"Alien/Lifeforms/Fade/AdvancedMetabBiomass",
+	"Alien/Lifeforms/Fade/AdvancedSwipe",
+	"Alien/Lifeforms/Fade/Blink",
+	"Alien/Lifeforms/Fade/Stab",
+	"Alien/Lifeforms/Gorge/BileBomb/Research",
+	"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
+	"Alien/Lifeforms/Gorge/Web/MaxCharges",
+	"Alien/Lifeforms/Gorge/Web/SlowDuration",
+	"Alien/Lifeforms/Lerk/Base",
+	"Alien/Lifeforms/Lerk/Movement",
+	"Alien/Lifeforms/Lerk/Spikes",
+	"Alien/Lifeforms/Lerk/SporesBiomass",
+	"Alien/Lifeforms/Onos/BoneShield/ConsumeRate",
+	"Alien/Lifeforms/Onos/Charge/CollideWithPlayers",
+	"Alien/Lifeforms/Skulk/BiteConeSize",
+	"Alien/Lifeforms/Skulk/Leap",
 	"Alien/Structures/Cyst",
 	"Alien/Structures/GorgeTunnels",
 	"Alien/Structures/Shift/Echo",
+	"Alien/Upgrades/Aura/Range",
+	"Alien/Upgrades/Carapace",
+	"Alien/Upgrades/Cloaking",
+	"Alien/Upgrades/Regen/Noise",
+	"Alien/Upgrades/Regen/RegenRate",
+	"Alien/Upgrades/Vampirism/FriendlyFireFix",
 
-	-- Upgrade Modules
-		-- Crag Modules
-			-- Vampirism
-			"Alien/Upgrades/Vampirism/FriendlyFireFix",
-			-- Carapace
-			"Alien/Upgrades/Carapace",
-			-- Regen
-			"Alien/Upgrades/Regen/Noise",
-			"Alien/Upgrades/Regen/RegenRate",
-		-- Shade Modules
-		 "Alien/Upgrades/Aura/Range",
-		 "Alien/Upgrades/Cloaking/MoveSpeed",
+	"Changelog",
 
-	--[[
-	  ==========================
-			Marine Modules
-	  ==========================
-	]]
-
-	-- Structure Modules
-		-- Advanced Armory
-		"Marine/Structures/AdvancedArmory/Health",
-		-- Observatory
-		"Marine/Structures/Observatory/BuildTime",
-		-- Infantry Portals
-		"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
-		-- Proto
-		"Marine/Structures/PrototypeLab/Cost",
-		-- Robotics
-		"Marine/Structures/RoboticsFactory/Cost",
-		"Marine/Structures/RoboticsFactory/ARCFactoryResearch",
-		-- Sentries
-		"Marine/Structures/Sentry/Cost",
-		"Marine/Structures/Sentry/SporesConfusion",
-		-- Sentry Battery
-		"Marine/Structures/SentryBattery/Cost",
-
-	-- Commander Assistance
-		"Marine/MedpackHoT",
-		"Marine/Nanoshield",
-
-	-- Weapon Modules
-		"Marine/WeaponDropTime",
-		"Marine/Weapons/SlowExpirationRate",
-		"Marine/Weapons/HMG/ClipSize",
-		"Marine/Weapons/HMG/ReloadSpeed",
-		"Marine/Weapons/HMG/Damage",
-		"Marine/Weapons/Pistol",
-		"Marine/Weapons/Flamethrower",
-		"Marine/Weapons/WeaponScaling",
-		"Marine/Weapons/Mines/Cost",
-		"Marine/Weapons/Mines/NumMines",
-		"Marine/AdvancedWeapons",
-
-	-- ARC Changes
-		"Marine/ARC/Health",
-
-	-- MAC Changes
-		"Marine/MAC/Cost",
-
-	-- SupplyChanges
-		"Marine/SupplyChanges",
-
-	--[[
-	  ==========================
-			Global Modules
-	  ==========================
-	]]
-
-	"Global/MucousHitsounds",
-	"Global/ResponsiveGUI",
-	"Global/Resources",
 	"Global/KeepLightsOnAtStart",
+	"Global/MucousHitsounds",
+	"Global/Resources",
+	"Global/ResponsiveGUI",
 
-	--[[
-	==========================
-		Spectator Modules
-	==========================
-	]]
+	"Marine/ARC/Health",
+	"Marine/MAC/Cost",
+	"Marine/MedpackHoT",
+	"Marine/Nanoshield",
+	"Marine/Structures/AdvancedArmory/Health",
+	"Marine/Structures/InfantryPortal/PreventMultipleInitialIPs",
+	"Marine/Structures/Observatory/BuildTime",
+	"Marine/Structures/PrototypeLab/Cost",
+	"Marine/Structures/RoboticsFactory/ARCFactoryResearch",
+	"Marine/Structures/RoboticsFactory/Cost",
+	"Marine/Structures/Sentry/Cost",
+	"Marine/Structures/Sentry/SporesConfusion",
+	"Marine/Structures/SentryBattery/Cost",
+	"Marine/SupplyChanges",
+	"Marine/WeaponDropTime",
+	"Marine/Weapons/Flamethrower",
+	"Marine/Weapons/HMG/ClipSize",
+	"Marine/Weapons/HMG/Damage",
+	"Marine/Weapons/HMG/ReloadSpeed",
+	"Marine/Weapons/Mines/Cost",
+	"Marine/Weapons/Mines/NumMines",
+	"Marine/Weapons/Pistol",
+	"Marine/Weapons/SlowExpirationRate",
+	"Marine/Weapons/WeaponScaling",
+	"Marine/AdvancedWeapons", -- this needs to be last, don't ask
 
 	"Spectator/EdgePanning",
 	"Spectator/HelpText",
 	"Spectator/SupplyDisplay",
-
-	--[[
-		==========================
-			Changelog Module
-		==========================
-	]]
-
-	"Changelog",
 }
 
 function GetModConfig(kLogLevels)
