@@ -20,7 +20,6 @@ local modules = {
 	"Alien/Lifeforms/Gorge/Web/HealthPerCharge",
 	"Alien/Lifeforms/Gorge/Web/MaxCharges",
 	"Alien/Lifeforms/Gorge/Web/SlowDuration",
-	"Alien/Lifeforms/Lerk/Base",
 	"Alien/Lifeforms/Lerk/Movement",
 	"Alien/Lifeforms/Lerk/Spikes",
 	"Alien/Lifeforms/Lerk/SporesBiomass",
@@ -61,14 +60,8 @@ local modules = {
 	"Marine/SupplyChanges",
 	"Marine/WeaponDropTime",
 	"Marine/Weapons/Flamethrower",
-	"Marine/Weapons/HMG/ClipSize",
 	"Marine/Weapons/HMG/Damage",
-	"Marine/Weapons/HMG/ReloadSpeed",
-	"Marine/Weapons/Mines/Cost",
-	"Marine/Weapons/Mines/NumMines",
-	"Marine/Weapons/Pistol",
 	"Marine/Weapons/SlowExpirationRate",
-	"Marine/Weapons/WeaponScaling",
 	"Marine/AdvancedWeapons", -- this needs to be last, don't ask
 
 	"Spectator/EdgePanning",

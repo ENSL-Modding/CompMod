@@ -77,7 +77,6 @@
 * Structures
     * Cyst
         * Build time increased to 6 seconds from 3.33 seconds
-        * Unconnected cysts now take 20 damage/second up from 12 damage/second
         * Shade hive cysts are now visible from further away (to 10 from 6)
     * Tunnels
         * Tunnels are infested tunnels by default
@@ -112,9 +111,6 @@
     * Supply
         * Supply cost increased to 15 from 5
 * Weapons
-    * Pistol
-        * Damage type changed to NORMAL from LIGHT
-        * Damage reduced to 20 from 25
     * Shotgun
         * Reduced weapon upgrade scaling to 5.9% per upgrade from 10% (Damage is now 170, 180, 190, 200)
         * Now unlocked on the Advanced Armory with 'Munitions' research
@@ -126,9 +122,6 @@
         * Now unlocked on the Advanced Armory with 'Demolitions' research
     * Grenade Launcher
         * Now unlocked on the Advanced Armory with 'Demolitions' research
-    * Mines
-        * Limit capacity to 1 from 2
-        * Cost reduced to 5 from 10
     * Weapon Lifetime
         * Reduced weapon lifetime to 18 seconds from 25 seconds
         * Stepping on a dropped weapon no longer refreshes the weapon timer
