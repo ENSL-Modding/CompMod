@@ -32,7 +32,7 @@ local modules = {
 	"Alien/Structures/Shift/Echo",
 	"Alien/Upgrades/Aura/Range",
 	"Alien/Upgrades/Carapace",
-	"Alien/Upgrades/Cloaking",
+	"Alien/Upgrades/Cloaking/MoveSpeed",
 	"Alien/Upgrades/Regen/Noise",
 	"Alien/Upgrades/Regen/RegenRate",
 	"Alien/Upgrades/Vampirism/FriendlyFireFix",
