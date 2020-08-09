@@ -229,10 +229,18 @@ function Mod:Initialise()
   if Client then
     for _,v in ipairs(self.config.modules) do
       local Files = {}
-      Shared.GetMatchingFileNames(self:FormatDir(v), true, Files)
+      local dir = self:FormatDir(v)
+      Shared.GetMatchingFileNames(dir, true, Files)
 
   	  if #Files == 0 then
-  		  Mod:Print("No files found for module: " .. v, Mod:GetLogLevels().warn)
+        Mod:Print("No files found for module: " .. v, Mod:GetLogLevels().warn)
+      end
+
+      for _,file in ipairs(Files) do
+        local followingDir = file:gsub(dir:gsub("/*.lua", ""), ""):match("^([^/]+)/.*$")
+        if followingDir ~= "Post" and followingDir ~= "Replace" and followingDir ~= "Halt" and followingDir ~= "Pre" and followingDir ~= "Client" and followingDir ~= "Server" and followingDir ~= "Predict" and followingDir ~= "Shared" and followingDir ~= "NewTech" then
+          Mod:Print("Invalid module: " .. v, Mod:GetLogLevels().warn)
+        end
       end
     end
   end
