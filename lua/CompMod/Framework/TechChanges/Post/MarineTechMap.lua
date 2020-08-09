@@ -1,58 +1,7 @@
 local Mod = GetMod()
-
-function recalculateTechTreeLines()
-	kMarineLines =
-	{
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.CommandStation, kTechId.Extractor),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.CommandStation, kTechId.InfantryPortal),
-
-		{ 7, 1, 7, 7 },
-		{ 7, 4, 3.5, 4 },
-		-- observatory:
-		{ 6, 5, 7, 5 },
-		{ 7, 7, 9, 7 },
-
-		-- AdvancedMarineSupport:
-		{ 7, 4.5, 8, 4.5},
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.GrenadeTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.MinesTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.MunitionsTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.Welder),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armory, kTechId.AdvancedArmory),
-		--GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.HeavyMachineGunTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.PrototypeLab),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.DemolitionsTech),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExosuitTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.JetpackTech),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Observatory, kTechId.PhaseTech),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.PhaseTech, kTechId.PhaseGate),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.ArmsLab, kTechId.Weapons1),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Weapons1, kTechId.Weapons2),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Weapons2, kTechId.Weapons3),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.ArmsLab, kTechId.Armor1),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armor1, kTechId.Armor2),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.Armor2, kTechId.Armor3),
-
-		{ 7, 3, 9, 3 },
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.ARCRoboticsFactory),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.ARCRoboticsFactory, kTechId.ARC),
-
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.MAC),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryBattery),
-		GetLinePositionForTechMap(kMarineTechMap, kTechId.SentryBattery, kTechId.Sentry),
-
-		-- { 2.5, 5, 3.5, 5.5 },
-		-- { 2.5, 6, 3.5, 5.5 },
-
-	}
-
-	return kMarineLines
+local kMarineTechMapOrig = {}
+for k,v in ipairs(kMarineTechMap) do
+	kMarineTechMapOrig[k] = v
 end
 
 local techToChange = Mod:GetMarineTechMapChanges()
@@ -81,20 +30,17 @@ for techIndex, record in ipairs(kMarineTechMap) do
 
 	if techToRemove[techId] then
 		Mod:PrintDebug("Deleting marine techtree entry: " .. (EnumToString(kTechId, techId) or techId), "all")
-		kMarineTechMap[techIndex] = {nil}
+		table.remove(kMarineTechMap, techIndex)
 	end
 end
 
 -- additions
-for _, value in ipairs(techToAdd) do
+for _, value in pairs(techToAdd) do
 	Mod:PrintDebug("Adding marine techtree entry: " .. (EnumToString(kTechId, value[1]) or value[1]), "all")
 	table.insert(kMarineTechMap, value)
 end
 
 -- lines
-
-kMarineLines = recalculateTechTreeLines()
-
 -- changes
 for index, record in ipairs(kMarineLines) do
 	for _, line in ipairs(linesToChange) do
@@ -117,9 +63,11 @@ for index, record in ipairs(kMarineLines) do
 			line = value[2]
 		elseif value[1] == 1 then
 			line = GetLinePositionForTechMap(kMarineTechMap, value[2], value[3])
-		end
 
-		assert(line ~= {})
+			if (line[1] == 0 and line[2] == 0) or (line[3] == 0 and line[4] == 0) then
+				line = GetLinePositionForTechMap(kMarineTechMapOrig, value[2], value[3])
+			end			
+		end
 
 		if  record[1] == line[1]
 		and record[2] == line[2]
@@ -138,6 +86,10 @@ for _, value in ipairs(linesToAdd) do
 		line = value[2]
 	elseif value[1] == 1 then
 		line = GetLinePositionForTechMap(kMarineTechMap, value[2], value[3])
+
+		if (line[1] == 0 and line[2] == 0) or (line[3] == 0 and line[4] == 0) then
+			line = GetLinePositionForTechMap(kMarineTechMapOrig, value[2], value[3])
+		end
 	end
 	assert(line ~= {})
 	Mod:PrintDebug(string.format("Adding marine techtree line: (%f, %f, %f, %f)", line[1], line[2], line[3], line[4]), "all")

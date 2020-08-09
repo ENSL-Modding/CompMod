@@ -13,7 +13,7 @@ if Server then
         for i = 1, #ents do
             local ent = ents[i]
             local entOrigin = ent:GetModelOrigin()
-            if abs(entOrigin.y - origin.y) <= self.kDamageRadius and ent:GetTeamNumber() ~= player:GetTeamNumber() then
+            if abs(entOrigin.y - origin.y) <= self.kDamageRadius and (player and ent:GetTeamNumber() ~= player:GetTeamNumber()) then
                 local toEnemy = GetNormalizedVector( entOrigin - origin )
                 self:DoDamage(self.kDamage, ent, ent:GetModelOrigin(), toEnemy)
             end

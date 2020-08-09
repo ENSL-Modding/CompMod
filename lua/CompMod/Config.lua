@@ -47,6 +47,7 @@ local modules = {
 	"Global/ResponsiveGUI",
 
 	"Marine/AdvancedArmory/Health",
+	"Marine/AdvancedWeapons",
 	"Marine/ARC/Health",
 	"Marine/Flamethrower",
 	"Marine/HMG/Damage",
@@ -64,7 +65,6 @@ local modules = {
 	"Marine/SupplyChanges",
 	"Marine/SlowExpirationRate",
 	"Marine/WeaponDropTime",
-	"Marine/AdvancedWeapons", -- this needs to be last, don't ask
 
 	"Spectator/EdgePanning",
 	"Spectator/HelpText",
