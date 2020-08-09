@@ -1,3 +1,5 @@
+-- Whoever made this class so unmoddable.......
+
 class "GUIInsight_TopBar" (GUIScript)
 
 local isVisible
