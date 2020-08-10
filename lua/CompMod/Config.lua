@@ -49,6 +49,7 @@ local modules = {
 	"Marine/AdvancedArmory/Health",
 	"Marine/AdvancedWeapons",
 	"Marine/ARC/Health",
+	"Marine/Armory/UpgradeToAA",
 	"Marine/Flamethrower",
 	"Marine/HMG/Damage",
 	"Marine/InfantryPortal/PreventMultipleInitialIPs",

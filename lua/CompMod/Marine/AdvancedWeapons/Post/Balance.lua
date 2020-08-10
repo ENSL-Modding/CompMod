@@ -5,6 +5,3 @@ kMunitionsTechResearchTime = 90
 -- Demolitions includes flamethrower and grenade launcher
 kDemolitionsTechResearchCost = 15
 kDemolitionsTechResearchTime = 30
-
-kAdvancedArmoryUpgradeCost = 15
-kAdvancedArmoryResearchTime = 45
