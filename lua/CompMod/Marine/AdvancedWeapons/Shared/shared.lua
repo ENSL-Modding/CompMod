@@ -41,7 +41,7 @@ CompMod:AddTech({
     [kTechDataCostKey] = kMunitionsTechResearchCost,
     [kTechDataResearchTimeKey] = kMunitionsTechResearchTime,
     [kTechDataDisplayName] = "Research Munitions",
-    [kTechDataTooltipInfo] = "Allows shotguns and heavy machine guns to be purchased at the Armory",
+    [kTechDataTooltipInfo] = "Allows Shotguns and Heavy Machine Guns to be purchased at the Armory",
 })
 
 CompMod:AddTech({
@@ -49,7 +49,7 @@ CompMod:AddTech({
     [kTechDataCostKey] = kDemolitionsTechResearchCost,
     [kTechDataResearchTimeKey] = kDemolitionsTechResearchTime,
     [kTechDataDisplayName] = "Research Demolitions",
-    [kTechDataTooltipInfo] = "Allows flamethowers and grenade launchers to be purchased at the Advanced Armory",
+    [kTechDataTooltipInfo] = "Allows Flamethowers and Grenade Launchers to be purchased at the Advanced Armory",
 })
 
 -- Update material offsets
