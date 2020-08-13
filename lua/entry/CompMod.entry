@@ -1,10 +1,27 @@
-local kModName = debug.getinfo(1, "S").source:gsub("@lua/entry/", ""):gsub("%.entry", "")
+--[[
+    You can set the priority of your mod here.
+    Other than that do not modify this file
+]]
+
+local priority = 50
+
+--[[
+==============================================
+    DO NOT CHANGE ANYTHING BELOW THIS LINE
+==============================================
+]]
+
+local modName = debug.getinfo(1, "S").source:gsub("@lua/entry/",""):gsub("%.entry","")
+
+local function GetPath(entry)
+    return "lua/" .. modName .. "/ModFramework/Entry/" .. entry .. ".lua"
+end
 
 modEntry = {
-	Client = "lua/" .. kModName .. "/Framework/ModEntry/Client.lua",
-	Server = "lua/" .. kModName .. "/Framework/ModEntry/Server.lua",
-	Predict = "lua/" .. kModName .. "/Framework/ModEntry/Predict.lua",
-	Shared = "lua/" .. kModName .. "/Framework/ModEntry/Shared.lua",
-	FileHooks = "lua/" .. kModName .. "/Framework/ModEntry/FileHooks.lua",
-	Priority = 100
+    Client      = GetPath("Client"),
+    Server      = GetPath("Server"),
+    Predict     = GetPath("Predict"),
+    Shared      = GetPath("Shared"),
+    FileHooks   = GetPath("FileHooks"),
+    Priority    = priority
 }

@@ -1,94 +1,35 @@
-local modules = {
-	"Alien/Aura/Range",
-	"Alien/Carapace",
-	"Alien/Cloaking/MoveSpeed",
-	"Alien/Cyst",
-	"Alien/Drifters/HoverHeight",
-	"Alien/Drifters/Uncloak",
-	"Alien/Eggs/EmbryoHP",
-	"Alien/Eggs/HiveEggHeal",
-	"Alien/Eggs/LifeformEggDrops",
-	"Alien/Enzyme/Cooldown",
-	"Alien/Fade/AdvancedMetabBiomass",
-	"Alien/Fade/AdvancedSwipe",
-	"Alien/Fade/Blink",
-	"Alien/Fade/Stab",
-	"Alien/Gorge/Babblers/Flammable",
-	"Alien/Gorge/Babblers/SpawnRate",
-	"Alien/Gorge/BileBomb/Research",
-	"Alien/Gorge/Web/HealthPerCharge",
-	"Alien/Gorge/Web/MaxCharges",
-	"Alien/Gorge/Web/SlowDuration",
-	"Alien/GorgeTunnels/HeightCheck",
-	"Alien/GorgeTunnels/AlwaysInfested",
-	"Alien/GorgeTunnels/Cost",
-	"Alien/Hallucination/HealthAndShields",
-	"Alien/Hallucination/DrifterHeight",
-	"Alien/Lerk/Movement",
-	"Alien/Lerk/Spikes",
-	"Alien/Lerk/SporesBiomass",
-	"Alien/Mucous/Cooldown",
-	"Alien/Mucous/Radius",
-	"Alien/Mucous/ShieldPercent",
-	"Alien/Onos/BoneShield/ConsumeRate",
-	"Alien/Onos/Charge/CollideWithPlayers",
-	"Alien/Regen/Noise",
-	"Alien/Regen/RegenRate",
-	"Alien/Shift/Echo",
-	"Alien/Skulk/BiteConeSize",
-	"Alien/Skulk/Leap",
-	"Alien/Vampirism/FriendlyFireFix",
+--[[
+    ==========================================================
+                          Mod Framework
+    ==========================================================
+    
+    This is the main config file for your mod.
 
-	"Changelog",
+    For information on how to use this file see the wiki.
+]]
 
-	"Global/KeepLightsOnAtStart",
-	"Global/MucousHitsounds",
-	"Global/Resources",
-	"Global/ResponsiveGUI",
+function ModFramework:LoadConfig()
+    -- Main config
+    self.config = {}
 
-	"Marine/AdvancedArmory/Health",
-	"Marine/AdvancedWeapons",
-	"Marine/ARC/Health",
-	"Marine/Armory/UpgradeToAA",
-	"Marine/Flamethrower",
-	"Marine/HMG/Damage",
-	"Marine/InfantryPortal/PreventMultipleInitialIPs",
-	"Marine/MAC/Cost",
-	"Marine/MedpackHoT",
-	"Marine/Nanoshield",
-	"Marine/Observatory/BuildTime",
-	"Marine/PrototypeLab/Cost",
-	"Marine/RoboticsFactory/ARCFactoryResearch",
-	"Marine/RoboticsFactory/Cost",
-	"Marine/Sentry/Cost",
-	"Marine/Sentry/SporesConfusion",
-	"Marine/SentryBattery/Cost",
-	"Marine/SupplyChanges",
-	"Marine/SlowExpirationRate",
-	"Marine/WeaponDropTime",
+    -- Logger
+    self.config.logger = {}
+    self.config.logger.enabled = true
+    self.config.logger.level = "debug"
 
-	"Spectator/EdgePanning",
-	"Spectator/HelpText",
-	"Spectator/SupplyDisplay",
-}
+    -- Versioning
+    self.config.versioning = {}
+    self.config.versioning.majorVersion = 3
+    self.config.versioning.minorVersion = 2
+    self.config.versioning.patchVersion = 1
+    self.config.versioning.preRelease = ""
+    self.config.versioning.display = true
 
-function GetModConfig(kLogLevels)
-	local config = {}
-
-	config.kLogLevel = kLogLevels.info
-	config.kShowInFeedbackText = true
-	config.kModVersion = "3"
-	config.kModBuild = "2.1"
-	config.disableRanking = true
-	config.use_config = "none"
-
-	config.techIdsToAdd = {
-		"AdvancedSwipe",
-		"MunitionsTech",
-		"DemolitionsTech",
-	}
-
-	config.modules = modules
-
-	return config
+    -- Tech Handler
+    self.config.techhandler = {}
+    self.config.techhandler.techIdsToAdd = {
+        "AdvancedSwipe",
+        "MunitionsTech",
+        "DemolitionsTech",
+    }
 end
