@@ -9,7 +9,10 @@ trap onError ERR
 
 # Clear build dir
 printf "Clearing build dir\n"
-rm -rf build/*
+rm -rf build
+
+# Recreate
+mkdir build
 
 # Copy over src
 printf "Copying src\n"
