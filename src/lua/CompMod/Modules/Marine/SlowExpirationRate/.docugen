@@ -1,0 +1,3 @@
+Marine.Weapons.Expiration Rate
+Stepping on a dropped weapon no longer refreshes the weapon timer
+Standing near a weapon slows decay rate by 50%
