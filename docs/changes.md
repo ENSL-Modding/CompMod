@@ -20,8 +20,6 @@
 ## Embryos
 * Embryo HP scales depending on lifeform
 ## Fade
-* Advanced Metabolise
-  * Biomass requirement increased to 5 from 4
 * Advanced Swipe
   * Replaces Stab
   * Upgrades teh normal swipe damage to 81 from 70
