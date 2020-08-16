@@ -110,8 +110,11 @@ def main():
         scanForDocugenFiles(conn, c, sys.argv[1])
         return
 
-    if sys.argv[0] == "--raw-dump" and argc == 1:
-        print(c.execute("SELECT * FROM FullChangelog").fetchall())
+    if sys.argv[0] == "--raw-dump":
+        if argc == 1:
+            print(c.execute("SELECT * FROM FullChangelog").fetchall())
+        elif argc == 2:
+            print(c.execute("SELECT * FROM FullChangelog WHERE modVersion = ?", sys.argv[1]).fetchall())
         return
 
     # Populate argument vars
