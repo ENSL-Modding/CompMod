@@ -78,19 +78,21 @@ class ChangeLogTree:
                 node = root.addChild(key, root)
             node.addValue(value)
 
-def openConnection():
-    return sqlite3.connect('docugen/data.db')
-
 def usage():
     print("Docugen Usage")
     print("docugen vanillaVersion, modVersion, [oldModVersion]")
+    print("")
+    print("--create         Create tables and exit")
+    print("--update-only    Only update table, don't write changelogs")
+    print("--raw-dump       Dump all data from table")
     exit(2)
 
-def findLastModVersion(c):
+def findLastModVersion(c, modVersion):
     version = c.execute(''' SELECT modVersion 
                             FROM FullChangeLog
+                            WHERE modVersion != ?
                             ORDER BY modVersion
-                            LIMIT 1''').fetchone()
+                            LIMIT 1''', [modVersion]).fetchone()
 
     if version == None:
         die("Failed to find last mod version. See usage")
@@ -99,7 +101,7 @@ def findLastModVersion(c):
 
 def parseArgs(c, argc):
     if argc == 2:
-        return (sys.argv) + [findLastModVersion(c)]
+        return (sys.argv) + [findLastModVersion(c, sys.argv[1])]
     elif argc == 3:
         return (sys.argv)
     else:
@@ -126,23 +128,27 @@ def scanForDocugenFiles(conn, c, modVersion):
     # Delete any current entries for modVersion
     c.execute("DELETE FROM FullChangelog WHERE modVersion = ?", [modVersion])
 
+    # Get the modname
     walkPath = os.path.join("src", "lua")
     dirs = next(os.walk(walkPath))[1]
     del dirs[dirs.index("entry")]
     modName = dirs[0]
 
+    # Walk src/lua/{modName}/Modules looking for .docugen files
     walkPath = os.path.join(walkPath, modName, "Modules")
     docugenFiles = []
     for root, dirs, files in os.walk(walkPath):
         if ".docugen" in files:
             docugenFiles.append(root)
  
+    # Read all docugen files and add entrys to database
     for path in docugenFiles:
         file = path + os.sep + ".docugen"
         with open(file, "r") as f:
             addDocugenEntry(c, modVersion, f.readlines())
         print("Processed module: {}".format(file))
 
+    # Commit table changes
     conn.commit()
 
 def handleNonGenArgs(conn, c, argc):
@@ -224,7 +230,9 @@ def generatePartialMarkdown(f, rootNode):
 def createFullChangelog(conn, c, vanillaVersion, modVersion):
     # Get changelog for version
     rawChangelog = c.execute("SELECT key,value FROM FullChangelog WHERE modVersion = ? ORDER BY key ASC", [modVersion]).fetchall()
+    # Create tree from table
     tree = ChangeLogTree(rawChangelog)
+    # Generate markdown text and write to changelog file
     with open(vsVanillaOutput, "w") as f:
         generateMarkdown(f, tree.rootNode)
     print("Changelog against vanilla generated")
@@ -268,7 +276,7 @@ def main():
     sys.argv.pop(0)
     argc = len(sys.argv)
 
-    conn = openConnection()
+    conn = sqlite3.connect('docugen/data.db')
     c = conn.cursor()
     handleNonGenArgs(conn, c, argc)
 
