@@ -1,3 +1,6 @@
+# Changes between CompMod 3.3.0 and Vanilla 334
+<br/>
+
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/e/e5/All_Lifeforms_Banner.png "Alien")
 ## Drifters
@@ -22,7 +25,7 @@
 ## Fade
 * Advanced Swipe
   * Replaces Stab
-  * Upgrades teh normal swipe damage to 81 from 70
+  * Upgrades the normal swipe damage to 81 from 70
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
 * Blink
