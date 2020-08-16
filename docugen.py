@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 import os
+from datetime import date
 
 initialNodeOrder = [
     "Alien", 
@@ -171,16 +172,17 @@ def printTree(node):
     for child in node.children:
         printTree(child)
 
-def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None):
+def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHeaderLevel=0):
     key = root.key
     values = root.values
 
     if indentIndex == 0:
         if lineNo != 0:
             f.write("\n")
-        f.write("# {}\n".format(key))
+
+        f.write("#"*additionalHeaderLevel + "# {}\n".format(key))
     elif indentIndex == 1:
-        f.write("## {}\n".format(key))
+        f.write("#"*additionalHeaderLevel + "## {}\n".format(key))
     else:
         f.write(("  "*(indentIndex-2)) + "* {}\n".format(key))
     
@@ -206,13 +208,18 @@ def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None):
     lineNo = lineNo + len(values)
 
     for child in root.children:
-        renderMarkdown(child, f, indentIndex, lineNo)
+        renderMarkdown(child, f, indentIndex, lineNo, additionalHeaderLevel=additionalHeaderLevel)
 
 def generateMarkdown(f, rootNode):
     for initialNode in initialNodeOrder:
         imageUrl = imagesForNodes[initialNode]
         if rootNode.hasChild(initialNode):
             renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl)
+
+def generatePartialMarkdown(f, rootNode):
+    for initialNode in initialNodeOrder:
+        if rootNode.hasChild(initialNode):
+            renderMarkdown(rootNode.getChild(initialNode), f, additionalHeaderLevel=1)
 
 def createFullChangelog(conn, c, vanillaVersion, modVersion):
     # Get changelog for version
@@ -222,9 +229,39 @@ def createFullChangelog(conn, c, vanillaVersion, modVersion):
         generateMarkdown(f, tree.rootNode)
     print("Changelog against vanilla generated")
 
+def changelogDiff(curr, old):
+    diff = []
+
+    for key,value in curr:
+        if key in old:
+            if old[key] != value:
+                diff.append((key, value))
+        else:
+            diff.append((key, value))
+    
+    return diff
+
 def createPartialChangelog(conn, c, modVersion, oldModVersion):
+    # Get changelog for current version
     currentChangelog = c.execute("SELECT key,value FROM FullChangelog WHERE modVersion = ?", [modVersion]).fetchall()
+    # Get changelog for previous version
     oldChangelog = c.execute("SELECT key,value FROM FullChangelog WHERE modVersion = ?", [oldModVersion]).fetchall()
+    # Diff them
+    diff = changelogDiff(currentChangelog, oldChangelog)
+    if len(diff) == 0:
+        print("CompMod changelog NOT generated: No diff to process")
+        return
+    # Create tree from diff
+    tree = ChangeLogTree(diff)
+    # Prepend generated markdown to file
+    with open(compModChangelogOutput, "r+") as f:
+        content = f.read()
+        f.seek(0,0)
+        f.write("# CompMod {} ({})\n".format(modVersion, date.today().strftime("%d/%m/%Y")))
+        generatePartialMarkdown(f, tree.rootNode)
+        f.write("\n\n")
+        f.write(content)
+    print("CompMod changelog generated")
 
 def main():
     # We don't care about program name
