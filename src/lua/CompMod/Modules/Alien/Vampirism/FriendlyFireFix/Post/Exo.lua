@@ -1,3 +1,5 @@
 if Server then
-    Exo.GetCanVampirismBeUsedOn = nil
+    function Exo:GetCanVampirismBeUsedOn()
+        return true
+    end
 end
