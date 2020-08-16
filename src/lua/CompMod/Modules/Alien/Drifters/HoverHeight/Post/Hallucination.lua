@@ -1,5 +1,3 @@
---TODO: Merge this with Drifter.HoverHeight
-
 kHallucinationHoverHeight = 1
 
 if Server then

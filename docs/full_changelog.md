@@ -1,3 +1,8 @@
+# CompMod 3.3.0 - (16/08/2020)
+## Bug Fixes
+* Fixed that Mucous values weren't being applied properly
+
+
 # CompMod 3.2.1 - (05/08/2020)
 ## Alien
 * Spores

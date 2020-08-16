@@ -15,7 +15,7 @@ function ModFramework:LoadConfig()
     -- Logger
     self.config.logger = {}
     self.config.logger.enabled = true
-    self.config.logger.level = "debug"
+    self.config.logger.level = "fatal"
 
     -- Versioning
     self.config.versioning = {}

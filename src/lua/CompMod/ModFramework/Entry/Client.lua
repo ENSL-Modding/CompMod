@@ -3,6 +3,7 @@ if not Client then return end
 local mod = fw_get_current_mod()
 mod:LoadAllModuleFiles("Client")
 local moduleManager = mod:GetModule('modulemanager')
+moduleManager:ValidateModules()
 local modules = moduleManager:GetModules()
 
 fw_print_debug(moduleManager, "Loading all client files")

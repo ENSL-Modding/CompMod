@@ -59,11 +59,11 @@ function ModFramework:InitModules()
     self:LoadModules()
 
     fw_print_debug(nil, "Initializing all modules")
-    self:InitializeModule(ModuleManagerModule)
     self:InitializeModule(LoggerModule)
     self:InitializeModule(VersioningModule)
     self:InitializeModule(EnumUtilitiesModule)
     self:InitializeModule(TechHandlerModule)
+    self:InitializeModule(ModuleManagerModule)
 end
 
 function ModFramework:InitializeModule(module)
