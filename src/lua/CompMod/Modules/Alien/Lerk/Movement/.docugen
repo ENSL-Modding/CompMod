@@ -1,4 +1,4 @@
-Alien.Lerk
+Alien.Lerk.Movement
 Increase strafe force to 8.3 from 7
 Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
 After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)

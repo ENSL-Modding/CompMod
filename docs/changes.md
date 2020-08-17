@@ -42,11 +42,12 @@
   * Web charges lowred to 0 from 3
   * Webbed duration lowered to 2.5 seconds from 5 seconds
 ## Lerk
-* Increase strafe force to 8.3 from 7
-* Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
-* After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
-* This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
-* Lerk movement mid-flight while flapping often is unaffected
+* Movement
+  * Increase strafe force to 8.3 from 7
+  * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
+  * After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
+  * This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
+  * Lerk movement mid-flight while flapping often is unaffected
 * Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
   * Spread increased to 3.8 radians from 3.6 radians
