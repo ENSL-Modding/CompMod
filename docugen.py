@@ -17,6 +17,7 @@ imagesForNodes = {
     "Global":               "https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png",
     "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
 }
+enableImageOutput = False
 
 vsVanillaOutput = "docs/changes.md"
 compModChangelogOutput = "docs/full_changelog.md"
@@ -255,7 +256,10 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion):
 
 def generateMarkdown(f, rootNode):
     for initialNode in initialNodeOrder:
-        imageUrl = imagesForNodes[initialNode]
+        imageUrl = None
+        if enableImageOutput:
+            imageUrl = imagesForNodes[initialNode]
+
         if rootNode.hasChild(initialNode):
             renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl)
 
