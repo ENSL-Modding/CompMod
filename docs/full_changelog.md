@@ -1,7 +1,11 @@
-# Full Changelog for CompMod
+# CompMod 3.3.0 - (16/08/2020)
+## Bug Fixes
+* Fixed that per-lifeform Mucous values weren't being applied properly
 
-## CompMod 3.2.1 - (05/08/2020)
-#### Alien
+<br/>
+
+# CompMod 3.2.1 - (05/08/2020)
+## Alien
 * Spores
     * Opacity of burning cinematic lowered by 50%
 
@@ -11,14 +15,16 @@
 * Umbra
     * Opacity of burning cinematic lowered by 50%
 
-## CompMod 3.2 - (04/08/2020)
-#### Alien
+<br/>
+
+# CompMod 3.2 - (04/08/2020)
+## Alien
 * BileBomb
     * Research changed to Biomass 2 from Biomass 3
 * Spores
     * Opacity of cloud lowered by 50%
 
-#### Marine
+## Marine
 * MACs
     * Supply cost increased to 15 from 5
 * Structures
@@ -37,25 +43,29 @@
         * Cost increased to 12 tres from 10 tres
         * Supply cost increased to 25 from 15
 
-#### Bug Fixes
+## Bug Fixes
 * Fixed that Shotguns could only be dropped from an Armory
 * Fixed that HMGs could only be dropped from an Advanved Armory
 * Fixed that vampirism didn't apply shielding effect added in vanilla
 
-## CompMod 3.1.1 - (30/07/2020)
-#### Alien
+<br/>
+
+# CompMod 3.1.1 - (30/07/2020)
+## Alien
 * Lifeforms
     * Gorge
         * Web
             * Web charges lowered to 0 from 1
 
-#### Marine
+## Marine
 * MAC
     * Cost
         * Cost reduced to 3 tres from 5 tres
 
-## CompMod 3.1.0 - (30/07/2020)
-#### Alien
+<br/>
+
+# CompMod 3.1.0 - (30/07/2020)
+## Alien
 * Lifeforms
     * Gorge
         * Web
@@ -66,7 +76,7 @@
     * Aura
         * Max range decreased to 20 from 30 (to 6.67 per veil from 10 per veil)
 
-#### Marine
+## Marine
 * ARCs
     * Health
         * Health lowered to 2200/400 from 2600/400
@@ -89,19 +99,26 @@
         * ARC Factory upgrade cost increased to 15 from 5
         * Removed Armory requirement for ARC Factory upgrade
 
-## CompMod 3.0.3 - (28/06/2020)
+
+# CompMod 3.0.3 - (28/06/2020)
 * Fixed script errors when a fade model is created
 
-## CompMod 3.0.2 - (19/06/2020)
-#### Global
+<br/>
+
+# CompMod 3.0.2 - (19/06/2020)
+## Global
 * Fixed script errors when using NanoShield.
 
-## CompMod 3.0.1 - (18/06/2020)
-#### Global
+<br/>
+
+# CompMod 3.0.1 - (18/06/2020)
+## Global
 * Fixed script errors when using advanced metabolise
 
-## CompMod 3.0.0 - (13/5/2020)
-#### Alien
+<br/>
+
+# CompMod 3.0.0 - (13/5/2020)
+## Alien
 * Lifeforms
     * Skulk
         * Bite Cone
@@ -118,7 +135,7 @@
     * Vampirism
         * Imported vanilla b332 mechanical changes (shield generation)
 
-#### Marine
+## Marine
 * Weapons
     * Shotgun
         * Truncated cone (shouldn't hit things behind/in you)
@@ -127,27 +144,35 @@
         * Limit capacity to 1 from 2
         * Cost reduced to 5 from 10
 
-## CompMod 2.18.2 - (21/4/2020)
-#### Alien
+<br/>
+
+# CompMod 2.18.2 - (21/4/2020)
+## Alien
 * Correctly require biomass 6 for spores
 
-#### Marine
+## Marine
 * Correct AdvancedArmory research cost to 15 from 10
 
-## CompMod 2.18.1 - (20/4/2020)
-#### Global
+<br/>
+
+# CompMod 2.18.1 - (20/4/2020)
+## Global
 * Fix spawn view angle bug.. maybe? (Thanks Beige!)
 
-#### Alien
+## Alien
 * Require Metabolize before you can research Advanced Metabolize
 
-## CompMod 2.18.0 - (19/4/2020)
-#### Alien
+<br/>
+
+# CompMod 2.18.0 - (19/4/2020)
+## Alien
 * Decreased height check for tunnel placement
     * This should resolve the issues with placement on Jambi. Please note and report if check is too lenient/allows unacceptable tunnel locations
 
-## CompMod 2.17.1 - (16/4/2020)
-#### Marine
+<br/>
+
+# CompMod 2.17.1 - (16/4/2020)
+## Marine
 * Structures
     * Armory
         * Shotgun research removed
@@ -164,8 +189,10 @@
                 * Unlocks Flamethrower and Grenade Launcher purchase from the Advanced Armory
 * Updated tech tree to reflect above changes
 
-## CompMod 2.17.0 - (16/4/2020)
-#### Alien
+<br/>
+
+# CompMod 2.17.0 - (16/4/2020)
+## Alien
 * Skulk
     * Leap
         * Energy cost to 55 from 45
@@ -188,7 +215,7 @@
         * Reduced from 8% per tick to 6% per tick
         * Removed heal effect (visual and audio)
 
-#### Marine
+## Marine
 * Advanced Assistance
     * Research cost reverted to 20 from 25
 * Weapons
@@ -199,14 +226,18 @@
         * Reduced damage to 7 from 8
         * Increased reload speed to 3.5s from 4.5s (The sound does not match the animation currently)
 
-## CompMod 2.16.0 - (20/2/2020)
-#### Alien
+<br/>
+
+# CompMod 2.16.0 - (20/2/2020)
+## Alien
 * Fade
     * Advanced Swipe
         * Fixed a bug where fade would lose advanced swipe when losing biomass 7
 
-## CompMod 2.15.0 - (20/2/2020)
-#### Alien
+<br/>
+
+# CompMod 2.15.0 - (20/2/2020)
+## Alien
 * Softcap healing above 14% in a short period of time - more healing is applied at 50% value (Thanks Ghoul)
 * Fixed bug where armor healing was reduced
 * Vampirism
@@ -214,32 +245,42 @@
 * Advanced Metabolize
     * Refactored code to keep armor healing at eHP rate
 
-## CompMod 2.14.4 - (2/2/2020)
-#### Alien
+<br/>
+
+# CompMod 2.14.4 - (2/2/2020)
+## Alien
 * Lerk
     * Really fixed inflated spike accuracies
 
-## CompMod 2.14.3 - (1/2/2020)
-#### Alien
+<br/>
+
+# CompMod 2.14.3 - (1/2/2020)
+## Alien
 * Lerk
     * Fixed inflated spike accuracies
 
-## CompMod 2.14.2 - (31/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.14.2 - (31/1/2020)
+## Alien
 * Lerk
     * Increased flap grace period
     * Fixed bug with lerk hallucinations
 
-## CompMod 2.14.1 - (30/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.14.1 - (30/1/2020)
+## Alien
 * Lifeform Costs
     * Correct Lerk cost to 20 from 18
 
-## CompMod 2.14.0 - (27/1/2020)
-#### Global
+<br/>
+
+# CompMod 2.14.0 - (27/1/2020)
+## Global
 * Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
 
-#### Alien
+## Alien
 * Drifter
     * Reduced hover height to 1 from 1.2 so they don't float in marine's faces
     * Shade hive drifters will now uncloak from further away (to 7 from 1.5) (You won't run through without seeing them anymore)
@@ -266,20 +307,24 @@
     * Fade to 35 from 37
     * Onos to 55 from 62
 
-#### Marine
+## Marine
 * Increased starting Pres to 20 from 15
 
-#### Alien Commander
+## Alien Commander
 * Cysts
     * Shade hive cysts are now visible from further away (to 10 from 6)
 
-## CompMod 2.13.0 - (23/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.13.0 - (23/1/2020)
+## Alien
 * Lerk
     * Spikes penetrate soft targets
 
-## CompMod 2.12.0 - (16/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.12.0 - (16/1/2020)
+## Alien
 * Skulk
     * Reduced range of outer bite cone by 65%
 * Fade
@@ -291,16 +336,22 @@
     * Can no longer have babblers attached
     * Reduced Onos HP to 100 eHP
 
-## CompMod 2.11.2 - (11/1/2020)
-#### Marine
+<br/>
+
+# CompMod 2.11.2 - (11/1/2020)
+## Marine
 * Hotfix HMG reload speed bug
 
-## CompMod 2.11.1 - (10/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.11.1 - (10/1/2020)
+## Alien
 * Hotfix Fade blink speed
 
-## CompMod 2.11.0 - (8/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.11.0 - (8/1/2020)
+## Alien
 * Mucous
     * Reduced cloud radius from 8 to 5 (reduces area by 60%)
     * Shield matches babbler shield values (except skulk - remains at 15 hp)
@@ -309,48 +360,58 @@
 * Skulk
     * Can longer jump at various heights from the floor
     
-#### Marine
+## Marine
 * HMG
     * Decrease clip size to 100 rounds
     * Increase reload speed to 4.5s from 5.0s
     * Can no longer interrupt reload with secondary fire
 
-## CompMod 2.10.0 - (5/1/2020)
-#### Alien
+<br/>
+
+# CompMod 2.10.0 - (5/1/2020)
+## Alien
 * Babblers no longer scale with biomass
 * Vampirism value reduced to 2 shell vanilla values on Skulk and Fade
 
-#### Marine
+## Marine
 * Increased shotgun damage to 150 from 140
 
-## CompMod 2.9.0 - (5/12/2019)
-#### Spectator
+<br/>
+
+# CompMod 2.9.0 - (5/12/2019)
+## Spectator
 * Added team supply to top bar
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Advanced Swipe will now appear in the researched tech at the bottom of the screen
 * Removed Carapace from Alien Tech Map
 * Defaulted help text at bottom of the screen to a collapsed state
 
-#### Alien
+## Alien
 * Removed Carapace from Alien Tech Map
 
-## CompMod 2.8.8 - (28/11/2019)
-#### Alien
+<br/>
+
+# CompMod 2.8.8 - (28/11/2019)
+## Alien
 * Vampirism now heals eHP rather than by point value (this is a nerf)
 
-## CompMod 2.8.7 - (14/11/2019)
-#### Global
+<br/>
+
+# CompMod 2.8.7 - (14/11/2019)
+## Global
 * Update for build 331
 
-## CompMod 2.8.6 - (11/11/2019)
-#### Marine
+<br/>
+
+# CompMod 2.8.6 - (11/11/2019)
+## Marine
 * Shotgun
     * Fire rate reverted to vanilla
     * Aggregate damage changed to 140
 * Flamethrower
     * Removed friendly fire of flame puddles
 
-#### Alien
+## Alien
 * Echo
     * Echo upgrade cost increased to 2 from 1
     * Echo egg cost reduced to 1 from 2
@@ -359,29 +420,35 @@
     * Spike damage increased to 6 from 5 (to 12 from 10 to players)
     * Spike spread increased to 3.8 radians from 3.6 radians (Nostalgia spread was 4.0 radians)
 
-## CompMod 2.8.5 - (04/11/2019)
-#### Marine
+<br/>
+
+# CompMod 2.8.5 - (04/11/2019)
+## Marine
 * Fixed shotgun fire rate while moving
 * Mines can now be killed before arming
 
-#### Alien
+## Alien
 * No longer cloaked while moving with camouflage
 * Skulk sneak speed reduced to 4 from 4.8
 * Skulks no longer get a speed bonus on their first jump from the ground
 
-## CompMod 2.8.4 - (27/10/2019)
-#### Marine
+<br/>
+
+# CompMod 2.8.4 - (27/10/2019)
+## Marine
 * Fixed expiration timer bug where a large amount of time can be added
 * Shotgun base aggregate damage reduced to 130 from 170
 * Shotgun rate of fire increased to 1.49 from 1.14
 * Fixed bug where multiple IPs would spawn
 
-#### Alien
+## Alien
 * Skulk model/hitbox size reduced by 10%
 * Fade no longer gets bonuses from successive blinks without celerity
 
-## CompMod 2.8.3 - (15/10/2019)
-##### Marine
+<br/>
+
+# CompMod 2.8.3 - (15/10/2019)
+## Marine
 * Mine damage reduced to 130 normal damage (from 150)
 * Advanced Assistance Tres cost increased to 25 from 20
 * Reduced NanoShield duration on players to 2s from 4s
@@ -389,47 +456,63 @@
 * Pistol damage to 20 normal damage from 25 light damage
 * Heavy Machine Gun reload is now cancel-able with alt-fire
 
-## CompMod 2.8.2 - (12/10/2019)
-##### Marine
+<br/>
+
+# CompMod 2.8.2 - (12/10/2019)
+## Marine
 * Nanoshield duration on players reduced to 4 seconds (from 5)
 * Standing near a weapon slows decay rate by 50%
 * Shotgun changed to nostalgia code (hotfix to fix damage bug - 13/10/2019)
 
-## CompMod 2.8.1 - (09/10/2019)
-##### Alien
+<br/>
+
+# CompMod 2.8.1 - (09/10/2019)
+## Alien
 * Removed Fade autocrouch
 
-##### Marine
+## Marine
 * Grenades are deploy instantly again
 * Shotgun spread to nostalgia spread approximated in new spread code
 
-## CompMod 2.8.0 - (01/10/2019)  
-##### Alien
+<br/>
+
+# CompMod 2.8.0 - (01/10/2019)  
+## Alien
 * Removed Carapace again
 * Removed Onos Charge Knockback
 
-## CompMod 2.7.7 - (12/08/2019)
-##### Alien
+<br/>
+
+# CompMod 2.7.7 - (12/08/2019)
+## Alien
 * Carapace
     * It's back.
 
-## CompMod 2.7.6 - (11/08/2019)
-##### Marines
+<br/>
+
+# CompMod 2.7.6 - (11/08/2019)
+## Marines
 * Shotgun
     * Shotgun pellet size changed to 32mm from 60mm
-    
-## CompMod 2.7.5 - (10/08/2019)
-##### Marines
+
+<br/>
+
+# CompMod 2.7.5 - (10/08/2019)
+## Marines
 * Shotgun
     * Shotgun pellet size changed from 66mm to 60mm.
 
-## CompMod 2.7.4 - (09/08/2019)
-##### Marines
+<br/>
+
+# CompMod 2.7.4 - (09/08/2019)
+## Marines
 * Shotgun
     * Fixed an issue that caused the pellet changes to not be applied correctly. 
 
-## CompMod 2.7.3 - (09/08/2019)
-##### Marines
+<br/>
+
+# CompMod 2.7.3 - (09/08/2019)
+## Marines
 * Observatory
     * Changed build time to 10 seconds from 15 seconds
 * Shotgun
@@ -437,24 +520,26 @@
 * Cluster Grenades
     * Changed Cluster Grenades player damage reduction to 50%
 
-##### Alien
+## Alien
 * Carapace
     * Deleted carapace.
-    
-## CompMod 2.7.2 - (09/08/2019)
-##### Marines
+
+<br/>
+
+# CompMod 2.7.2 - (09/08/2019)
+## Marines
 * Medpacks
     * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. Medpacks cannot overheal.
     * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP. 
 
-##### Aliens
+## Aliens
 * Lerk
     * Lerk HP changed to 180/25 from 180/30
    
-##### Spectators
+## Spectators
 * Added display for team supply.
 
-##### Bug Fixes and Improvements
+## Bug Fixes and Improvements
 * Fix carapace being shown incorrectly in spectate view.
 * Fix mucous hitsounds.
 * Fix Vampirism doing friendly fire.
@@ -462,11 +547,15 @@
 * Fixed that the commander actions panel would overlap with the supply display on a Marine's HUD
 * Fixed that the scoreboard would sometimes be slow to open.
 
-## CompMod 2.7.1 - (01/08/2019)
+<br/>
+
+# CompMod 2.7.1 - (01/08/2019)
 * Implement ns2_beta rev 3 hotfix
     * Fade's can't zoom zoom on the floor anymore
-    
-## CompMod 2.7.0 - (01/08/2019)
+
+<br/>
+
+# CompMod 2.7.0 - (01/08/2019)
 * Implement ns2_beta Revision 3
 * Weapon Lifetime
     * Reduced weapon lifetime to 18 seconds from 25 seconds
@@ -476,31 +565,43 @@
 * PowerNodes
     * Removed the flashlight requirement for finish power nodes without a structure in the room
 
-## CompMod 2.6.5 - (30/07/2019)
+<br/>
+
+# CompMod 2.6.5 - (30/07/2019)
 * Pulse Grenade Hotfix
 	* Damage lowered to 50 from 140
 
-## CompMod 2.6.4 - (27/07/2019)
+<br/>
+
+# CompMod 2.6.4 - (27/07/2019)
 * Fade Blink Hotfix (Again :D)
     * Revert Fade blink speed to 17
     * Lower blink initial force to 14.25 from 15
 * PowerSurge
     * Fixed that PowerSurge was acting like vanilla.
 
-## CompMod 2.6.3 - (27/07/2019)
+<br/>
+
+# CompMod 2.6.3 - (27/07/2019)
 * Fade Blink Hotfix
     * Lowered Fade blink speed to 16.25 from 17
 
-## CompMod 2.6.2 - (26/07/2019)
+<br/>
+
+# CompMod 2.6.2 - (26/07/2019)
 * Walk
     * Fixed that marine walk couldn't be rebound.
     * Walk bind will be reset to default after this patch.
 
-## CompMod 2.6.1 - (25/07/2019)
+<br/>
+
+# CompMod 2.6.1 - (25/07/2019)
 * Fixed a bug that caused a ghost entity to remain after a mine was destroyed while arming.
 * Fixed a bug that caused mines to detonate after being destroyed
 
-## CompMod 2.6.0 - (25/07-2019)
+<br/>
+
+# CompMod 2.6.0 - (25/07-2019)
 * Stab replaced by Advanced Swipe
     * Upgrades the normal swipe damage to 81 from 70
     * Can be researched at Biomass 7 
@@ -517,11 +618,13 @@
     * Allows Marines to throw the grenade instantly, without waiting for the deploy animations.
 * Heal sound will no longer play when shells are built.
 
-#### Bug Fixes
+## Bug Fixes
 * Drifters can pop blueprints again
 * Killfeed shows for spectators and readyroom players again
 
-## CompMod 2.5.0 - (28/06/2019)
+<br/>
+
+# CompMod 2.5.0 - (28/06/2019)
 * Potential fix for view angles being set incorrectly on spawn 
 * Cysts should no longer starve when they shouldn't
 * Cysts should be able to find their parents more reliably when the chain is updated
@@ -545,4 +648,4 @@
 * Advanced Metabolise requires biomass 4 (from 5)
 * Spores require biomass 5 (from 4)
 * Power Surge
-    * No longer slows and damages aliens 
+    * No longer slows and damages aliens

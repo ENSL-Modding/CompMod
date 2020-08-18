@@ -1,0 +1,4 @@
+Alien.Fade.Blink
+Removed Auto-Crouch
+Will lose velocity more quickly when moving faster than 16.25
+Rate at which you lose velocity is reduced when using Celerity

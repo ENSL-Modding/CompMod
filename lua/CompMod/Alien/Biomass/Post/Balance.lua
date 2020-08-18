@@ -1,1 +1,0 @@
-kResearchBioMassThreeCost = 40
