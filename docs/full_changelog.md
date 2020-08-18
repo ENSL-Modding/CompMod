@@ -1,4 +1,4 @@
-# CompMod - 3.3.0 (16/08/2020)
+# CompMod 3.3.0 - (16/08/2020)
 ## Bug Fixes
 * Fixed that per-lifeform Mucous values weren't being applied properly
 

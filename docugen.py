@@ -222,7 +222,7 @@ def createFullChangelog(conn, c, vanillaVersion, modVersion):
 
 def createPartialChangelog(conn, c, modVersion, oldModVersion):
     # Create entry stub
-    stub = "# CompMod - {} ({})\n".format(modVersion, date.today().strftime("%d/%m/%Y"))
+    stub = "# CompMod {} - ({})\n".format(modVersion, date.today().strftime("%d/%m/%Y"))
 
     # Get changelog for current version
     currentChangelog = c.execute('''SELECT key,value 
