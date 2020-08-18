@@ -348,6 +348,21 @@ def changelogDiff(curr, old):
             # print("Diff: Adding {} because values didn't match".format(key))
             diff.append((key, value))
             continue
+
+    # Check for any deletions
+    for key,value in old:
+        foundKey = False
+
+        # Find matching key in curr
+        for key2,value2 in curr:
+            if key == key2:
+                foundKey = True
+                break
+        
+        # If a key exists in the old changelog but not in the current one, it's been removed
+        if not foundKey:
+            # print("Diff: Adding {} because it was deleted didn't match".format(key))
+            diff.append((key, "== REMOVED == " + value))
     
     return diff
 
