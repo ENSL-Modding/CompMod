@@ -74,11 +74,10 @@
   * Echo
     * Echo cost for upgrades increased to 2 from 1
     * Echo cost for eggs reduced to 1 from 2
-* Tunnel
-  * Tunnel cost changed to 8 tres from 6 tres
-  * Decreased height check for tunnel placement
 * Tunnels
   * Tunnels are infested tunnels by default
+  * Tunnel cost changed to 8 tres from 6 tres
+  * Decreased height check for tunnel placement
 ## Upgrades
 * Aura
   * Max range decreased to 20 from 30 (to 6.67 per veil from 10 per veil)
