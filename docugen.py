@@ -233,7 +233,7 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion):
     # Get changelog for previous version
     oldChangelog = c.execute('''SELECT key,value 
                                 FROM FullChangelog 
-                                WHERE modVersion = ? 
+                                WHERE modVersion <= ? 
                                 ORDER BY key ASC''', [oldModVersion]).fetchall()
 
     # Diff both changelogs
@@ -255,18 +255,20 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion):
     print("CompMod changelog generated")
 
 def generateMarkdown(f, rootNode):
+    lineNo = 0
     for initialNode in initialNodeOrder:
         imageUrl = None
         if enableImageOutput:
             imageUrl = imagesForNodes[initialNode]
 
         if rootNode.hasChild(initialNode):
-            renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl)
+            lineNo = renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl, lineNo=lineNo)
 
 def generatePartialMarkdown(f, rootNode):
+    lineNo = 0
     for initialNode in initialNodeOrder:
-        if rootNode.hasChild(initialNode):
-            renderMarkdown(rootNode.getChild(initialNode), f, additionalHeaderLevel=1)
+        if rootNode.hasChild(initialNode):            
+            lineNo = renderMarkdown(rootNode.getChild(initialNode), f, additionalHeaderLevel=1, lineNo=lineNo)
 
 def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHeaderLevel=0):
     key = root.key
@@ -279,6 +281,9 @@ def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHe
 
         f.write("#"*additionalHeaderLevel + "# {}\n".format(key))
     elif indentIndex == 1:
+        if lineNo != 0:
+            f.write("\n")
+
         f.write("#"*additionalHeaderLevel + "## {}\n".format(key))
     else:
         f.write(("  "*(indentIndex-2)) + "* {}\n".format(key))
@@ -314,11 +319,13 @@ def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHe
         indentIndex = origIndentIndex
 
     # Increment lineNo by the number of values written
-    lineNo = lineNo + len(values)
+    lineNo += len(values)
 
     # Call renderMarkdown recursively for every child node
     for child in root.children:
-        renderMarkdown(child, f, indentIndex, lineNo, additionalHeaderLevel=additionalHeaderLevel)
+        lineNo = renderMarkdown(child, f, indentIndex=indentIndex, lineNo=lineNo, additionalHeaderLevel=additionalHeaderLevel)
+    
+    return lineNo
 
 def changelogDiff(curr, old):
     diff = []
