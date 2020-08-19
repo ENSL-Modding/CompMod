@@ -1,1 +1,1 @@
-kMACCost = 3 --5
+kMACCost = 4 --5

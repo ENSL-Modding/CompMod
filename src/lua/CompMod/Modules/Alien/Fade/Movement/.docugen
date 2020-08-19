@@ -1,0 +1,5 @@
+Alien.Fade.Movement
+Removed auto-crouch
+Removed ground slide
+Air friction decreases with Celerity (0.01 per spur, base 0.17)
+Remove speed cap without Celerity

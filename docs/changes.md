@@ -1,7 +1,8 @@
-# Changes between CompMod 3.3.0 and Vanilla 334
+# Changes between CompMod 3.3.1 and Vanilla 334
 <br/>
 
 # Alien
+
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
 * Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
@@ -16,21 +17,26 @@
     * Reduced cooldown to 1 second from 12 seconds
     * Reduced cloud radius from 8 to 5 (reduces area by 60%)
     * Shield matches babbler shield values (except Skulk - remains at 15 HP)
+
 ## Eggs
 * Hives no longer heal eggs, only embryos
 * Lifeform egg drops removed
+
 ## Embryos
 * Embryo HP scales depending on lifeform
+
 ## Fade
 * Advanced Swipe
   * Replaces Stab
   * Upgrades the normal swipe damage to 81 from 70
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
-* Blink
-  * Removed Auto-Crouch
-  * Will lose velocity more quickly when moving faster than 16.25
-  * Rate at which you lose velocity is reduced when using Celerity
+* Movement
+  * Removed auto-crouch
+  * Removed ground slide
+  * Air friction decreases with Celerity (0.01 per spur, base 0.17)
+  * Remove speed cap without Celerity
+
 ## Gorge
 * Babblers
   * Are flammable (die in one welder tick)
@@ -39,8 +45,9 @@
   * Research changed to Biomass 2 from Biomass 3
 * Web
   * HP gain per charge to 5 from 10
-  * Web charges lowred to 0 from 3
+  * Web charges lowered to 0 from 3
   * Webbed duration lowered to 2.5 seconds from 5 seconds
+
 ## Lerk
 * Movement
   * Increase strafe force to 8.3 from 7
@@ -55,17 +62,22 @@
 * Spores
   * Research changed to Biomass 6 from Biomass 5
   * Opacity of cloud lowered by 50%
+* Umbra
+  * Reduced opacity by 50%
+
 ## Onos
 * BoneShield
   * Add small initial cost to BoneShield
   * Moving with BoneShield active will consume BoneFuel faster
 * Charge
   * Marine knockback removed
+
 ## Skulk
 * BiteCone
   * Reduced width of cone from 1.2 to 0.8
 * Leap
   * Energy cost increased to 55 from 45
+
 ## Structures
 * Cyst
   * Build time increased to 6 seconds from 3.33 seconds
@@ -78,9 +90,11 @@
   * Tunnels are infested tunnels by default
   * Tunnel cost changed to 8 tres from 6 tres
   * Decreased height check for tunnel placement
+
 ## Upgrades
 * Aura
-  * Max range decreased to 20 from 30 (to 6.67 per veil from 10 per veil)
+  * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
+  * No longer shows HP value
 * Camouflage
   * No longer fully cloaked while moving
 * Carapace
@@ -91,9 +105,12 @@
 * Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
+
 # Marine
+
 ## ARCs
 * Health lowered to 2200/400 from 2600/400
+
 ## AdvancedWeapons
 * Shotgun research removed
 * Added new research 'Munitions'
@@ -106,13 +123,17 @@
   * Research cost 15 tres
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
+
 ## MACs
-* Cost reduced to 3 tres from 5 tres
+* Cost reduced to 4 tres from 5 tres
+
 ## Medpacks
 * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
 * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
+
 ## Nanoshield
 * Duration on players reduced to 2 seconds from 3 seconds
+
 ## Structures
 * AdvancedArmory
   * Health decreased to 2000/200 from 3000/200
@@ -132,12 +153,14 @@
     * Time until next attack increased to 4 seconds from 2 seconds
 * Sentry Battery
   * Cost increased to 12 tres from 10 tres
+
 ## SupplyChanges
 * MAC supply cost increased to 15 from 5
 * Sentry supply cost increased to 15 from 10
 * Observatory supply cost increased to 30 from 25
 * Sentry Battery supply cost increased to 25 from 15
 * Robotics Factory supply cost increased to 15 from 5
+
 ## Weapons
 * Expiration Rate
   * Stepping on a dropped weapon no longer refreshes the weapon timer
@@ -148,19 +171,25 @@
   * Reduced damage to 7 from 8
 * Weapon Lifetime
   * Increased weapon lifetime to 18 seconds from 16 seconds
+
 # Spectator
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Defaulted help text at bottom of the screen to a collapsed state
 * Added team supply to top bar
+
 # Global
+
 ## Hive Power Node
 * Power node in Alien starting Hive room will no longer be destroyed on round start.
+
 ## MucousHitsounds
 * Added hitsounds against Aliens with Mucous
+
 ## Resources
 * Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
 * Increased Alien starting pres to 15 from 12
 * Increased Marine starting pres to 20 from 15
+
 # Fixes & Improvements
 * Fixed that the scoreboard would sometimes be slow to open
 * Fixed bug where multiple IPs would sometimes spawn with few players

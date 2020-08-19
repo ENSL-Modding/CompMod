@@ -21,7 +21,7 @@ function ModuleManagerModule:GetModules()
         "Alien/Eggs/LifeformEggDrops",
         "Alien/Enzyme/Cooldown",
         "Alien/Fade/AdvancedSwipe",
-        "Alien/Fade/Blink",
+        "Alien/Fade/Movement",
         "Alien/Fade/Stab",
         "Alien/Gorge/Babblers/Flammable",
         "Alien/Gorge/Babblers/SpawnRate",
