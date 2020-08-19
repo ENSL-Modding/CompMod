@@ -4,7 +4,7 @@ local kExoHeartOffset = debug.getupvaluex(GUIAuraDisplay.Update, "kExoHeartOffse
 
 local CreateAuaIcon = debug.getupvaluex(GUIAuraDisplay.Update, "CreateAuaIcon", false)
 
-GUIAuraDisplay.kAuraMaxRange = 20 -- was 30
+GUIAuraDisplay.kAuraMaxRange = 24 -- was 30
 
 function GUIAuraDisplay:GetRange(player)
     return player:GetVeilLevel() * (GUIAuraDisplay.kAuraMaxRange / 3)
@@ -71,8 +71,9 @@ function GUIAuraDisplay:Update(deltaTime)
         local enemy = players[i]
         local icon = self.icons[i]
         
-        local healthScalar = enemy:GetHealthScalar()        
-        local color = Color(1, healthScalar, 0, 1)
+        -- local healthScalar = enemy:GetHealthScalar()
+        -- local color = Color(1, healthScalar, 0, 1)
+        local color = Color(1, 1, 0, 1)
         
         local offset = enemy:isa("Exo") and kExoHeartOffset or kHeartOffset
         
