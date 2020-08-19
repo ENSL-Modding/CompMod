@@ -1,3 +1,34 @@
+# CompMod 3.3.1 - (19/08/2020)
+## Alien
+
+### Fade
+* Movement
+  * Reverted movement base to vanilla
+  * Removed auto-crouch
+  * Removed ground slide
+  * Air friction decreases with Celerity (0.01 per spur, base 0.17)
+  * Remove speed cap without Celerity
+
+### Lerk
+* Umbra
+  * Reduced opacity by 50%
+
+### Upgrades
+* Aura
+  * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
+  * No longer shows HP value
+
+## Marine
+
+### MACs
+* Cost reduced to 4 tres from 5 tres
+
+## Bug Fixes
+* Fixed an indentation issue with the changelogs
+* Fixed that webs would still have a single charge applied
+
+<br/>
+
 # CompMod 3.3.0 - (16/08/2020)
 ## Bug Fixes
 * Fixed that per-lifeform Mucous values weren't being applied properly
