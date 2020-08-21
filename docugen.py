@@ -154,17 +154,17 @@ def main():
     # Don't generate parial and don't update db
     if wantRegen:
         print("Regenerating changelog")
-        createFullChangelog(conn, c, vanillaVersion, modVersion, modName)
+        createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName)
         return
 
     # Populate database for new version
     scanForDocugenFiles(conn, c, modVersion)
 
     # Generate full changelog
-    createFullChangelog(conn, c, vanillaVersion, modVersion, modName)
+    createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName)
 
     # Generate partial changelog
-    createPartialChangelog(conn, c, modVersion, oldModVersion, modName)
+    createChangelogStub(conn, c, modVersion, oldModVersion, modName)
     
 def createTables(c):
     # First drop
@@ -225,7 +225,7 @@ def addDocugenEntry(c, modVersion, data):
     for value in data:
         c.execute("INSERT INTO FullChangelog(modVersion, key, value) VALUES (?,?,?)", [modVersion, key, value.strip()])
 
-def createFullChangelog(conn, c, vanillaVersion, modVersion, modName):
+def createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName):
     # Get changelog for version
     rawChangelog = c.execute('''SELECT key,value 
                                 FROM FullChangelog 
@@ -244,7 +244,7 @@ def createFullChangelog(conn, c, vanillaVersion, modVersion, modName):
 
     print("Changelog against vanilla generated")
 
-def createPartialChangelog(conn, c, modVersion, oldModVersion, modName):
+def createChangelogStub(conn, c, modVersion, oldModVersion, modName):
     # Create entry stub
     stub = "# {} {} - ({})\n".format(modName, modVersion, date.today().strftime("%d/%m/%Y"))
 
@@ -285,7 +285,7 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion, modName):
         f.write("\n<br/>\n\n")
         f.write(content)
 
-    print("Mod changelog generated")
+    print("Mod changelog stub generated")
 
 def generateMarkdown(f, rootNode):
     lineNo = 0
