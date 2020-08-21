@@ -18,6 +18,7 @@ imagesForNodes = {
     "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
 }
 enableImageOutput = True
+enableDebugOutput = True
 
 vsVanillaOutput = "docs/changes.md"
 modChangelogOutput = "docs/full_changelog.md"
@@ -30,12 +31,16 @@ def die(errStr):
 # NoReturn
 def usage():
     print("Docugen Usage")
-    print("docugen vanillaVersion, modVersion, [oldModVersion]")
+    print("docugen [--regen] vanillaVersion, modVersion, [oldModVersion]")
     print("")
     print("--create                   Create tables and exit")
     print("--update-only modVersion   Only update table, don't write changelogs")
-    print("--raw-dump                 Dump all data from table")
+    print("--raw-dump [modVersion]    Dump all data from table")
     exit(2)
+
+def debugPrint(str):
+    if enableDebugOutput:
+        print(str)
 
 class ChangeLogNode:
     def __init__(self, key, parent=None):
@@ -103,6 +108,8 @@ def main():
     c = conn.cursor()
 
     # Handle special cases
+    wantRegen = False
+
     if sys.argv[0] == "--create" and argc == 1:
         createTables(c)
         return
@@ -115,8 +122,13 @@ def main():
         if argc == 1:
             print(c.execute("SELECT * FROM FullChangelog").fetchall())
         elif argc == 2:
-            print(c.execute("SELECT * FROM FullChangelog WHERE modVersion = ?", sys.argv[1]).fetchall())
+            print(c.execute("SELECT * FROM FullChangelog WHERE modVersion = ?", [sys.argv[1]]).fetchall())
         return
+
+    if sys.argv[0] == "--regen":
+        wantRegen = True
+        sys.argv.pop(0)
+        argc -= 1
 
     # Populate argument vars
     if argc == 2:
@@ -137,6 +149,13 @@ def main():
     print("Vanilla Version: {}".format(vanillaVersion))
     print("Mod Version: {}".format(modVersion))
     print("Old Mod Version: {}".format(oldModVersion))
+
+    # Only generate full changelog if --regen supplied
+    # Don't generate parial and don't update db
+    if wantRegen:
+        print("Regenerating changelog")
+        createFullChangelog(conn, c, vanillaVersion, modVersion, modName)
+        return
 
     # Populate database for new version
     scanForDocugenFiles(conn, c, modVersion)
@@ -196,7 +215,7 @@ def scanForDocugenFiles(conn, c, modVersion):
         file = path + os.sep + ".docugen"
         with open(file, "r") as f:
             addDocugenEntry(c, modVersion, f.readlines())
-        # print("Processed module: {}".format(file))
+        debugPrint("Processed module: {}".format(file))
 
     # Commit table changes
     conn.commit()
@@ -238,11 +257,20 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion, modName):
     # Get changelog for previous version
     oldChangelog = c.execute('''SELECT key,value 
                                 FROM FullChangelog 
-                                WHERE modVersion <= ? 
+                                WHERE modVersion = ? 
                                 ORDER BY key ASC''', [oldModVersion]).fetchall()
+
+    debugPrint("==OLD==")
+    debugPrint(oldChangelog)
+
+    debugPrint("\n==NEW==")
+    debugPrint(currentChangelog)
 
     # Diff both changelogs
     diff = changelogDiff(currentChangelog, oldChangelog)
+
+    debugPrint("\n==DIFF==")
+    debugPrint(diff)
 
     # Create tree from diff
     tree = ChangeLogTree(diff)
@@ -357,30 +385,41 @@ def changelogDiff(curr, old):
     
         # If we didn't find a match for the key in old it means the key/value was added
         if not foundKey:
-            # print("Diff: Adding {} because the key wasn't found".format(key))
+            debugPrint("Diff: Adding {} because the key wasn't found".format(key))
             diff.append((key, value))
             continue
 
         # If we did find a key but didn't find a value, it means that a key/value pair was modified.
         if not foundValue:
-            # print("Diff: Adding {} because values didn't match".format(key))
+            debugPrint("Diff: Adding {} because values didn't match".format(key))
             diff.append((key, value))
             continue
 
     # Check for any deletions
     for key,value in old:
         foundKey = False
+        foundValue = False
 
         # Find matching key in curr
         for key2,value2 in curr:
             if key == key2:
                 foundKey = True
+                if value2 == value:
+                    foundValue = True
+            elif foundKey:
                 break
         
         # If a key exists in the old changelog but not in the current one, it's been removed
         if not foundKey:
-            # print("Diff: Adding {} because it was deleted didn't match".format(key))
+            debugPrint("Diff: Adding {} because it was deleted (key missing)".format(key))
             diff.append((key, "== REMOVED == " + value))
+            continue
+
+        # If we did find a key in the old changelog but didn't find the value in the new changelog it's been removed
+        if not foundValue:
+            debugPrint("Diff: Adding {} because it was deleted (key found, value missing)".format(key))
+            diff.append((key, "== REMOVED == " + value))
+            continue
     
     return diff
 
