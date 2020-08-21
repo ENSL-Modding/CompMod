@@ -18,7 +18,7 @@ imagesForNodes = {
     "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
 }
 enableImageOutput = True
-enableDebugOutput = True
+enableDebugOutput = False
 
 vsVanillaOutput = "docs/changes.md"
 modChangelogOutput = "docs/full_changelog.md"
