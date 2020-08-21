@@ -11,9 +11,9 @@ initialNodeOrder = [
     "Fixes & Improvements"
 ]
 imagesForNodes = {
-    "Alien":                "https://wiki.naturalselection2.com/images/e/e5/All_Lifeforms_Banner.png",
+    "Alien":                "https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png",
     "Marine":               "https://wiki.naturalselection2.com/images/3/30/Marine_banner.png",
-    "Spectator":            "https://wiki.naturalselection2.com/images/0/0a/Marine_Structures_Banner.png",
+    "Spectator":            "https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png",
     "Global":               "https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png",
     "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
 }

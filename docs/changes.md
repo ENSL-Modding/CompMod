@@ -2,7 +2,7 @@
 <br/>
 
 # Alien
-![alt text](https://wiki.naturalselection2.com/images/e/e5/All_Lifeforms_Banner.png "Alien")
+![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
@@ -175,7 +175,7 @@
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
 # Spectator
-![alt text](https://wiki.naturalselection2.com/images/0/0a/Marine_Structures_Banner.png "Spectator")
+![alt text](https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png "Spectator")
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Defaulted help text at bottom of the screen to a collapsed state
 * Added team supply to top bar
