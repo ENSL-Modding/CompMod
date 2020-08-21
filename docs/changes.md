@@ -2,6 +2,7 @@
 <br/>
 
 # Alien
+![alt text](https://wiki.naturalselection2.com/images/e/e5/All_Lifeforms_Banner.png "Alien")
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
@@ -107,6 +108,7 @@
   * Works against exosuits
 
 # Marine
+![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
 * Health lowered to 2200/400 from 2600/400
@@ -173,11 +175,13 @@
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
 # Spectator
+![alt text](https://wiki.naturalselection2.com/images/0/0a/Marine_Structures_Banner.png "Spectator")
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Defaulted help text at bottom of the screen to a collapsed state
 * Added team supply to top bar
 
 # Global
+![alt text](https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png "Global")
 
 ## Hive Power Node
 * Power node in Alien starting Hive room will no longer be destroyed on round start.
@@ -191,5 +195,6 @@
 * Increased Marine starting pres to 20 from 15
 
 # Fixes & Improvements
+![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 * Fixed that the scoreboard would sometimes be slow to open
 * Fixed bug where multiple IPs would sometimes spawn with few players
