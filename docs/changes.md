@@ -2,11 +2,12 @@
 <br/>
 
 # Alien
+![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
 * Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
-* Abilities
+* ### Abilities
   * Enzyme
     * Reduced cooldown from 12 seconds to 1 second
   * Hallucinations
@@ -26,87 +27,88 @@
 * Embryo HP scales depending on lifeform
 
 ## Fade
-* Advanced Swipe
+* ### Advanced Swipe
   * Replaces Stab
   * Upgrades the normal swipe damage to 81 from 70
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
-* Movement
+* ### Movement
   * Removed auto-crouch
   * Removed ground slide
   * Air friction decreases with Celerity (0.01 per spur, base 0.17)
   * Remove speed cap without Celerity
 
 ## Gorge
-* Babblers
+* ### Babblers
   * Are flammable (die in one welder tick)
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
-* BileBomb
+* ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
-* Web
+* ### Web
   * HP gain per charge to 5 from 10
   * Web charges lowered to 0 from 3
   * Webbed duration lowered to 2.5 seconds from 5 seconds
 
 ## Lerk
-* Movement
+* ### Movement
   * Increase strafe force to 8.3 from 7
   * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
   * After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
   * This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
   * Lerk movement mid-flight while flapping often is unaffected
-* Spikes
+* ### Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
   * Spread increased to 3.8 radians from 3.6 radians
   * Size reduced to 45mm from 60mm
-* Spores
+* ### Spores
   * Research changed to Biomass 6 from Biomass 5
   * Opacity of cloud lowered by 50%
-* Umbra
+* ### Umbra
   * Reduced opacity by 50%
 
 ## Onos
-* BoneShield
+* ### BoneShield
   * Add small initial cost to BoneShield
   * Moving with BoneShield active will consume BoneFuel faster
-* Charge
+* ### Charge
   * Marine knockback removed
 
 ## Skulk
-* BiteCone
+* ### BiteCone
   * Reduced width of cone from 1.2 to 0.8
-* Leap
+* ### Leap
   * Energy cost increased to 55 from 45
 
 ## Structures
-* Cyst
+* ### Cyst
   * Build time increased to 6 seconds from 3.33 seconds
   * Shade hive cysts are now visible from further away (to 10 from 6)
-* Shift
+* ### Shift
   * Echo
     * Echo cost for upgrades increased to 2 from 1
     * Echo cost for eggs reduced to 1 from 2
-* Tunnels
+* ### Tunnels
   * Tunnels are infested tunnels by default
   * Tunnel cost changed to 8 tres from 6 tres
   * Decreased height check for tunnel placement
 
 ## Upgrades
-* Aura
+* ### Aura
   * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
   * No longer shows HP value
-* Camouflage
+* ### Camouflage
   * No longer fully cloaked while moving
-* Carapace
+* ### Carapace
   * Upgrade removed
-* Regeneration
+* ### Regeneration
   * Removed heal effect (visual and audio)
   * Reduced from 8% per tick to 6% per tick
-* Vampirism
+* ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
 
 # Marine
+![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
 * Health lowered to 2200/400 from 2600/400
@@ -135,23 +137,23 @@
 * Duration on players reduced to 2 seconds from 3 seconds
 
 ## Structures
-* AdvancedArmory
+* ### AdvancedArmory
   * Health decreased to 2000/200 from 3000/200
   * Research cost decreased to 15 tres from 25 tres
   * Research time decreased to 45 seconds from 90 seconds
-* Observatory
+* ### Observatory
   * Changed build time to 10 seconds from 15 seconds
-* Prototype Lab
+* ### Prototype Lab
   * Cost reduced to 25 from 35
-* Robotics Factory
+* ### Robotics Factory
   * Removed Armory requirement for ARC Factory upgrade
   * ARC Factory upgrade cost increased to 15 tres from 5 tres
-* Sentry
+* ### Sentry
   * Cost increased to 6 tres from 5 tres
   * Confusion from Spores
     * Duration increased to 8 seconds from 4 seconds
     * Time until next attack increased to 4 seconds from 2 seconds
-* Sentry Battery
+* ### Sentry Battery
   * Cost increased to 12 tres from 10 tres
 
 ## SupplyChanges
@@ -162,22 +164,24 @@
 * Robotics Factory supply cost increased to 15 from 5
 
 ## Weapons
-* Expiration Rate
+* ### Expiration Rate
   * Stepping on a dropped weapon no longer refreshes the weapon timer
   * Standing near a weapon slows decay rate by 50%
-* Flamethrower
+* ### Flamethrower
   * Removed friendly fire of flame puddles
-* Heavy Machine Gun
+* ### Heavy Machine Gun
   * Reduced damage to 7 from 8
-* Weapon Lifetime
+* ### Weapon Lifetime
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
 # Spectator
+![alt text](https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png "Spectator")
 * Fixed edge pan jitter when following a player -- click to unfollow
 * Defaulted help text at bottom of the screen to a collapsed state
 * Added team supply to top bar
 
 # Global
+![alt text](https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png "Global")
 
 ## Hive Power Node
 * Power node in Alien starting Hive room will no longer be destroyed on round start.
@@ -191,5 +195,6 @@
 * Increased Marine starting pres to 20 from 15
 
 # Fixes & Improvements
+![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 * Fixed that the scoreboard would sometimes be slow to open
 * Fixed bug where multiple IPs would sometimes spawn with few players
