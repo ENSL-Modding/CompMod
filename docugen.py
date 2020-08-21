@@ -17,10 +17,10 @@ imagesForNodes = {
     "Global":               "https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png",
     "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
 }
-enableImageOutput = False
+enableImageOutput = True
 
 vsVanillaOutput = "docs/changes.md"
-compModChangelogOutput = "docs/full_changelog.md"
+modChangelogOutput = "docs/full_changelog.md"
 
 # NoReturn
 def die(errStr):
@@ -131,7 +131,9 @@ def main():
     if modVersion == oldModVersion:
         die("Current mod version matches previous mod version")
 
-    print("Starting docugen")
+    modName = getModName()
+
+    print("Starting docugen for {}".format(modName))
     print("Vanilla Version: {}".format(vanillaVersion))
     print("Mod Version: {}".format(modVersion))
     print("Old Mod Version: {}".format(oldModVersion))
@@ -140,10 +142,10 @@ def main():
     scanForDocugenFiles(conn, c, modVersion)
 
     # Generate full changelog
-    createFullChangelog(conn, c, vanillaVersion, modVersion)
+    createFullChangelog(conn, c, vanillaVersion, modVersion, modName)
 
     # Generate partial changelog
-    createPartialChangelog(conn, c, modVersion, oldModVersion)
+    createPartialChangelog(conn, c, modVersion, oldModVersion, modName)
     
 def createTables(c):
     # First drop
@@ -162,25 +164,28 @@ def findLastModVersion(c, modVersion):
                             FROM FullChangeLog
                             WHERE modVersion <> ?
                             ORDER BY modVersion DESC
-                            LIMIT 1''', [modVersion]).fetchone()[0]
+                            LIMIT 1''', [modVersion]).fetchone()
 
     if version == None:
         die("Failed to find last mod version. See usage")
 
-    return version
+    return version[0]
+
+def getModName():
+    walkPath = os.path.join("src", "lua")
+    dirs = next(os.walk(walkPath))[1]
+    del dirs[dirs.index("entry")]
+    return dirs[0]
 
 def scanForDocugenFiles(conn, c, modVersion):
     # Delete any current entries for modVersion
     c.execute("DELETE FROM FullChangelog WHERE modVersion = ?", [modVersion])
 
     # Get the modname
-    walkPath = os.path.join("src", "lua")
-    dirs = next(os.walk(walkPath))[1]
-    del dirs[dirs.index("entry")]
-    modName = dirs[0]
+    modName = getModName()
 
     # Walk src/lua/{modName}/Modules looking for .docugen files
-    walkPath = os.path.join(walkPath, modName, "Modules")
+    walkPath = os.path.join("src", "lua", modName, "Modules")
     docugenFiles = []
     for root, dirs, files in os.walk(walkPath):
         if ".docugen" in files:
@@ -201,7 +206,7 @@ def addDocugenEntry(c, modVersion, data):
     for value in data:
         c.execute("INSERT INTO FullChangelog(modVersion, key, value) VALUES (?,?,?)", [modVersion, key, value.strip()])
 
-def createFullChangelog(conn, c, vanillaVersion, modVersion):
+def createFullChangelog(conn, c, vanillaVersion, modVersion, modName):
     # Get changelog for version
     rawChangelog = c.execute('''SELECT key,value 
                                 FROM FullChangelog 
@@ -213,16 +218,16 @@ def createFullChangelog(conn, c, vanillaVersion, modVersion):
 
     # Generate markdown text and write to changelog file
     with open(vsVanillaOutput, "w") as f:
-        f.write("# Changes between CompMod {} and Vanilla {}\n".format(modVersion, vanillaVersion))
+        f.write("# Changes between {} {} and Vanilla {}\n".format(modName, modVersion, vanillaVersion))
         f.write("<br/>\n")
         f.write("\n")
         generateMarkdown(f, tree.rootNode)
 
     print("Changelog against vanilla generated")
 
-def createPartialChangelog(conn, c, modVersion, oldModVersion):
+def createPartialChangelog(conn, c, modVersion, oldModVersion, modName):
     # Create entry stub
-    stub = "# CompMod {} - ({})\n".format(modVersion, date.today().strftime("%d/%m/%Y"))
+    stub = "# {} {} - ({})\n".format(modName, modVersion, date.today().strftime("%d/%m/%Y"))
 
     # Get changelog for current version
     currentChangelog = c.execute('''SELECT key,value 
@@ -243,7 +248,7 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion):
     tree = ChangeLogTree(diff)
 
     # Prepend generated markdown to file
-    with open(compModChangelogOutput, "r+") as f:
+    with open(modChangelogOutput, "r+") as f:
         content = f.read()
         f.seek(0,0)
         f.write(stub)
@@ -252,7 +257,7 @@ def createPartialChangelog(conn, c, modVersion, oldModVersion):
         f.write("\n<br/>\n\n")
         f.write(content)
 
-    print("CompMod changelog generated")
+    print("Mod changelog generated")
 
 def generateMarkdown(f, rootNode):
     lineNo = 0
@@ -263,6 +268,12 @@ def generateMarkdown(f, rootNode):
 
         if rootNode.hasChild(initialNode):
             lineNo = renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl, lineNo=lineNo)
+
+    for child in rootNode.children:
+        if child.key in initialNodeOrder:
+            continue
+    
+        lineNo = renderMarkdown(child, f, lineNo=lineNo)
 
 def generatePartialMarkdown(f, rootNode):
     lineNo = 0
