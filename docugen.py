@@ -324,6 +324,9 @@ def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHe
             f.write("\n")
 
         f.write("#"*additionalHeaderLevel + "## {}\n".format(key))
+    elif indentIndex == 2 and additionalHeaderLevel == 0: 
+        # This is only really useful with no additionalHeaderLevels
+        f.write("* ### {}\n".format(key))
     else:
         f.write(("  "*(indentIndex-2)) + "* {}\n".format(key))
     
