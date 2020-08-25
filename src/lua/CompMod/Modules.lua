@@ -11,6 +11,7 @@
 function ModuleManagerModule:GetModules()
     return {
         "Alien/Aura/Range",
+        "Alien/BoneWall/Flammable",
         "Alien/Carapace",
         "Alien/Cloaking/MoveSpeed",
         "Alien/Cyst",
