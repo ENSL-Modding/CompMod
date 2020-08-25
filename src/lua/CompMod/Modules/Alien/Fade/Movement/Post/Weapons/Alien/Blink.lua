@@ -1,5 +1,4 @@
-kEtherealForce = 13.5
-
+local kEtherealForce = 14.0
 local kBlinkAddForce = 2
 local TriggerBlinkOutEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkOutEffects", false)
 local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkInEffects", false)
@@ -16,11 +15,13 @@ function Blink:SetEthereal(player, state)
             local oldVelocity = player:GetVelocity()
             oldVelocity.y = 0
 
-            local newSpeed = math.max(oldSpeed, kEtherealForce + celerityLevel * 0.5)
+            local blinkSpeed = kEtherealForce + celerityLevel * (1/3)
 
-            local celerityMultiplier = 1 + celerityLevel * 0.10
+            local newSpeed = math.max(oldSpeed, blinkSpeed)
 
-            local newVelocity = player:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 0.5) + oldVelocity
+            local celerityMultiplier = 1.1 + celerityLevel * (0.2/3)
+
+            local newVelocity = player:GetViewCoords().zAxis * blinkSpeed + oldVelocity
             if newVelocity:GetLength() > newSpeed then
                 newVelocity:Scale(newSpeed / newVelocity:GetLength())
             end
