@@ -1,3 +1,17 @@
+# CompMod 3.3.2 - (25/08/2020)
+## Alien
+
+### BoneWall
+* BoneWall is no longer flammable
+
+### Fade
+* Movement
+  * Increased speed of blink without Celerity.
+  * Decreased additional speed gained with Celerity (to 0.3 from 0.5)
+    * Net result means that Fades are faster without Celerity but the same speed with 3 Spurs and Celerity
+
+<br/>
+
 # CompMod 3.3.1 - (19/08/2020)
 ## Alien
 

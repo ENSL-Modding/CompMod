@@ -1,8 +1,11 @@
-# Changes between CompMod 3.3.1 and Vanilla 334
+# Changes between CompMod 3.3.2 and Vanilla 334
 <br/>
 
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
+
+## BoneWall
+* BoneWall is no longer flammable
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
@@ -37,6 +40,9 @@
   * Removed ground slide
   * Air friction decreases with Celerity (0.01 per spur, base 0.17)
   * Remove speed cap without Celerity
+  * Increased speed of blink without Celerity.
+  * Decreased additional speed gained with Celerity (to 0.3 from 0.5)
+    * Net result means that Fades are faster without Celerity but the same speed with 3 Spurs and Celerity
 
 ## Gorge
 * ### Babblers
