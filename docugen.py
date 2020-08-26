@@ -371,11 +371,16 @@ def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHe
 
 def changelogDiff(curr, old):
     diff = []
+    lastNeutralIndentKey = ""
+    lastNeutralIndentValue = ""
 
     # Iterate through all key/value pairs in currentChangelog
     for key,value in curr:
         foundKey = False
         foundValue = False
+        if not value.startswith(">"):
+            lastNeutralIndentKey = key
+            lastNeutralIndentValue = value
 
         # With a single key/value pair in curr, look for a matching one in the oldChangelog
         for key2,value2 in old:
@@ -385,18 +390,22 @@ def changelogDiff(curr, old):
                     foundValue = True
             elif foundKey:
                 break
-    
-        # If we didn't find a match for the key in old it means the key/value was added
-        if not foundKey:
-            debugPrint("Diff: Adding {} because the key wasn't found".format(key))
-            diff.append((key, value))
-            continue
 
+        # If we didn't find a match for the key is means the key/value was added
         # If we did find a key but didn't find a value, it means that a key/value pair was modified.
-        if not foundValue:
-            debugPrint("Diff: Adding {} because values didn't match".format(key))
+        if not foundKey or not foundValue:
+            if value.startswith(">") and lastNeutralIndentKey != "" and lastNeutralIndentValue != "":
+                debugPrint("Diff: Adding root {}({}) because the next key/value pair is indented".format(lastNeutralIndentKey, lastNeutralIndentValue))
+                diff.append((lastNeutralIndentKey, lastNeutralIndentValue))
+                lastNeutralIndentKey = ""
+                lastNeutralIndentValue = ""
+
+            debugPrint("Diff: Adding {}({}) because the {}".format(key, value, "key wasn't found" if not foundKey else "values didn't match"))
+
             diff.append((key, value))
-            continue
+            if key == lastNeutralIndentKey and value == lastNeutralIndentValue:
+                lastNeutralIndentKey = ""
+                lastNeutralIndentValue = ""
 
     # Check for any deletions
     for key,value in old:
@@ -411,18 +420,12 @@ def changelogDiff(curr, old):
                     foundValue = True
             elif foundKey:
                 break
-        
-        # If a key exists in the old changelog but not in the current one, it's been removed
-        if not foundKey:
-            debugPrint("Diff: Adding {} because it was deleted (key missing)".format(key))
-            diff.append((key, "== REMOVED == " + value))
-            continue
 
+        # If a key exists in the old changelog but not in the current one, it's been removed
         # If we did find a key in the old changelog but didn't find the value in the new changelog it's been removed
-        if not foundValue:
-            debugPrint("Diff: Adding {} because it was deleted (key found, value missing)".format(key))
+        if not foundKey or not foundValue:
+            debugPrint("Diff: Adding {} because it was deleted (key {})".format(key, "missing" if not foundKey else "found, value missing"))
             diff.append((key, "== REMOVED == " + value))
-            continue
     
     return diff
 
