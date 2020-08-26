@@ -1,3 +1,15 @@
+# CompMod 3.3.3 - (26/08/2020)
+## Alien
+
+### Fade
+* Movement
+  * Increased speed of blink without Celerity
+    * First blink adds 16.55 speed in the direction the Fade is facing (from 16.2 speed)
+    * Subsequent blinks add 2.3 speed in the direction the Fade is facing (from 2.2 speed)
+  * Decreased additional speed gained with Celerity (to 0.15 from 0.3)
+
+<br/>
+
 # CompMod 3.3.2 - (25/08/2020)
 ## Alien
 

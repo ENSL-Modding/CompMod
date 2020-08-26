@@ -1,4 +1,4 @@
-# Changes between CompMod 3.3.2 and Vanilla 334
+# Changes between CompMod 3.3.3 and Vanilla 334
 <br/>
 
 # Alien
@@ -40,9 +40,10 @@
   * Removed ground slide
   * Air friction decreases with Celerity (0.01 per spur, base 0.17)
   * Remove speed cap without Celerity
-  * Increased speed of blink without Celerity.
-  * Decreased additional speed gained with Celerity (to 0.3 from 0.5)
-    * Net result means that Fades are faster without Celerity but the same speed with 3 Spurs and Celerity
+  * Increased speed of blink without Celerity
+    * First blink adds 16.55 speed in the direction the Fade is facing
+    * Subsequent blinks add 2.3 speed in the direction the Fade is facing
+  * Decreased additional speed gained with Celerity (to 0.15 from 0.5)
 
 ## Gorge
 * ### Babblers
