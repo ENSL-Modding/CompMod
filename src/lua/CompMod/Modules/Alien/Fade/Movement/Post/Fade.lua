@@ -5,6 +5,7 @@ local kBlinkMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kBlinkMaxSpeed", fal
 local kBlinkAcceleration = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkAcceleration", false)
 local kFadeScanDuration = debug.getupvaluex(Fade.OnProcessMove, "kFadeScanDuration", false)
 local kFadeGravityMod = debug.getupvaluex(Fade.OnCreate, "kFadeGravityMod", false)
+Fade.kGroundFrictionPostBlinkDelay = 2
 
 local networkVars =
 {
@@ -90,10 +91,6 @@ end
 
 function Fade:HandleButtons(input)
     Alien.HandleButtons(self, input)
-end
-
-function Fade:GetGroundFriction()
-    return 9
 end
 
 function Fade:GetAirFriction()
