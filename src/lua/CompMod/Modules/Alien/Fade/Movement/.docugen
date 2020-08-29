@@ -1,4 +1,5 @@
-Alien.Fade.MovementRemoved auto-crouch
+Alien.Fade.Movement
+Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
 Air friction decreases with Celerity (0.01 per spur, base air friction 0.17)
 Speed gained through blink now takes into account your previous velocity
