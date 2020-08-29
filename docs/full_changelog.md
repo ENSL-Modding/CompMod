@@ -1,3 +1,13 @@
+# CompMod 3.3.4 - (29/08/2020)
+## Alien
+
+### Fade
+* Movement
+  * Re-added ground slide
+  * Reduced ground slide duration to 1 second from 2 seconds
+
+<br/>
+
 # CompMod 3.3.3 - (26/08/2020)
 ## Alien
 
