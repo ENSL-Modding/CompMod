@@ -74,6 +74,7 @@ function ModuleManagerModule:GetModules()
         "Marine/Sentry/Cost",
         "Marine/Sentry/SporesConfusion",
         "Marine/SentryBattery/Cost",
+        "Marine/Shotgun",
         "Marine/SupplyChanges",
         "Marine/SlowExpirationRate",
         "Marine/WeaponDropTime",
