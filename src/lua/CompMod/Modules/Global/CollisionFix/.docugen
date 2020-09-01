@@ -1,0 +1,2 @@
+Fixes & Improvements.Collision
+Fixed that two players colliding could cause one player to warp on top of the other player (e.g. Marines walking on top of Skulks, Fades walking on top of crouching Marines, etc.)
