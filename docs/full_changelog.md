@@ -1,3 +1,19 @@
+# CompMod 3.3.5 - (01/09/2020)
+## Marine
+
+### Weapons
+* Shotgun
+  * Falloff start distance increased to 10m from 5m
+  * Falloff end distance increased to 20m from 15m
+    * This will result in Shotguns doing more damage at range
+
+## Fixes & Improvements
+
+### Collision
+* Fixed that two players colliding could cause one player to warp on top of the other player (e.g. Marines walking on top of Skulks, Fades walking on top of crouching Marines, etc.)
+
+<br/>
+
 # CompMod 3.3.4 - (29/08/2020)
 ## Alien
 

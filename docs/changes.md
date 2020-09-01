@@ -1,4 +1,4 @@
-# Changes between CompMod 3.3.4 and Vanilla 334
+# Changes between CompMod 3.3.5 and Vanilla 334
 <br/>
 
 # Alien
@@ -179,6 +179,10 @@
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
   * Reduced damage to 7 from 8
+* ### Shotgun
+  * Falloff start distance increased to 10m from 5m
+  * Falloff end distance increased to 20m from 15m
+    * This will result in Shotguns doing more damage at range
 * ### Weapon Lifetime
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
@@ -206,3 +210,6 @@
 ![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 * Fixed that the scoreboard would sometimes be slow to open
 * Fixed bug where multiple IPs would sometimes spawn with few players
+
+## Collision
+* Fixed that two players colliding could cause one player to warp on top of the other player (e.g. Marines walking on top of Skulks, Fades walking on top of crouching Marines, etc.)
