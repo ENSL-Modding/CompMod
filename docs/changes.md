@@ -1,4 +1,4 @@
-# Changes between CompMod 3.3.5 and Vanilla 334
+# Changes between CompMod 3.3.6 and Vanilla 334
 <br/>
 
 # Alien

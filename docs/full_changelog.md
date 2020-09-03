@@ -1,3 +1,8 @@
+# CompMod 3.3.6 - (03/09/2020)
+* Rolled back collision fix from 3.3.5.
+
+<br/>
+
 # CompMod 3.3.5 - (01/09/2020)
 ## Marine
 
