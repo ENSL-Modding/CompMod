@@ -51,7 +51,7 @@ function ModuleManagerModule:GetModules()
     
         "Changelog",
     
-        "Global/CollisionFix",
+        -- "Global/CollisionFix",
         "Global/KeepLightsOnAtStart",
         "Global/MucousHitsounds",
         "Global/Resources",
