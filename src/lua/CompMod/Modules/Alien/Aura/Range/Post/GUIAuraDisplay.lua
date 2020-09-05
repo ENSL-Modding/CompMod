@@ -70,10 +70,14 @@ function GUIAuraDisplay:Update(deltaTime)
     
         local enemy = players[i]
         local icon = self.icons[i]
+        local color
         
-        -- local healthScalar = enemy:GetHealthScalar()
-        -- local color = Color(1, healthScalar, 0, 1)
-        local color = Color(1, 1, 0, 1)
+        if enemy.parasited then
+            local healthScalar = enemy:GetHealthScalar()
+            color = Color(1, healthScalar, 0, 1)
+        else
+            color = Color(1, 1, 0, 1)
+        end
         
         local offset = enemy:isa("Exo") and kExoHeartOffset or kHeartOffset
         

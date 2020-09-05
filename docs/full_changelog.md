@@ -1,3 +1,44 @@
+# CompMod 3.4.0 - (05/09/2020)
+## Alien
+
+### Fade
+* Movement
+  * Decreased base speed of Blink, increase Celerity Blink speed to compensate
+  * Movement Breakdown
+    * First blink adds 16.325 speed in the direction the Fade is facing
+    * Subsequent blinks add 2.25 speed in the direction the Fade is facing
+    * With Celerity: Each Spur adds an additional 0.29 speed to the first blink and 0.06 speed to subsequent blinks
+
+### Lerk
+* Spores
+  * Opacity of cloud lowered by 40%
+* Umbra
+  * Reduced opacity by 25%
+
+### Upgrades
+* Adrenaline
+  * Removed additional energy pool from Adrenaline
+* Aura
+  * Only shows HP value on parasited players
+
+## Marine
+
+### Weapons
+* Shotgun
+  * Damage
+    * Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
+  * Falloff
+    * Falloff start distance increased to 10m from 5m
+    * Falloff end distance increased to 20m from 15m
+      * This will result in Shotguns doing more damage at range
+
+## Fixes & Improvements
+
+### Fade
+* Fixed that a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
+
+<br/>
+
 # CompMod 3.3.6 - (03/09/2020)
 * Rolled back collision fix from 3.3.5.
 

@@ -10,6 +10,7 @@
 
 function ModuleManagerModule:GetModules()
     return {
+        "Alien/Adrenaline",
         "Alien/Aura/Range",
         "Alien/BoneWall/Flammable",
         "Alien/Carapace",
@@ -22,6 +23,7 @@ function ModuleManagerModule:GetModules()
         "Alien/Eggs/LifeformEggDrops",
         "Alien/Enzyme/Cooldown",
         "Alien/Fade/AdvancedSwipe",
+        "Alien/Fade/CommanderMetabFix",
         "Alien/Fade/Movement",
         "Alien/Fade/Stab",
         "Alien/Gorge/Babblers/Flammable",
@@ -74,7 +76,8 @@ function ModuleManagerModule:GetModules()
         "Marine/Sentry/Cost",
         "Marine/Sentry/SporesConfusion",
         "Marine/SentryBattery/Cost",
-        "Marine/Shotgun",
+        "Marine/Shotgun/Damage",
+        "Marine/Shotgun/Falloff",
         "Marine/SupplyChanges",
         "Marine/SlowExpirationRate",
         "Marine/WeaponDropTime",

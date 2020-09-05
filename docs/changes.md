@@ -1,4 +1,4 @@
-# Changes between CompMod 3.3.6 and Vanilla 334
+# Changes between CompMod 3.4.0 and Vanilla 334
 <br/>
 
 # Alien
@@ -42,9 +42,9 @@
   * Speed gained through blink now takes into account your previous velocity
   * Remove speed cap without Celerity
   * Movement Breakdown
-    * First blink adds 16.55 speed in the direction the Fade is facing
-    * Subsequent blinks add 2.3 speed in the direction the Fade is facing
-    * Each Spur adds an additional 0.25 speed to the first blink and 0.05 speed to subsequent blinks
+    * First blink adds 16.325 speed in the direction the Fade is facing
+    * Subsequent blinks add 2.25 speed in the direction the Fade is facing
+    * With Celerity: Each Spur adds an additional 0.29 speed to the first blink and 0.06 speed to subsequent blinks
 
 ## Gorge
 * ### Babblers
@@ -70,9 +70,9 @@
   * Size reduced to 45mm from 60mm
 * ### Spores
   * Research changed to Biomass 6 from Biomass 5
-  * Opacity of cloud lowered by 50%
+  * Opacity of cloud lowered by 40%
 * ### Umbra
-  * Reduced opacity by 50%
+  * Reduced opacity by 25%
 
 ## Onos
 * ### BoneShield
@@ -101,9 +101,11 @@
   * Decreased height check for tunnel placement
 
 ## Upgrades
+* ### Adrenaline
+  * Removed additional energy pool from Adrenaline
 * ### Aura
   * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
-  * No longer shows HP value
+  * Only shows HP value on parasited players
 * ### Camouflage
   * No longer fully cloaked while moving
 * ### Carapace
@@ -180,16 +182,25 @@
 * ### Heavy Machine Gun
   * Reduced damage to 7 from 8
 * ### Shotgun
-  * Falloff start distance increased to 10m from 5m
-  * Falloff end distance increased to 20m from 15m
-    * This will result in Shotguns doing more damage at range
+  * Damage
+    * Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
+  * Falloff
+    * Falloff start distance increased to 10m from 5m
+    * Falloff end distance increased to 20m from 15m
+      * This will result in Shotguns doing more damage at range
 * ### Weapon Lifetime
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
 # Spectator
 ![alt text](https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png "Spectator")
+
+## EdgePanning
 * Fixed edge pan jitter when following a player -- click to unfollow
+
+## HelpText
 * Defaulted help text at bottom of the screen to a collapsed state
+
+## Supply Display
 * Added team supply to top bar
 
 # Global
@@ -208,8 +219,12 @@
 
 # Fixes & Improvements
 ![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
-* Fixed that the scoreboard would sometimes be slow to open
+
+## Fade
+* Fixed that a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
+
+## IPs
 * Fixed bug where multiple IPs would sometimes spawn with few players
 
-## Collision
-* Fixed that two players colliding could cause one player to warp on top of the other player (e.g. Marines walking on top of Skulks, Fades walking on top of crouching Marines, etc.)
+## Scoreboard
+* Fixed that the scoreboard would sometimes be slow to open
