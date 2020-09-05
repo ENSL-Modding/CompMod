@@ -1,3 +1,2 @@
 Fixes & Improvements.Fade
-Fixed that a Fade become commander while partway through the Metabolize animation wouldn't reset the Fade's active weapon
->This only affects Metabolize animations triggered by the movement modifier key
+Fixed that a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
