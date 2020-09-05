@@ -21,8 +21,8 @@ function ModFramework:LoadConfig()
     self.config.versioning = {}
     self.config.versioning.majorVersion = 3
     self.config.versioning.minorVersion = 3
-    self.config.versioning.patchVersion = 6
-    self.config.versioning.preRelease = ""
+    self.config.versioning.patchVersion = 7
+    self.config.versioning.preRelease = "pre"
     self.config.versioning.display = true
 
     -- Tech Handler
