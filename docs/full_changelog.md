@@ -11,9 +11,9 @@
 
 ### Lerk
 * Spores
-  * Opacity of cloud lowered by 40%
+  * Opacity of cloud lowered to 40%
 * Umbra
-  * Reduced opacity by 25%
+  * Reduced opacity to 25%
 
 ### Upgrades
 * Adrenaline
