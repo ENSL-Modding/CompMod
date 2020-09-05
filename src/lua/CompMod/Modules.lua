@@ -10,6 +10,7 @@
 
 function ModuleManagerModule:GetModules()
     return {
+        "Alien/Adrenaline",
         "Alien/Aura/Range",
         "Alien/BoneWall/Flammable",
         "Alien/Carapace",
