@@ -1,72 +1,81 @@
---[[
-    Fade base reverted to Nostalgia movement
+local TriggerBlinkOutEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkOutEffects")
+local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkInEffects")
+local kEtherealBoost = debug.getupvaluex(Blink.SetEthereal, "kEtherealBoost")
+local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce")
 
-    Blink speed without celerity increased to match speed with 1.25 spurs, speed gained through spurs lowered to compensate
+local kFirstBlinkSpeedAdd  = 2
+
+kEtherealForce = kEtherealForce - kFirstBlinkSpeedAdd
+
+--[[
+    Base: Vanilla movement,
+    Target: Include momentum when blinking in opposite direction to movement vector, ensure a minumum speed of kEtherealForce - 2 is applied.
 ]]
 
-local TriggerBlinkOutEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkOutEffects", false)
-local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkInEffects", false)
-local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce", false)
-
-local kEtherealForce = 13.5
-local kBlinkAddForce = 2
-local kSpeedPerSpur = 0.5
-local kAddForcePerSpur = 0.1
-
--- TODO:
--- We're iterating a lot on this at the moment, it's faster to have a variable controlling the base spur speed instead of recalculating all variables
--- After we've settled on a speed we like, these calculations should be removed. kEtherealForce and kBlinkAddForce should be recalculated to apply
--- these changes and the code changed to reflect it
-local baseSpur = 1.25
-local kAdjustedSpeedPerSpur = (kSpeedPerSpur * (3 - baseSpur)) / 3
-local kEtherealForceAdditional = (kSpeedPerSpur * 3) - (kAdjustedSpeedPerSpur * 3)
-
-local kAdjustedAddForcePerSpur = (kAddForcePerSpur * (3 - baseSpur)) / 3
-local kBlinkAddForceAdditional = (kAddForcePerSpur * 3) - (kAdjustedAddForcePerSpur * 3)
-
 function Blink:SetEthereal(player, state)
+
+    -- Enter or leave ethereal mode.
     if player.ethereal ~= state then
+    
         if state then
             player.etherealStartTime = Shared.GetTime()
             TriggerBlinkOutEffects(self, player)
 
+            local playerForwardAxis = player:GetViewCoords().zAxis
+
             local celerityLevel = GetHasCelerityUpgrade(player) and player:GetSpurLevel() or 0
-            local oldSpeed = player:GetVelocity():GetLengthXZ()
-            local oldVelocity = player:GetVelocity()
-            oldVelocity.y = 0
+            local currentVelocityVector = player:GetVelocity()
 
-            local blinkSpeed = kEtherealForce + kEtherealForceAdditional + celerityLevel * kAdjustedSpeedPerSpur
+            -- Add a speedboost to the current velocity.
+            currentVelocityVector:Add(playerForwardAxis * kEtherealBoost * celerityLevel)
+            -- Extract the player's velocity in the player's forward direction:
+            local forwardVelocity = currentVelocityVector:DotProduct(playerForwardAxis)
 
-            local newSpeed = math.max(oldSpeed, blinkSpeed)
+            local blinkSpeed = kEtherealForce + celerityLevel * kEtherealCelerityForcePerSpur
+            blinkSpeed = math.max(blinkSpeed, blinkSpeed + kFirstBlinkSpeedAdd + forwardVelocity)
 
-            local celerityMultiplier = 1.0 + kBlinkAddForceAdditional + celerityLevel * kAdjustedAddForcePerSpur
+            -- taperedVelocity is tracked so that if we're for some reason going faster than blink speed, we use that instead of
+            -- slowing the player down. This allows for a skilled build up of extra speed.
+            local taperedVelocity = math.max(forwardVelocity, blinkSpeed)
 
-            local newVelocity = player:GetViewCoords().zAxis * blinkSpeed + oldVelocity
-            if newVelocity:GetLength() > newSpeed then
-                newVelocity:Scale(newSpeed / newVelocity:GetLength())
-            end
+            local newVelocityVector = (playerForwardAxis * taperedVelocity)
 
+            --Apply a minimum y directional speed of kEtherealVerticalForce if on the ground.
             if player:GetIsOnGround() then
-                newVelocity.y = math.max(newVelocity.y, kEtherealVerticalForce)
+                newVelocityVector.y = math.max(newVelocityVector.y, kEtherealVerticalForce)
             end
 
-            newVelocity:Add(player:GetViewCoords().zAxis * kBlinkAddForce * celerityMultiplier)
-
-            player:SetVelocity(newVelocity)
+            -- There is no need to check for a max speed here, since the logic in the active blink code will keep it
+            -- from exceeding the limit.
+            player:SetVelocity(newVelocityVector)
             player.onGround = false
             player.jumping = true
+            
         else
+        
             TriggerBlinkInEffects(self, player)
             player.etherealEndTime = Shared.GetTime()
+            
         end
+        
+        player.ethereal = state        
 
-        player.ethereal = state
-
+        -- Give player initial velocity in direction we're pressing, or forward if not pressing anything.
         if player.ethereal then
+        
+            -- Deduct blink start energy amount.
             player:DeductAbilityEnergy(kStartBlinkEnergyCost)
             player:TriggerBlink()
+            
+        -- A case where OnBlinkEnd() does not exist is when a Fade becomes Commanders and
+        -- then a new ability becomes available through research which calls AddWeapon()
+        -- which calls OnHolster() which calls this function. The Commander doesn't have
+        -- a OnBlinkEnd() function but the new ability is still added to the Commander for
+        -- when they log out and become a Fade again.
         elseif player.OnBlinkEnd then
             player:OnBlinkEnd()
         end
+        
     end
+    
 end

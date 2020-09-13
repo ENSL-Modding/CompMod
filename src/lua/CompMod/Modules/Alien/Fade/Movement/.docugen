@@ -1,10 +1,6 @@
 Alien.Fade.Movement
 Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
-Air friction decreases with Celerity (0.01 per spur, base air friction 0.17)
-Speed gained through blink now takes into account your previous velocity
-Remove speed cap without Celerity
-Movement Breakdown
->First blink adds 16.325 speed in the direction the Fade is facing
->Subsequent blinks add 2.25 speed in the direction the Fade is facing
->With Celerity: Each Spur adds an additional 0.29 speed to the first blink and 0.06 speed to subsequent blinks
+Added momentum to Blink
+>Blinking in the direction opposite to your movement vector will reduce the speed gained from the Blink based on your previous speed
+>You will always gain at least 14.25 speed, standard Blink gives 16.25 speed
