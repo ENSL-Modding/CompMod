@@ -3,7 +3,7 @@ local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlink
 local kEtherealBoost = debug.getupvaluex(Blink.SetEthereal, "kEtherealBoost")
 local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce")
 
-local kFirstBlinkSpeedAdd  = 2
+local kFirstBlinkSpeedAdd = 2
 
 kEtherealForce = kEtherealForce - kFirstBlinkSpeedAdd
 
@@ -31,8 +31,10 @@ function Blink:SetEthereal(player, state)
             -- Extract the player's velocity in the player's forward direction:
             local forwardVelocity = currentVelocityVector:DotProduct(playerForwardAxis)
 
-            local blinkSpeed = kEtherealForce + celerityLevel * kEtherealCelerityForcePerSpur
-            blinkSpeed = math.max(blinkSpeed, blinkSpeed + kFirstBlinkSpeedAdd + forwardVelocity)
+            local blinkSpeed = kEtherealForce + kFirstBlinkSpeedAdd + celerityLevel * kEtherealCelerityForcePerSpur
+            if forwardVelocity < 0 then
+                blinkSpeed = math.max(blinkSpeed - kFirstBlinkSpeedAdd, blinkSpeed + forwardVelocity)
+            end
 
             -- taperedVelocity is tracked so that if we're for some reason going faster than blink speed, we use that instead of
             -- slowing the player down. This allows for a skilled build up of extra speed.
