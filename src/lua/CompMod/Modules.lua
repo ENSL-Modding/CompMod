@@ -8,7 +8,7 @@
     For more information see the wiki.
 ]]
 
-function ModuleManagerModule:GetModules()
+function GetModFrameworkModulesCompMod()
     return {
         "Alien/Adrenaline",
         "Alien/Aura/Range",

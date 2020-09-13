@@ -1,14 +1,16 @@
-local mod = fw_get_current_mod()
+local mod = CompMod
 local logger = mod:GetModule('logger')
 local techHandler = mod:GetModule('techhandler')
 
 local function ApplyNodeAdditions(techTree, addNodeFunction, nodeName, toAdd)
     logger:PrintDebug("Applying %s Marine%s additions", #toAdd, nodeName)
     for _,v in ipairs(toAdd) do
-        local techId = v[1]
+        local rec = type(v) == "table" and v or { v }
+        local techId = rec[1]
+
         local techName = EnumToString(kTechId, techId) or techId
-        logger:PrintDebug("Adding Marine%s: %s", nodeName, techName)
-        addNodeFunction(techTree, unpack(v))
+        logger:PrintDebug("Adding %s: %s", nodeName, techName)
+        addNodeFunction(techTree, unpack(rec))
     end
 end
 

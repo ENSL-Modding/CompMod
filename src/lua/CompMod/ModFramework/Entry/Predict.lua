@@ -1,6 +1,6 @@
 if not Predict then return end
 
-local mod = fw_get_current_mod()
+local mod = CompMod
 mod:LoadAllModuleFiles("Predict")
 local moduleManager = mod:GetModule('modulemanager')
 local modules = moduleManager:GetModules()

@@ -1,6 +1,6 @@
 if not Server then return end
 
-local mod = fw_get_current_mod()
+local mod = CompMod
 mod:LoadAllModuleFiles("Server")
 local moduleManager = mod:GetModule('modulemanager')
 local modules = moduleManager:GetModules()
