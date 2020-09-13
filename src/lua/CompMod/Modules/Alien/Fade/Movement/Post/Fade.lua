@@ -1,5 +1,7 @@
 local kFadeScanDuration = debug.getupvaluex(Fade.OnProcessMove, "kFadeScanDuration")
 local kFadeGravityMod = debug.getupvaluex(Fade.OnCreate, "kFadeGravityMod")
+local kCelerityFrictionFactor = 0.04
+local kFastMovingAirFriction = 0.40
 Fade.kGroundFrictionPostBlinkDelay = 1
 
 local networkVars =
@@ -86,6 +88,11 @@ end
 
 function Fade:HandleButtons(input)
     Alien.HandleButtons(self, input)
+end
+
+function Fade:GetAirFriction()
+    local currentVelocityVector = self:GetVelocityLength()
+    return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or GetHasCelerityUpgrade(self) and (kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())) or currentVelocityVector > kEtherealForce and kFastMovingAirFriction or 0.17
 end
 
 Shared.LinkClassToMap("Fade", Fade.kMapName, networkVars)
