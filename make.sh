@@ -20,6 +20,6 @@ cp -r src/* build/
 
 # Copy license
 printf "Copying LICENSE\n"
-cp LICENSE build/
+cp LICENSE build/ 2>/dev/null || printf "\e[93mWarning\e[0m: no LICENSE file found!\n"
 
 printf "Done!\n"

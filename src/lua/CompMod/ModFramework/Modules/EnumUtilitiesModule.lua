@@ -1,19 +1,9 @@
-Script.Load("lua/" .. fw_get_current_mod_name() .. "/ModFramework/Modules/FrameworkModule.lua")
+Script.Load("lua/CompMod/ModFramework/Modules/FrameworkModule.lua")
 
 class 'EnumUtilitiesModule' (FrameworkModule)
 
 function EnumUtilitiesModule:Initialize(framework)
     FrameworkModule.Initialize(self, "enumutilities", framework, false)
-end
-
-local function ShiftTechIdMax(tbl, maxVal)
-    -- delete old max
-    rawset(tbl, rawget(tbl, maxVal), nil)
-    rawset(tbl, maxVal, nil)
-
-    -- move max down
-    rawset(tbl, 'Max', maxVal - 1)
-    rawset(tbl, maxVal - 1, 'Max')
 end
 
 --[[
@@ -28,12 +18,17 @@ function EnumUtilitiesModule:AppendToEnum(tbl, key)
     fw_assert_not_nil(key, "Key cannot be nil", self)
     fw_assert_nil(rawget(tbl,key), "Key already exists in enum.")
 
-    local maxVal = 0
+    local maxVal
     if tbl == kTechId then
         maxVal = tbl.Max
-        fw_assert(maxVal - 1 ~= kTechIdMax, "Appending another value to the TechId enum would exceed network precision constraints", self)
 
-        ShiftTechIdMax(tbl, maxVal)
+        -- Delete old max
+        rawset(tbl, rawget(tbl, maxVal), nil)
+        rawset(tbl, maxVal, nil)
+
+        -- Move max down
+        rawset(tbl, 'Max', maxVal + 1)
+        rawset(tbl, maxVal + 1, 'Max')
     else
         for k, v in next, tbl do
             if type(v) == "number" and v > maxVal then
@@ -42,6 +37,8 @@ function EnumUtilitiesModule:AppendToEnum(tbl, key)
         end
         maxVal = maxVal + 1
     end
+
+    fw_assert_not_nil(maxVal, "Failed to get next value for enum")
 
     rawset(tbl, key, maxVal)
     rawset(tbl, maxVal, key)
@@ -67,6 +64,14 @@ function EnumUtilitiesModule:RemoveFromEnum(tbl, key)
 
     -- If we modified the kTechId eunm, we need to update kTechId.Max too.
     if tbl == kTechId then
-        ShiftTechIdMax(tbl, tbl.Max)
+        local maxVal = tbl.Max
+
+        -- delete old max
+        rawset(tbl, rawget(tbl, maxVal), nil)
+        rawset(tbl, maxVal, nil)
+    
+        -- move max down
+        rawset(tbl, 'Max', maxVal - 1)
+        rawset(tbl, maxVal - 1, 'Max')
     end
 end

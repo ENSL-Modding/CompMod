@@ -52,17 +52,3 @@ function fw_assert_type(value, expectedType, varName, module)
     local actualType = type(value)
     return fw_assert(actualType == expectedType, varName .. ": Expected type " .. expectedType .. ", got " .. actualType .. ".", module)
 end
-
--- TODO: This needs to be unloaded after the framework has fully loaded.
-function fw_get_current_mod_name()
-    return debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/ModFramework/.*%.lua", "")
-end
-
--- TODO: This needs to be unloaded after the framework has fully loaded.
-function fw_get_current_mod()
-    local modname = fw_get_current_mod_name()
-    local mod = _G[modname]
-    fw_assert_not_nil(mod, "Failed to get current mod")
-    
-    return mod
-end

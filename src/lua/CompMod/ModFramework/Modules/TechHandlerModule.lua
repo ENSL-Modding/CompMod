@@ -1,9 +1,12 @@
-Script.Load("lua/" .. fw_get_current_mod_name() .. "/ModFramework/Modules/FrameworkModule.lua")
+Script.Load("lua/CompMod/ModFramework/Modules/FrameworkModule.lua")
 
 class 'TechHandlerModule' (FrameworkModule)
 
 function TechHandlerModule:Initialize(framework)
     FrameworkModule.Initialize(self, "techhandler", framework, true)
+
+    -- Used for removing specific techdata entry
+    self.Remove = "modFrameworkRemoveTechData"
     
     -- Initialize arrays
     self:CreateArrays("materialOffset",        false)

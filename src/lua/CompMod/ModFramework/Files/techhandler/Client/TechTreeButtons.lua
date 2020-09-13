@@ -1,4 +1,4 @@
-local mod = fw_get_current_mod()
+local mod = CompMod
 local logger = mod:GetModule('logger')
 local techHandler = mod:GetModule('techhandler')
 

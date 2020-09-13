@@ -1,12 +1,11 @@
+Script.Load("lua/CompMod/ModFramework/ModFramework.lua")
+
 local function FormatDir(fw, module, hookType)
     return string.format("lua/%s/Modules/%s/%s/*.lua", fw:GetModName(), module, hookType)
 end
 
-local modname = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/ModFramework/.*%.lua", "")
-Script.Load("lua/" .. modname .. "/ModFramework/ModFramework.lua")
-
 local mod = ModFramework
-mod:Initialize(modname, "FileHook", true)
+mod:Initialize("FileHook", true)
 mod:InitModules()
 mod:LoadAllModuleFiles("FileHook")
 
