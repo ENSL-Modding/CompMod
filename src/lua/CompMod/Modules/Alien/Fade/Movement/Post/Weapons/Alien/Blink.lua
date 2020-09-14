@@ -3,7 +3,7 @@ local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlink
 local kEtherealBoost = debug.getupvaluex(Blink.SetEthereal, "kEtherealBoost")
 local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce")
 
-local kFirstBlinkSpeedAdd = 2
+local kFirstBlinkSpeedAdd = 3
 
 kEtherealForce = kEtherealForce - kFirstBlinkSpeedAdd
 

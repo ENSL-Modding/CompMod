@@ -3,4 +3,4 @@ Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
 Added momentum to Blink
 >Blinking in the direction opposite to your movement vector will reduce the speed gained from the Blink based on your previous speed
->You will always gain at least 14.25 speed, standard Blink gives 16.25 speed
+>You will always gain at least 13.25 speed, a standard Blink gives 16.25 speed
