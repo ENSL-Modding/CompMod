@@ -58,6 +58,7 @@ function GetModFrameworkModulesCompMod()
         "Global/MucousHitsounds",
         "Global/Resources",
         "Global/ResponsiveGUI",
+        "Global/DebugSpeedStupidSpot",
     
         "Marine/AdvancedArmory/Health",
         "Marine/AdvancedWeapons",

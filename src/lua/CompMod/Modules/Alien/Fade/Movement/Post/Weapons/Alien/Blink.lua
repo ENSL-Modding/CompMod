@@ -1,16 +1,11 @@
 local TriggerBlinkOutEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkOutEffects")
 local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkInEffects")
-local kEtherealBoost = debug.getupvaluex(Blink.SetEthereal, "kEtherealBoost")
+-- local kEtherealBoost = debug.getupvaluex(Blink.SetEthereal, "kEtherealBoost")
 local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce")
+local kEtherealBoost = 0.5 --0.833
+kBlinkAddForce = 1
 
-local kFirstBlinkSpeedAdd = 3
-
-kEtherealForce = kEtherealForce - kFirstBlinkSpeedAdd
-
---[[
-    Base: Vanilla movement,
-    Target: Include momentum when blinking in opposite direction to movement vector, ensure a minumum speed of kEtherealForce - 2 is applied.
-]]
+kEtherealForce = 13.25
 
 function Blink:SetEthereal(player, state)
 
@@ -31,10 +26,7 @@ function Blink:SetEthereal(player, state)
             -- Extract the player's velocity in the player's forward direction:
             local forwardVelocity = currentVelocityVector:DotProduct(playerForwardAxis)
 
-            local blinkSpeed = kEtherealForce + kFirstBlinkSpeedAdd + celerityLevel * kEtherealCelerityForcePerSpur
-            if forwardVelocity < 0 then
-                blinkSpeed = math.max(blinkSpeed - kFirstBlinkSpeedAdd, blinkSpeed + forwardVelocity)
-            end
+            local blinkSpeed = kEtherealForce + celerityLevel * kEtherealCelerityForcePerSpur
 
             -- taperedVelocity is tracked so that if we're for some reason going faster than blink speed, we use that instead of
             -- slowing the player down. This allows for a skilled build up of extra speed.
@@ -46,6 +38,8 @@ function Blink:SetEthereal(player, state)
             if player:GetIsOnGround() then
                 newVelocityVector.y = math.max(newVelocityVector.y, kEtherealVerticalForce)
             end
+
+            newVelocityVector:Add(playerForwardAxis * kBlinkAddForce)
 
             -- There is no need to check for a max speed here, since the logic in the active blink code will keep it
             -- from exceeding the limit.
