@@ -121,7 +121,7 @@ function Fade:ModifyVelocity(input, velocity, deltaTime)
         end 
         
         -- additional acceleration when holding down blink to exceed max speed
-        velocity:Add(wishDir * kBlinkAddAcceleration * deltaTime)
+        -- velocity:Add(wishDir * kBlinkAddAcceleration * deltaTime)
         
     end
 
