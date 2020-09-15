@@ -2,6 +2,7 @@ local kFadeScanDuration = debug.getupvaluex(Fade.OnProcessMove, "kFadeScanDurati
 local kFadeGravityMod = debug.getupvaluex(Fade.OnCreate, "kFadeGravityMod")
 -- local kBlinkMaxSpeed = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkMaxSpeed")
 local kBlinkAcceleration = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkAcceleration")
+local kMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kMaxSpeed")
 local kCelerityFrictionFactor = 0.04
 local kFastMovingAirFriction = 0.40
 local kBlinkMaxSpeed = 19
@@ -156,5 +157,20 @@ function Fade:GetAirFriction()
     -- local currentVelocityVector = self:GetVelocityLength() 
     -- return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or GetHasCelerityUpgrade(self) and (kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())) or currentVelocityVector > kEtherealForce and kFastMovingAirFriction or 0.17
 end 
+
+function Fade:GetMaxSpeed(possible)
+
+    if possible then
+        return kMaxSpeed
+    end
+    
+    if self:GetIsBlinking() then
+        return kBlinkMaxSpeed
+    end
+    
+    -- Take into account crouching.
+    return kMaxSpeed
+    
+end
 
 Shared.LinkClassToMap("Fade", Fade.kMapName, networkVars)
