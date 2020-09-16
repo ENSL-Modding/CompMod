@@ -1,6 +1,11 @@
 Alien.Fade.Movement
 Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
-Added momentum to Blink
->Blinking in the direction opposite to your movement vector will reduce the speed gained from the Blink based on your previous speed
->You will always gain at least 13.25 speed, a standard Blink gives 16.25 speed
+Max speed decreased to 20 from 25
+Air friction decreased to 0.014 from 0.017
+Without Celerity
+>Initial Blink will give 14.25 speed from 16.25 speed, 
+>Each subsequent blink will now give 1.5 speed
+With Celerity
+>Initial Blink will give 16.25 speed from 18.28 speed,
+>Each subsequent blink will give 1.7 speed
