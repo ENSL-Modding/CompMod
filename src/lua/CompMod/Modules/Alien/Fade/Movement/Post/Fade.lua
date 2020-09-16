@@ -5,7 +5,7 @@ local kBlinkAcceleration = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkAcceler
 local kMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kMaxSpeed")
 local kCelerityFrictionFactor = 0.04
 local kFastMovingAirFriction = 0.40
-local kBlinkMaxSpeed = 19
+local kBlinkMaxSpeed = 20
 local kBlinkAddAcceleration = 1
 -- Speed after first blink from standstill
 local kBlinkSpeed = 14.25
@@ -153,7 +153,7 @@ function Fade:HandleButtons(input)
 end
 
 function Fade:GetAirFriction()
-    return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.15
+    return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.14
     -- local currentVelocityVector = self:GetVelocityLength() 
     -- return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or GetHasCelerityUpgrade(self) and (kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())) or currentVelocityVector > kEtherealForce and kFastMovingAirFriction or 0.17
 end 
