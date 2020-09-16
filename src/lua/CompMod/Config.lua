@@ -22,7 +22,7 @@ function GetModFrameworkConfigCompMod()
     config.versioning.majorVersion = 3
     config.versioning.minorVersion = 4
     config.versioning.patchVersion = 1
-    config.versioning.preRelease = "pre4"
+    config.versioning.preRelease = "pre5"
     config.versioning.display = true
 
     -- Tech Handler
