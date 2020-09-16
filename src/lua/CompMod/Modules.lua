@@ -50,6 +50,7 @@ function GetModFrameworkModulesCompMod()
         "Alien/Skulk/BiteConeSize",
         "Alien/Skulk/Leap",
         "Alien/Vampirism/FriendlyFireFix",
+        "Alien/Vampirism/ShieldEffect",
     
         "Changelog",
     
