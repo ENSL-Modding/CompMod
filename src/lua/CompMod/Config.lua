@@ -20,8 +20,8 @@ function GetModFrameworkConfigCompMod()
     -- Versioning
     config.versioning = {}
     config.versioning.majorVersion = 3
-    config.versioning.minorVersion = 4
-    config.versioning.patchVersion = 1
+    config.versioning.minorVersion = 5
+    config.versioning.patchVersion = 0
     config.versioning.preRelease = "pre5"
     config.versioning.display = true
 
