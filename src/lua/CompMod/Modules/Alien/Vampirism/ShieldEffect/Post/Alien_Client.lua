@@ -1,5 +1,3 @@
-print("ADDING SHEILDEFFECTS")
-
 Alien.kOvershieldViewMaterialName = "cinematics/vfx_materials/overshield_view.material"
 Alien.kOvershieldThirdPersonMaterialName = "cinematics/vfx_materials/overshield.material"
 Shared.PrecacheSurfaceShader("cinematics/vfx_materials/overshield.surface_shader")
