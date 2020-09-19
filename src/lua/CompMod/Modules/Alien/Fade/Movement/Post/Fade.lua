@@ -88,28 +88,6 @@ function Fade:OnProcessMove(input)
     -- end
 end
 
-function Fade:ModifyVelocity(input, velocity, deltaTime)
-    if self:GetIsBlinking() then
-        local wishDir = self:GetViewCoords().zAxis
-        local maxSpeedTable = { maxSpeed = kBlinkMaxSpeed }
-        self:ModifyMaxSpeed(maxSpeedTable, input)  
-        local prevSpeed = velocity:GetLength()
-
-        -- the following block will set the acceleration to either the minimum blink ethereal force speed or
-        -- the speed a player has built up over successive blinks. Then it will make sure that doesn't exceed
-        -- an absolute max.
-        local desiredSpeed = math.max(prevSpeed, kBlinkSpeed)
-        local speedCeiling = math.min(maxSpeedTable.maxSpeed, desiredSpeed)
-
-        velocity:Add(wishDir * kBlinkAcceleration * deltaTime)
-        
-        if velocity:GetLength() > speedCeiling then
-            velocity:Normalize()
-            velocity:Scale(speedCeiling)
-        end 
-    end
-end
-
 function Fade:HandleButtons(input)
     Alien.HandleButtons(self, input)
 end
