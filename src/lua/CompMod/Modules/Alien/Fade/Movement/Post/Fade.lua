@@ -2,7 +2,17 @@ local kFadeScanDuration = debug.getupvaluex(Fade.OnProcessMove, "kFadeScanDurati
 local kFadeGravityMod = debug.getupvaluex(Fade.OnCreate, "kFadeGravityMod")
 local kBlinkAcceleration = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkAcceleration")
 local kMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kMaxSpeed")
-local kBlinkMaxSpeed = 20
+-- Max speed when holding blink. Hard cap
+local kBlinkMaxSpeed = 25
+
+-- Max speeds for Fade. Soft cap
+local kBlinkMaxSpeedBase = 17.5
+local kBlinkMaxSpeedCelerity = 19
+
+-- Air friction vars for softcap
+local kCelerityFrictionFactor = 0.04
+local kFastMovingAirFriction = 0.40
+
 Fade.kGroundFrictionPostBlinkDelay = 1
 
 local networkVars =
@@ -105,7 +115,21 @@ function Fade:HandleButtons(input)
 end
 
 function Fade:GetAirFriction()
-    return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.14
+    local currentSpeed = self:GetVelocityLength()
+    if self:GetIsBlinking() then
+        return 0
+    elseif GetHasCelerityUpgrade(self) then
+        if currentSpeed > kBlinkMaxSpeedCelerity then
+            return kFastMovingAirFriction
+        end
+
+        return kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())
+    elseif currentSpeed > kBlinkMaxSpeedBase then
+        return kFastMovingAirFriction
+    else
+        return 0.17
+    end
+    -- return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.14
 end 
 
 function Fade:GetMaxSpeed(possible)

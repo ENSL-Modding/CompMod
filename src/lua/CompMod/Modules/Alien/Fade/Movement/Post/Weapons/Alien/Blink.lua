@@ -1,10 +1,10 @@
 local TriggerBlinkOutEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkOutEffects")
 local TriggerBlinkInEffects = debug.getupvaluex(Blink.SetEthereal, "TriggerBlinkInEffects")
 local kEtherealVerticalForce = debug.getupvaluex(Blink.SetEthereal, "kEtherealVerticalForce")
-kEtherealCelerityForcePerSpur = 0.25 -- 0.5
+kEtherealCelerityForcePerSpur = 0.2 -- 0.5
 
 -- Speed of first blink
-kBlinkSpeed = 14.25
+kBlinkSpeed = 15
 
 -- Speed after subsequent blinks
 kBlinkAddForce = 2.5
@@ -39,7 +39,7 @@ function Blink:SetEthereal(player, state)
                 newVelocityVector.y = math.max(newVelocityVector.y, kEtherealVerticalForce)
             end
 
-            newVelocityVector:Add(playerForwardAxis * kBlinkAddForce * (1 + celerityLevel * 0.05))
+            newVelocityVector:Add(playerForwardAxis * kBlinkAddForce)
 
             -- There is no need to check for a max speed here, since the logic in the active blink code will keep it
             -- from exceeding the limit.
