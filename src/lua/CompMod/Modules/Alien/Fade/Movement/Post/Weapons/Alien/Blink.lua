@@ -39,7 +39,7 @@ function Blink:SetEthereal(player, state)
                 newVelocityVector.y = math.max(newVelocityVector.y, kEtherealVerticalForce)
             end
 
-            newVelocityVector:Add(playerForwardAxis * kBlinkAddForce)
+            newVelocityVector:Add(playerForwardAxis * kBlinkAddForce * (1 + celerityLevel * 0.05))
 
             -- There is no need to check for a max speed here, since the logic in the active blink code will keep it
             -- from exceeding the limit.

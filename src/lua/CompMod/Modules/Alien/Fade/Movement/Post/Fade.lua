@@ -94,6 +94,8 @@ end
 
 function Fade:GetAirFriction()
     local currentSpeed = self:GetVelocityLength()
+    local baseFriction = 0.17
+
     if self:GetIsBlinking() then
         return 0
     elseif GetHasCelerityUpgrade(self) then
@@ -101,11 +103,11 @@ function Fade:GetAirFriction()
             return kFastMovingAirFriction
         end
 
-        return kFastMovingAirFriction - (kCelerityFrictionFactor * self:GetSpurLevel())
+        return baseFriction - self:GetSpurLevel() * 0.01
     elseif currentSpeed > kBlinkMaxSpeedBase then
         return kFastMovingAirFriction
     else
-        return 0.17
+        return baseFriction
     end
     -- return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.14
 end 
