@@ -9,8 +9,13 @@ kBlinkSpeed = 15
 -- Speed after subsequent blinks
 kBlinkAddForce = 2.5
 
+-- Minimum speed gained from blink
+kBlinkMinSpeed = 13
+
 -- Force of first blink before blink stack
 kEtherealForce = kBlinkSpeed - kBlinkAddForce
+-- Force of first blink with penalty
+kEtherealForcePenalty = kBlinkMinSpeed - kBlinkAddForce
 
 function Blink:SetEthereal(player, state)
     -- Enter or leave ethereal mode.
@@ -28,6 +33,13 @@ function Blink:SetEthereal(player, state)
             local forwardVelocity = currentVelocityVector:DotProduct(playerForwardAxis)
 
             local blinkSpeed = kEtherealForce + celerityLevel * kEtherealCelerityForcePerSpur
+            -- Take player speed into account when blinking against our current velocity vector
+            -- Make sure we don't go under our blink minimum
+            if forwardVelocity < 0 then
+                local minSpeed = kEtherealForcePenalty + celerityLevel * kEtherealCelerityForcePerSpur
+                blinkSpeed = math.max(minSpeed, blinkSpeed + forwardVelocity)
+            end
+
             -- taperedVelocity is tracked so that if we're for some reason going faster than blink speed, we use that instead of
             -- slowing the player down. This allows for a skilled build up of extra speed.
             local taperedVelocity = math.max(forwardVelocity, blinkSpeed)
