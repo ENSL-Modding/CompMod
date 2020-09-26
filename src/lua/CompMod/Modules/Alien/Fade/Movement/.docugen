@@ -2,10 +2,11 @@ Alien.Fade.Movement
 Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
 Max speed decreased to 20 from 25
-Air friction decreased to 0.014 from 0.017
+Air friction scales with speed
+Blink no longer ignores the Fade's momentum
 Without Celerity
->Initial Blink will give 14.25 speed from 16.25 speed, 
->Each subsequent blink will now give 1.5 speed
+>Initial Blink will give 15 speed from 16.25 speed, 
+>Each subsequent blink will now give 2.5 speed
 With Celerity
->Initial Blink will give 16.25 speed from 18.28 speed,
->Each subsequent blink will give 1.7 speed
+>Initial Blink will give 15.6 speed from 18.28 speed,
+>Each subsequent blink will give 2.9 speed
