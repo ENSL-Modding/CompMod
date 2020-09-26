@@ -6,6 +6,7 @@
   * Fixed a bug that caused the normal Swipe icon to show in the killfeed
 
 * Movement
+  * Reverted base movement system back to vanilla
   * Max speed decreased to 20 from 25
   * Blink no longer ignores the Fade's momentum
   * Softcaps added to Fade speed:
