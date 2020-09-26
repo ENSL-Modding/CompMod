@@ -22,7 +22,7 @@
 
 ### Upgrades
 * Vampirism
-  * Now applies a shader to models that have Vampirism shield
+  * Now applies a shader to players that have Vampirism shield
 
 <br/>
 

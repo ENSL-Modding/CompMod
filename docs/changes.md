@@ -121,7 +121,7 @@
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
-  * Now applies a shader to models that have Vampirism shield
+  * Now applies a shader to players that have Vampirism shield
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
