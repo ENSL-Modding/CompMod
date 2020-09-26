@@ -1,3 +1,30 @@
+# CompMod 3.5.0 - (26/09/2020)
+## Alien
+
+### Fade
+* Advanced Swipe
+  * Fixed a bug that caused the normal Swipe icon to show in the killfeed
+
+* Movement
+  * Max speed decreased to 20 from 25
+  * Blink no longer ignores the Fade's momentum
+  * Softcaps added to Fade speed:
+    * 17.5 without Celerity
+    * 19 with Celerity
+  * Movement Breakdown:
+    * Without Celerity
+      * Initial Blink will give 15 speed from 16.25 speed,
+      * Each subsequent blink will now give 2.5 speed
+    * With Celerity
+      * Initial Blink will give 15.6 speed from 18.28 speed,
+      * Each subsequent blink will give 2.9 speed
+
+### Upgrades
+* Vampirism
+  * Now applies a shader to models that have Vampirism shield
+
+<br/>
+
 # CompMod 3.4.0 - (05/09/2020)
 ## Alien
 

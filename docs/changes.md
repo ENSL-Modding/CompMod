@@ -1,4 +1,4 @@
-# Changes between CompMod 3.4.0 and Vanilla 334
+# Changes between CompMod 3.5.0 and Vanilla 334
 <br/>
 
 # Alien
@@ -38,13 +38,18 @@
 * ### Movement
   * Removed auto-crouch
   * Reduced ground slide duration to 1 second from 2 seconds
-  * Air friction decreases with Celerity (0.01 per spur, base air friction 0.17)
-  * Speed gained through blink now takes into account your previous velocity
-  * Remove speed cap without Celerity
-  * Movement Breakdown
-    * First blink adds 16.325 speed in the direction the Fade is facing
-    * Subsequent blinks add 2.25 speed in the direction the Fade is facing
-    * With Celerity: Each Spur adds an additional 0.29 speed to the first blink and 0.06 speed to subsequent blinks
+  * Max speed decreased to 20 from 25
+  * Blink no longer ignores the Fade's momentum
+  * Softcaps added to Fade speed:
+    * 17.5 without Celerity
+    * 19 with Celerity
+  * Movement Breakdown:
+    * Without Celerity
+      * Initial Blink will give 15 speed from 16.25 speed,
+      * Each subsequent blink will now give 2.5 speed
+    * With Celerity
+      * Initial Blink will give 15.6 speed from 18.28 speed,
+      * Each subsequent blink will give 2.9 speed
 
 ## Gorge
 * ### Babblers
@@ -116,6 +121,7 @@
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
+  * Now applies a shader to models that have Vampirism shield
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
