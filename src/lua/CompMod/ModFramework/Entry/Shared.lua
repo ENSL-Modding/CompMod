@@ -1,9 +1,8 @@
-local vm = Client and "Client" or Server and "Server" or Predict and "Predict" or nil
-local modname = debug.getinfo(1, "S").source:gsub("@lua/", ""):gsub("/ModFramework/.*%.lua", "")
-Script.Load("lua/" .. modname .. "/ModFramework/ModFramework.lua")
+Script.Load("lua/CompMod/ModFramework/ModFramework.lua")
 
+local vm = Client and "Client" or Server and "Server" or Predict and "Predict" or nil
 local mod = ModFramework
-mod:Initialize(modname, vm, false)
+mod:Initialize(vm, false)
 mod:InitModules()
 mod:LoadAllModuleFiles("Shared")
 

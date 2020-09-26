@@ -1,18 +1,24 @@
-Script.Load("lua/" .. fw_get_current_mod_name() .. "/ModFramework/Modules/FrameworkModule.lua")
+Script.Load("lua/CompMod/ModFramework/Modules/FrameworkModule.lua")
+Script.Load("lua/CompMod/Modules.lua")
 
 class 'ModuleManagerModule' (FrameworkModule)
 
 function ModuleManagerModule:Initialize(framework)
     FrameworkModule.Initialize(self, "modulemanager", framework, false)
+    
+    -- Load modules
+    local moduleFunc = GetModFrameworkModulesCompMod
+    local moduleFuncName = "GetModFrameworkModulesCompMod"
 
-    self.framework:LoadScript("Modules.lua", self)
-    self.modules = self:GetModules()
+    fw_assert_not_nil(moduleFunc, "Missing " .. moduleFuncName .. " in Modules.lua")
+    fw_assert_type(moduleFunc, "function", moduleFuncName)
+
+    self.modules = moduleFunc()
+    fw_assert_not_nil(self.modules, "No modules found in Modules.lua")
 end
 
 function ModuleManagerModule:GetModules()
-    self.framework:GetModule("logger"):PrintWarn("Call to ModuleManagerModule:GetModules() before overwrite!")
-
-    return nil
+    return self.modules
 end
 
 function ModuleManagerModule:FormatPath(moduleName, vm)

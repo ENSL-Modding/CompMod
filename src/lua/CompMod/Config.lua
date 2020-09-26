@@ -8,28 +8,30 @@
     For information on how to use this file see the wiki.
 ]]
 
-function ModFramework:LoadConfig()
+function GetModFrameworkConfigCompMod()
     -- Main config
-    self.config = {}
+    local config = {}
 
     -- Logger
-    self.config.logger = {}
-    self.config.logger.enabled = true
-    self.config.logger.level = "fatal"
+    config.logger = {}
+    config.logger.enabled = true
+    config.logger.level = "fatal"
 
     -- Versioning
-    self.config.versioning = {}
-    self.config.versioning.majorVersion = 3
-    self.config.versioning.minorVersion = 4
-    self.config.versioning.patchVersion = 0
-    self.config.versioning.preRelease = ""
-    self.config.versioning.display = true
+    config.versioning = {}
+    config.versioning.majorVersion = 3
+    config.versioning.minorVersion = 5
+    config.versioning.patchVersion = 0
+    config.versioning.preRelease = ""
+    config.versioning.display = true
 
     -- Tech Handler
-    self.config.techhandler = {}
-    self.config.techhandler.techIdsToAdd = {
+    config.techhandler = {}
+    config.techhandler.techIdsToAdd = {
         "AdvancedSwipe",
         "MunitionsTech",
         "DemolitionsTech",
     }
+
+    return config
 end

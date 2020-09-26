@@ -8,7 +8,7 @@
     For more information see the wiki.
 ]]
 
-function ModuleManagerModule:GetModules()
+function GetModFrameworkModulesCompMod()
     return {
         "Alien/Adrenaline",
         "Alien/Aura/Range",
@@ -50,10 +50,10 @@ function ModuleManagerModule:GetModules()
         "Alien/Skulk/BiteConeSize",
         "Alien/Skulk/Leap",
         "Alien/Vampirism/FriendlyFireFix",
+        "Alien/Vampirism/ShieldEffect",
     
         "Changelog",
     
-        -- "Global/CollisionFix",
         "Global/KeepLightsOnAtStart",
         "Global/MucousHitsounds",
         "Global/Resources",
