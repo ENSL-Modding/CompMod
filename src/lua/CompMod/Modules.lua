@@ -54,7 +54,6 @@ function GetModFrameworkModulesCompMod()
     
         "Changelog",
     
-        -- "Global/CollisionFix",
         "Global/KeepLightsOnAtStart",
         "Global/MucousHitsounds",
         "Global/Resources",
