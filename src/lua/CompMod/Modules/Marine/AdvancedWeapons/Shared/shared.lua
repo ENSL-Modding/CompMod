@@ -11,6 +11,9 @@ techHandler:ChangeMarineTargetedActivation(kTechId.DropFlamethrower, kTechId.Dem
 techHandler:RemoveMarineTechMapTech(kTechId.FlamethrowerTech)
 techHandler:RemoveTechData(kTechId.FlamethrowerTech)
 
+techHandler:ChangeMarineTargetedBuyNode(kTechId.HeavyMachineGun, kTechId.AdvancedArmory)
+techHandler:ChangeMarineTargetedActivation(kTechId.DropHeavyMachineGun, kTechId.AdvancedArmory)
+
 techHandler:RemoveMarineResearchNode(kTechId.AdvancedWeaponry)
 techHandler:RemoveMarineTechMapLine(kTechId.AdvancedArmory, kTechId.AdvancedWeaponry)
 techHandler:RemoveMarineTechMapTech(kTechId.AdvancedWeaponry)
