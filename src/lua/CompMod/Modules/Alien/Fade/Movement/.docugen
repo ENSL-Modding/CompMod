@@ -1,12 +1,11 @@
 Alien.Fade.Movement
 Removed auto-crouch
 Reduced ground slide duration to 1 second from 2 seconds
-Max speed decreased to 20 from 25
 Blink no longer ignores the Fade's momentum
-Added a miniumum speed of 12 to Blink. When changing direction you are guaranteed this speed as a minimum
+Added a miniumum speed of 15 to Blink. When changing direction you are guaranteed this speed as a minimum
 Softcaps added to Fade speed:
->17.5 without Celerity
->19 with Celerity
+>19 without Celerity
+>20.5 with Celerity
 Movement Breakdown:
 >Without Celerity
 >>Initial Blink will give 15 speed from 16.25 speed, 
