@@ -1,0 +1,2 @@
+kSkulkArmorFullyUpgradedAmount = 20
+kGorgeArmorFullyUpgradedAmount = 90

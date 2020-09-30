@@ -13,7 +13,7 @@ kBlinkSpeed = 15
 kBlinkAddForce = 2.5
 
 -- Minimum speed gained from blink
-kBlinkMinSpeed = 9
+kBlinkMinSpeed = 12
 
 -- Force of first blink before blink stack
 kEtherealForce = kBlinkSpeed - kBlinkAddForce

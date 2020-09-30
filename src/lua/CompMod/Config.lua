@@ -21,15 +21,14 @@ function GetModFrameworkConfigCompMod()
     config.versioning = {}
     config.versioning.majorVersion = 3
     config.versioning.minorVersion = 5
-    config.versioning.patchVersion = 0
-    config.versioning.preRelease = ""
+    config.versioning.patchVersion = 1
+    config.versioning.preRelease = "pre1"
     config.versioning.display = true
 
     -- Tech Handler
     config.techhandler = {}
     config.techhandler.techIdsToAdd = {
         "AdvancedSwipe",
-        "MunitionsTech",
         "DemolitionsTech",
     }
 
