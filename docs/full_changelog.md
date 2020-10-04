@@ -1,3 +1,24 @@
+# CompMod 3.5.1 - (04/10/2020)
+## Alien
+
+### Fade
+* Movement
+  * Added a miniumum speed of 15 to Blink. When changing direction you are guaranteed this speed as a minimum
+  * Softcaps added to Fade speed:
+    * 19 without Celerity
+    * 20.5 with Celerity
+
+## Marine
+
+### Advanced Weapons
+* Removed Munitions tech
+
+### Weapons
+* Heavy Machine Gun
+  * Lowered spread to 3.6 radians from 4 radians
+
+<br/>
+
 # CompMod 3.5.0 - (26/09/2020)
 ## Alien
 
