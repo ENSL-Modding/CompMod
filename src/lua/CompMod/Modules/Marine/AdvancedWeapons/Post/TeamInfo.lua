@@ -1,12 +1,12 @@
 TeamInfo.kRelevantTechIdsMarine =
 {
+    kTechId.ShotgunTech,
     kTechId.MinesTech,
     kTechId.WelderTech,
     kTechId.GrenadeTech,
 
     kTechId.AdvancedArmory,
     kTechId.AdvancedArmoryUpgrade,
-    kTechId.MunitionsTech,
     kTechId.DemolitionsTech,
 
     kTechId.Weapons1,

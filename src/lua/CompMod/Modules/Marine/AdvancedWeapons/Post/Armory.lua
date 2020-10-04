@@ -1,8 +1,9 @@
 function Armory:GetTechButtons(techId)
 
-    local techButtons = {
-        kTechId.None, kTechId.MinesTech, kTechId.GrenadeTech, kTechId.None,
-        kTechId.None, kTechId.MunitionsTech, kTechId.None, kTechId.None
+    local techButtons = 
+    {
+        kTechId.ShotgunTech, kTechId.MinesTech, kTechId.GrenadeTech, kTechId.None,
+        kTechId.None, kTechId.None, kTechId.None, kTechId.None 
     }
 
     -- Show button to upgraded to advanced armory

@@ -6,8 +6,8 @@ local kMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kMaxSpeed")
 local kBlinkMaxSpeed = 25
 
 -- Max speeds for Fade. Soft cap
-local kBlinkMaxSpeedBase = 17.5
-local kBlinkMaxSpeedCelerity = 19
+local kBlinkMaxSpeedBase = 19
+local kBlinkMaxSpeedCelerity = 20.5
 
 -- Air friction vars for softcap
 local kCelerityFrictionFactor = 0.04

@@ -13,7 +13,7 @@ kBlinkSpeed = 15
 kBlinkAddForce = 2.5
 
 -- Minimum speed gained from blink
-kBlinkMinSpeed = 9
+kBlinkMinSpeed = 15
 
 -- Force of first blink before blink stack
 kEtherealForce = kBlinkSpeed - kBlinkAddForce
@@ -30,9 +30,9 @@ function Blink:SetEthereal(player, state)
 
             local celerityLevel = GetHasCelerityUpgrade(player) and player:GetSpurLevel() or 0
             local currentVelocityVector = player:GetVelocity()
-            local forwardVelocity = currentVelocityVector:GetLengthXZ()
             -- Since we're applying this vector to the new one, we should zero out y otherwise we'll start floating from jumps and things
             currentVelocityVector.y = 0
+            local forwardVelocity = currentVelocityVector:DotProduct(playerForwardAxis)
 
             local blinkSpeed = kEtherealForce + celerityLevel * kEtherealCelerityForcePerSpur
             local minBlinkSpeed = kEtherealForceMin + celerityLevel * kEtherealCelerityForcePerSpur
@@ -41,14 +41,16 @@ function Blink:SetEthereal(player, state)
             local taperedVelocity = math.max(forwardVelocity, blinkSpeed)
 
             local newVelocityVector = playerForwardAxis * blinkSpeed + currentVelocityVector
-            -- Ensure we don't exceed our target blink speed
-            if newVelocityVector:GetLength() > taperedVelocity then
-                newVelocityVector:Scale(taperedVelocity / newVelocityVector:GetLength())
-            end
 
             -- Ensure we don't go under our minimum blink speed (this can happen when blinking against our velocity vector)
-            if newVelocityVector:GetLengthXZ() < minBlinkSpeed then
-                newVelocityVector:Scale(minBlinkSpeed / newVelocityVector:GetLength())
+            if newVelocityVector:GetLength() < minBlinkSpeed then
+                newVelocityVector = playerForwardAxis * minBlinkSpeed
+            end
+
+            -- Ensure we don't exceed our target blink speed
+            if newVelocityVector:GetLength() > taperedVelocity then
+                newVelocityVector:Normalize()
+                newVelocityVector:Scale(taperedVelocity)
             end
 
             --Apply a minimum y directional speed of kEtherealVerticalForce if on the ground.
@@ -58,8 +60,6 @@ function Blink:SetEthereal(player, state)
 
             newVelocityVector:Add(playerForwardAxis * kBlinkAddForce * (1 + celerityLevel * kBlinkAddCelerityForcePerSpur))
 
-            -- There is no need to check for a max speed here, since the logic in the active blink code will keep it
-            -- from exceeding the limit.
             player:SetVelocity(newVelocityVector)
             player.onGround = false
             player.jumping = true

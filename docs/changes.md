@@ -1,4 +1,4 @@
-# Changes between CompMod 3.5.0 and Vanilla 334
+# Changes between CompMod 3.5.1 and Vanilla 334
 <br/>
 
 # Alien
@@ -38,11 +38,11 @@
 * ### Movement
   * Removed auto-crouch
   * Reduced ground slide duration to 1 second from 2 seconds
-  * Max speed decreased to 20 from 25
   * Blink no longer ignores the Fade's momentum
+  * Added a miniumum speed of 15 to Blink. When changing direction you are guaranteed this speed as a minimum
   * Softcaps added to Fade speed:
-    * 17.5 without Celerity
-    * 19 with Celerity
+    * 19 without Celerity
+    * 20.5 with Celerity
   * Movement Breakdown:
     * Without Celerity
       * Initial Blink will give 15 speed from 16.25 speed,
@@ -129,13 +129,7 @@
 ## ARCs
 * Health lowered to 2200/400 from 2600/400
 
-## AdvancedWeapons
-* Shotgun research removed
-* Added new research 'Munitions'
-  * Researched on Armory
-  * Research cost 35 tres
-  * Research time 90 seconds
-  * Unlocks Shotgun and Heavy Machine Gun to purchase from the Armory
+## Advanced Weapons
 * Added new research 'Demolitions'
   * Researched on Advanced Armory
   * Research cost 15 tres
@@ -187,6 +181,7 @@
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
   * Reduced damage to 7 from 8
+  * Lowered spread to 3.6 radians from 4 radians
 * ### Shotgun
   * Damage
     * Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
