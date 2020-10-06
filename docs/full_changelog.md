@@ -781,7 +781,7 @@
 
 # CompMod 2.6.0 - (25/07-2019)
 * Stab replaced by Advanced Swipe
-    * Upgrades the normal swipe damage to 81 from 70
+    * Upgrades the normal swipe damage to 81 from 75
     * Can be researched at Biomass 7 
     * Costs 25 tres and takes 60 seconds to research
 * Team supply is now visible on the player HUD

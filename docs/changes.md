@@ -32,7 +32,7 @@
 ## Fade
 * ### Advanced Swipe
   * Replaces Stab
-  * Upgrades the normal swipe damage to 81 from 70
+  * Upgrades the normal swipe damage to 81 from 75
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
 * ### Movement
