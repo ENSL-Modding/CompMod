@@ -1,3 +1,12 @@
+# CompMod 3.5.2 - (14/10/2020)
+## Alien
+
+### Fade
+* Movement
+    * Fixed a bug that let you go supersonic if you held blink while on the ground
+
+<br/>
+
 # CompMod 3.5.1 - (04/10/2020)
 ## Alien
 
