@@ -4,6 +4,9 @@ local kBlinkAcceleration = debug.getupvaluex(Fade.ModifyVelocity, "kBlinkAcceler
 local kMaxSpeed = debug.getupvaluex(Fade.GetMaxSpeed, "kMaxSpeed")
 -- Max speed when holding blink. Hard cap
 local kBlinkMaxSpeed = 25
+local kBlinkSpeed = 14
+-- Additional acceleration after exceeding kBlinkMaxSpeedBase when holding blink
+local kBlinkAddAcceleration = 1
 
 -- Max speeds for Fade. Soft cap
 local kBlinkMaxSpeedBase = 19
@@ -110,7 +113,27 @@ function Fade:GetAirFriction()
         return baseFriction
     end
     -- return (self:GetIsBlinking() or self:GetRecentlyShadowStepped()) and 0 or 0.14
-end 
+end
+
+function Fade:ModifyVelocity(input, velocity, deltaTime)
+    if self:GetIsBlinking() then
+        local wishDir = self:GetViewCoords().zAxis
+        local maxSpeedTable = { maxSpeed = kBlinkSpeed } 
+        self:ModifyMaxSpeed(maxSpeedTable, input)
+        local prevSpeed = velocity:GetLength()
+        local maxSpeed = math.max(prevSpeed, maxSpeedTable.maxSpeed)
+        maxSpeed = math.min(kBlinkMaxSpeed, maxSpeed)
+
+        velocity:Add(wishDir * kBlinkAcceleration * deltaTime)
+
+        if velocity:GetLength() > maxSpeed then
+            velocity:Normalize()
+            velocity:Scale(maxSpeed)
+        end
+
+        velocity:Add(wishDir * kBlinkAddAcceleration * deltaTime)
+    end
+end
 
 function Fade:GetMaxSpeed(possible)
     if possible then
@@ -118,7 +141,7 @@ function Fade:GetMaxSpeed(possible)
     end
     
     if self:GetIsBlinking() then
-        return kBlinkMaxSpeed
+        return kBlinkSpeed
     end
     
     -- Take into account crouching.
