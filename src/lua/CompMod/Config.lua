@@ -21,7 +21,7 @@ function GetModFrameworkConfigCompMod()
     config.versioning = {}
     config.versioning.majorVersion = 3
     config.versioning.minorVersion = 5
-    config.versioning.patchVersion = 2
+    config.versioning.patchVersion = 3
     config.versioning.preRelease = ""
     config.versioning.display = true
 
