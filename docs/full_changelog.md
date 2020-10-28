@@ -1,3 +1,8 @@
+# CompMod 3.5.3 - (17/10/2020)
+* Updated CompMod for NS2 Build 335
+
+<br/>
+
 # CompMod 3.5.2 - (14/10/2020)
 ## Alien
 

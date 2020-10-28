@@ -1,5 +1,5 @@
 local gResearchToWeaponIds
-local function GetItemTechId(researchTechId)
+function GetItemTechId(researchTechId)
 
     if not gResearchToWeaponIds then
 
@@ -20,5 +20,3 @@ local function GetItemTechId(researchTechId)
     return gResearchToWeaponIds[researchTechId]
 
 end
-
-debug.setupvaluex(GUIMarineBuyMenu._UpdateItemButtons, "GetItemTechId", GetItemTechId)
