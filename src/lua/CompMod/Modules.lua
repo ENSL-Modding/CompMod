@@ -39,6 +39,7 @@ function GetModFrameworkModulesCompMod()
         "Alien/Lerk/Movement",
         "Alien/Lerk/Spikes",
         "Alien/Lerk/SporesBiomass",
+        "Alien/Lerk/VampirismScalar",
         "Alien/Mucous/Cooldown",
         "Alien/Mucous/Radius",
         "Alien/Mucous/ShieldPercent",
