@@ -1,3 +1,12 @@
+# CompMod 3.5.4 - (29/12/2020)
+## Alien
+
+### Lerk
+* Vampirism Shield
+  * Reduced leeched health amount to 6% from 8%
+
+<br/>
+
 # CompMod 3.5.3 - (17/10/2020)
 * Updated CompMod for NS2 Build 335
 

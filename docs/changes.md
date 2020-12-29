@@ -1,4 +1,4 @@
-# Changes between CompMod 3.5.3 and Vanilla 335
+# Changes between CompMod 3.5.4 and Vanilla 336
 <br/>
 
 # Alien
@@ -8,8 +8,8 @@
 * BoneWall is no longer flammable
 
 ## Drifters
-* Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
 * Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
+* Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
 * ### Abilities
   * Enzyme
     * Reduced cooldown from 12 seconds to 1 second
@@ -18,13 +18,13 @@
     * Can no longer have babblers attached
     * Reduced Onos HP to 100 eHP
   * Mucous
-    * Reduced cooldown to 1 second from 12 seconds
-    * Reduced cloud radius from 8 to 5 (reduces area by 60%)
     * Shield matches babbler shield values (except Skulk - remains at 15 HP)
+    * Reduced cloud radius from 8 to 5 (reduces area by 60%)
+    * Reduced cooldown to 1 second from 12 seconds
 
 ## Eggs
-* Hives no longer heal eggs, only embryos
 * Lifeform egg drops removed
+* Hives no longer heal eggs, only embryos
 
 ## Embryos
 * Embryo HP scales depending on lifeform
@@ -53,14 +53,14 @@
 
 ## Gorge
 * ### Babblers
-  * Are flammable (die in one welder tick)
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
+  * Are flammable (die in one welder tick)
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
 * ### Web
-  * HP gain per charge to 5 from 10
-  * Web charges lowered to 0 from 3
   * Webbed duration lowered to 2.5 seconds from 5 seconds
+  * Web charges lowered to 0 from 3
+  * HP gain per charge to 5 from 10
 
 ## Lerk
 * ### Movement
@@ -78,6 +78,8 @@
   * Opacity of cloud lowered by 40%
 * ### Umbra
   * Reduced opacity by 25%
+* ### Vampirism Shield
+  * Reduced leeched health amount to 6% from 8%
 
 ## Onos
 * ### BoneShield
@@ -101,9 +103,9 @@
     * Echo cost for upgrades increased to 2 from 1
     * Echo cost for eggs reduced to 1 from 2
 * ### Tunnels
-  * Tunnels are infested tunnels by default
-  * Tunnel cost changed to 8 tres from 6 tres
   * Decreased height check for tunnel placement
+  * Tunnel cost changed to 8 tres from 6 tres
+  * Tunnels are infested tunnels by default
 
 ## Upgrades
 * ### Adrenaline
@@ -119,9 +121,9 @@
   * Removed heal effect (visual and audio)
   * Reduced from 8% per tick to 6% per tick
 * ### Vampirism
+  * Now applies a shader to players that have Vampirism shield
   * No longer triggers from friendly-fire damage
   * Works against exosuits
-  * Now applies a shader to players that have Vampirism shield
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
@@ -148,9 +150,9 @@
 
 ## Structures
 * ### AdvancedArmory
-  * Health decreased to 2000/200 from 3000/200
   * Research cost decreased to 15 tres from 25 tres
   * Research time decreased to 45 seconds from 90 seconds
+  * Health decreased to 2000/200 from 3000/200
 * ### Observatory
   * Changed build time to 10 seconds from 15 seconds
 * ### Prototype Lab
