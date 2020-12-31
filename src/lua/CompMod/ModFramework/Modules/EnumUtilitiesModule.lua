@@ -30,6 +30,7 @@ function EnumUtilitiesModule:AppendToEnum(tbl, key)
         rawset(tbl, 'Max', maxVal + 1)
         rawset(tbl, maxVal + 1, 'Max')
     else
+        maxVal = -1
         for k, v in next, tbl do
             if type(v) == "number" and v > maxVal then
                 maxVal = v

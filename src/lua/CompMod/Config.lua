@@ -30,6 +30,7 @@ function GetModFrameworkConfigCompMod()
     config.techhandler.techIdsToAdd = {
         "AdvancedSwipe",
         "DemolitionsTech",
+        "Neurotoxin",
     }
 
     return config
