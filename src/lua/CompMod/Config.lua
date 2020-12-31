@@ -21,7 +21,7 @@ function GetModFrameworkConfigCompMod()
     config.versioning = {}
     config.versioning.majorVersion = 3
     config.versioning.minorVersion = 5
-    config.versioning.patchVersion = 4
+    config.versioning.patchVersion = 5
     config.versioning.preRelease = ""
     config.versioning.display = true
 
@@ -30,6 +30,7 @@ function GetModFrameworkConfigCompMod()
     config.techhandler.techIdsToAdd = {
         "AdvancedSwipe",
         "DemolitionsTech",
+        "Neurotoxin",
     }
 
     return config
