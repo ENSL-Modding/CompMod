@@ -10,4 +10,4 @@ techHandler:AddTechData({
 })
 
 techHandler:AddAlienBuyNode(kTechId.Neurotoxin, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-techHandler:AddMaterialOffset(kTechId.Neurotoxin, 174) -- 174 is the position for focus, which we replaced with neurotoxin
+techHandler:AddMaterialOffset(kTechId.Neurotoxin, 174)
