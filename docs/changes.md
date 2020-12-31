@@ -1,4 +1,4 @@
-# Changes between CompMod 3.5.4 and Vanilla 336
+# Changes between CompMod 3.5.5 and Vanilla 336
 <br/>
 
 # Alien
@@ -117,6 +117,17 @@
   * No longer fully cloaked while moving
 * ### Carapace
   * Upgrade removed
+* ### Neurotoxin
+  * Replaces Focus
+  * All Alien primary attacks will inflict a poison toxin, hurting Marines over time
+  * Damage will tick once every second
+  * Duration will be 1 second per Veil
+  * Damage Values:
+    * Skulk: 6
+    * Gorge: 4
+    * Lerk: 3
+    * Fade: 6
+    * Onos: 4
 * ### Regeneration
   * Removed heal effect (visual and audio)
   * Reduced from 8% per tick to 6% per tick
@@ -223,11 +234,20 @@
 # Fixes & Improvements
 ![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 
+## Armory HP Bar
+* Fixed a vanilla bug that caused the HP bar for the Armory/Advanced Armory to display at inconsistent heights
+
 ## Fade
-* Fixed that a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
+* Fixed a vanilla bug that meant a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
+
+## Female Sprinting Sounds
+* Fixed a vanilla bug that caused the start and end sprinting sounds for the Female marine to be swapped
 
 ## IPs
 * Fixed bug where multiple IPs would sometimes spawn with few players
+
+## Keep Upgrades
+* Fixed a vanilla bug that meant players would lose their upgrades when using console commands to change lifeforms
 
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open

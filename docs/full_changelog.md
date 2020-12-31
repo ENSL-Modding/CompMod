@@ -1,3 +1,32 @@
+# CompMod 3.5.5 - (31/12/2020)
+## Alien
+
+### Upgrades
+* Neurotoxin
+  * Replaces Focus
+  * All Alien primary attacks will inflict a poison toxin, hurting Marines over time
+  * Damage will tick once every second
+  * Duration will be 1 second per Veil
+  * Damage Values:
+    * Skulk: 6
+    * Gorge: 4
+    * Lerk: 3
+    * Fade: 6
+    * Onos: 4
+
+## Fixes & Improvements
+
+### Armory HP Bar
+* Fixed a vanilla bug that caused the HP bar for the Armory/Advanced Armory to display at inconsistent heights
+
+### Female Sprinting Sounds
+* Fixed a vanilla bug that caused the start and end sprinting sounds for the Female marine to be swapped
+
+### Keep Upgrades
+* Fixed a vanilla bug that meant players would lose their upgrades when using console commands to change lifeforms
+
+<br/>
+
 # CompMod 3.5.4 - (29/12/2020)
 ## Alien
 
