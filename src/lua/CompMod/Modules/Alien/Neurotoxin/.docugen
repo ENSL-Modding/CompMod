@@ -1,0 +1,9 @@
+Alien.Upgrades.Neurotoxin
+Replaces Focus
+All Alien primary attacks will inflict a poison toxin, hurting Marines over time
+Damage Values:
+>Skulk: 6
+>Gorge: 4
+>Lerk: 3
+>Fade: 6
+>Onos: 4
