@@ -23,7 +23,6 @@ function GetModFrameworkModulesCompMod()
         "Alien/Eggs/LifeformEggDrops",
         "Alien/Enzyme/Cooldown",
         "Alien/Fade/AdvancedSwipe",
-        "Alien/Fade/CommanderMetabFix",
         "Alien/Fade/Movement",
         "Alien/Fade/Stab",
         "Alien/Focus",
@@ -60,7 +59,6 @@ function GetModFrameworkModulesCompMod()
         "Global/KeepLightsOnAtStart",
         "Global/MucousHitsounds",
         "Global/Resources",
-        "Global/ResponsiveGUI",
     
         "Marine/AdvancedArmory/Health",
         "Marine/AdvancedWeapons",
@@ -68,7 +66,6 @@ function GetModFrameworkModulesCompMod()
         "Marine/Armory/UpgradeToAA",
         "Marine/Flamethrower",
         "Marine/HMG/Damage",
-        "Marine/InfantryPortal/PreventMultipleInitialIPs",
         "Marine/MAC/Cost",
         "Marine/MedpackHoT",
         "Marine/Nanoshield",
@@ -84,6 +81,13 @@ function GetModFrameworkModulesCompMod()
         "Marine/SupplyChanges",
         "Marine/SlowExpirationRate",
         "Marine/WeaponDropTime",
+
+        "QOL/ArmoryHPBarGlobalFix",
+        "QOL/CommanderMetabFix",
+        "QOL/FemaleSprintingSounds",
+        "QOL/KeepUpgrades",
+        "QOL/PreventMultipleInitialIPs",
+        "QOL/ResponsiveGUI",
     
         "Spectator/EdgePanning",
         "Spectator/HelpText",
