@@ -609,8 +609,9 @@ local function OnCommandChangeClass(className, teamNumber, extraValues)
                     -- I have no idea if this will break, but I don't care!
                     -- Thug life!
                     -- Ghetto code incoming, you've been warned
-                    -- local classNameLower = className:lower()
-                    -- local classNameCamel = classNameLower:sub(1,1):upper() .. classNameLower:sub(2)
+
+                    -- CompMod: className is lowercase but the array index needs to be in CamelCase
+                    -- local upgrades = newPlayer.lastUpgradeList[className] or newPlayer.lastUpgradeList["Skulk"] or {}
                     local upgrades = newPlayer.lastUpgradeList[newPlayer:GetClassName()] or newPlayer.lastUpgradeList["Skulk"] or {}
                     newPlayer.upgrade1 = upgrades[1] or 1
                     newPlayer.upgrade2 = upgrades[2] or 1
