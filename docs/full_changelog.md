@@ -1,3 +1,15 @@
+# CompMod 3.5.6 - (02/01/2021)
+## Alien
+
+### Upgrades
+* Neurotoxin
+  * Increased Gorge damage to 5 from 4
+  * Increased Lerk damage to 4 from 3
+  * Increased Fade damage to 8 from 6
+  * Increased Onos damage to 6 from 4
+
+<br/>
+
 # CompMod 3.5.5 - (31/12/2020)
 ## Alien
 

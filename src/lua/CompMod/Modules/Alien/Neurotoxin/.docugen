@@ -5,7 +5,7 @@ Damage will tick once every second
 Duration will be 1 second per Veil
 Damage Values:
 >Skulk: 6
->Gorge: 4
->Lerk: 3
->Fade: 6
->Onos: 4
+>Gorge: 5
+>Lerk: 4
+>Fade: 8
+>Onos: 6
