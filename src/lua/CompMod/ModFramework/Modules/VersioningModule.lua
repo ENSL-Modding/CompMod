@@ -22,7 +22,7 @@ function VersioningModule:ValidateConfig()
 end
 
 function VersioningModule:GetFeedbackText()
-    return string.format("%s r%s", self.framework:GetModName(), self:GetRevision()) 
+    return string.format("%s revision %s", self.framework:GetModName(), self:GetRevision()) 
 end
 
 function VersioningModule:GetRevision()
