@@ -4,7 +4,8 @@ local techHandler = mod:GetModule('techhandler')
 
 local function CreateHook(functionName, nodeName, oldFunction, toChangeGetter, toRemoveGetter)
     local tempFunc = function(self, ...)
-        local techId = select(1, ...)
+        local args = {...}
+        local techId = args[1]
         local techName = EnumToString(kTechId, techId) or techId
         local toChange = toChangeGetter(techHandler)
         local toRemove = toRemoveGetter(techHandler)

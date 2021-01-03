@@ -34,7 +34,7 @@ function TechHandlerModule:Initialize(framework)
 
     -- Create functions
     self:GenerateFunctions("MaterialOffset",        "materialOffset",        false, { ["add"] = false, ["change"] = false, ["remove"] = false })
-    self:GenerateFunctions("TechMapTech",           "techMapTech",           true)
+    self:GenerateFunctions("TechMapTech",           "techMapTech",           true,  { ["add"] = false, ["change"] = true,  ["remove"] = false })
     self:GenerateFunctions("TechMapLine",           "techMapLine",           true,  { ["add"] = false, ["change"] = false, ["remove"] = false })
     self:GenerateFunctions("TechData",              "techData",              false)
     self:GenerateFunctions("Order",                 "order",                 true)
@@ -95,68 +95,60 @@ end
 
 function TechHandlerModule:CreateAddChangeRemoveFunctions(functionName, arrayName, team, useFirstArgIndex)
     useFirstArgIndex = useFirstArgIndex or {}
-    local useFirstArgIndexAdd = useFirstArgIndex["add"]
-    local useFirstArgIndexChange = useFirstArgIndex["change"]
-    local useFirstArgIndexRemove = useFirstArgIndex["remove"]
-
-    if useFirstArgIndexAdd == nil then
-        useFirstArgIndexAdd = false
-    end
-
-    if useFirstArgIndexChange == nil then
-        useFirstArgIndexChange = true
-    end
-
-    if useFirstArgIndexRemove == nil then
-        useFirstArgIndexRemove = true
-    end
+    local useFirstArgIndexAdd = useFirstArgIndex["add"] == nil and false or useFirstArgIndex["add"]
+    local useFirstArgIndexChange = useFirstArgIndex["change"] == nil and true or useFirstArgIndex["change"]
+    local useFirstArgIndexRemove = useFirstArgIndex["remove"] == nil and true or useFirstArgIndex["remove"]
+    local team_lower
 
     if team then
         functionName = team .. functionName
-        team = team:lower()
+        team_lower = team:lower()
     end
 
-    self["Add" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToAdd", useFirstArgIndexAdd, team)
-    self["Change" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToChange", useFirstArgIndexChange, team)
-    self["Remove" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToRemove", useFirstArgIndexRemove, team)
+    self["Add" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToAdd", useFirstArgIndexAdd, team_lower)
+    self["Change" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToChange", useFirstArgIndexChange, team_lower)
+    self["Remove" .. functionName] = self:CreateGenericArrayModFunction(arrayName .. "ToRemove", useFirstArgIndexRemove, team_lower)
 end
 
 function TechHandlerModule:CreateGenericArrayModFunction(fullArrayName, useFirstArgIndex, team)
     local logger = self.framework:GetModule('logger')
 
     return function(self, ...)
-        local argc = select('#', ...)
+        local argv = {...}
+        local argc = #argv
         assert(argc > 0)
         local val
         local index = -1
 
         if argc == 1 then
             if useFirstArgIndex then
-                index = select(1, ...)
+                index = argv[1]
                 val = true
             else
-                val = select(1, ...)
+                val = argv[1]
             end
-        elseif argc == 2 and useFirstArgIndex and false then
-            index = select(1, ...)
-            val = select(2, ...)
         else
             val = {}
+
+            if useFirstArgIndex then
+                index = argv[1]
+            end
+
             for i = 1, argc do
-                if useFirstArgIndex and i == 1 then
-                    index = select(i, ...)
-                end
-                val[i] = select(i, ...)
+                val[i] = argv[i]
             end
         end
 
         if useFirstArgIndex then
+            assert(index)
+            assert(val)
             if team then
                 table.insert(self[fullArrayName][team], index, val)
             else
                 table.insert(self[fullArrayName], index, val)
             end
         else
+            assert(val)
             if team then
                 table.insert(self[fullArrayName][team], val)
             else
