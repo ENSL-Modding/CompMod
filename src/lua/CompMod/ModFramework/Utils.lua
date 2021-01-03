@@ -1,12 +1,13 @@
 local ENABLE_DEBUG_PRINT = false
 
 local function fw_print(module, level, msg, ...)
+    local args = {...}
     local moduleName = module and module.moduleName or "Main"
     local vm = Client and "Client" or Server and "Server" or Predict and "Predict" or "Unknown"
     local prefix = string.format("[ModFramework - %s](%s) %s:", moduleName, vm, level)
 
-    if select('#', ...) > 0 then
-        msg = string.format(msg, select(1, ...))
+    if #args > 0 then
+        msg = string.format(msg, unpack(args))
     end
 
     local finalMessage = string.format("%s %s", prefix, msg)

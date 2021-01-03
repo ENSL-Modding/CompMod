@@ -1,9 +1,9 @@
-kCompModVersionKey = "compmod_version"
+kCompModRevisionKey = "compmod_revision"
 
 local kChangelogURL = "https://enslcompmod.github.io/CompMod/"
 local kChangelogTitle = "NSL Competitive Mod"
 local logger = CompMod:GetModule('logger')
-local version = CompMod:GetModule('versioning'):GetVersion()
+local revision = CompMod:GetModule('versioning'):GetRevision()
 
 local function showChangeLog()
     if Shine then
@@ -19,10 +19,10 @@ local oldOnInitLocalClient = Player.OnInitLocalClient
 function Player:OnInitLocalClient()
     oldOnInitLocalClient(self)
 
-    local oldVersion = Client.GetOptionString(kCompModVersionKey, "v0")
-    local currentVersion = version or "v0"
-    if currentVersion ~= oldVersion then
-        Client.SetOptionString(kCompModVersionKey, currentVersion)
+    local oldRevision = Client.GetOptionInteger(kCompModRevisionKey, 0)
+    local currentRevision = revision or "0"
+    if currentRevision ~= oldRevision then
+        Client.SetOptionInteger(kCompModRevisionKey, currentRevision)
         showChangeLog()
     end
 

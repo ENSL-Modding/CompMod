@@ -42,7 +42,7 @@ function ModuleManagerModule:ValidateModules()
         if #files == 0 then
             logger:PrintWarn("No files found for module: %s", v)
         elseif not (#files == 1 and files[1] == ".docugen") then -- Skip modules that only have .docugen files
-            local allowedFollowingDirs = {"Post", "Pre", "Replace", "Halt", "Client", "Server", "Predict", "Shared"}
+            local allowedFollowingDirs = {"Post", "Pre", "Replace", "Halt", "Client", "Server", "Predict", "Shared", "New"}
             for _,file in ipairs(files) do
                 local followingDir = file:gsub(dir:gsub("/*.lua", ""), ""):match("^([^/]+)/.*$")
                 local dirOk = false

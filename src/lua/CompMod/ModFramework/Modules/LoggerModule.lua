@@ -27,6 +27,7 @@ function LoggerModule:ValidateConfig()
 end
 
 local function LoggerPrint(self, level, msg, ...)
+    local args = {...}
     local configLevelIdx = self.levelIdxMap[self.config.level]
     local levelIdx = self.levelIdxMap[level]
     fw_assert_not_nil(configLevelIdx, "Failed to get level index from config level", self)
@@ -34,7 +35,7 @@ local function LoggerPrint(self, level, msg, ...)
 
     if levelIdx >= configLevelIdx then
         local prefix = string.format("[%s - %s] %s:", self.framework:GetModName(), self.framework.vm, level)
-        local formattedMsg = msg:format(select(1, ...))
+        local formattedMsg = msg:format(unpack(args))
         local finalString = string.format("%s %s", prefix, formattedMsg)
     
         print(finalString)

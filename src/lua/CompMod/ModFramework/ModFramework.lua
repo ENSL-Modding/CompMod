@@ -10,11 +10,11 @@ Script.Load("lua/CompMod/ModFramework/Modules/TechHandlerModule.lua")
 
 class 'ModFramework'
 
-local modFrameworkVersion = "1.0.2"
+local modFrameworkVersion = "1.1.3"
 
 function ModFramework:Initialize(vm, filehook)
     self.modName = "CompMod"
-    fw_print_info(nil, "Initializing %s Framework Version %s", self.modName, modFrameworkVersion)
+    fw_print_info(nil, "Initializing %s. Framework Version: %s", self.modName, modFrameworkVersion)
 
     -- Validate params
     fw_assert_not_nil(vm, "No VM passed")

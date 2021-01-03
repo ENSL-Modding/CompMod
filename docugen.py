@@ -1,433 +1,50 @@
-import sys
-import sqlite3
-import os
-from datetime import date
+import argparse
+from docugen import generator, database, file_scanner, verbose
 
-initialNodeOrder = [
-    "Alien", 
-    "Marine", 
-    "Spectator", 
-    "Global", 
-    "Fixes & Improvements"
-]
-imagesForNodes = {
-    "Alien":                "https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png",
-    "Marine":               "https://wiki.naturalselection2.com/images/3/30/Marine_banner.png",
-    "Spectator":            "https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png",
-    "Global":               "https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png",
-    "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
-}
-enableImageOutput = True
-enableDebugOutput = False
+def gen_changelogs(args):
+    generator.generate_change_logs(args)
+    print("Changelogs generated successfully")
 
-vsVanillaOutput = "docs/changes.md"
-modChangelogOutput = "docs/full_changelog.md"
-
-# NoReturn
-def die(errStr):
-    print("Error: {}".format(errStr))
-    exit(1)
-
-# NoReturn
-def usage():
-    print("Docugen Usage")
-    print("docugen [--regen] vanillaVersion, modVersion, [oldModVersion]")
-    print("")
-    print("--create                   Create tables and exit")
-    print("--update-only modVersion   Only update table, don't write changelogs")
-    print("--raw-dump [modVersion]    Dump all data from table")
-    exit(2)
-
-def debugPrint(str):
-    if enableDebugOutput:
-        print(str)
-
-class ChangeLogNode:
-    def __init__(self, key, parent=None):
-        self.key = key
-        self.parent = parent
-        self.children = []
-        self.values = []
-
-    def getChild(self, key):
-        for child in self.children:
-            if child.key == key:
-                return child
-        
-        return None
-
-    def hasChild(self, key):
-        return self.getChild(key) != None
-
-    def addChild(self, key, value):
-        child = ChangeLogNode(key, value)
-        self.children.append(child)
-
-        return child
-    
-    def addValue(self, value):
-        self.values.append(value)
-
-class ChangeLogTree:
-    def __init__(self, rawChangelog):
-        self.rootNode = ChangeLogNode("root")
-        for key,value in rawChangelog:
-            self.injestKey(self.rootNode, key, value)
-
-    def injestKey(self, root, key, value):
-        if "." in key:
-            subkeys = key.split(".")
-            rootSubkey = subkeys[0]
-            node = None
-            if root.hasChild(rootSubkey):
-                node = root.getChild(rootSubkey)
-            else:
-                node = root.addChild(rootSubkey, root)
-
-            if not node:
-                die("Failed to injest key")
-
-            self.injestKey(node, ".".join(subkeys[1:]), value)
-        else:
-            if root.hasChild(key):
-                node = root.getChild(key)
-            else:
-                node = root.addChild(key, root)
-            node.addValue(value)
-
-def main():
-    # Pop program name
-    sys.argv.pop(0)
-
-    argc = len(sys.argv)
-    if argc == 0:
-        usage()
-
-    # Connect to db
-    conn = sqlite3.connect('docugen/data.db')
-    c = conn.cursor()
-
-    # Handle special cases
-    wantRegen = False
-
-    if sys.argv[0] == "--create" and argc == 1:
-        createTables(c)
-        return
-    
-    if sys.argv[0] == "--update-only" and argc == 2:
-        scanForDocugenFiles(conn, c, sys.argv[1])
-        return
-
-    if sys.argv[0] == "--raw-dump":
-        if argc == 1:
-            print(c.execute("SELECT * FROM FullChangelog").fetchall())
-        elif argc == 2:
-            print(c.execute("SELECT * FROM FullChangelog WHERE modVersion = ?", [sys.argv[1]]).fetchall())
-        return
-
-    if sys.argv[0] == "--regen":
-        wantRegen = True
-        sys.argv.pop(0)
-        argc -= 1
-
-    # Populate argument vars
-    if argc == 2:
-        vanillaVersion, modVersion = (sys.argv)
-        oldModVersion = findLastModVersion(c, modVersion)
-    elif argc == 3:
-        vanillaVersion, modVersion, oldModVersion = (sys.argv)
-    else:
-        usage()
-
-    # Abort if current version matches previous version
-    if modVersion == oldModVersion:
-        die("Current mod version matches previous mod version")
-
-    modName = getModName()
-
-    print("Starting docugen for {}".format(modName))
-    print("Vanilla Version: {}".format(vanillaVersion))
-    print("Mod Version: {}".format(modVersion))
-    print("Old Mod Version: {}".format(oldModVersion))
-
-    # Only generate full changelog if --regen supplied
-    # Don't generate parial and don't update db
-    if wantRegen:
-        print("Regenerating changelog")
-        createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName)
-        return
-
-    # Populate database for new version
-    scanForDocugenFiles(conn, c, modVersion)
-
-    # Generate full changelog
-    createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName)
-
-    # Generate partial changelog
-    createChangelogStub(conn, c, modVersion, oldModVersion, modName)
-    
-def createTables(c):
-    # First drop
-    c.execute('''DROP TABLE IF EXISTS FullChangelog''')
-
-    # Create tables
-    c.execute('''CREATE TABLE FullChangelog(
-                    modVersion varchar2(20) not null, 
-                    key varchar2(100), 
-                    value varchar2(100))''')
-
+def init_table(args):
+    database.initialize_tables(args)
     print("Tables created successfully")
 
-def findLastModVersion(c, modVersion):
-    version = c.execute(''' SELECT modVersion 
-                            FROM FullChangeLog
-                            WHERE modVersion <> ?
-                            ORDER BY modVersion DESC
-                            LIMIT 1''', [modVersion]).fetchone()
+def update_database(args):
+    conn, c = database.connect_to_database()
+    file_scanner.scan_for_docugen_files(conn, c, args.update_version, "CompMod")
+    print("Database updated successfully")
 
-    if version == None:
-        die("Failed to find last mod version. See usage")
+def main():
+    sub_parser_callbacks = {
+        'gen': gen_changelogs,
+        'init': init_table,
+        'update': update_database,
+    }
 
-    return version[0]
+    parser = argparse.ArgumentParser(description='Generate mod changelogs')
+    parser.add_argument('-v', '--verbose', action="store_true", help='Enable verbose output')
 
-def getModName():
-    walkPath = os.path.join("src", "lua")
-    dirs = next(os.walk(walkPath))[1]
-    del dirs[dirs.index("entry")]
-    return dirs[0]
+    subparsers = parser.add_subparsers(dest='command', title='subcommands', help='sub-command help')
 
-def scanForDocugenFiles(conn, c, modVersion):
-    # Delete any current entries for modVersion
-    c.execute("DELETE FROM FullChangelog WHERE modVersion = ?", [modVersion])
+    # Create parser for generate command
+    parser_gen = subparsers.add_parser("gen", help='Generate changelogs')
+    parser_gen.add_argument('vanilla_version', type=int, help='Current version of the vanilla game')
+    parser_gen.add_argument('mod_version', type=int, help='Current revision of your mod')
 
-    # Get the modname
-    modName = getModName()
+    # Create parser for init command
+    subparsers.add_parser("init", help='Initialize database')
 
-    # Walk src/lua/{modName}/Modules looking for .docugen files
-    walkPath = os.path.join("src", "lua", modName, "Modules")
-    docugenFiles = []
-    for root, dirs, files in os.walk(walkPath):
-        if ".docugen" in files:
-            docugenFiles.append(root)
- 
-    # Read all docugen files and add entries to database
-    for path in docugenFiles:
-        file = path + os.sep + ".docugen"
-        with open(file, "r") as f:
-            addDocugenEntry(c, modVersion, f.readlines())
-        debugPrint("Processed module: {}".format(file))
+    # Create parser for update command
+    parser_update = subparsers.add_parser("update", help='update help')
+    parser_update.add_argument('update_version', type=int, help='The mod version to update')
 
-    # Commit table changes
-    conn.commit()
+    args = parser.parse_args()
 
-def addDocugenEntry(c, modVersion, data):
-    key = data.pop(0).strip()
-    for value in data:
-        c.execute("INSERT INTO FullChangelog(modVersion, key, value) VALUES (?,?,?)", [modVersion, key, value.strip()])
-
-def createChangelogAgainstVanilla(conn, c, vanillaVersion, modVersion, modName):
-    # Get changelog for version
-    rawChangelog = c.execute('''SELECT key,value 
-                                FROM FullChangelog 
-                                WHERE modVersion = ? 
-                                ORDER BY key ASC''', [modVersion]).fetchall()
-
-    # Create tree from table
-    tree = ChangeLogTree(rawChangelog)
-
-    # Generate markdown text and write to changelog file
-    with open(vsVanillaOutput, "w") as f:
-        f.write("# Changes between {} {} and Vanilla {}\n".format(modName, modVersion, vanillaVersion))
-        f.write("<br/>\n")
-        f.write("\n")
-        generateMarkdown(f, tree.rootNode)
-
-    print("Changelog against vanilla generated")
-
-def createChangelogStub(conn, c, modVersion, oldModVersion, modName):
-    # Create entry stub
-    stub = "# {} {} - ({})\n".format(modName, modVersion, date.today().strftime("%d/%m/%Y"))
-
-    # Get changelog for current version
-    currentChangelog = c.execute('''SELECT key,value 
-                                    FROM FullChangelog 
-                                    WHERE modVersion = ? 
-                                    ORDER BY key ASC''', [modVersion]).fetchall()
-
-    # Get changelog for previous version
-    oldChangelog = c.execute('''SELECT key,value 
-                                FROM FullChangelog 
-                                WHERE modVersion = ? 
-                                ORDER BY key ASC''', [oldModVersion]).fetchall()
-
-    debugPrint("==OLD==")
-    debugPrint(oldChangelog)
-
-    debugPrint("\n==NEW==")
-    debugPrint(currentChangelog)
-
-    # Diff both changelogs
-    diff = changelogDiff(currentChangelog, oldChangelog)
-
-    debugPrint("\n==DIFF==")
-    debugPrint(diff)
-
-    # Create tree from diff
-    tree = ChangeLogTree(diff)
-
-    # Prepend generated markdown to file
-    with open(modChangelogOutput, "r+") as f:
-        content = f.read()
-        f.seek(0,0)
-        f.write(stub)
-        if len(diff) > 0:
-            generatePartialMarkdown(f, tree.rootNode)
-        f.write("\n<br/>\n\n")
-        f.write(content)
-
-    print("Mod changelog stub generated")
-
-def generateMarkdown(f, rootNode):
-    lineNo = 0
-    for initialNode in initialNodeOrder:
-        imageUrl = None
-        if enableImageOutput:
-            imageUrl = imagesForNodes[initialNode]
-
-        if rootNode.hasChild(initialNode):
-            lineNo = renderMarkdown(rootNode.getChild(initialNode), f, imageUrl=imageUrl, lineNo=lineNo)
-
-    for child in rootNode.children:
-        if child.key in initialNodeOrder:
-            continue
-    
-        lineNo = renderMarkdown(child, f, lineNo=lineNo)
-
-def generatePartialMarkdown(f, rootNode):
-    lineNo = 0
-    for initialNode in initialNodeOrder:
-        if rootNode.hasChild(initialNode):            
-            lineNo = renderMarkdown(rootNode.getChild(initialNode), f, additionalHeaderLevel=1, lineNo=lineNo)
-
-def renderMarkdown(root, f, indentIndex=0, lineNo=0, imageUrl=None, additionalHeaderLevel=0):
-    key = root.key
-    values = root.values
-
-    # First we write the key, heading/bullet point level depends on indentIndex. We can control the initial header level by changing additionalHeaderLevel
-    if indentIndex == 0:
-        if lineNo != 0:
-            f.write("\n")
-
-        f.write("#"*additionalHeaderLevel + "# {}\n".format(key))
-    elif indentIndex == 1:
-        if lineNo != 0:
-            f.write("\n")
-
-        f.write("#"*additionalHeaderLevel + "## {}\n".format(key))
-    elif indentIndex == 2 and additionalHeaderLevel == 0: 
-        # This is only really useful with no additionalHeaderLevels
-        f.write("* ### {}\n".format(key))
-    else:
-        f.write(("  "*(indentIndex-2)) + "* {}\n".format(key))
-    
-    # Increment lineNo and indentIndex
-    lineNo += 1
-    indentIndex += 1
-
-    # Write image tag out if we have one
-    if imageUrl != None:
-        f.write('![alt text]({} "{}")\n'.format(imageUrl, key))
-
-    # Write all values 
-    for value in values:
-        origIndentIndex = indentIndex
-        i = 0
-
-        # Values can be prefixed with ">" to indent. Increment indentIndex for each occurence.
-        for c in value:
-            if c == ">":
-                indentIndex += 1
-                i += 1
-            else:
-                break
-        
-        # Remove any leading ">" chars
-        value = value[i:]
-        
-        # Write value 
-        f.write(("  "*(indentIndex-2)) + "* {}\n".format(value))
-
-        # Restore original indentIndex
-        indentIndex = origIndentIndex
-
-    # Increment lineNo by the number of values written
-    lineNo += len(values)
-
-    # Call renderMarkdown recursively for every child node
-    for child in root.children:
-        lineNo = renderMarkdown(child, f, indentIndex=indentIndex, lineNo=lineNo, additionalHeaderLevel=additionalHeaderLevel)
-    
-    return lineNo
-
-def changelogDiff(curr, old):
-    diff = []
-    lastNeutralIndentKey = ""
-    lastNeutralIndentValue = ""
-
-    # Iterate through all key/value pairs in currentChangelog
-    for key,value in curr:
-        foundKey = False
-        foundValue = False
-        if not value.startswith(">"):
-            lastNeutralIndentKey = key
-            lastNeutralIndentValue = value
-
-        # With a single key/value pair in curr, look for a matching one in the oldChangelog
-        for key2,value2 in old:
-            if key == key2:
-                foundKey = True
-                if value2 == value:
-                    foundValue = True
-            elif foundKey:
-                break
-
-        # If we didn't find a match for the key is means the key/value was added
-        # If we did find a key but didn't find a value, it means that a key/value pair was modified.
-        if not foundKey or not foundValue:
-            if value.startswith(">") and lastNeutralIndentKey != "" and lastNeutralIndentValue != "":
-                debugPrint("Diff: Adding root {}({}) because the next key/value pair is indented".format(lastNeutralIndentKey, lastNeutralIndentValue))
-                diff.append((lastNeutralIndentKey, lastNeutralIndentValue))
-                lastNeutralIndentKey = ""
-                lastNeutralIndentValue = ""
-
-            debugPrint("Diff: Adding {}({}) because the {}".format(key, value, "key wasn't found" if not foundKey else "values didn't match"))
-
-            diff.append((key, value))
-            if key == lastNeutralIndentKey and value == lastNeutralIndentValue:
-                lastNeutralIndentKey = ""
-                lastNeutralIndentValue = ""
-
-    # Check for any deletions
-    for key,value in old:
-        foundKey = False
-        foundValue = False
-
-        # Find matching key in curr
-        for key2,value2 in curr:
-            if key == key2:
-                foundKey = True
-                if value2 == value:
-                    foundValue = True
-            elif foundKey:
-                break
-
-        # If a key exists in the old changelog but not in the current one, it's been removed
-        # If we did find a key in the old changelog but didn't find the value in the new changelog it's been removed
-        if not foundKey or not foundValue:
-            debugPrint("Diff: Adding {} because it was deleted (key {})".format(key, "missing" if not foundKey else "found, value missing"))
-            diff.append((key, "== REMOVED == " + value))
-    
-    return diff
+    if args.command:
+        verbose.set_verbose(args.verbose)
+        sub_parser_callbacks[args.command](args)
+    elif args:
+        parser.print_usage()
 
 if __name__ == "__main__":
     main()

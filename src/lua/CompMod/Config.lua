@@ -1,8 +1,4 @@
 --[[
-    ==========================================================
-                          Mod Framework
-    ==========================================================
-    
     This is the main config file for your mod.
 
     For information on how to use this file see the wiki.
@@ -19,10 +15,7 @@ function GetModFrameworkConfigCompMod()
 
     -- Versioning
     config.versioning = {}
-    config.versioning.majorVersion = 3
-    config.versioning.minorVersion = 5
-    config.versioning.patchVersion = 6
-    config.versioning.preRelease = ""
+    config.versioning.revision = 1
     config.versioning.display = true
 
     -- Tech Handler
