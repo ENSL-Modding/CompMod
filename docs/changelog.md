@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 1](revisions/revision1.md) and Vanilla Build 336
+# Changes between CompMod [revision 2](revisions/revision2.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -123,11 +123,11 @@
   * Damage will tick once every second
   * Duration will be 1 second per Veil
   * Damage Values:
-    * Skulk: 6
-    * Gorge: 5
-    * Lerk: 4
-    * Fade: 8
-    * Onos: 6
+    * Skulk: 7
+    * Gorge: 6
+    * Lerk: 5
+    * Fade: 9
+    * Onos: 7
 * ### Regeneration
   * Removed heal effect (visual and audio)
   * Reduced from 8% per tick to 6% per tick
