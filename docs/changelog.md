@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 3](revisions/revision3.md) and Vanilla Build 336
+# Changes between CompMod [revision 4](revisions/revision4.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -205,7 +205,8 @@
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
   * Reduced damage to 7 from 8
-  * Lowered spread to 3.6 radians from 4 radians
+  * Lowered spread to 3.2 radians from 4 radians
+  * Increased structure damage multiplier to 1.25x from 1.0x
 * ### Shotgun
   * Damage
     * Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
