@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 2](revisions/revision2.md) and Vanilla Build 336
+# Changes between CompMod [revision 3](revisions/revision3.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -6,6 +6,17 @@
 
 ## BoneWall
 * BoneWall is no longer flammable
+
+## Crag
+* ### Healing
+  * Implement per-lifeform heal values (I assume this means we're removing min/max heal clamps for lifeforms?)
+  * Added per-lifeform heal, removing the min/max heal clamps for lifeforms
+  * Healing values:
+    * Skulk: 10 (~13%) up from 7
+    * Gorge: 15 (9%) up from 11
+    * Lerk: 16 (~9%) up from 10
+    * Fade: 25  (10%) up from 17
+    * Onos: 80  (11%) up from 42
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
@@ -36,20 +47,10 @@
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
 * ### Movement
-  * Removed auto-crouch
-  * Reduced ground slide duration to 1 second from 2 seconds
-  * Blink no longer ignores the Fade's momentum
-  * Added a miniumum speed of 15 to Blink. When changing direction you are guaranteed this speed as a minimum
-  * Softcaps added to Fade speed:
-    * 19 without Celerity
-    * 20.5 with Celerity
-  * Movement Breakdown:
-    * Without Celerity
-      * Initial Blink will give 15 speed from 16.25 speed,
-      * Each subsequent blink will now give 2.5 speed
-    * With Celerity
-      * Initial Blink will give 15.6 speed from 18.28 speed,
-      * Each subsequent blink will give 2.9 speed
+  * Blink will no longer take into account the Fade's momentum
+  * Blink will give 16.25 speed in the direction the Fade is facing
+  * Will lose velocity more quickly when moving faster than 16.25
+  * Rate at which you lose velocity is reduced when using Celerity
 
 ## Gorge
 * ### Babblers
@@ -61,6 +62,10 @@
   * HP gain per charge to 5 from 10
   * Web charges lowered to 0 from 3
   * Webbed duration lowered to 2.5 seconds from 5 seconds
+
+## Healing Cap
+* Decreased healing softcap to 12% from 14%
+* Increased additional healing penalty to 80% from 66%
 
 ## Lerk
 * ### Movement
@@ -151,6 +156,12 @@
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
+
+## Medpack
+* Increased instant heal amount to 40 from 25
+* Decreased HoT amount to 10 from 25
+* Decreased snap radius to match AmmoPack
+* Increased pickup delay to 0.6 seconds from 0.45 seconds
 
 ## Medpacks
 * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
