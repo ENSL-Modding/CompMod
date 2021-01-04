@@ -32,7 +32,7 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
         if isAffectedByNeurotoxin then
             local neuroLevel = attacker:GetVeilLevel()
             if neuroLevel > 0 then
-                if target:isa("Player") then
+                if target:isa("Player") and target:GetTeamNumber() ~= attacker:GetTeamNumber() then
                     local tickDamage = doer:GetNeurotoxinTickDamage()
                     if tickDamage > 0 then
                         ApplyNeurotoxinHit(attacker, target, tickDamage, neuroLevel)
