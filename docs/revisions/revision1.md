@@ -1,9 +1,4 @@
-# CompMod revision 1 - (03/01/2021)
-* No changes for this revision
-
-<br/>
-
-<div style="position:fixed;left:0;bottom:0;width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
+<div style="width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
 <div style="display:inline-block;float:left;padding-left:20%">
 [ <- Previous ]
 </div>
@@ -16,3 +11,8 @@ Revision 1
 </a>
 </div>
 </div>
+
+<br />
+
+# CompMod revision 1 - (03/01/2021)
+* No changes for this revision
