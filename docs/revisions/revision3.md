@@ -1,3 +1,21 @@
+<div style="width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
+<div style="display:inline-block;float:left;padding-left:20%">
+<a href="revision2">
+[ <- Previous ]
+</a>
+</div>
+<div style="display:inline-block;">
+Revision 3
+</div>
+<div style="display:inline-block;float:right;padding-right:20%">
+<a href="revision4">
+[ Next -> ]
+</a>
+</div>
+</div>
+
+<br />
+
 # CompMod revision 3 - (04/01/2021)
 ## Alien
 
@@ -34,21 +52,3 @@
 * Decreased HoT amount to 10 from 25
 * Decreased snap radius to match AmmoPack
 * Increased pickup delay to 0.6 seconds from 0.45 seconds
-
-<br/>
-
-<div style="position:fixed;left:0;bottom:0;width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
-<div style="display:inline-block;float:left;padding-left:20%">
-<a href="revision2">
-[ <- Previous ]
-</a>
-</div>
-<div style="display:inline-block;">
-Revision 3
-</div>
-<div style="display:inline-block;float:right;padding-right:20%">
-<a href="revision4">
-[ Next -> ]
-</a>
-</div>
-</div>

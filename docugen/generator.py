@@ -75,6 +75,8 @@ def create_changelog_stub(conn, c, mod_version, prev_mod_version):
 
     # Write generated markdown to file
     with open("docs/revisions/revision{}.md".format(mod_version), "w+") as f:
+        generate_nav_bar(f, mod_version, prev_mod_version)
+        
         f.write("# {} revision {} - ({})\n".format("CompMod", mod_version, date.today().strftime("%d/%m/%Y")))
         if len(diff) > 0:
             markdown_generator.generate_partial(f, tree.root_node)
@@ -82,12 +84,11 @@ def create_changelog_stub(conn, c, mod_version, prev_mod_version):
             f.write("\n* No changes for this revision")
         f.write("\n<br/>\n\n")
 
-        generate_nav_bar(f, mod_version, prev_mod_version)
         if prev_mod_version > 0:
             update_prev_nav_bar(mod_version, prev_mod_version)
         
 def generate_nav_bar(f, mod_version, prev_mod_version):
-    f.write('<div style="position:fixed;left:0;bottom:0;width:100%;background-color:#373737;color:#FFFFFF;text-align:center">\n')
+    f.write('<div style="width:100%;background-color:#373737;color:#FFFFFF;text-align:center">\n')
 
     f.write('<div style="display:inline-block;float:left;padding-left:20%">\n')
     if prev_mod_version > 0:
@@ -108,16 +109,26 @@ def generate_nav_bar(f, mod_version, prev_mod_version):
 
     f.write('</div>\n')
 
+    f.write('\n<br />\n\n')
+
 def update_prev_nav_bar(mod_version, prev_mod_version):
     lines = None
     with open("docs/revisions/revision{}.md".format(prev_mod_version), "r") as f:
         lines = f.readlines()
     
-    del lines[-3:]
+    i = 0
+    for line in lines:
+        i += 1
+        if line == '<div style="display:inline-block;float:right;padding-right:20%">\n':
+            break
+
+    firstLines = lines[0:i]
+    i += 1
+    afterLines = lines[i:]
+
     with open("docs/revisions/revision{}.md".format(prev_mod_version), "w") as f:
-        f.writelines(lines)
+        f.writelines(firstLines)
         f.write('<a href="revision{}">\n'.format(mod_version))
         f.write('[ Next -> ]\n')
         f.write('</a>\n')
-        f.write('</div>\n')
-        f.write('</div>\n')
+        f.writelines(afterLines)
