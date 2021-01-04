@@ -1,2 +1,2 @@
 kHeavyMachineGunDamage = 7
-kHeavyMachineGunSpread = Math.Radians(3.6)
+kHeavyMachineGunSpread = Math.Radians(3.2)
