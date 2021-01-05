@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 4](revisions/revision4.md) and Vanilla Build 336
+# Changes between CompMod [revision 5](revisions/revision5.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -9,7 +9,8 @@
 
 ## Crag
 * ### Healing
-  * Implement per-lifeform heal values (I assume this means we're removing min/max heal clamps for lifeforms?)
+  * Changed Crag to heal eHP instead of a flat value
+  * Implement per-lifeform heal values
   * Added per-lifeform heal, removing the min/max heal clamps for lifeforms
   * Healing values:
     * Skulk: 10 (~13%) up from 7
@@ -153,6 +154,14 @@
   * Research cost 15 tres
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
+
+## Cybernetic Boots
+* Added a new research on the Prototype Lab
+* Research time 13 seconds
+* Research cost 666 tres
+* Increases max sprint speed for all Marines
+* Allows all Marines to do a charged jump
+  * Hold crouch and jump
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres

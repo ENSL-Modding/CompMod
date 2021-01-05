@@ -62,6 +62,7 @@ function GetModFrameworkModulesCompMod()
         "Marine/AdvancedWeapons",
         "Marine/ARC/Health",
         "Marine/Armory/UpgradeToAA",
+        "Marine/CyberneticBoots",
         "Marine/Flamethrower",
         "Marine/HMG/Damage",
         "Marine/MAC/Cost",

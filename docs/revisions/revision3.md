@@ -21,7 +21,7 @@ Revision 3
 
 ### Crag
 * Healing
-  * Implement per-lifeform heal values (I assume this means we're removing min/max heal clamps for lifeforms?)
+  * Implement per-lifeform heal values
   * Added per-lifeform heal, removing the min/max heal clamps for lifeforms
   * Healing values:
     * Skulk: 10 (13%) up from 7
