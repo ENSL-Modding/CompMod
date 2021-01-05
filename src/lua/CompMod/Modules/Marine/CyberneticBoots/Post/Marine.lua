@@ -7,7 +7,7 @@ local networkVars = {
 local function GetHasCyberneticBoots(self)
     local team = self:GetTeam()
     if team then
-        local techTree = team:GetTechTree()
+        local techTree = team.GetTechTree and team:GetTechTree() or nil
         if techTree then
             local cyberneticBootsNode = techTree:GetTechNode(kTechId.CyberneticBoots)
             if cyberneticBootsNode and cyberneticBootsNode:GetResearched() then
