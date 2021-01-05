@@ -15,13 +15,14 @@ function GetModFrameworkConfigCompMod()
 
     -- Versioning
     config.versioning = {}
-    config.versioning.revision = 4
+    config.versioning.revision = 5
     config.versioning.display = true
 
     -- Tech Handler
     config.techhandler = {}
     config.techhandler.techIdsToAdd = {
         "AdvancedSwipe",
+        "CyberneticBoots",
         "DemolitionsTech",
         "Neurotoxin",
     }

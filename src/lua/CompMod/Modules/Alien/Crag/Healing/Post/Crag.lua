@@ -23,7 +23,7 @@ function Crag:TryHeal(target)
     
     if target:GetHealthScalar() ~= 1 and (not target.timeLastCragHeal or target.timeLastCragHeal + Crag.kHealInterval <= Shared.GetTime()) then
     
-        local amountHealed = target:AddHealth(heal, false, false, false, self)
+        local amountHealed = target:AddHealth(heal, false, false, false, self, true)
         target.timeLastCragHeal = Shared.GetTime()
         return amountHealed
         
