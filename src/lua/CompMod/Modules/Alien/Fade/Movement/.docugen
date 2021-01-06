@@ -1,5 +1,2 @@
 Alien.Fade.Movement
-Blink will no longer take into account the Fade's momentum
-Blink will give 16.25 speed in the direction the Fade is facing
-Will lose velocity more quickly when moving faster than 16.25
-Rate at which you lose velocity is reduced when using Celerity
+Lowered minimum blink speed to 15 from 16
