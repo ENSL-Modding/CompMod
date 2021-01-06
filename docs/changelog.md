@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 5](revisions/revision5.md) and Vanilla Build 336
+# Changes between CompMod [revision 6](revisions/revision6.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -48,10 +48,7 @@
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
 * ### Movement
-  * Blink will no longer take into account the Fade's momentum
-  * Blink will give 16.25 speed in the direction the Fade is facing
-  * Will lose velocity more quickly when moving faster than 16.25
-  * Rate at which you lose velocity is reduced when using Celerity
+  * Lowered minimum blink speed to 15 from 16
 
 ## Gorge
 * ### Babblers

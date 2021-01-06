@@ -4,7 +4,7 @@ local currentRevision = CompMod:GetModule('versioning'):GetRevision()
 local kCompModRevisionKey = "compmod_revision"
 local kChangelogTitle = "NSL Competitive Mod"
 local kChangelogURL = "https://enslcompmod.github.io/CompMod/changelog"
-local kChangelogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision" .. currentRevision .. ".md"
+local kChangelogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision" .. currentRevision .. ".html"
 
 local function showChangeLog(withDetail)
     withDetail = withDetail or false
