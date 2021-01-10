@@ -95,6 +95,7 @@ function GetModFrameworkModulesCompMod()
         "QOL/KeepUpgrades",
         "QOL/PreventMultipleInitialIPs",
         "QOL/ResponsiveGUI",
+        "QOL/StatusIconsLowDetail",
     
         "Spectator/EdgePanning",
         "Spectator/HelpText",
