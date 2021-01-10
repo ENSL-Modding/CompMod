@@ -1,15 +1,12 @@
 function Hive:OnTeleport()
-    print("On Teleport")
     self:SetDesiredInfestationRadius(0)
 end
 
 function Hive:OnTeleportFailed()
-    print("On Teleport Failed")
     self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
 end
 
 function Hive:OnTeleportEnd(destinationEntity)
-    print("On Teleport End")
     local attachedTechPoint = self:GetAttached()
     if attachedTechPoint then
         attachedTechPoint:SetIsSmashed(true)
