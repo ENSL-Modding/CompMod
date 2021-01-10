@@ -69,6 +69,7 @@ Revision 7
   * Only the damage contributed through primary attacks will count towards the heal bonus
   * Only damage done in the last 10 seconds will count towards the heal bonus
 * Tenacity
+  * Added new Trait Tenacity to the Crag Hive
   * Increases out of combat healing by 20%
   * Increases in combat healing by 5%
   * Increases innate regen by 50%
