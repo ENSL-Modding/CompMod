@@ -1,0 +1,1 @@
+kCombatTimeOut = 5

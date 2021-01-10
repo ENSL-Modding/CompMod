@@ -3,7 +3,7 @@ local networkVars = {
 }
 
 Lerk.kRoostInterval = 1
-Lerk.kRoostHeal = 4
+Lerk.kRoostHealPercentage = 0.022
 
 local oldOnCreate = Lerk.OnCreate
 function Lerk:OnCreate()
@@ -25,7 +25,7 @@ function Lerk:UpdateRoostHeal()
         local roostAllowed = Shared.GetTime() > self.lastTimeRoost + Lerk.kRoostInterval
 
         if self:GetIsWallGripping() and roostAllowed and GetHasTech(self, kTechId.Roost, true) and not self:GetIsUnderFire() then
-            self:AddHealth(self.kRoostHeal, false, false, false, false, true)
+            self:AddHealth(self:GetMaxHealth() * self.kRoostHealPercentage, false, false, false, self, true)
             self.lastTimeRoost = Shared.GetTime()
         end
     end

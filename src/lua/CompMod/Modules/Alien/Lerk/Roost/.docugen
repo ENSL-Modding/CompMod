@@ -1,5 +1,4 @@
 Alien.Lerk.Roost
 Added Roost
-When Lerks perch on a surface they will silently heal for 5hp per second
-Requires Biomass 2
-Costs 10 tres
+When Lerks perch on a surface they will silently heal for 2.2% of max HP per second
+Costs 10 tres to research and requires Biomass 2

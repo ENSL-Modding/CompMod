@@ -1,2 +1,2 @@
-kBabblerEggDamage = 15
-kBabblerEggDamageType = kDamageType.Falling -- falling ignores armour :)
+kBabblerEggDamage = 40
+kBabblerEggDamageType = kDamageType.Normal -- falling ignores armour :)

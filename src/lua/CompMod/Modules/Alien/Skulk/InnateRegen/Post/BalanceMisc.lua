@@ -1,2 +1,1 @@
-kSkulkInnateRegenerationPercentage  = 0.0534
-kCombatTimeOut = 5
+kSkulkInnateRegenerationPercentage  = 0.04
