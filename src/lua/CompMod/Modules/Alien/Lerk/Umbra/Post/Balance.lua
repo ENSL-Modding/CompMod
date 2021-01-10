@@ -1,0 +1,1 @@
+kUmbraResearchCost = 30 --20

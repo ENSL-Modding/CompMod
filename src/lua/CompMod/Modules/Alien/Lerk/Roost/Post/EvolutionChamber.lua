@@ -1,0 +1,1 @@
+EvolutionChamber.kUpgradeButtons[kTechId.LerkMenu][3] = kTechId.Roost

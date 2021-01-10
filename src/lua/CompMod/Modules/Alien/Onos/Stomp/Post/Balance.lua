@@ -1,0 +1,1 @@
+kStompDamage = 60 -- 40

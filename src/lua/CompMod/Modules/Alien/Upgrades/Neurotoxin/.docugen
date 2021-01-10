@@ -1,0 +1,11 @@
+Alien.Upgrades.Neurotoxin
+Replaces Focus
+All Alien primary attacks will inflict a poison toxin, hurting Marines over time
+Damage will tick once every second
+Duration will be 1 second per Veil
+Damage Values:
+>Skulk: 7
+>Gorge: 6
+>Lerk: 5
+>Fade: 9
+>Onos: 7

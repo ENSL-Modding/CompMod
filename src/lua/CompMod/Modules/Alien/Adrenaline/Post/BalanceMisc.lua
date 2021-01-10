@@ -1,1 +1,0 @@
-kAdrenalineAbilityMaxEnergy = kAbilityMaxEnergy
