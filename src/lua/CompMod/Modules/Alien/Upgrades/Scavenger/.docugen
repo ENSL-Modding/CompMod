@@ -1,5 +1,5 @@
 Alien.Upgrades.Scavenger
-Added new Trait Scavenger to the Shift hive
+Added new Trait Scavenger to the Crag hive
 When a Marine is killed their lifeforce is scavenged by the attacking lifeforms
 Lifeforms will heal proportionally based on how much damage they contributed to kill the Marine, up to a maximum value
 Max Heal Values
