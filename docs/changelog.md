@@ -1,13 +1,8 @@
-# Changes between CompMod [revision 7](revisions/revision7.md) and Vanilla Build 336
+# Changes between CompMod [revision 6](revisions/revision6.md) and Vanilla Build 336
 <br/>
 
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
-
-## Bile Mine
-* Renamed to Toxic Mine
-* Changed damage type to normal from corrosive
-* Lowered damage to 40 from 125
 
 ## BoneWall
 * BoneWall is no longer flammable
@@ -52,11 +47,12 @@
   * Upgrades the normal swipe damage to 81 from 75
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
+* ### Movement
+  * Lowered minimum blink speed to 15 from 16
 
 ## Gorge
 * ### Babblers
   * Are flammable (die in one welder tick)
-  * Lowered health to 11 from 12
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
@@ -69,10 +65,6 @@
 * Decreased healing softcap to 12% from 14%
 * Increased additional healing penalty to 80% from 66%
 
-## Innate Regen
-* Increased out of combat timer to 5 seconds from 3 seconds
-* Increase Skulk innate regen rate by 100%
-
 ## Lerk
 * ### Movement
   * Increase strafe force to 8.3 from 7
@@ -80,10 +72,6 @@
   * After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
   * This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
   * Lerk movement mid-flight while flapping often is unaffected
-* ### Roost
-  * Added Roost
-  * When Lerks perch on a surface they will silently heal for 2.2% of max HP per second
-  * Costs 10 tres to research and requires Biomass 2
 * ### Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
   * Spread increased to 3.8 radians from 3.6 radians
@@ -93,7 +81,6 @@
   * Opacity of cloud lowered by 40%
 * ### Umbra
   * Reduced opacity by 25%
-  * Increased research cost to 30 from 20
 * ### Vampirism Shield
   * Reduced leeched health amount to 6% from 8%
 
@@ -103,9 +90,6 @@
   * Moving with BoneShield active will consume BoneFuel faster
 * ### Charge
   * Marine knockback removed
-* ### Stomp
-  * Increased Stomp damage to 60 from 40
-  * Removed knockdown effect
 
 ## Skulk
 * ### BiteCone
@@ -117,12 +101,10 @@
 * ### Cyst
   * Build time increased to 6 seconds from 3.33 seconds
   * Shade hive cysts are now visible from further away (to 10 from 6)
-  * Lowered damage bonus from welders to 5x from 7x
 * ### Shift
   * Echo
     * Echo cost for upgrades increased to 2 from 1
     * Echo cost for eggs reduced to 1 from 2
-    * Hives can now be echoed for 50 tres
 * ### Tunnels
   * Tunnels are infested tunnels by default
   * Tunnel cost changed to 8 tres from 6 tres
@@ -138,8 +120,6 @@
   * No longer fully cloaked while moving
 * ### Carapace
   * Upgrade removed
-* ### Crush
-  * Change to Crag hive from Shift hive
 * ### Neurotoxin
   * Replaces Focus
   * All Alien primary attacks will inflict a poison toxin, hurting Marines over time
@@ -152,26 +132,8 @@
     * Fade: 9
     * Onos: 7
 * ### Regeneration
-  * Upgrade removed
-* ### Scavenger
-  * Added new Trait Scavenger to the Shift hive
-  * When a Marine is killed their lifeforce is scavenged by the attacking lifeforms
-  * Lifeforms will heal proportionally based on how much damage they contributed to kill the Marine, up to a maximum value
-  * Max Heal Values
-    * Skulk: 30
-    * Gorge: 50
-    * Lerk: 60
-    * Fade: 120
-    * Onos: 300
-  * The max heal values will increase with Biomass to scale in effectiveness as the game progresses
-  * The heal is applied in 3 chunks over 5 seconds
-    * In other words: one third of the total heal is applied every 1.67s three times
-  * Only the damage contributed through primary attacks will count towards the heal bonus
-  * Only damage done in the last 10 seconds will count towards the heal bonus
-* ### Tenacity
-  * Increases out of combat healing by 20%
-  * Increases in combat healing by 5%
-  * Increases innate regen by 50%
+  * Removed heal effect (visual and audio)
+  * Reduced from 8% per tick to 6% per tick
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
@@ -202,10 +164,10 @@
 * Cost reduced to 4 tres from 5 tres
 
 ## Medpack
-* Increased instant heal amount to 50 from 25
-* Decreased HoT amount to 0 from 25
+* Increased instant heal amount to 40 from 25
+* Decreased HoT amount to 10 from 25
 * Decreased snap radius to match AmmoPack
-* Increased pickup delay to 0.55 seconds from 0.45 seconds
+* Increased pickup delay to 0.6 seconds from 0.45 seconds
 
 ## Medpacks
 * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
@@ -307,6 +269,3 @@
 
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open
-
-## Status Icons
-* Enabled all status icons regardless of HUD detail setting. Previously would only show on High detail
