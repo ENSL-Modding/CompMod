@@ -31,7 +31,7 @@ local kUpgradeStructureTable =
         name = "Shell",
         techId = kTechId.Shell,
         upgrades = {
-            kTechId.Vampirism, kTechId.Tenacity, kTechId.Crush
+            kTechId.Vampirism, kTechId.Tenacity, kTechId.Scavenger
         }
     },
     {
@@ -45,7 +45,7 @@ local kUpgradeStructureTable =
         name = "Spur",
         techId = kTechId.Spur,
         upgrades = {
-            kTechId.Scavenger, kTechId.Celerity, kTechId.Adrenaline
+            kTechId.Crush, kTechId.Celerity, kTechId.Adrenaline
         }
     }
 }

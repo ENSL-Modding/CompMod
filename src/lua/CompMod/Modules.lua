@@ -49,7 +49,6 @@ function GetModFrameworkModulesCompMod()
         "Alien/Upgrades/Aura/Range",
         "Alien/Upgrades/Carapace",
         "Alien/Upgrades/Cloaking/MoveSpeed",
-        "Alien/Upgrades/Crush",
         "Alien/Upgrades/Focus",
         "Alien/Upgrades/General",
         "Alien/Upgrades/Neurotoxin",

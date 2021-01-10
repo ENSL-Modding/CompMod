@@ -9,9 +9,9 @@
 
 local kIndexToUpgrades =
 {
-    { kTechId.Spur, kTechId.Scavenger, kTechId.Celerity, kTechId.Adrenaline },
+    { kTechId.Spur, kTechId.Crush, kTechId.Celerity, kTechId.Adrenaline },
     { kTechId.Veil, kTechId.Camouflage, kTechId.Aura, kTechId.Neurotoxin },
-    { kTechId.Shell, kTechId.Vampirism, kTechId.Tenacity, kTechId.Crush },
+    { kTechId.Shell, kTechId.Vampirism, kTechId.Tenacity, kTechId.Scavenger },
 }
 
 debug.setupvaluex(GUIUpgradeChamberDisplay.Update, "kIndexToUpgrades", kIndexToUpgrades)

@@ -34,8 +34,8 @@ local techUpgradesTable =
     kTechId.Mine,
 
     kTechId.Vampirism,
-    kTechId.Crush,
     kTechId.Tenacity,
+    kTechId.Scavenger,
 
     kTechId.Aura,
     kTechId.Neurotoxin,
@@ -43,7 +43,7 @@ local techUpgradesTable =
 
     kTechId.Celerity,
     kTechId.Adrenaline,
-    kTechId.Scavenger,
+    kTechId.Crush,
 
     kTechId.Parasite,
 }

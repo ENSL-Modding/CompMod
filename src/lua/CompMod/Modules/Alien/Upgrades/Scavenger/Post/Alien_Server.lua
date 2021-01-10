@@ -17,7 +17,7 @@ function Alien:ApplyScavengerHeal(healScalar)
 
     local scavengerHealEntry = {}
     scavengerHealEntry.timesHealed = 0
-    scavengerHealEntry.healAmount = (self:GetScavengerMaxScalar() * healScalar * (self:GetSpurLevel() / 3)) / kScavengerHealCount
+    scavengerHealEntry.healAmount = (self:GetScavengerMaxScalar() * healScalar * (self:GetShellLevel() / 3)) / kScavengerHealCount
     table.insert(self.scavengerHealData, scavengerHealEntry)
 
     -- Set the next time if it's not been set
