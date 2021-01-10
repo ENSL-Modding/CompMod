@@ -24,7 +24,7 @@ function Lerk:UpdateRoostHeal()
     if not self:GetIsDestroyed() and self:GetIsAlive() then
         local roostAllowed = Shared.GetTime() > self.lastTimeRoost + Lerk.kRoostInterval
 
-        if self:GetIsWallGripping() and roostAllowed and GetHasTech(self, kTechId.Roost, true) then
+        if self:GetIsWallGripping() and roostAllowed and GetHasTech(self, kTechId.Roost, true) and not self:GetIsUnderFire() then
             self:AddHealth(self.kRoostHeal, false, false, false, false, true)
             self.lastTimeRoost = Shared.GetTime()
         end
