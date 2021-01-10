@@ -1,0 +1,1 @@
+kSkulkInnateRegenerationPercentage  = 0.04

@@ -15,7 +15,7 @@ function GetModFrameworkConfigCompMod()
 
     -- Versioning
     config.versioning = {}
-    config.versioning.revision = 6
+    config.versioning.revision = 7
     config.versioning.display = true
 
     -- Tech Handler
@@ -25,6 +25,9 @@ function GetModFrameworkConfigCompMod()
         "CyberneticBoots",
         "DemolitionsTech",
         "Neurotoxin",
+        "Roost",
+        "Scavenger",
+        "Tenacity",
     }
 
     return config
