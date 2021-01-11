@@ -1,2 +1,2 @@
 kRoostCost = 10
-kRoostResearchTime = 20
+kRoostResearchTime = 30
