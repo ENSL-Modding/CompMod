@@ -30,6 +30,7 @@ function GetModFrameworkModulesCompMod()
         "Alien/GorgeTunnels/Cost",
         "Alien/Hallucination/HealthAndShields",
         "Alien/Healing",
+        "Alien/InnateRegen",
         "Alien/Lerk/Movement",
         "Alien/Lerk/Roost",
         "Alien/Lerk/Spikes",

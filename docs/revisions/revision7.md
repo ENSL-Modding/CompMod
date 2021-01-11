@@ -83,7 +83,7 @@ Revision 7
 ### Medpack
 * Increased instant heal amount to 50 from 40
 * Decreased HoT amount to 0 from 10
-* Increased pickup delay to 0.55 seconds from 0.6 seconds
+* Decreased pickup delay to 0.55 seconds from 0.6 seconds
 
 ## Fixes & Improvements
 

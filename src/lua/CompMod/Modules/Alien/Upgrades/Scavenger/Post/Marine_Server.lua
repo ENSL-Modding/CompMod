@@ -21,11 +21,6 @@ local oldPreOnKill = Marine.PreOnKill
 function Marine:PreOnKill(attacker, doer, point, direction)
     oldPreOnKill(self, attacker, doer, point, direction)
 
-    -- Apply health to attacking Lifeforms with Scavenger
-    if #self.damageHistory > 50 then
-        logger:PrintWarn("Processing %s entries for Marine")
-    end
-
     -- Do a first pass over attackers:
     --   Find the total damage done to the Marine in the last kScavengerDamageTimeout seconds
     --   Create list of attackers and their damage, if valid for scavenger
