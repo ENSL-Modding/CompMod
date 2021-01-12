@@ -7,3 +7,8 @@ kMarineInitialIndivRes = 20
 kAlienInitialIndivRes = 15
 
 kPlayerResPerInterval = 0.1
+
+kCystBuildTime = 6
+kCystDetectRange = 10
+
+kDrifterDetectRange = 5

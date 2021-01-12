@@ -5,6 +5,8 @@ local function MultiplyFlameAble(target, attacker, doer, damage, armorFractionUs
         local multi = kFlameableMultiplier
         if target.GetIsFlameableMultiplier then
             -- multi = target:GetIsFlameableMultiplier()
+            
+            -- Modify GetIsFlameableMultiplier call to pass the doer
             multi = target:GetIsFlameableMultiplier(doer)
         end
 

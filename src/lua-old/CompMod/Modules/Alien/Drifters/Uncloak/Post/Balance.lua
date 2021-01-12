@@ -1,1 +1,0 @@
-kDrifterDetectRange = 5
