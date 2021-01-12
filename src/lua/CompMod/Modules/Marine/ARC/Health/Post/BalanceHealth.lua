@@ -1,3 +1,4 @@
-kARCHealth = 2200
-kARCArmor = 400
+kARCHealth = 2000
+kARCArmor = 500
 kARCPointValue = 5
+kARCDeployedHealth = 2000
