@@ -1,8 +1,13 @@
+--[[
+    You can set the priority of your mod here.
+    Other than that do not modify this file
+]]
+
 modEntry = {
-    Client      = "lua/CompMod_Client.lua",
-    Server      = "lua/CompMod_Server.lua",
-    Predict     = "lua/CompMod_Predict.lua",
-    Shared      = "lua/CompMod_Shared.lua",
-    FileHooks   = "lua/CompMod_FileHooks.lua",
+    Client      = "lua/CompMod/ModFramework/Entry/Client.lua",
+    Server      = "lua/CompMod/ModFramework/Entry/Server.lua",
+    Predict     = "lua/CompMod/ModFramework/Entry/Predict.lua",
+    Shared      = "lua/CompMod/ModFramework/Entry/Shared.lua",
+    FileHooks   = "lua/CompMod/ModFramework/Entry/FileHooks.lua",
     Priority    = 50
 }
