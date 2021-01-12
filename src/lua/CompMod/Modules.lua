@@ -6,7 +6,6 @@
 
 function GetModFrameworkModulesCompMod()
     return {
-        "Alien/BabblerMine",
         "Alien/BoneWall/Flammable",
         "Alien/Crag/Healing",
         "Alien/Cyst",
@@ -30,9 +29,7 @@ function GetModFrameworkModulesCompMod()
         "Alien/GorgeTunnels/Cost",
         "Alien/Hallucination/HealthAndShields",
         "Alien/Healing",
-        "Alien/InnateRegen",
         "Alien/Lerk/Movement",
-        "Alien/Lerk/Roost",
         "Alien/Lerk/Spikes",
         "Alien/Lerk/SporesBiomass",
         "Alien/Lerk/VampirismScalar",
@@ -44,7 +41,6 @@ function GetModFrameworkModulesCompMod()
         "Alien/Onos/Stomp",
         "Alien/Shift/Echo",
         "Alien/Skulk/BiteConeSize",
-        "Alien/Skulk/InnateRegen",
         "Alien/Skulk/Leap",
         "Alien/Upgrades/Adrenaline",
         "Alien/Upgrades/Aura/Range",
@@ -53,11 +49,9 @@ function GetModFrameworkModulesCompMod()
         "Alien/Upgrades/Focus",
         "Alien/Upgrades/General",
         "Alien/Upgrades/Neurotoxin",
-        "Alien/Upgrades/Regen",
-        "Alien/Upgrades/Scavenger",
-        "Alien/Upgrades/Tenacity",
         "Alien/Upgrades/Vampirism/FriendlyFireFix",
         "Alien/Upgrades/Vampirism/ShieldEffect",
+        "Alien/Upgrades/Vampirism/ShieldValues",
     
         "Changelog",
     

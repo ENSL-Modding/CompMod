@@ -34,8 +34,8 @@ local techUpgradesTable =
     kTechId.Mine,
 
     kTechId.Vampirism,
-    kTechId.Tenacity,
-    kTechId.Scavenger,
+    -- kTechId.Carapace,
+    kTechId.Regeneration,
 
     kTechId.Aura,
     kTechId.Neurotoxin,
