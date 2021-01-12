@@ -3,6 +3,7 @@ ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Balance.lua", "post")
 -- ModLoader.SetupFileHook("lua/BalanceMisc.lua", "lua/CompMod/BalanceMisc.lua", "post")
 
 ModLoader.SetupFileHook("lua/Marine.lua", "lua/CompMod/Classes/Marine/Marine.lua", "post")
+ModLoader.SetupFileHook("lua/Player_Client.lua", "lua/CompMod/Classes/Player/Player_Client.lua", "post")
 
 ModLoader.SetupFileHook("lua/GUIFeedback.lua", "lua/CompMod/GUI/GUIFeedback.lua", "post")
 ModLoader.SetupFileHook("lua/GUIPlayerStatus.lua", "lua/CompMod/GUI/GUIPlayerStatus.lua", "post")
