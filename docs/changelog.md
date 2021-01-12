@@ -1,13 +1,8 @@
-# Changes between CompMod [revision 7](revisions/revision7.md) and Vanilla Build 336
+# Changes between CompMod [revision 8](revisions/revision8.md) and Vanilla Build 336
 <br/>
 
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
-
-## Bile Mine
-* Renamed to Toxic Mine
-* Changed damage type to normal from corrosive
-* Lowered damage to 40 from 125
 
 ## BoneWall
 * BoneWall is no longer flammable
@@ -69,10 +64,6 @@
 * Decreased healing softcap to 12% from 14%
 * Increased additional healing penalty to 80% from 66%
 
-## Innate Regen
-* Increased out of combat timer to 5 seconds from 3 seconds
-* Increase Skulk innate regen rate by 100%
-
 ## Lerk
 * ### Movement
   * Increase strafe force to 8.3 from 7
@@ -80,10 +71,6 @@
   * After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
   * This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
   * Lerk movement mid-flight while flapping often is unaffected
-* ### Roost
-  * Added Roost
-  * When Lerks perch on a surface they will silently heal for 2.2% of max HP per second
-  * Costs 10 tres to research and requires Biomass 2
 * ### Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
   * Spread increased to 3.8 radians from 3.6 radians
@@ -94,6 +81,7 @@
 * ### Umbra
   * Reduced opacity by 25%
   * Increased research cost to 30 from 20
+  * Increased research time to 1 minute 45 seconds from 45 seconds
 * ### Vampirism Shield
   * Reduced leeched health amount to 6% from 8%
 
@@ -104,8 +92,7 @@
 * ### Charge
   * Marine knockback removed
 * ### Stomp
-  * Increased Stomp damage to 60 from 40
-  * Removed knockdown effect
+  * Moved Stomp to Biomass 9 from Biomass 8
 
 ## Skulk
 * ### BiteCone
@@ -122,7 +109,6 @@
   * Echo
     * Echo cost for upgrades increased to 2 from 1
     * Echo cost for eggs reduced to 1 from 2
-    * Hives can now be echoed for 50 tres
 * ### Tunnels
   * Tunnels are infested tunnels by default
   * Tunnel cost changed to 8 tres from 6 tres
@@ -149,38 +135,18 @@
     * Lerk: 5
     * Fade: 9
     * Onos: 7
-* ### Regeneration
-  * Upgrade removed
-* ### Scavenger
-  * Added new Trait Scavenger to the Crag hive
-  * When a Marine is killed their lifeforce is scavenged by the attacking lifeforms
-  * Lifeforms will heal proportionally based on how much damage they contributed to kill the Marine, up to a maximum value
-  * Max Heal Values
-    * Skulk: 30
-    * Gorge: 50
-    * Lerk: 60
-    * Fade: 120
-    * Onos: 300
-  * The max heal values will increase with Biomass to scale in effectiveness as the game progresses
-  * The heal is applied in 3 chunks over 5 seconds
-    * In other words: one third of the total heal is applied every 1.67s three times
-  * Only the damage contributed through primary attacks will count towards the heal bonus
-  * Only damage done in the last 10 seconds will count towards the heal bonus
-* ### Tenacity
-  * Added new Trait Tenacity to the Crag Hive
-  * Increases out of combat healing by 20%
-  * Increases in combat healing by 5%
-  * Increases innate regen by 50%
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
   * Now applies a shader to players that have Vampirism shield
+  * Lowered Skulk vampirism percentage to 3.77% from 4.66%
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
-* Health lowered to 2200/400 from 2600/400
+* Health lowered to 2000/500 from 2600/400
+* Deployed health lowered to 2000 from 2600
 
 ## Advanced Weapons
 * Added new research 'Demolitions'
@@ -204,7 +170,7 @@
 * Increased instant heal amount to 50 from 25
 * Decreased HoT amount to 0 from 25
 * Decreased snap radius to match AmmoPack
-* Increased pickup delay to 0.55 seconds from 0.45 seconds
+* Increased pickup delay to 0.6 seconds from 0.45 seconds
 
 ## Medpacks
 * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
