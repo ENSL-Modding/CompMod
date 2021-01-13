@@ -23,3 +23,12 @@ local function BuildDamageTypeRules()
 end
 
 debug.setupvaluex(GetDamageByType, "BuildDamageTypeRules", BuildDamageTypeRules)
+
+local oldGetUpgradedDamage = NS2Gamerules_GetUpgradedDamage
+function NS2Gamerules_GetUpgradedDamage(attacker, doer, damage, damageType, hitPoint)
+    if doer.kMapName == "swipe" and attacker:GetHasThreeHives() then
+        return damage * kAdvancedSwipeDamageScalard
+    end
+
+    return oldGetUpgradedDamage(attacker, doer, damage, damageType, hitPoint)
+end

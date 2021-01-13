@@ -12,3 +12,17 @@ kCystBuildTime = 6
 kCystDetectRange = 10
 
 kDrifterDetectRange = 5
+
+kEnzymeCloudAbilityCooldown = 1
+
+kAdvancedSwipeDamageScalar = 1.08
+kAdvancedSwipeResearchTime = 60
+kAdvancedSwipeCost = 25
+
+kBabblerHealth = 11 -- 12
+
+kWebHealthPerCharge = 5
+
+kWebMaxCharges = 0 --3
+
+kWebbedDuration = 2.5 --5
