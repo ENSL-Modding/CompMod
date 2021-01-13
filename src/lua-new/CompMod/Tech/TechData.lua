@@ -11,7 +11,16 @@ local techToAdd = {
     }
 }
 
-local techToChange = {}
+local tunnelExtents = {[kTechDataMaxExtents] = Vector(1.2, 0.3, 1.2)}
+
+local techToChange = {
+    [kTechId.BuildTunnelEntryOne] = tunnelExtents,
+    [kTechId.BuildTunnelEntryTwo] = tunnelExtents,
+    [kTechId.BuildTunnelEntryThree] = tunnelExtents,
+    [kTechId.BuildTunnelEntryFour] = tunnelExtents,
+    [kTechId.Tunnel] = tunnelExtents,
+    [kTechId.TunnelRelocate] = tunnelExtents,
+}
 
 local techToRemove = {
     [kTechId.GorgeEgg] = true,
@@ -24,11 +33,12 @@ local techToRemove = {
 
 local function TechDataChanges(techData)
     -- Handle changes / removes
+    local indexToRemove = {}
     for techIndex,record in ipairs(techData) do
         local techDataId = record[kTechDataId]
 
         if techToRemove[techDataId] then
-            table.remove(techData, techIndex)
+            table.insert(indexToRemove, techIndex)
         elseif techToChange[techDataId] then
             for index, value in pairs(techToChange[techDataId]) do
                 if value == removeTechDataValue then
@@ -38,6 +48,13 @@ local function TechDataChanges(techData)
                 end
             end
         end
+    end
+
+    -- Remove tech
+    local offset = 0
+    for _,idx in ipairs(indexToRemove) do
+        table.remove(techData, idx - offset)
+        offset = offset + 1
     end
 
     -- Add new tech

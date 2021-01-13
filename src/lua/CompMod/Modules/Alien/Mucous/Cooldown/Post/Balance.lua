@@ -1,1 +1,0 @@
-kMucousMembraneAbilityCooldown = 1

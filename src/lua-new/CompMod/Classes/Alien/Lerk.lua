@@ -18,3 +18,7 @@ function Lerk:GetAirFriction()
     local timeSinceLastFlap = Shared.GetTime() - self:GetTimeOfLastFlap()
     return Clamp((Lerk.kMaxAirFriction / Lerk.timeToFullFriction) * (timeSinceLastFlap - Lerk.flapGracePeriod), Lerk.kMinAirFriction, Lerk.kMaxAirFriction)
 end
+
+function Lerk:GetMaxShieldAmount()
+    return math.floor(math.min(self:GetBaseHealth() * kLerkMucousShieldPercent, kMucousShieldMaxAmount))
+end

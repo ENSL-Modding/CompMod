@@ -229,7 +229,7 @@ function AlienTeam:InitTechTree()
 
     -- lerk researches
     self.techTree:AddResearchNode(kTechId.Umbra,               kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
-    self.techTree:AddResearchNode(kTechId.Spores,              kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.Spores,              kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
 
     -- fade researches
     self.techTree:AddResearchNode(kTechId.MetabolizeEnergy,        kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
@@ -242,7 +242,7 @@ function AlienTeam:InitTechTree()
     -- onos researches
     self.techTree:AddResearchNode(kTechId.Charge,            kTechId.BioMassTwo, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BoneShield,        kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
-    self.techTree:AddResearchNode(kTechId.Stomp,             kTechId.BioMassEight, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.Stomp,             kTechId.BioMassNine, kTechId.None, kTechId.AllAliens)
 
     -- gorge structures
     self.techTree:AddBuildNode(kTechId.Hydra)

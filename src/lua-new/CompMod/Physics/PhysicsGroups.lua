@@ -1,4 +1,5 @@
-PhysicsMask.OnosCharge = CreateMaskExcludingGroups(PhysicsGroup.WhipGroup,
+PhysicsMask.OnosCharge = CreateMaskExcludingGroups(
+        PhysicsGroup.WhipGroup,
         PhysicsGroup.SmallStructuresGroup,
         PhysicsGroup.MediumStructuresGroup,
         PhysicsGroup.RagdollGroup,
@@ -10,4 +11,5 @@ PhysicsMask.OnosCharge = CreateMaskExcludingGroups(PhysicsGroup.WhipGroup,
         PhysicsGroup.DroppedWeaponGroup,
         PhysicsGroup.CommanderBuildGroup,
         PhysicsGroup.PathingGroup,
-        PhysicsGroup.WebsGroup)
+        PhysicsGroup.WebsGroup
+)
