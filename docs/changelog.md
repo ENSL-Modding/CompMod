@@ -135,6 +135,9 @@
     * Lerk: 5
     * Fade: 9
     * Onos: 7
+* ### Regeneration
+  * Removed heal effect (visual and audio)
+  * Reduced from 8% per tick to 6% per tick
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits

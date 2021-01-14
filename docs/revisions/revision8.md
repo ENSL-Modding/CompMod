@@ -30,10 +30,12 @@ Revision 8
   * Reverted removal of knockdown effect
 
 ### Upgrades
-* Vampirism
-  * Lowered Skulk vampirism percentage to 3.77% from 4.66%
 * Regeneration
   * Re-added Regeneration
+  * Removed heal effect (visual and audio)
+  * Reduced from 8% per tick to 6% per tick
+* Vampirism
+  * Lowered Skulk vampirism percentage to 3.77% from 4.66%
 * Scavenger
   * Removed Scavenger
 * Tenacity
