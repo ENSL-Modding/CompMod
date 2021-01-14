@@ -2,8 +2,6 @@ g_compModRevision = 999
 
 -- Balance
 ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Balance/Balance.lua", "post")
--- ModLoader.SetupFileHook("lua/BalanceHealth.lua", "lua/CompMod/Balance/BalanceHealth.lua", "post")
--- ModLoader.SetupFileHook("lua/BalanceMisc.lua", "lua/CompMod/Balance/BalanceMisc.lua", "post")
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
