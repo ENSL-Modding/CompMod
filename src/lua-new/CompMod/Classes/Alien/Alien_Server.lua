@@ -27,3 +27,7 @@ function Alien:UpdateAutoHeal()
         self.timeLastAlienAutoHeal = Shared.GetTime()
     end
 end
+
+function Alien:GetCanVampirismBeUsedOn()
+    return false
+end

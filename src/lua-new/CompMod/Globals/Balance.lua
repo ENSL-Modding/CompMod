@@ -59,3 +59,16 @@ kEchoShellCost = 2
 kEchoEggCost = 1
 
 kLeapEnergyCost = 55
+
+kAdrenalineAbilityMaxEnergy = kAbilityMaxEnergy
+
+kSkulkNeurotoxinDamage = 7
+kGorgeNeurotoxinDamage = 6
+kLerkNeurotoxinDamage = 5
+kFadeNeurotoxinDamage = 9
+kOnosNeurotoxinDamage = 7
+
+kAlienRegenerationPercentage = 0.06
+kAlienMinRegeneration = 5
+
+kBiteLeapVampirismScalar = 0.0377 -- 0.0466 (4.66%)

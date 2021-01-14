@@ -1,3 +1,30 @@
+local kUpgradeStructureTable =
+{
+    {
+        name = "Shell",
+        techId = kTechId.Shell,
+        upgrades = {
+            kTechId.Vampirism, kTechId.None, kTechId.Regeneration
+        }
+    },
+    {
+        name = "Veil",
+        techId = kTechId.Veil,
+        upgrades = {
+            kTechId.Camouflage, kTechId.Aura, kTechId.Neurotoxin
+        }
+    },
+    {
+        name = "Spur",
+        techId = kTechId.Spur,
+        upgrades = {
+            kTechId.Crush, kTechId.Celerity, kTechId.Adrenaline
+        }
+    }
+}
+
+debug.setupvaluex(AlienTeam.GetUpgradeStructureTable, "kUpgradeStructureTable", kUpgradeStructureTable)
+
 function AlienTeam:InitTechTree()
     PlayingTeam.InitTechTree(self)
 
@@ -140,10 +167,11 @@ function AlienTeam:InitTechTree()
 
     -- personal upgrades (all alien types)
     self.techTree:AddBuyNode(kTechId.Vampirism, kTechId.Shell, kTechId.None, kTechId.AllAliens)
-    self.techTree:AddBuyNode(kTechId.Carapace, kTechId.Shell, kTechId.None, kTechId.AllAliens)
+    -- self.techTree:AddBuyNode(kTechId.Carapace, kTechId.Shell, kTechId.None, kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Regeneration, kTechId.Shell, kTechId.None, kTechId.AllAliens)
 
-    self.techTree:AddBuyNode(kTechId.Focus, kTechId.Veil, kTechId.None, kTechId.AllAliens)
+    -- self.techTree:AddBuyNode(kTechId.Focus, kTechId.Veil, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddBuyNode(kTechId.Neurotoxin, kTechId.Veil, kTechId.None, kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Aura, kTechId.Veil, kTechId.None, kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Camouflage, kTechId.Veil, kTechId.None, kTechId.AllAliens)
 

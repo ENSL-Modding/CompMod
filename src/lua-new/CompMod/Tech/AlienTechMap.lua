@@ -59,12 +59,13 @@ kAlienTechMap =
     { kTechId.Celerity, 4, 5 },
     { kTechId.Adrenaline, 5, 5 },
 
-    { kTechId.Focus, 6, 5 },
+    -- { kTechId.Focus, 6, 5 },
+    { kTechId.Neurotoxin, 6, 5}
     { kTechId.Camouflage, 7, 5 },
     { kTechId.Aura, 8, 5 },
 
     { kTechId.Vampirism, 9, 5 },
-    { kTechId.Carapace, 10, 5 },
+    -- { kTechId.Carapace, 10, 5 },
     { kTechId.Regeneration, 11, 5 },
 
     { kTechId.BioMassOne, 3, 7, nil, "1" }, { kTechId.BabblerEgg, 3, 8 }, {kTechId.WebTech, 3, 9},
@@ -104,10 +105,10 @@ kAlienLines =
     GetLinePositionForTechMap(kAlienTechMap, kTechId.ShiftHive, kTechId.CystCelerity),
     
     GetLinePositionForTechMap(kAlienTechMap, kTechId.Shell, kTechId.Vampirism),
-    GetLinePositionForTechMap(kAlienTechMap, kTechId.Shell, kTechId.Carapace),
+    -- GetLinePositionForTechMap(kAlienTechMap, kTechId.Shell, kTechId.Carapace),
     GetLinePositionForTechMap(kAlienTechMap, kTechId.Shell, kTechId.Regeneration),
 
-    GetLinePositionForTechMap(kAlienTechMap, kTechId.Veil, kTechId.Focus),
+    -- GetLinePositionForTechMap(kAlienTechMap, kTechId.Veil, kTechId.Focus),
     GetLinePositionForTechMap(kAlienTechMap, kTechId.Veil, kTechId.Camouflage),
     GetLinePositionForTechMap(kAlienTechMap, kTechId.Veil, kTechId.Aura),
 

@@ -8,6 +8,15 @@ local techToAdd = {
         [kTechDataResearchTimeKey] = kAdvancedSwipeResearchTime,
         [kTechDataDisplayName] = "Advanced Swipe",
         [kTechDataTooltipInfo] = "Increase Swipe damage by 8%",
+    },
+
+    {
+        [kTechDataId] = kTechId.Neurotoxin,
+        [kTechDataCategory] = kTechId.ShadeHive,
+        [kTechDataDisplayName] = "Neurotoxin", -- TODO: Use locale
+        [kTechDataSponitorCode] = "N",
+        [kTechDataTooltipInfo] = "Each hit inflicts a poison toxin, hurting Marines over time",
+        [kTechDataCostKey] = 0,
     }
 }
 
@@ -28,7 +37,10 @@ local techToRemove = {
     [kTechId.FadeEgg] = true,
     [kTechId.OnosEgg] = true,
 
-    [kTechId.Stab] = true
+    [kTechId.Stab] = true,
+
+    [kTechId.Carapace] = true,
+    [kTechId.Focus] = true
 }
 
 local function TechDataChanges(techData)
