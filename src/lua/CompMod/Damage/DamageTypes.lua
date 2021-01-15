@@ -63,10 +63,6 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
 
     if not doer then return damage, armorFractionUsed end
 
-    if doer.kMapName == "swipe" and attacker:GetHasThreeHives() then
-        return damage * kAdvancedSwipeDamageScalard
-    end
-
     local isAffectedByCrush = doer.GetIsAffectedByCrush and attacker:GetHasUpgrade( kTechId.Crush ) and doer:GetIsAffectedByCrush()
     local isAffectedByVampirism = doer.GetVampiricLeechScalar and attacker:GetHasUpgrade( kTechId.Vampirism )
     local isAffectedByFocus = doer.GetIsAffectedByFocus and attacker:GetHasUpgrade( kTechId.Focus ) and doer:GetIsAffectedByFocus()
@@ -126,6 +122,14 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     end
     
     --!!!Note: if more than damage and armor fraction modified, be certain the calling-point of this function is updated
-    return damage, armorFractionUsed
-    
+    return damage, armorFractionUsed    
+end
+
+local oldGetUpgradedDamage = NS2Gamerules_GetUpgradedDamage
+function NS2Gamerules_GetUpgradedDamage(attacker, doer, damage, damageType, hitPoint)
+    if doer.kMapName == "swipe" and attacker:GetHasThreeHives() then
+        return damage * kAdvancedSwipeDamageScalar
+    end
+
+    return oldGetUpgradedDamage(attacker, doer, damage, damageType, hitPoint)
 end

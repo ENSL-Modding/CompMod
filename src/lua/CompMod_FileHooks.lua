@@ -1,4 +1,4 @@
-g_compModRevision = 999
+g_compModRevision = 8
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -28,7 +28,6 @@ ModLoader.SetupFileHook("lua/NS2ConsoleCommands_Server.lua", "lua/CompMod/Consol
 
 -- Damage Files
 ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.lua", "post")
-ModLoader.SetupFileHook("lua/DotMarker.lua", "lua/CompMod/Damage/DotMarker.lua", "post")
 
 -- Alien Entities
 ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
@@ -60,7 +59,7 @@ ModLoader.SetupFileHook("lua/PlayerHallucinationMixin.lua", "lua/CompMod/Mixins/
 ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/RegenerationMixin.lua", "post")
 
 -- Network
-ModLoader.SetupFileHook("lua/NetworkMessage_Server.lua", "lua/CompMod/Network/NetworkMessage_Server.lua", "post")
+ModLoader.SetupFileHook("lua/NetworkMessages_Server.lua", "lua/CompMod/Network/NetworkMessages_Server.lua", "post")
 
 -- NS2Utility
 ModLoader.SetupFileHook("lua/NS2Utility_Server.lua", "lua/CompMod/NS2Utility/NS2Utility_Server.lua", "post")
@@ -116,4 +115,5 @@ ModLoader.SetupFileHook("lua/Weapons/Alien/Web.lua", "lua/CompMod/Weapons/Alien/
 ModLoader.SetupFileHook("lua/Weapons/Marine/Flame.lua", "lua/CompMod/Weapons/Marine/Flame.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Marine/Shotgun.lua", "lua/CompMod/Weapons/Marine/Shotgun.lua", "post")
 -- Shared Weapons
+ModLoader.SetupFileHook("lua/Weapons/DotMarker.lua", "lua/CompMod/Weapons/DotMarker.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Weapon_Server.lua", "lua/CompMod/Weapons/Weapon_Server.lua", "post")
