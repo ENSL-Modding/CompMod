@@ -1,0 +1,23 @@
+#Alien.Lerk.Movement
+Increase strafe force to 8.3 from 7
+Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
+After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
+This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
+Lerk movement mid-flight while flapping often is unaffected
+
+#Alien.Lerk.Spikes
+Damage increased to 6 from 5 (to 12 from 10 to players)
+Spread increased to 3.8 radians from 3.6 radians
+Size reduced to 45mm from 60mm
+
+#Alien.Lerk.Spores
+Research changed to Biomass 6 from Biomass 5
+Opacity of cloud lowered by 40%
+
+#Alien.Lerk.Umbra
+Reduced opacity by 25%
+Increased research cost to 30 from 20
+Increased research time to 1 minute 45 seconds from 45 seconds
+
+#Alien.Lerk.Vampirism Shield
+Reduced leeched health amount to 6% from 8%

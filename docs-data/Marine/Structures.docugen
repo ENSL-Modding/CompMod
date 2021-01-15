@@ -1,0 +1,23 @@
+#Marine.Structures.AdvancedArmory
+Health decreased to 2000/200 from 3000/200
+Research cost decreased to 15 tres from 25 tres
+Research time decreased to 45 seconds from 90 seconds
+
+#Marine.Structures.Observatory
+Changed build time to 10 seconds from 15 seconds
+
+#Marine.Structures.Prototype Lab
+Cost reduced to 25 from 35
+
+#Marine.Structures.Robotics Factory
+Removed Armory requirement for ARC Factory upgrade
+ARC Factory upgrade cost increased to 15 tres from 5 tres
+
+#Marine.Structures.Sentry
+Cost increased to 6 tres from 5 tres
+Confusion from Spores
+>Duration increased to 8 seconds from 4 seconds
+>Time until next attack increased to 4 seconds from 2 seconds
+
+#Marine.Structures.Sentry Battery
+Cost increased to 12 tres from 10 tres
