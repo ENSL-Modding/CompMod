@@ -72,3 +72,62 @@ kAlienRegenerationPercentage = 0.06
 kAlienMinRegeneration = 5
 
 kBiteLeapVampirismScalar = 0.0377 -- 0.0466 (4.66%)
+
+kAdvancedArmoryHealth = 2000 --3000
+kAdvancedArmoryArmor = 500 -- this has no effect due to a bug
+kAdvancedArmoryPointValue = 10
+
+-- Demolitions includes flamethrower and grenade launcher
+kDemolitionsTechResearchCost = 15
+kDemolitionsTechResearchTime = 30
+
+kARCHealth = 2000
+kARCArmor = 500
+kARCPointValue = 5
+kARCDeployedHealth = 2000
+
+kAdvancedArmoryUpgradeCost = 15
+kAdvancedArmoryResearchTime = 45
+
+kCyberneticBootsAdditionalSpeed = 3.0
+kCyberneticBootsJumpScale = 2.1
+
+kHeavyMachineGunDamage = 7
+kHeavyMachineGunSpread = Math.Radians(3.2)
+
+kMACCost = 4 --5
+
+kMedpackHeal = 50 -- 25
+kMedpackPickupDelay = 0.6 -- 0.45
+kMarineRegenerationHeal = 0 -- 25
+
+-- Lower player nanoshield duration to 2 from 3
+kNanoShieldPlayerDuration = 2
+
+kObservatoryBuildTime = 10
+
+kPrototypeLabCost = 25 -- 35
+
+kRoboticsFactoryCost = 5 --10
+kUpgradeRoboticsFactoryCost = 10 --5
+
+kSentryCost = 6 -- 5
+
+kConfusedSentryBaseROF = 4.0 --2.0
+
+kSentryBatteryCost = 12 -- 10
+
+-- Increase damage per upgrade to ~13.33 from ~10
+
+local kShotgunDamagePerUpgradeScalar = 0.078
+kShotgunWeapons1DamageScalar = 1 + kShotgunDamagePerUpgradeScalar
+kShotgunWeapons2DamageScalar = 1 + kShotgunDamagePerUpgradeScalar * 2
+kShotgunWeapons3DamageScalar = 1 + kShotgunDamagePerUpgradeScalar * 3
+
+kMACSupply = 15 --5
+kSentrySupply = 15 -- 10
+kObservatorySupply = 30 -- 25
+kSentryBatterySupply = 25 -- 15
+kRoboticsFactorySupply = 15 --5
+
+kWeaponStayTime = 18

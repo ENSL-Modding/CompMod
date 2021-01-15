@@ -2,7 +2,9 @@ local kTechIdToMaterialOffset = debug.getupvaluex(GetMaterialToXYOffset, "kTechI
 
 local toAdd = {
     {kTechId.AdvancedSwipe, 105},
-    {kTechId.Neurotoxin, 174}
+    {kTechId.Neurotoxin, 174},
+    {kTechId.DemolitionsTech, 140},
+    {kTechId.CyberneticBoots, 154}
 }
 
 local toChange = {}

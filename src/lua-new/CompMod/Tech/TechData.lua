@@ -17,6 +17,23 @@ local techToAdd = {
         [kTechDataSponitorCode] = "N",
         [kTechDataTooltipInfo] = "Each hit inflicts a poison toxin, hurting Marines over time",
         [kTechDataCostKey] = 0,
+    },
+
+    {
+        [kTechDataId] = kTechId.DemolitionsTech,
+        [kTechDataCostKey] = kDemolitionsTechResearchCost,
+        [kTechDataResearchTimeKey] = kDemolitionsTechResearchTime,
+        [kTechDataDisplayName] = "Research Demolitions",
+        [kTechDataTooltipInfo] = "Allows Flamethowers and Grenade Launchers to be purchased at the Advanced Armory",
+    },
+
+    {
+        [kTechDataId] = kTechId.CyberneticBoots,
+        [kTechDataCostKey] = 666,
+        [kTechDataResearchTimeKey] = 13,
+        [kTechDataDisplayName] = "Cybernetic Boots",
+        [kTechDataTooltipInfo] = "Upgrades standard TSF boots to a prototype model :)",
+        [kTechDataResearchName] = "Cybernetic Boots",
     }
 }
 
@@ -29,6 +46,10 @@ local techToChange = {
     [kTechId.BuildTunnelEntryFour] = tunnelExtents,
     [kTechId.Tunnel] = tunnelExtents,
     [kTechId.TunnelRelocate] = tunnelExtents,
+
+    [kTechId.MedPack] = {
+        [kCommanderSelectRadius] = removeTechDataValue
+    }
 }
 
 local techToRemove = {

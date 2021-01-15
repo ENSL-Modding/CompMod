@@ -1,5 +1,15 @@
 local oldBuildDamageTypeRules = debug.getupvaluex(GetDamageByType, "BuildDamageTypeRules")
 
+local oldMultiplyForMachineGun = kDamageTypeRules[kDamageType.MachineGun][1]
+local kMachineGunStructureDamageScalar = 1.25
+local function MultiplyForMachineGun(target, _, _, damage, armorFractionUsed, healthPerArmor, damageType)
+    if target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
+        return damage * kMachineGunStructureDamageScalar, armorFractionUsed, healthPerArmor
+    else
+        return oldMultiplyForMachineGun(target, nil, nil, damage, armorFractionUsed, healthPerArmor)
+    end
+end
+
 local function MultiplyFlameAble(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType)
     if target.GetIsFlameAble and target:GetIsFlameAble(damageType) then
         local multi = kFlameableMultiplier
@@ -20,6 +30,7 @@ local function BuildDamageTypeRules()
     oldBuildDamageTypeRules()
     
     kDamageTypeRules[kDamageType.Flame][1] = MultiplyFlameAble
+    kDamageTypeRules[kDamageType.MachineGun][1] = MultiplyForMachineGun
 end
 
 debug.setupvaluex(GetDamageByType, "BuildDamageTypeRules", BuildDamageTypeRules)
