@@ -1,4 +1,4 @@
-local kTechIdToMaterialOffset = debug.getupvaluex(GetMaterialToXYOffset, "kTechIdToMaterialOffset")
+local kTechIdToMaterialOffset = debug.getupvaluex(GetMaterialXYOffset, "kTechIdToMaterialOffset")
 
 local toAdd = {
     {kTechId.AdvancedSwipe, 105},

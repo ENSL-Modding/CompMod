@@ -5,6 +5,6 @@ local newTechIds = {
     "Neurotoxin",
 }
 
-for _,v in ipairs(newTechNames) do
+for _,v in ipairs(newTechIds) do
     EnumUtils.AppendToEnum(kTechId, v)
 end

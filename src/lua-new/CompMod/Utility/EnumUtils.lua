@@ -1,3 +1,5 @@
+EnumUtils = {}
+
 --[[
     Append key to enum
 
