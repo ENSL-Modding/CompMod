@@ -15,7 +15,7 @@ function GetModFrameworkConfigCompMod()
 
     -- Versioning
     config.versioning = {}
-    config.versioning.revision = 8
+    config.versioning.revision = 9
     config.versioning.display = true
 
     -- Tech Handler

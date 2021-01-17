@@ -41,7 +41,6 @@ function GetModFrameworkModulesCompMod()
         "Alien/Onos/Charge/CollideWithPlayers",
         "Alien/Onos/Stomp",
         "Alien/Shift/Echo",
-        "Alien/Skulk/BiteConeSize",
         "Alien/Skulk/Leap",
         "Alien/Upgrades/Adrenaline",
         "Alien/Upgrades/Aura/Range",
