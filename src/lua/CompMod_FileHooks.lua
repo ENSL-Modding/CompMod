@@ -1,4 +1,4 @@
-g_compModRevision = 9
+g_compModRevision = 10
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -33,8 +33,6 @@ ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.l
 ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
--- Base Entities
-ModLoader.SetupFileHook("lua/ScriptActor.lua", "lua/CompMod/Entities/ScriptActor.lua", "post")
 
 -- Globals
 ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Globals/Balance.lua", "post")
@@ -54,6 +52,7 @@ ModLoader.SetupFileHook("lua/GUIUpgradeChamberDisplay.lua", "lua/CompMod/GUI/GUI
 ModLoader.SetupFileHook("lua/BabblerClingMixin.lua", "lua/CompMod/Mixins/BabblerClingMixin.lua", "post")
 ModLoader.SetupFileHook("lua/BabblerOwnerMixin.lua", "lua/CompMod/Mixins/BabblerOwnerMixin.lua", "post")
 ModLoader.SetupFileHook("lua/CloakableMixin.lua", "lua/CompMod/Mixins/CloakableMixin.lua", "post")
+ModLoader.SetupFileHook("lua/DamageMixin.lua", "lua/CompMod/Mixins/DamageMixin.lua", "post")
 ModLoader.SetupFileHook("lua/MucousableMixin.lua", "lua/CompMod/Mixins/MucousableMixin.lua", "post")
 ModLoader.SetupFileHook("lua/PlayerHallucinationMixin.lua", "lua/CompMod/Mixins/PlayerHallucinationMixin.lua", "post")
 ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/RegenerationMixin.lua", "post")
@@ -76,7 +75,6 @@ ModLoader.SetupFileHook("lua/TunnelEntrance.lua", "lua/CompMod/Structures/Alien/
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
-ModLoader.SetupFileHook("lua/PrototypeLab.lua", "lua/CompMod/Structures/Marine/PrototypeLab.lua", "post")
 ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
 -- Shared Structures
 ModLoader.SetupFileHook("lua/CommandStructure_Server.lua", "lua/CompMod/Structures/CommandStructure_Server.lua", "post")
@@ -91,7 +89,6 @@ ModLoader.SetupFileHook("lua/AlienTechMap.lua", "lua/CompMod/Tech/AlienTechMap.l
 ModLoader.SetupFileHook("lua/EvolutionChamber.lua", "lua/CompMod/Tech/EvolutionChamber.lua", "post")
 ModLoader.SetupFileHook("lua/MarineTechMap.lua", "lua/CompMod/Tech/MarineTechMap.lua", "post")
 ModLoader.SetupFileHook("lua/TechData.lua", "lua/CompMod/Tech/TechData.lua", "post")
-ModLoader.SetupFileHook("lua/TechNode.lua" , "lua/CompMod/Tech/TechNode.lua", "post")
 ModLoader.SetupFileHook("lua/TechTreeButtons.lua", "lua/CompMod/Tech/TechTreeButtons.lua", "post")
 ModLoader.SetupFileHook("lua/TechTreeConstants.lua", "lua/CompMod/Tech/TechTreeConstants.lua", "post")
 
