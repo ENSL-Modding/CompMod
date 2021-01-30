@@ -1,8 +1,4 @@
 modEntry = {
-    Client      = "lua/CompMod_Client.lua",
-    Server      = "lua/CompMod_Server.lua",
-    Predict     = "lua/CompMod_Predict.lua",
-    Shared      = "lua/CompMod_Shared.lua",
     FileHooks   = "lua/CompMod_FileHooks.lua",
     Priority    = 50
 }
