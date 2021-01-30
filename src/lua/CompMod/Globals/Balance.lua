@@ -89,9 +89,6 @@ kARCDeployedHealth = 2000
 kAdvancedArmoryUpgradeCost = 15
 kAdvancedArmoryResearchTime = 45
 
-kCyberneticBootsAdditionalSpeed = 3.0
-kCyberneticBootsJumpScale = 2.1
-
 kHeavyMachineGunDamage = 7
 kHeavyMachineGunSpread = Math.Radians(3.2)
 

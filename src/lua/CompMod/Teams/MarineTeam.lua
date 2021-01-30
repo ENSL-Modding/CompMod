@@ -137,9 +137,6 @@ function MarineTeam:InitTechTree()
     self.techTree:AddBuyNode(kTechId.DualMinigunExosuit, kTechId.ExosuitTech, kTechId.None)
     self.techTree:AddBuyNode(kTechId.DualRailgunExosuit, kTechId.ExosuitTech, kTechId.None)
 
-    -- Cybernetic B00ts
-    self.techTree:AddResearchNode(kTechId.CyberneticBoots, kTechId.PrototypeLab, kTechId.None)
-
     --  self.techTree:AddTargetedActivation(kTechId.DropExosuit,     kTechId.ExosuitTech, kTechId.None)
 
     --self.techTree:AddResearchNode(kTechId.DualMinigunTech,       kTechId.ExosuitTech, kTechId.TwoCommandStations)

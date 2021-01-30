@@ -25,15 +25,6 @@ local techToAdd = {
         [kTechDataResearchTimeKey] = kDemolitionsTechResearchTime,
         [kTechDataDisplayName] = "Research Demolitions",
         [kTechDataTooltipInfo] = "Allows Flamethowers and Grenade Launchers to be purchased at the Advanced Armory",
-    },
-
-    {
-        [kTechDataId] = kTechId.CyberneticBoots,
-        [kTechDataCostKey] = 666,
-        [kTechDataResearchTimeKey] = 13,
-        [kTechDataDisplayName] = "Cybernetic Boots",
-        [kTechDataTooltipInfo] = "Upgrades standard TSF boots to a prototype model :)",
-        [kTechDataResearchName] = "Cybernetic Boots",
     }
 }
 

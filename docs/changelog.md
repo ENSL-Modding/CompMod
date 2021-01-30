@@ -1,10 +1,10 @@
-# Changes between CompMod [revision 9](revisions/revision9.md) and Vanilla Build 336
+# Changes between CompMod [revision 10](revisions/revision10.md) and Vanilla Build 336
 <br/>
 
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
 
-## BoneWall
+## Bonewall
 * BoneWall is no longer flammable
 
 ## Crag
@@ -38,7 +38,7 @@
 * Hives no longer heal eggs, only embryos
 * Lifeform egg drops removed
 
-## Embryos
+## Embryo
 * Embryo HP scales depending on lifeform
 
 ## Fade
@@ -156,26 +156,17 @@
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
 
-## Cybernetic Boots
-* Added a new research on the Prototype Lab
-* Research time 13 seconds
-* Research cost 666 tres
-* Increases max sprint speed for all Marines
-* Allows all Marines to do a charged jump
-  * Hold crouch and jump
-
 ## MACs
 * Cost reduced to 4 tres from 5 tres
 
-## Medpack
+## Medpacks
 * Increased instant heal amount to 40 from 25
 * Decreased HoT amount to 10 from 25
 * Decreased snap radius to match AmmoPack
 * Increased pickup delay to 0.6 seconds from 0.45 seconds
-
-## Medpacks
-* Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
-* The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
+* ### HoT
+  * Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.
+  * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
 
 ## Nanoshield
 * Duration on players reduced to 2 seconds from 3 seconds
@@ -200,7 +191,7 @@
 * ### Sentry Battery
   * Cost increased to 12 tres from 10 tres
 
-## SupplyChanges
+## Supply
 * MAC supply cost increased to 15 from 5
 * Sentry supply cost increased to 15 from 10
 * Observatory supply cost increased to 30 from 25
@@ -230,10 +221,10 @@
 # Spectator
 ![alt text](https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png "Spectator")
 
-## EdgePanning
+## Edge Panning
 * Fixed edge pan jitter when following a player -- click to unfollow
 
-## HelpText
+## Help Text
 * Defaulted help text at bottom of the screen to a collapsed state
 
 ## Supply Display
@@ -243,9 +234,9 @@
 ![alt text](https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png "Global")
 
 ## Hive Power Node
-* Power node in Alien starting Hive room will no longer be destroyed on round start.
+* Power node in Alien starting Hive room will no longer be destroyed on round start
 
-## MucousHitsounds
+## Mucous Hitsounds
 * Added hitsounds against Aliens with Mucous
 
 ## Resources
@@ -259,7 +250,13 @@
 ## Armory HP Bar
 * Fixed a vanilla bug that caused the HP bar for the Armory/Advanced Armory to display at inconsistent heights
 
-## Fade
+## BMAC Hit Sounds
+* Changed the blood effects and the hitsounds of BMAC Marines to match the human Marines
+
+## Babbler Shield Friendly Fire Damage Feedback
+* Fixed a vanilla bug that would show damage numbers and hitsounds when attacking babbler shielded teammates
+
+## Fade Commander Metabolize Bug
 * Fixed a vanilla bug that meant a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
 
 ## Female Sprinting Sounds
