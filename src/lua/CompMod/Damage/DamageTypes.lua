@@ -66,6 +66,7 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     local isAffectedByCrush = doer.GetIsAffectedByCrush and attacker:GetHasUpgrade( kTechId.Crush ) and doer:GetIsAffectedByCrush()
     local isAffectedByVampirism = doer.GetVampiricLeechScalar and attacker:GetHasUpgrade( kTechId.Vampirism )
     local isAffectedByFocus = doer.GetIsAffectedByFocus and attacker:GetHasUpgrade( kTechId.Focus ) and doer:GetIsAffectedByFocus()
+    local isAffectedByNeurotoxin = doer.GetIsAffectedByNeurotoxin and attacker:GetHasUpgrade(kTechId.Neurotoxin) and doer:GetIsAffectedByNeurotoxin()
 
     if isAffectedByCrush then --Crush
         local crushLevel = attacker:GetShellLevel()
@@ -109,15 +110,14 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
             end
         end
         
-    end
-
-    -- Neurotoxin
-    local isAffectedByNeurotoxin = doer.GetIsAffectedByNeurotoxin and attacker:GetHasUpgrade(kTechId.Neurotoxin) and doer:GetIsAffectedByNeurotoxin()
-    if Server and isAffectedByNeurotoxin then
-        local neuroLevel = attacker:GetVeilLevel()
-        local tickDamage = doer:GetNeurotoxinTickDamage()
-        if neuroLevel > 0 and tickDamage > 0 and target:isa("Player") and target:GetTeamNumber() ~= attacker:GetTeamNumber() then
-            ApplyNeurotoxinHit(attacker, target, tickDamage, neuroLevel)
+        -- Neurotoxin
+        local targetValid = target:isa("Player") and target:GetTeamNumber() ~= attacker:GetTeamNumber()
+        if isAffectedByNeurotoxin and targetValid then
+            local neuroLevel = attacker:GetVeilLevel()
+            local tickDamage = doer:GetNeurotoxinTickDamage()
+            if neuroLevel > 0 and tickDamage > 0 then
+                ApplyNeurotoxinHit(attacker, target, tickDamage, neuroLevel)
+            end
         end
     end
     

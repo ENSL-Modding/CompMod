@@ -1,6 +1,6 @@
 #Marine.Medpacks
-Increased instant heal amount to 50 from 25
-Decreased HoT amount to 0 from 25
+Increased instant heal amount to 40 from 25
+Decreased HoT amount to 10 from 25
 Decreased snap radius to match AmmoPack
 Increased pickup delay to 0.6 seconds from 0.45 seconds
 
