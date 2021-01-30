@@ -1,0 +1,16 @@
+#Alien.Drifters
+Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
+Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
+
+#Alien.Drifters.Abilities.Enzyme
+Reduced cooldown from 12 seconds to 1 second
+
+#Alien.Drifters.Abilities.Hallucinations
+No longer affected by mucous
+Can no longer have babblers attached
+Reduced Onos HP to 100 eHP
+
+#Alien.Drifters.Abilities.Mucous
+Reduced cooldown to 1 second from 12 seconds
+Reduced cloud radius from 8 to 5 (reduces area by 60%)
+Shield matches babbler shield values (except Skulk - remains at 15 HP)

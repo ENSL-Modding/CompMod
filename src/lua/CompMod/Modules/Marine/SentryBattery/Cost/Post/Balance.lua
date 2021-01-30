@@ -1,1 +1,0 @@
-kSentryBatteryCost = 12 -- 10

@@ -1,1 +1,0 @@
-kObservatoryBuildTime = 10

@@ -11,7 +11,7 @@ def init_table(args):
 
 def update_database(args):
     conn, c = database.connect_to_database()
-    file_scanner.scan_for_docugen_files(conn, c, args.update_version, "CompMod")
+    file_scanner.scan_for_docugen_files(conn, c, args.update_version)
     print("Database updated successfully")
 
 def main():

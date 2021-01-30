@@ -1,0 +1,22 @@
+#Marine.Weapons.Expiration Rate
+Stepping on a dropped weapon no longer refreshes the weapon timer
+Standing near a weapon slows decay rate by 50%
+
+#Marine.Weapons.Flamethrower
+Removed friendly fire of flame puddles
+
+#Marine.Weapons.Heavy Machine Gun
+Reduced damage to 7 from 8
+Lowered spread to 3.2 radians from 4 radians
+Increased structure damage multiplier to 1.25x from 1.0x
+
+#Marine.Weapons.Shotgun
+Damage
+>Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
+Falloff
+>Falloff start distance increased to 10m from 5m
+>Falloff end distance increased to 20m from 15m
+>>This will result in Shotguns doing more damage at range
+
+#Marine.Weapons.Weapon Lifetime
+Increased weapon lifetime to 18 seconds from 16 seconds

@@ -1,0 +1,12 @@
+#Alien.Gorge.Babblers
+Are flammable (die in one welder tick)
+Lowered health to 11 from 12
+Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
+
+#Alien.Gorge.BileBomb
+Research changed to Biomass 2 from Biomass 3
+
+#Alien.Gorge.Web
+HP gain per charge to 5 from 10
+Web charges lowered to 0 from 3
+Webbed duration lowered to 2.5 seconds from 5 seconds

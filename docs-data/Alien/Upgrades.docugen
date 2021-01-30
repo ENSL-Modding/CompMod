@@ -1,0 +1,34 @@
+#Alien.Upgrades.Adrenaline
+Removed additional energy pool from Adrenaline
+
+#Alien.Upgrades.Aura
+Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
+Only shows HP value on parasited players
+
+#Alien.Upgrades.Camouflage
+No longer fully cloaked while moving
+
+#Alien.Upgrades.Carapace
+Upgrade removed
+
+#Alien.Upgrades.Neurotoxin
+Replaces Focus
+All Alien primary attacks will inflict a poison toxin, hurting Marines over time
+Damage will tick once every second
+Duration will be 1 second per Veil
+Damage Values:
+>Skulk: 7
+>Gorge: 6
+>Lerk: 5
+>Fade: 9
+>Onos: 7
+
+#Alien.Upgrades.Regeneration
+Removed heal effect (visual and audio)
+Reduced from 8% per tick to 6% per tick
+
+#Alien.Upgrades.Vampirism
+No longer triggers from friendly-fire damage
+Works against exosuits
+Now applies a shader to players that have Vampirism shield
+Lowered Skulk vampirism percentage to 3.77% from 4.66%
