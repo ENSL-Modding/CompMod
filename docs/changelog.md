@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 8](revisions/revision8.md) and Vanilla Build 336
+# Changes between CompMod [revision 9](revisions/revision9.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -95,8 +95,6 @@
   * Moved Stomp to Biomass 9 from Biomass 8
 
 ## Skulk
-* ### BiteCone
-  * Reduced width of cone from 1.2 to 0.8
 * ### Leap
   * Energy cost increased to 55 from 45
 
@@ -170,8 +168,8 @@
 * Cost reduced to 4 tres from 5 tres
 
 ## Medpack
-* Increased instant heal amount to 50 from 25
-* Decreased HoT amount to 0 from 25
+* Increased instant heal amount to 40 from 25
+* Decreased HoT amount to 10 from 25
 * Decreased snap radius to match AmmoPack
 * Increased pickup delay to 0.6 seconds from 0.45 seconds
 
