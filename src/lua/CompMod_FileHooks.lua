@@ -1,4 +1,4 @@
-g_compModRevision = 10
+g_compModRevision = 11
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -82,6 +82,7 @@ ModLoader.SetupFileHook("lua/CommandStructure_Server.lua", "lua/CompMod/Structur
 -- Teams
 ModLoader.SetupFileHook("lua/AlienTeam.lua", "lua/CompMod/Teams/AlienTeam.lua", "post")
 ModLoader.SetupFileHook("lua/MarineTeam.lua", "lua/CompMod/Teams/MarineTeam.lua", "post")
+ModLoader.SetupFileHook("lua/ReadyRoomTeam.lua", "lua/CompMod/Teams/ReadyRoomTeam.lua", "post")
 ModLoader.SetupFileHook("lua/TeamInfo.lua", "lua/CompMod/Teams/TeamInfo.lua", "post")
 
 -- Tech

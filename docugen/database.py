@@ -14,6 +14,6 @@ def initialize_tables(args):
 
     # Create tables
     c.execute('''CREATE TABLE FullChangelog(
-                    modVersion varchar2(20) not null, 
+                    modVersion int not null, 
                     key varchar2(100), 
                     value varchar2(100))''')

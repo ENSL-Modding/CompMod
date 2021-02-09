@@ -13,7 +13,7 @@ def find_last_mod_version(c, modVersion):
                             LIMIT 1''', [modVersion]).fetchone()
 
     if version == None:
-        verbose_print("Failed to find previous mod version. Defaulting to 0")
+        print("Failed to find previous mod version. Defaulting to 0")
         return 0
 
     return int(version[0])
