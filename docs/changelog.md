@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 10](revisions/revision10.md) and Vanilla Build 336
+# Changes between CompMod [revision 11](revisions/revision11.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -47,6 +47,8 @@
   * Upgrades the normal swipe damage to 81 from 75
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
+* ### Blink
+  * Lowered Blink energy cost to 10 from 14
 
 ## Gorge
 * ### Babblers
@@ -270,6 +272,9 @@
 
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open
+
+## Spectator Embryo Script Errors
+* Fixed a vanilla bug that would cause script errors and prevent you from joining a team if you joined spec as an embryo
 
 ## Status Icons
 * Enabled all status icons regardless of HUD detail setting. Previously would only show on High detail
