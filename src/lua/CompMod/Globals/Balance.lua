@@ -129,4 +129,4 @@ kRoboticsFactorySupply = 15 --5
 
 kWeaponStayTime = 18
 
-kStartBlinkEnergyCost = 10 -- 14
+kStartBlinkEnergyCost = 12 -- 14
