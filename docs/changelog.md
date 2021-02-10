@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 11](revisions/revision11.md) and Vanilla Build 336
+# Changes between CompMod [revision 12](revisions/revision12.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -48,7 +48,7 @@
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
 * ### Blink
-  * Lowered Blink energy cost to 10 from 14
+  * Lowered Blink energy cost to 12 from 14
 
 ## Gorge
 * ### Babblers
