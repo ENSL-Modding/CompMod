@@ -51,9 +51,12 @@ ModLoader.SetupFileHook("lua/GUIUpgradeChamberDisplay.lua", "lua/CompMod/GUI/GUI
 -- Mixins
 ModLoader.SetupFileHook("lua/BabblerClingMixin.lua", "lua/CompMod/Mixins/BabblerClingMixin.lua", "post")
 ModLoader.SetupFileHook("lua/BabblerOwnerMixin.lua", "lua/CompMod/Mixins/BabblerOwnerMixin.lua", "post")
+ModLoader.SetupFileHook("lua/CatPackMixin.lua", "lua/CompMod/Mixins/CatPackMixin.lua", "post")
 ModLoader.SetupFileHook("lua/CloakableMixin.lua", "lua/CompMod/Mixins/CloakableMixin.lua", "post")
 ModLoader.SetupFileHook("lua/DamageMixin.lua", "lua/CompMod/Mixins/DamageMixin.lua", "post")
 ModLoader.SetupFileHook("lua/MucousableMixin.lua", "lua/CompMod/Mixins/MucousableMixin.lua", "post")
+ModLoader.SetupFileHook("lua/NanoShieldMixin.lua", "lua/CompMod/Mixins/NanoShieldMixin.lua", "post")
+ModLoader.SetupFileHook("lua/ParasiteMixin.lua", "lua/CompMod/Mixins/ParasiteMixin.lua", "post")
 ModLoader.SetupFileHook("lua/PlayerHallucinationMixin.lua", "lua/CompMod/Mixins/PlayerHallucinationMixin.lua", "post")
 ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/RegenerationMixin.lua", "post")
 
