@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 12](revisions/revision12.md) and Vanilla Build 336
+# Changes between CompMod [revision 13](revisions/revision13.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -270,6 +270,11 @@
 ## Keep Upgrades
 * Fixed a vanilla bug that meant players would lose their upgrades when using console commands to change lifeforms
 
+## Minimap
+* Fixed that enemy structures would not pulse red when under attack (experimental)
+* Fixed a vanilla bug that would render the Marine minimap over status icons
+  * See: https://youtu.be/_8OmfC79-jc
+
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open
 
@@ -278,3 +283,4 @@
 
 ## Status Icons
 * Enabled all status icons regardless of HUD detail setting. Previously would only show on High detail
+* Fixed that the status icon duration bar would sometimes go negative
