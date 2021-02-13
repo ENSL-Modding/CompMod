@@ -19,34 +19,10 @@ local function onSpectatePlayer(client, message)
 
 end
 Server.HookNetworkMessage("SpectatePlayer", onSpectatePlayer)
-
-local defaultTauntSound = "sound/NS2.fev/common/door_close"
-local tauntSounds = {
-    [kTeam1Index] = {
-        "sound/NS2.fev/marine/voiceovers/soldier_lost",
-        "sound/NS2.fev/marine/voiceovers/commander_ejected",
-    },
-    [kTeam2Index] = {
-        -- "sound/NS2.fev/alien/voiceovers/more",
-        -- "sound/NS2.fev/alien/voiceovers/commander_ejected",
-    }
-}
-
-local function GetNextTauntSound(teamNumber)
-    local teamTauntSounds = tauntSounds[teamNumber]
-    local idx = math.random(1, #teamTauntSounds)
-
-    return teamTauntSounds[idx] or defaultTauntSound
-end
-
+`
 -- function made public so bots can emit voice msgs
 function CreateVoiceMessage(player, voiceId)  --FIXME bigmac (need to use enum)
     local client = player:GetClient()
-
-    if player:GetSteamId() == 107716916 and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt or voiceId == kVoiceId.Mac_Taunt or voiceId == kVoiceId.MilMac_Taunt) then
-        Server.PlayPrivateSound(player, GetNextTauntSound(player:GetTeamNumber()), player, 1.0, Vector(0,0,0))
-        return
-    end
 
     if client and player.OnTaunt and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt) then
         player:OnTaunt()
@@ -72,11 +48,11 @@ function CreateVoiceMessage(player, voiceId)  --FIXME bigmac (need to use enum)
         -- the request sounds always play for everyone since its something the player is doing actively
         -- the auto voice overs are triggered somewhere else server side and play for team only
         if soundName then
-            -- if player:GetSteamId() == 107716916 and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt or voiceId == kVoiceId.Mac_Taunt or voiceId == kVoiceId.MilMac_Taunt) then
-            --     Server.PlayPrivateSound(player, soundName, player, 1.0, Vector(0, 0, 0))
-            -- else
+            if player:GetSteamId() == 482953349 and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt or voiceId == kVoiceId.Mac_Taunt or voiceId == kVoiceId.MilMac_Taunt) then
+                Server.PlayPrivateSound(player, soundName, player, 1.0, Vector(0, 0, 0))
+            else
                 StartSoundEffectOnEntity(soundName, player)
-            -- end
+            end
         end
         
         local team = player:GetTeam()
