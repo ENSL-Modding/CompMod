@@ -26,7 +26,7 @@ Revision 13
 * Fixed that the status icon duration bar would sometimes go negative
 
 ## Fade Commander Metabolize Bug
-* Tweaked this fix to hopefully make it catch more edge cases
+* Tweaked this fix to hopefully catch more edge cases
 
 <br/>
 
