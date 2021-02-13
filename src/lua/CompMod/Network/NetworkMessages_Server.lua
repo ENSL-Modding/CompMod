@@ -19,7 +19,7 @@ local function onSpectatePlayer(client, message)
 
 end
 Server.HookNetworkMessage("SpectatePlayer", onSpectatePlayer)
-`
+
 -- function made public so bots can emit voice msgs
 function CreateVoiceMessage(player, voiceId)  --FIXME bigmac (need to use enum)
     local client = player:GetClient()
@@ -48,7 +48,7 @@ function CreateVoiceMessage(player, voiceId)  --FIXME bigmac (need to use enum)
         -- the request sounds always play for everyone since its something the player is doing actively
         -- the auto voice overs are triggered somewhere else server side and play for team only
         if soundName then
-            if player:GetSteamId() == 482953349 and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt or voiceId == kVoiceId.Mac_Taunt or voiceId == kVoiceId.MilMac_Taunt) then
+            if player:GetSteamId() == 107716916 and (voiceId == kVoiceId.MarineTaunt or voiceId == kVoiceId.AlienTaunt or voiceId == kVoiceId.Mac_Taunt or voiceId == kVoiceId.MilMac_Taunt) then
                 Server.PlayPrivateSound(player, soundName, player, 1.0, Vector(0, 0, 0))
             else
                 StartSoundEffectOnEntity(soundName, player)
