@@ -36,6 +36,11 @@ local techToChange = {
     [kTechId.BuildTunnelEntryThree] = tunnelExtents,
     [kTechId.BuildTunnelEntryFour] = tunnelExtents,
     [kTechId.Tunnel] = tunnelExtents,
+    [kTechId.BuildTunnelExitOne] = tunnelExtents,
+    [kTechId.BuildTunnelExitTwo] = tunnelExtents,
+    [kTechId.BuildTunnelExitThree] = tunnelExtents,
+    [kTechId.BuildTunnelExitFour] = tunnelExtents,
+    [kTechId.TunnelExit] = tunnelExtents,
     [kTechId.TunnelRelocate] = tunnelExtents,
 
     [kTechId.MedPack] = {
