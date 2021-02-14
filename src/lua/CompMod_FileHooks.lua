@@ -49,6 +49,7 @@ ModLoader.SetupFileHook("lua/Hud/GUIPlayerStatus.lua", "lua/CompMod/GUI/GUIPlaye
 ModLoader.SetupFileHook("lua/GUIScoreboard.lua", "lua/CompMod/GUI/GUIScoreboard.lua", "post")
 ModLoader.SetupFileHook("lua/GUIUpgradeChamberDisplay.lua", "lua/CompMod/GUI/GUIUpgradeChamberDisplay.lua", "post")
 ModLoader.SetupFileHook("lua/MapBlip.lua", "lua/CompMod/GUI/MapBlip.lua", "post")
+ModLoader.SetupFileHook("lua/GUIUnitStatus.lua", "lua/CompMod/GUI/GUIUnitStatus.lua", "replace")
 
 -- Mixins
 ModLoader.SetupFileHook("lua/BabblerClingMixin.lua", "lua/CompMod/Mixins/BabblerClingMixin.lua", "post")
