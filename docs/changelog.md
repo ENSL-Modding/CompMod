@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 13](revisions/revision13.md) and Vanilla Build 336
+# Changes between CompMod [revision 14](revisions/revision14.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -274,6 +274,9 @@
 * Fixed that enemy structures would not pulse red when under attack (experimental)
 * Fixed a vanilla bug that would render the Marine minimap over status icons
   * See: https://youtu.be/_8OmfC79-jc
+
+## Nameplates
+* Fixed a vanilla bug that causes hp/armor bars to show with "Numbers Only" selected in the Advanced Option -- Thanks Salads!
 
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open
