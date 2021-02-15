@@ -1,4 +1,4 @@
-g_compModRevision = 13
+g_compModRevision = 14
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
