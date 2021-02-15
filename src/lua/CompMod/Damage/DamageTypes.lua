@@ -69,7 +69,7 @@ function NS2Gamerules_GetUpgradedAlienDamage( target, attacker, doer, damage, ar
     local isAffectedByNeurotoxin = doer.GetIsAffectedByNeurotoxin and attacker:GetHasUpgrade(kTechId.Neurotoxin) and doer:GetIsAffectedByNeurotoxin()
 
     if isAffectedByCrush then --Crush
-        local crushLevel = attacker:GetShellLevel()
+        local crushLevel = attacker:GetSpurLevel()
         if crushLevel > 0 then
             if target:isa("Exo") or target:isa("Exosuit") or target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
                 damage = damage + ( damage * ( crushLevel * kAlienCrushDamagePercentByLevel ) )
