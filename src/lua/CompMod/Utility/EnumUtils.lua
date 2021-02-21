@@ -10,7 +10,7 @@ function EnumUtils.AppendToEnum(tbl, key)
     assert(tbl, "Enum cannot be nil")
     assert(type(tbl) == "table", "Enum must be of type table")
     assert(key, "Key cannot be nil")
-    assert(rawget(tbl, key) == nil, "Key already exists in enum")
+    assert(rawget(tbl, key) == nil, string.format("Key \"%s\" already exists in enum", key))
 
     local maxVal
     if tbl == kTechId then

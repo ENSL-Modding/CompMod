@@ -1,4 +1,5 @@
-g_compModRevision = 14
+g_compModRevision = 15
+g_compModBeta = 1
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -41,6 +42,7 @@ ModLoader.SetupFileHook("lua/Globals.lua", "lua/CompMod/Globals/Globals.lua", "p
 -- GUI
 ModLoader.SetupFileHook("lua/GUIAuraDisplay.lua", "lua/CompMod/GUI/GUIAuraDisplay.lua", "post")
 ModLoader.SetupFileHook("lua/GUIFeedback.lua", "lua/CompMod/GUI/GUIFeedback.lua", "post")
+ModLoader.SetupFileHook("lua/GUIGorgeBuildMenu.lua", "lua/CompMod/GUI/GUIGorgeBuildMenu.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_Overhead.lua", "lua/CompMod/GUI/GUIInsight_Overhead.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_TopBar.lua", "lua/CompMod/GUI/GUIInsight_TopBar.lua", "post")
 ModLoader.SetupFileHook("lua/GUIMarineBuyMenu.lua", "lua/CompMod/GUI/GUIMarineBuyMenu.lua", "post")
@@ -50,6 +52,9 @@ ModLoader.SetupFileHook("lua/GUIScoreboard.lua", "lua/CompMod/GUI/GUIScoreboard.
 ModLoader.SetupFileHook("lua/GUIUpgradeChamberDisplay.lua", "lua/CompMod/GUI/GUIUpgradeChamberDisplay.lua", "post")
 ModLoader.SetupFileHook("lua/MapBlip.lua", "lua/CompMod/GUI/MapBlip.lua", "post")
 ModLoader.SetupFileHook("lua/GUIUnitStatus.lua", "lua/CompMod/GUI/GUIUnitStatus.lua", "replace")
+
+-- Locale
+ModLoader.SetupFileHook("lua/Locale.lua", "lua/CompMod/Locale/Locale.lua", "post")
 
 -- Mixins
 ModLoader.SetupFileHook("lua/BabblerClingMixin.lua", "lua/CompMod/Mixins/BabblerClingMixin.lua", "post")
