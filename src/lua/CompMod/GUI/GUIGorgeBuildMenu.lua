@@ -4,6 +4,9 @@ local menuMode = 1
 -- The index of the selected network, 0 = no selection, 1-4 = networks 1-4
 local selectedNetwork = 0
 
+-- The controlling player for this UI instance.
+local controllingPlayer
+
 function GUIGorgeBuildMenu:Initialize()
     GUIAnimatedScript.Initialize(self)
     
@@ -18,6 +21,11 @@ function GUIGorgeBuildMenu:Initialize()
     self:SetMenuMode(1)
     -- The reset is handled above
     -- self:Reset()
+end
+
+function GUIGorgeBuildMenu:SetControllingPlayer(player)
+    assert(player)
+    controllingPlayer = player
 end
 
 local function GorgeBuild_GetKeybindForIndex(index)
@@ -92,17 +100,17 @@ function GUIGorgeBuildMenu:CreateStructureButtons()
 end
 
 function GUIGorgeBuildMenu:CreateNetworkButtons()
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack, self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork1, self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork2, self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork3, self.scale, self.background, GorgeBuild_GetKeybindForIndex(4), 3))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork4, self.scale, self.background, GorgeBuild_GetKeybindForIndex(5), 4))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork1,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork2,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork3,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork4,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(4), 3))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(5), 4))
 end
 
 function GUIGorgeBuildMenu:CreateTunnelTypeButtons()
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack, self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuEntrance, self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
-    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuExit, self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuEntrance,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuExit,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
+    table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
 end
 
 local createButtons = {
@@ -183,7 +191,7 @@ function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
         Move.SecondaryAttack,
         Move.SelectNextWeapon,
         Move.SelectPrevWeapon,
-        Move.Weapon1
+        Move.Weapon5
     }
     for i = 1, #exitMoves do
         if HasMoveCommand(input.commands, exitMoves[i]) then
@@ -194,10 +202,10 @@ function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
     end
 
     local networkSelectors = {
+        Move.Weapon1,
         Move.Weapon2,
         Move.Weapon3,
         Move.Weapon4,
-        Move.Weapon5,
     }
     for i = 1, #networkSelectors do
         if HasMoveCommand(input.commands, networkSelectors[i]) then
@@ -217,7 +225,7 @@ function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
         Move.SecondaryAttack,
         Move.SelectNextWeapon,
         Move.SelectPrevWeapon,
-        Move.Weapon1
+        Move.Weapon3
     }
     for i = 1, #exitMoves do
         if HasMoveCommand(input.commands, exitMoves[i]) then
@@ -240,11 +248,13 @@ function GUIGorgeBuildMenu:OverrideInput(input)
     return menuModeFunctionMap[menuMode](self, input)
 end
 
+local oldGorgeBuild_IsTunnelIndex = GorgeBuild_GetIsAbilityAvailable
 function GorgeBuild_GetIsAbilityAvailable(index)
     if GorgeBuild_IsTunnelIndex(index) then
         return true
     end
-    return DropStructureAbility.kSupportedStructures[index] and DropStructureAbility.kSupportedStructures[index]:IsAllowed(Client.GetLocalPlayer())
+
+    return oldGorgeBuild_IsTunnelIndex(index)
 end
 
 local kGorgeTunnelToCommTunnelTechIdMap = {
@@ -261,11 +271,23 @@ function GorgeBuild_GetCanAffordAbility(techId)
     end
 
     if techId >= kTechId.GorgeTunnelMenuNetwork1 and techId <= kTechId.GorgeTunnelMenuNetwork4 then
-        -- local teamInfo = GetTeamInfoEntity(kTeam2Index)
-        local teamInfo = GetEntitiesForTeam("AlienTeamInfo", kTeam2Index)[1]
+        local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
-        local allowed = tunnelManager:GetTechAllowed(kGorgeTunnelToCommTunnelTechIdMap[techId])
-        return allowed
+        -- Print("TunnelManagerId: %s", teamInfo.tunnelManagerId)
+        -- local tunnelManager = Shared.GetEntity(teamInfo.tunnelManagerId)
+        -- local tunnelManager
+        -- for _, ent in ientitylist(Shared.GetEntitiesWithClassname("alientunnelmanager")) do
+        --     tunnelManager = ent
+        --     break
+        -- end
+
+        if tunnelManager then
+            local allowed = tunnelManager:GetTechAllowed(kGorgeTunnelToCommTunnelTechIdMap[techId])
+            return allowed
+        else
+            -- Print("No TunnelManager!")
+            return false
+        end
     end
 
     return oldGorgeBuild_GetCanAffordAbility(techId)

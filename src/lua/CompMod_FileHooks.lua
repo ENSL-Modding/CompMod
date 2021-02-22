@@ -31,6 +31,7 @@ ModLoader.SetupFileHook("lua/NS2ConsoleCommands_Server.lua", "lua/CompMod/Consol
 ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.lua", "post")
 
 -- Alien Entities
+ModLoader.SetupFileHook("lua/AlienTeamInfo.lua", "lua/CompMod/Entities/Alien/AlienTeamInfo.lua", "post")
 ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
