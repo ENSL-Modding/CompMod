@@ -37,6 +37,26 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.GorgeTunnelMenuBack,
             [kTechDataDisplayName] = "Back"
         },
+
+        {
+            [kTechDataId] = kTechId.GorgeTunnelMenuNetwork1,
+            [kTechDataDisplayName] = "Network 1"
+        },
+
+        {
+            [kTechDataId] = kTechId.GorgeTunnelMenuNetwork2,
+            [kTechDataDisplayName] = "Network 2"
+        },
+
+        {
+            [kTechDataId] = kTechId.GorgeTunnelMenuNetwork3,
+            [kTechDataDisplayName] = "Network 3"
+        },
+
+        {
+            [kTechDataId] = kTechId.GorgeTunnelMenuNetwork4,
+            [kTechDataDisplayName] = "Network 4"
+        },
     }
 end
 
