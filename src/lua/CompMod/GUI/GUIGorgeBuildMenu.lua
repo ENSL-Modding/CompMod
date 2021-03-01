@@ -4,9 +4,6 @@ local menuMode = 1
 -- The index of the selected network, 0 = no selection, 1-4 = networks 1-4
 local selectedNetwork = 0
 
--- The controlling player for this UI instance.
-local controllingPlayer
-
 function GUIGorgeBuildMenu:Initialize()
     GUIAnimatedScript.Initialize(self)
     
@@ -21,11 +18,6 @@ function GUIGorgeBuildMenu:Initialize()
     self:SetMenuMode(1)
     -- The reset is handled above
     -- self:Reset()
-end
-
-function GUIGorgeBuildMenu:SetControllingPlayer(player)
-    assert(player)
-    controllingPlayer = player
 end
 
 local function GorgeBuild_GetKeybindForIndex(index)
@@ -248,46 +240,84 @@ function GUIGorgeBuildMenu:OverrideInput(input)
     return menuModeFunctionMap[menuMode](self, input)
 end
 
-local oldGorgeBuild_IsTunnelIndex = GorgeBuild_GetIsAbilityAvailable
-function GorgeBuild_GetIsAbilityAvailable(index)
+local oldGorgeBuild_GetIsAbilityAvailable = GorgeBuild_GetIsAbilityAvailable
+function GorgeBuild_GetIsAbilityAvailableStructures(index)
     if GorgeBuild_IsTunnelIndex(index) then
         return true
     end
 
-    return oldGorgeBuild_IsTunnelIndex(index)
+    return oldGorgeBuild_GetIsAbilityAvailable(index)
 end
 
-local kGorgeTunnelToCommTunnelTechIdMap = {
-    [kTechId.GorgeTunnelMenuNetwork1] = kTechId.BuildTunnelEntryOne,
-    [kTechId.GorgeTunnelMenuNetwork2] = kTechId.BuildTunnelEntryTwo,
-    [kTechId.GorgeTunnelMenuNetwork3] = kTechId.BuildTunnelEntryThree,
-    [kTechId.GorgeTunnelMenuNetwork4] = kTechId.BuildTunnelEntryFour,
+local kNetworkIndexToCommTunnelTechIdMap = {
+    kTechId.BuildTunnelEntryOne,
+    kTechId.BuildTunnelEntryTwo,
+    kTechId.BuildTunnelEntryThree,
+    kTechId.BuildTunnelEntryFour,
 }
+function GorgeBuild_GetIsAbilityAvailableNetworks(index)
+    if index >= 1 and index <= 4 then
+        local teamInfo = GetTeamInfoEntity(kTeam2Index)
+        local tunnelManager = teamInfo:GetTunnelManager()
 
-local oldGorgeBuild_GetCanAffordAbility = GorgeBuild_GetCanAffordAbility
-function GorgeBuild_GetCanAffordAbility(techId)
-    if techId == kTechId.GorgeTunnelMenu or techId == kTechId.GorgeTunnelMenuBack then
+        if tunnelManager then
+            local allowed = tunnelManager:GetTechAllowed(kNetworkIndexToCommTunnelTechIdMap[index])
+            return allowed
+        else
+            return false
+        end
+    end
+
+    if index == 5 then -- back button
         return true
     end
 
-    if techId >= kTechId.GorgeTunnelMenuNetwork1 and techId <= kTechId.GorgeTunnelMenuNetwork4 then
+    return false
+end
+
+local kGorgeTunnelIndexToCommTunnelTechIdMap = {
+    -- Network 1
+    { kTechId.BuildTunnelEntryOne, kTechId.BuildTunnelExitOne },
+    -- Network 2
+    { kTechId.BuildTunnelEntryTwo, kTechId.BuildTunnelExitTwo },
+    -- Network 3
+    { kTechId.BuildTunnelEntryThree, kTechId.BuildTunnelExitThree },
+    -- Network 4
+    { kTechId.BuildTunnelEntryFour, kTechId.BuildTunnelExitFour },
+}
+function GorgeBuild_GetIsAbilityAvailableTunnels(index)
+    if index >= 1 and index <= 2 then
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
-        -- Print("TunnelManagerId: %s", teamInfo.tunnelManagerId)
-        -- local tunnelManager = Shared.GetEntity(teamInfo.tunnelManagerId)
-        -- local tunnelManager
-        -- for _, ent in ientitylist(Shared.GetEntitiesWithClassname("alientunnelmanager")) do
-        --     tunnelManager = ent
-        --     break
-        -- end
 
         if tunnelManager then
-            local allowed = tunnelManager:GetTechAllowed(kGorgeTunnelToCommTunnelTechIdMap[techId])
+            local allowed = tunnelManager:GetTechAllowed(kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][index])
             return allowed
         else
-            -- Print("No TunnelManager!")
             return false
         end
+    end
+
+    if index == 3 then -- back button
+        return true
+    end
+
+    return false
+end
+
+local AvailableAbilityFunctionMap = {
+    GorgeBuild_GetIsAbilityAvailableStructures,
+    GorgeBuild_GetIsAbilityAvailableNetworks,
+    GorgeBuild_GetIsAbilityAvailableTunnels,
+}
+function GorgeBuild_GetIsAbilityAvailable(index)
+    return AvailableAbilityFunctionMap[menuMode](index)
+end
+
+local oldGorgeBuild_GetCanAffordAbility = GorgeBuild_GetCanAffordAbility
+function GorgeBuild_GetCanAffordAbility(techId)
+    if techId == kTechId.GorgeTunnelMenu or techId == kTechId.GorgeTunnelMenuBack or (techId >= kTechId.GorgeTunnelMenuNetwork1 and techId <= kTechId.GorgeTunnelMenuNetwork4) then
+        return true
     end
 
     return oldGorgeBuild_GetCanAffordAbility(techId)
