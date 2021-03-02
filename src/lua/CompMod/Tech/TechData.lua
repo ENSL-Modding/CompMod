@@ -40,32 +40,42 @@ local function GetTechToAdd()
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuNetwork1,
-            [kTechDataDisplayName] = "Network 1"
+            [kTechDataDisplayName] = "Network 1",
+            [kTechDataMaxAmount] = 2,
         },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuNetwork2,
-            [kTechDataDisplayName] = "Network 2"
+            [kTechDataDisplayName] = "Network 2",
+            [kTechDataMaxAmount] = 2,
         },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuNetwork3,
-            [kTechDataDisplayName] = "Network 3"
+            [kTechDataDisplayName] = "Network 3",
+            [kTechDataMaxAmount] = 2,
         },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuNetwork4,
-            [kTechDataDisplayName] = "Network 4"
+            [kTechDataDisplayName] = "Network 4",
+            [kTechDataMaxAmount] = 2,
         },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuEntrance,
-            [kTechDataDisplayName] = "Tunnel Entry"
+            [kTechDataDisplayName] = "Tunnel Entry",
+            [kTechDataMaxAmount] = 1,
+            [kTechDataCostKey] = 4,
+            [kTechDataAllowConsumeDrop] = true,
         },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenuExit,
-            [kTechDataDisplayName] = "Tunnel Exit"
+            [kTechDataDisplayName] = "Tunnel Exit",
+            [kTechDataMaxAmount] = 1,
+            [kTechDataCostKey] = 4,
+            [kTechDataAllowConsumeDrop] = true,
         },
     }
 end

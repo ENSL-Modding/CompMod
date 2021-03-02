@@ -64,3 +64,19 @@ function CreateVoiceMessage(player, voiceId)  --FIXME bigmac (need to use enum)
         end
     end
 end
+
+function OnCommandGorgeBuildStructure(client, message)
+    local player = client:GetControllingPlayer()
+    local origin, direction, structureIndex, lastClickedPosition, lastClickedPositionNormal, tunnelNetwork = ParseGorgeBuildMessage(message)
+    
+    local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
+
+    --[[
+        The player may not have an active weapon if the message is sent
+        after the player has gone back to the ready room for example.
+    ]]
+    if dropStructureAbility then
+        dropStructureAbility:OnDropStructure(origin, direction, structureIndex, lastClickedPosition, lastClickedPositionNormal, tunnelNetwork)
+    end
+end
+Server.HookNetworkMessage("GorgeBuildStructure", OnCommandGorgeBuildStructure)

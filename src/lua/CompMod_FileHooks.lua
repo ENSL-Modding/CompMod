@@ -32,6 +32,7 @@ ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.l
 
 -- Alien Entities
 ModLoader.SetupFileHook("lua/AlienTeamInfo.lua", "lua/CompMod/Entities/Alien/AlienTeamInfo.lua", "post")
+ModLoader.SetupFileHook("lua/AlienTunnelManager.lua", "lua/CompMod/Entities/Alien/AlienTunnelManager.lua", "post")
 ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
@@ -71,6 +72,7 @@ ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/Regener
 
 -- Network
 ModLoader.SetupFileHook("lua/NetworkMessages_Server.lua", "lua/CompMod/Network/NetworkMessages_Server.lua", "post")
+ModLoader.SetupFileHook("lua/NetworkMessages.lua", "lua/CompMod/Network/NetworkMessages.lua", "replace")
 
 -- NS2Utility
 ModLoader.SetupFileHook("lua/NS2Utility_Server.lua", "lua/CompMod/NS2Utility/NS2Utility_Server.lua", "post")
@@ -111,6 +113,7 @@ ModLoader.SetupFileHook("lua/Hallucination.lua", "lua/CompMod/Units/Alien/Halluc
 ModLoader.SetupFileHook("lua/Weapons/Alien/Ability.lua", "lua/CompMod/Weapons/Alien/Ability.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/BiteLeap.lua", "lua/CompMod/Weapons/Alien/BiteLeap.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/BoneShield.lua", "lua/CompMod/Weapons/Alien/BoneShield.lua", "post")
+ModLoader.SetupFileHook("lua/Weapons/Alien/DropStructureAbility.lua", "lua/CompMod/Weapons/Alien/DropStructureAbility.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/Gore.lua", "lua/CompMod/Weapons/Alien/Gore.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/LerkBite.lua", "lua/CompMod/Weapons/Alien/LerkBite.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/Spit.lua", "lua/CompMod/Weapons/Alien/Spit.lua", "post")

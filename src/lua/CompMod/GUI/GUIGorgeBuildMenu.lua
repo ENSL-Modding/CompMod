@@ -62,7 +62,7 @@ function GUIGorgeBuildMenu:CreateButton(techId, scale, frame, keybind, position)
         col = 2
     end
     
-    if not GorgeBuild_GetIsAbilityAvailable(index) then
+    if not GorgeBuild_GetIsAbilityAvailable(position + 1) then
         col = 3
     end
     button.graphicItem:SetTexturePixelCoordinates(GUIGetSprite(col, row, GUIGorgeBuildMenu.kPixelSize, GUIGorgeBuildMenu.kPixelSize))
@@ -121,7 +121,7 @@ end
 
 function GUIGorgeBuildMenu:DestroyButtons()
     for i = 1, #self.buttons do
-        self.buttons[i].background:Destroy() -- maybe?
+        self.buttons[i].background:Destroy()
     end
 
     self.buttons = {}
@@ -201,14 +201,28 @@ function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
     }
     for i = 1, #networkSelectors do
         if HasMoveCommand(input.commands, networkSelectors[i]) then
-            selectedNetwork = i
-            self:SetMenuMode(3)
+            if GorgeBuild_GetIsAbilityAvailable(i) then
+                selectedNetwork = i
+                self:SetMenuMode(3)
+            end
+
             input.commands = RemoveMoveCommand(input.commands, networkSelectors[i])
             return input, false
         end
     end
 
     return input, false
+end
+
+local function SendTunnelSelect(index)
+    local player = Client.GetLocalPlayer()
+    
+    if player then
+        local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
+        if dropStructureAbility and selectedNetwork > 0 then
+            dropStructureAbility:SetActiveStructure(-index, selectedNetwork)
+        end
+    end
 end
 
 function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
@@ -225,6 +239,28 @@ function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
             self:SetMenuMode(2)
             input.commands = RemoveMoveCommand(input.commands, exitMoves[i])
             return input, false
+        end
+    end
+    
+    local tunnelSelectors = {
+        Move.Weapon1,
+        Move.Weapon2
+    }
+    local tunnelType = {
+        kTechId.GorgeTunnelMenuEntrance,
+        kTechId.GorgeTunnelMenuExit,
+    }
+    for i = 1, #tunnelSelectors do
+        if HasMoveCommand(input.commands, tunnelSelectors[i]) then
+            if GorgeBuild_GetIsAbilityAvailable(i) and GorgeBuild_GetCanAffordAbility(tunnelType[i]) then
+                SendTunnelSelect(i)
+            end
+
+            input.commands = RemoveMoveCommand(input.commands, tunnelSelectors[i])
+            selectedNetwork = 0
+            self:SetMenuMode(1)
+
+            return input, true
         end
     end
 
@@ -290,9 +326,11 @@ function GorgeBuild_GetIsAbilityAvailableTunnels(index)
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
 
-        if tunnelManager then
-            local allowed = tunnelManager:GetTechAllowed(kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][index])
-            return allowed
+        if tunnelManager and selectedNetwork > 0 then
+            local techId = kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][index]
+            local allowed = tunnelManager:GetTechAllowed(techId)
+            -- return allowed
+            return true
         else
             return false
         end
@@ -314,13 +352,44 @@ function GorgeBuild_GetIsAbilityAvailable(index)
     return AvailableAbilityFunctionMap[menuMode](index)
 end
 
+local skipAffordCheckIds = {
+    [kTechId.GorgeTunnelMenu] = true,
+    [kTechId.GorgeTunnelMenuBack] = true,
+    [kTechId.GorgeTunnelMenuNetwork1] = true,
+    [kTechId.GorgeTunnelMenuNetwork2] = true,
+    [kTechId.GorgeTunnelMenuNetwork3] = true,
+    [kTechId.GorgeTunnelMenuNetwork4] = true,
+    -- [kTechId.GorgeTunnelMenuEntrance] = true,
+    -- [kTechId.GorgeTunnelMenuExit] = true,
+}
 local oldGorgeBuild_GetCanAffordAbility = GorgeBuild_GetCanAffordAbility
 function GorgeBuild_GetCanAffordAbility(techId)
-    if techId == kTechId.GorgeTunnelMenu or techId == kTechId.GorgeTunnelMenuBack or (techId >= kTechId.GorgeTunnelMenuNetwork1 and techId <= kTechId.GorgeTunnelMenuNetwork4) then
-        return true
+    return skipAffordCheckIds[techId] or oldGorgeBuild_GetCanAffordAbility(techId)
+end
+
+local oldGorgeBuild_GetNumStructureBuilt = GorgeBuild_GetNumStructureBuilt
+function GorgeBuild_GetNumStructureBuilt(techId)
+    local teamInfo = GetTeamInfoEntity(kTeam2Index)
+    local tunnelManager = GetTeamInfoEntity(kTeam2Index):GetTunnelManager()
+
+    if techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit and selectedNetwork > 0 then
+        local techIndex = techId - kTechId.GorgeTunnelMenuEntrance + 1
+        local commTechId = kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][techIndex]
+        return tunnelManager:GetTechDropped(commTechId) and 1 or 0
     end
 
-    return oldGorgeBuild_GetCanAffordAbility(techId)
+    if techId >= kTechId.GorgeTunnelMenuNetwork1 and techId <= kTechId.GorgeTunnelMenuNetwork4 then
+        local techIndex = techId - kTechId.GorgeTunnelMenuNetwork1 + 1
+        local oldSelectedNetwork = selectedNetwork
+        selectedNetwork = techIndex
+        local entranceCount = GorgeBuild_GetNumStructureBuilt(kTechId.GorgeTunnelMenuEntrance)
+        local exitCount = GorgeBuild_GetNumStructureBuilt(kTechId.GorgeTunnelMenuExit)
+        selectedNetwork = oldSelectedNetwork -- this should always be 0 but just to be safe :)
+
+        return entranceCount + exitCount
+    end
+
+    return oldGorgeBuild_GetNumStructureBuilt(techId)
 end
 
 debug.setupvaluex(GUIGorgeBuildMenu.Update, "GetRowForTechId", GetRowForTechId, true)
