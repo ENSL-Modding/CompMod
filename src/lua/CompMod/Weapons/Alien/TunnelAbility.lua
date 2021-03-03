@@ -170,10 +170,25 @@ local function CalculateTunnelPosition(position, player, surfaceNormal)
     return valid, newCoords
 end
 
+-- local function CalculateTunnelPosition(position, player, normal)
+--     local valid = true
+
+--     local extents = Vector(0.4, 0.5, 0.4)
+--     local traceStart = position + normal * 0.15 -- A bit above to allow hydras to be placed on uneven ground easily
+--     local traceEnd = position + normal * extents.y
+--     trace = Shared.TraceBox(extents, traceStart, traceEnd, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterAll())
+
+--     if trace.fraction ~= 1 then
+--         -- DebugTraceBox(extents, traceStart, traceEnd, 0.1, 45, 45, 45, 1)
+--         valid = false
+--     end
+
+--     return valid
+-- end
+
 function TunnelAbility:GetIsPositionValid(position, player, surfaceNormal)
     PROFILE("TunnelAbility:GetIsPositionValid")
-    local valid, _ CalculateTunnelPosition(position, player, surfaceNormal)
-    return valid
+    return CalculateTunnelPosition(position, player, surfaceNormal)
 end
 
 function TunnelAbility:SetNetwork(networkNum)

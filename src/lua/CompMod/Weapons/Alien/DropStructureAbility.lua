@@ -27,47 +27,22 @@ function DropStructureAbility:SetActiveStructure(structureNum, tunnelNetwork)
     end
 end
 
-local kGorgeTunnelIndexToCommTunnelTechIdMap = {
-    -- Network 1
-    { kTechId.BuildTunnelEntryOne, kTechId.BuildTunnelExitOne },
-    -- Network 2
-    { kTechId.BuildTunnelEntryTwo, kTechId.BuildTunnelExitTwo },
-    -- Network 3
-    { kTechId.BuildTunnelEntryThree, kTechId.BuildTunnelExitThree },
-    -- Network 4
-    { kTechId.BuildTunnelEntryFour, kTechId.BuildTunnelExitFour },
-}
+local oldGetNUmStructureBuilt = DropStructureAbility.GetNumStructuresBuilt
 function DropStructureAbility:GetNumStructuresBuilt(techId)
-    if techId == kTechId.Hydra then
-        return self.numHydrasLeft
-    end
-
-    if techId == kTechId.Clog then
-        return self.numClogsLeft
-    end
-
-    if techId == kTechId.Web then
-        return self.numWebsLeft
-    end
-
-    if techId == kTechId.BabblerEgg then
-        return self.numBabblersLeft
-    end
-
     if techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit then
         if self.activeStructure ~= nil then
             local network = self:GetActiveStructure():GetNetwork()
             local teamInfo = GetTeamInfoEntity(kTeam2Index)
             local tunnelManager = teamInfo:GetTunnelManager()
             local index = techId - kTechId.GorgeTunnelMenuEntrance + 1
-            return tunnelManager:GetTechDropped(kGorgeTunnelIndexToCommTunnelTechIdMap[network][index]) and 1 or 0
+            local commTechId = tunnelManager:NetworkToTechId(network, index)
+            return tunnelManager:GetTechDropped(commTechId) and 1 or 0
         else
             return 0
         end
     end
 
-    -- unlimited
-    return -1
+    return oldGetNUmStructureBuilt(self, techId)
 end
 
 function DropStructureAbility:OnDropStructure(origin, direction, structureIndex, lastClickedPosition, lastClickedPositionNormal, tunnelNetwork)
@@ -109,6 +84,7 @@ function DropStructureAbility:PerformPrimaryAttack(player)
             local cost = GetCostForTech(self:GetActiveStructure().GetDropStructureId())
             if player:GetResources() >= cost and not self:GetHasDropCooldown() then
                 local activeStructure = self:GetActiveStructure()
+                -- Include the tunnel network with the message
                 local network = activeStructure.GetNetwork and activeStructure:GetNetwork() or 0
                 local message = BuildGorgeDropStructureMessage(player:GetEyePos(), player:GetViewCoords().zAxis, self.activeStructure, self.lastClickedPosition, self.lastClickedPositionNormal, network)
                 Client.SendNetworkMessage("GorgeBuildStructure", message, true)

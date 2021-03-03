@@ -1,3 +1,5 @@
+local GorgeBuild_GetKeybindForIndex = debug.getupvaluex(GUIGorgeBuildMenu.Reset, "GorgeBuild_GetKeybindForIndex")
+
 -- Int for tunnel menu. 1 = structure menu, 2 = tunnel network selection, 3 = entrance/exit selection
 local menuMode = 1
 
@@ -16,12 +18,6 @@ function GUIGorgeBuildMenu:Initialize()
     
     self.buttons = {}
     self:SetMenuMode(1)
-    -- The reset is handled above
-    -- self:Reset()
-end
-
-local function GorgeBuild_GetKeybindForIndex(index)
-    return "Weapon" .. ToString(index)
 end
 
 local rowTable
@@ -46,6 +42,7 @@ local function GetRowForTechId(techId)
     
     return rowTable[techId]
 end
+debug.setupvaluex(GUIGorgeBuildMenu.Update, "GetRowForTechId", GetRowForTechId, true)
 
 local oldCreateButton = GUIGorgeBuildMenu.CreateButton
 function GUIGorgeBuildMenu:CreateButton(techId, scale, frame, keybind, position)
@@ -82,6 +79,35 @@ function GorgeBuild_IsTunnelIndex(index)
     return index == GorgeBuild_GetTunnelIndex()
 end
 
+function GUIGorgeBuildMenu:DestroyButtons()
+    for i = 1, #self.buttons do
+        self.buttons[i].background:Destroy()
+    end
+
+    self.buttons = {}
+end
+
+function GUIGorgeBuildMenu:SetMenuMode(mode)
+    menuMode = mode
+    self:DestroyButtons()
+    self:Reset()
+end
+
+local function SendTunnelSelect(index)
+    local player = Client.GetLocalPlayer()
+    
+    if player then
+        local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
+        if dropStructureAbility and selectedNetwork > 0 then
+            dropStructureAbility:SetActiveStructure(-index, selectedNetwork)
+        end
+    end
+end
+
+----------------------------------------------------------------------------------------------------
+-- Create Buttons                                                                                 --
+----------------------------------------------------------------------------------------------------
+
 function GUIGorgeBuildMenu:CreateStructureButtons()
     for index, structureAbility in ipairs(DropStructureAbility.kSupportedStructures) do
         -- TODO: pass keybind from options instead of index
@@ -105,7 +131,7 @@ function GUIGorgeBuildMenu:CreateTunnelTypeButtons()
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
 end
 
-local createButtons = {
+local createButtonsMenuModeMap = {
     GUIGorgeBuildMenu.CreateStructureButtons,
     GUIGorgeBuildMenu.CreateNetworkButtons,
     GUIGorgeBuildMenu.CreateTunnelTypeButtons
@@ -113,25 +139,15 @@ local createButtons = {
 function GUIGorgeBuildMenu:Reset()
     self.background:SetUniformScale(self.scale)
 
-    createButtons[menuMode](self)
+    createButtonsMenuModeMap[menuMode](self)
     
     local backgroundXOffset = (#self.buttons * GUIGorgeBuildMenu.kButtonWidth) * -.5
     self.background:SetPosition(Vector(backgroundXOffset, GUIGorgeBuildMenu.kBackgroundYOffset, 0))
 end
 
-function GUIGorgeBuildMenu:DestroyButtons()
-    for i = 1, #self.buttons do
-        self.buttons[i].background:Destroy()
-    end
-
-    self.buttons = {}
-end
-
-function GUIGorgeBuildMenu:SetMenuMode(mode)
-    menuMode = mode
-    self:DestroyButtons()
-    self:Reset()
-end
+----------------------------------------------------------------------------------------------------
+-- Input Handling                                                                                 --
+----------------------------------------------------------------------------------------------------
 
 function GUIGorgeBuildMenu:InputStructureMenu(input)
     -- Assume the user wants to switch the top-level weapons
@@ -211,18 +227,8 @@ function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
         end
     end
 
+    self:SetMenuMode(1)
     return input, false
-end
-
-local function SendTunnelSelect(index)
-    local player = Client.GetLocalPlayer()
-    
-    if player then
-        local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
-        if dropStructureAbility and selectedNetwork > 0 then
-            dropStructureAbility:SetActiveStructure(-index, selectedNetwork)
-        end
-    end
 end
 
 function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
@@ -264,17 +270,22 @@ function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
         end
     end
 
+    self:SetMenuMode(1)
     return input, false
 end
 
-local menuModeFunctionMap = {
+local overrideInputMenuModeFunctionMap = {
     GUIGorgeBuildMenu.InputStructureMenu,
     GUIGorgeBuildMenu.InputTunnelNetworkSelect,
     GUIGorgeBuildMenu.InputTunnelTypeSelect
 }
 function GUIGorgeBuildMenu:OverrideInput(input)
-    return menuModeFunctionMap[menuMode](self, input)
+    return overrideInputMenuModeFunctionMap[menuMode](self, input)
 end
+
+----------------------------------------------------------------------------------------------------
+-- GetAbilityAvailable Handling                                                                   --
+----------------------------------------------------------------------------------------------------
 
 local oldGorgeBuild_GetIsAbilityAvailable = GorgeBuild_GetIsAbilityAvailable
 function GorgeBuild_GetIsAbilityAvailableStructures(index)
@@ -285,20 +296,13 @@ function GorgeBuild_GetIsAbilityAvailableStructures(index)
     return oldGorgeBuild_GetIsAbilityAvailable(index)
 end
 
-local kNetworkIndexToCommTunnelTechIdMap = {
-    kTechId.BuildTunnelEntryOne,
-    kTechId.BuildTunnelEntryTwo,
-    kTechId.BuildTunnelEntryThree,
-    kTechId.BuildTunnelEntryFour,
-}
 function GorgeBuild_GetIsAbilityAvailableNetworks(index)
     if index >= 1 and index <= 4 then
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
 
         if tunnelManager then
-            local allowed = tunnelManager:GetTechAllowed(kNetworkIndexToCommTunnelTechIdMap[index])
-            return allowed
+            return tunnelManager:IsNetworkAvailable(index)
         else
             return false
         end
@@ -311,26 +315,13 @@ function GorgeBuild_GetIsAbilityAvailableNetworks(index)
     return false
 end
 
-local kGorgeTunnelIndexToCommTunnelTechIdMap = {
-    -- Network 1
-    { kTechId.BuildTunnelEntryOne, kTechId.BuildTunnelExitOne },
-    -- Network 2
-    { kTechId.BuildTunnelEntryTwo, kTechId.BuildTunnelExitTwo },
-    -- Network 3
-    { kTechId.BuildTunnelEntryThree, kTechId.BuildTunnelExitThree },
-    -- Network 4
-    { kTechId.BuildTunnelEntryFour, kTechId.BuildTunnelExitFour },
-}
 function GorgeBuild_GetIsAbilityAvailableTunnels(index)
     if index >= 1 and index <= 2 then
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
 
         if tunnelManager and selectedNetwork > 0 then
-            local techId = kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][index]
-            local allowed = tunnelManager:GetTechAllowed(techId)
-            -- return allowed
-            return true
+            return tunnelManager:IsNetworkAvailable(selectedNetwork)
         else
             return false
         end
@@ -343,13 +334,13 @@ function GorgeBuild_GetIsAbilityAvailableTunnels(index)
     return false
 end
 
-local AvailableAbilityFunctionMap = {
+local availableAbilityMenuModeFunctionMap = {
     GorgeBuild_GetIsAbilityAvailableStructures,
     GorgeBuild_GetIsAbilityAvailableNetworks,
     GorgeBuild_GetIsAbilityAvailableTunnels,
 }
 function GorgeBuild_GetIsAbilityAvailable(index)
-    return AvailableAbilityFunctionMap[menuMode](index)
+    return availableAbilityMenuModeFunctionMap[menuMode](index)
 end
 
 local skipAffordCheckIds = {
@@ -359,8 +350,6 @@ local skipAffordCheckIds = {
     [kTechId.GorgeTunnelMenuNetwork2] = true,
     [kTechId.GorgeTunnelMenuNetwork3] = true,
     [kTechId.GorgeTunnelMenuNetwork4] = true,
-    -- [kTechId.GorgeTunnelMenuEntrance] = true,
-    -- [kTechId.GorgeTunnelMenuExit] = true,
 }
 local oldGorgeBuild_GetCanAffordAbility = GorgeBuild_GetCanAffordAbility
 function GorgeBuild_GetCanAffordAbility(techId)
@@ -372,9 +361,9 @@ function GorgeBuild_GetNumStructureBuilt(techId)
     local teamInfo = GetTeamInfoEntity(kTeam2Index)
     local tunnelManager = GetTeamInfoEntity(kTeam2Index):GetTunnelManager()
 
-    if techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit and selectedNetwork > 0 then
+    if (techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit) and selectedNetwork > 0 then
         local techIndex = techId - kTechId.GorgeTunnelMenuEntrance + 1
-        local commTechId = kGorgeTunnelIndexToCommTunnelTechIdMap[selectedNetwork][techIndex]
+        local commTechId = tunnelManager:NetworkToTechId(selectedNetwork, techIndex)
         return tunnelManager:GetTechDropped(commTechId) and 1 or 0
     end
 
@@ -391,5 +380,3 @@ function GorgeBuild_GetNumStructureBuilt(techId)
 
     return oldGorgeBuild_GetNumStructureBuilt(techId)
 end
-
-debug.setupvaluex(GUIGorgeBuildMenu.Update, "GetRowForTechId", GetRowForTechId, true)

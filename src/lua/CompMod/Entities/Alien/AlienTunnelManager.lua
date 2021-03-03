@@ -9,12 +9,36 @@ function AlienTunnelManager:GetTechDropped(techId)
     return false
 end
 
--- function AlienTunnelManager:GetTunnelEntrance(techId)
---     local techIndex = techId - kTechId.SelectTunnelEntryOne + 1
---     if techIndex > 8 then return end
+local networkToTechIds = {
+    -- Network 1
+    { kTechId.BuildTunnelEntryOne, kTechId.BuildTunnelExitOne },
+    -- Network 2
+    { kTechId.BuildTunnelEntryTwo, kTechId.BuildTunnelExitTwo },
+    -- Network 3
+    { kTechId.BuildTunnelEntryThree, kTechId.BuildTunnelExitThree },
+    -- Network 4
+    { kTechId.BuildTunnelEntryFour, kTechId.BuildTunnelExitFour },
+}
 
---     local entranceId = self[buttonIndexToNetVarMap[techIndex]]
---     local entrance = (entranceId and entranceId ~= 0) and Shared.GetEntity(entranceId)
+function AlienTunnelManager:NetworkToTechId(networkNum, index)
+    assert(networkNum)
 
---     return entrance
--- end
+    if index then
+        return networkToTechIds[networkNum][index]
+    else
+        return networkToTechIds[networkNum]
+    end
+end
+
+function AlienTunnelManager:IsNetworkAvailable(networkNum)
+    self:GetTechButtons()
+    local techIds = self:NetworkToTechId(networkNum)
+    local valid = true
+
+    for i = 1, #techIds do
+        local techId = techIds[i]
+        valid = valid and (self:GetTechDropped(techId) or self:GetTechAllowed(techId))
+    end
+
+    return valid
+end
