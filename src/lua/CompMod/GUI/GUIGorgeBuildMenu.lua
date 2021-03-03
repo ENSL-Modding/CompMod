@@ -20,6 +20,14 @@ function GUIGorgeBuildMenu:Initialize()
     self:SetMenuMode(1)
 end
 
+function GUIGorgeBuildMenu:SetIsVisible(isVisible)
+    if isVisible == false then
+        self:SetMenuMode(1)
+    end
+    
+    self.background:SetIsVisible(isVisible == true)
+end
+
 local rowTable
 local function GetRowForTechId(techId)
     if not rowTable then
