@@ -285,13 +285,12 @@ end
 -- GetAbilityAvailable Handling                                                                   --
 ----------------------------------------------------------------------------------------------------
 
-local oldGorgeBuild_GetIsAbilityAvailable = GorgeBuild_GetIsAbilityAvailable
 function GUIGorgeBuildMenu:GetIsAbilityAvailableStructures(index)
     if GorgeBuild_IsTunnelIndex(index) then
         return true
     end
 
-    return oldGorgeBuild_GetIsAbilityAvailable(index)
+    return GorgeBuild_GetIsAbilityAvailable(index)
 end
 
 function GUIGorgeBuildMenu:GetIsAbilityAvailableNetworks(index)
@@ -361,7 +360,6 @@ function GUIGorgeBuildMenu:GetCanAffordAbility(techId)
     return player:GetResources() >= abilityCost and not exceededLimit
 end
 
-local oldGorgeBuild_GetNumStructureBuilt = GorgeBuild_GetNumStructureBuilt
 function GUIGorgeBuildMenu:GetNumStructureBuilt(techId)
     local teamInfo = GetTeamInfoEntity(kTeam2Index)
     local tunnelManager = GetTeamInfoEntity(kTeam2Index):GetTunnelManager()
@@ -383,7 +381,7 @@ function GUIGorgeBuildMenu:GetNumStructureBuilt(techId)
         return entranceCount + exitCount
     end
 
-    return oldGorgeBuild_GetNumStructureBuilt(techId)
+    return GorgeBuild_GetNumStructureBuilt(techId)
 end
 
 local kDefaultStructureCountPos = Vector(-48, -24, 0)
