@@ -37,3 +37,23 @@ if Client then
 
     end
 end
+
+class 'TunnelMapBlip' (MapBlip)
+
+TunnelMapBlip.kMapName = "TunnelMapBlip"
+
+if Client then
+    -- If left to default then labels are delayed when opening the minimap
+    function TunnelMapBlip:UpdateMinimapActivity()
+        return kMinimapActivity.High
+    end
+
+    -- Show a label for tunnels on the minimap
+    function TunnelMapBlip:UpdateHook(minimap, item)
+        local owner = self.ownerEntityId and Shared.GetEntity(self.ownerEntityId)
+        if owner then
+            minimap:DrawMinimapNameTunnel(item, self:GetMapBlipTeam(minimap), owner)
+        end
+    end
+end
+Shared.LinkClassToMap("TunnelMapBlip", TunnelMapBlip.kMapName, {})
