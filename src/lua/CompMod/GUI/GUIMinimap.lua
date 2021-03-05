@@ -86,7 +86,7 @@ end
 function GUIMinimap:DrawMinimapNameTunnel(item, blipTeam, owner)
     if self.showPlayerNames then
         local nameTag = GetTunnelNameTag(self, owner:GetId())
-        local text = "Tunnel!"
+        local text = owner:GetNametag()
 
         nameTag:SetIsVisible(self.visible)
         nameTag:SetText(text)

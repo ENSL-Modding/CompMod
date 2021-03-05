@@ -1,5 +1,22 @@
 local buttonIndexToNetVarMap = debug.getupvaluex(AlienTunnelManager.GetTechButtons, "buttonIndexToNetVarMap")
 
+function AlienTunnelManager:GetTunnelInfo(entId)
+    for i = 1, 8 do
+        if self[buttonIndexToNetVarMap[i]] == entId then
+            local type = i > 4 and "Exit" or "Entry"
+            local network = ((i-1) % 4)+1
+            return type, network
+        end
+    end
+
+    return nil, nil
+end
+
+function AlienTunnelManager:GetEntityId(techId)
+    local techIndex = techId - kTechId.BuildTunnelEntryOne
+    return self[buttonIndexToNetVarMap[techIndex]]
+end
+
 function AlienTunnelManager:GetTechDropped(techId)
     local techIndex = techId - kTechId.BuildTunnelEntryOne + 1
     if techIndex >= 1 and techIndex <= 8 then

@@ -43,15 +43,24 @@ class 'TunnelMapBlip' (MapBlip)
 TunnelMapBlip.kMapName = "TunnelMapBlip"
 
 if Client then
-    -- If left to default then labels are delayed when opening the minimap
-    function TunnelMapBlip:UpdateMinimapActivity()
+    function TunnelMapBlip:UpdateMinimapActivity(minimap, item)
+        if self.combatActivity == nil then
+            self:InitActivityDefaults()
+        end
+
+        local blipTeam = self:GetMapBlipTeam(minimap) -- the blipTeam can change if power changes
+        if blipType ~= item.blipType or blipTeam ~= item.blipTeam then
+            item.resetMinimapItem = true
+        end
+
         return kMinimapActivity.High
     end
 
     -- Show a label for tunnels on the minimap
     function TunnelMapBlip:UpdateHook(minimap, item)
         local owner = self.ownerEntityId and Shared.GetEntity(self.ownerEntityId)
-        if owner then
+        local blipTeam = self:GetMapBlipTeam(minimap)
+        if owner and self.OnSameMinimapBlipTeam(minimap.playerTeam, blipTeam) then
             minimap:DrawMinimapNameTunnel(item, self:GetMapBlipTeam(minimap), owner)
         end
     end
