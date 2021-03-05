@@ -7,6 +7,7 @@ local tunnelDropAbilities = {
 }
 
 function DropStructureAbility:GetActiveStructure()
+    PROFILE("DropStructureAbility:GetActiveStructure")
     if self.activeStructure == nil then
         return nil
     end
@@ -20,6 +21,7 @@ end
 
 local oldSetActiveStructure = DropStructureAbility.SetActiveStructure
 function DropStructureAbility:SetActiveStructure(structureNum, tunnelNetwork)
+    PROFILE("DropStructureAbility:SetActiveStructure")
     oldSetActiveStructure(self, structureNum)
 
     if self.activeStructure ~= nil and self.activeStructure < 0 then
@@ -29,6 +31,7 @@ end
 
 local oldGetNUmStructureBuilt = DropStructureAbility.GetNumStructuresBuilt
 function DropStructureAbility:GetNumStructuresBuilt(techId)
+    PROFILE("DropStructureAbility:GetNumStructuresBuilt")
     if techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit then
         if self.activeStructure ~= nil then
             local network = self:GetActiveStructure():GetNetwork()
@@ -46,6 +49,7 @@ function DropStructureAbility:GetNumStructuresBuilt(techId)
 end
 
 function DropStructureAbility:OnDropStructure(origin, direction, structureIndex, lastClickedPosition, lastClickedPositionNormal, tunnelNetwork)
+    PROFILE("DropStructureAbility:OnDropStructure")
     local player = self:GetParent()
     
     if player then
@@ -71,6 +75,7 @@ function DropStructureAbility:OnDropStructure(origin, direction, structureIndex,
 end
 
 function DropStructureAbility:PerformPrimaryAttack(player)
+    PROFILE("DropStructureAbility:PerformPrimaryAttack")
     if self.activeStructure == nil then
         return false
     end

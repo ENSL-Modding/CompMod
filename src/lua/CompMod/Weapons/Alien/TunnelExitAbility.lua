@@ -6,20 +6,22 @@ function TunnelExitAbility:GetDropStructureId()
     return kTechId.GorgeTunnelMenuExit
 end
 
+local techIds = {
+    kTechId.BuildTunnelExitOne,
+    kTechId.BuildTunnelExitTwo,
+    kTechId.BuildTunnelExitThree,
+    kTechId.BuildTunnelExitFour,
+}
 function TunnelExitAbility:GetTechIds()
-    return {
-        kTechId.BuildTunnelExitOne,
-        kTechId.BuildTunnelExitTwo,
-        kTechId.BuildTunnelExitThree,
-        kTechId.BuildTunnelExitFour,
-    }
+    return techIds
 end
 
+local selectTechIds = {
+    kTechId.SelectTunnelExitOne,
+    kTechId.SelectTunnelExitTwo,
+    kTechId.SelectTunnelExitThree,
+    kTechId.SelectTunnelExitFour,
+}
 function TunnelExitAbility:GetSelectTechIds()
-    return {
-        kTechId.SelectTunnelExitOne,
-        kTechId.SelectTunnelExitTwo,
-        kTechId.SelectTunnelExitThree,
-        kTechId.SelectTunnelExitFour,
-    }
+    return selectTechIds
 end

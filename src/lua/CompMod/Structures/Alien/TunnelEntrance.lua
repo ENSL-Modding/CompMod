@@ -14,6 +14,7 @@ function TunnelEntrance:OnCreate()
 end
 
 function TunnelEntrance:GetNametag()
+    PROFILE("TunnelEntrance:GetNameTag")
     local id = self:GetId()
     local tunnelManager = GetTeamInfoEntity(kTeam2Index):GetTunnelManager()
     if tunnelManager then

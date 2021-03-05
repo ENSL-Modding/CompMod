@@ -1,6 +1,7 @@
 local buttonIndexToNetVarMap = debug.getupvaluex(AlienTunnelManager.GetTechButtons, "buttonIndexToNetVarMap")
 
 function AlienTunnelManager:GetTunnelInfo(entId)
+    PROFILE("AlienTunnelManager:GetTunnelInfo")
     for i = 1, 8 do
         if self[buttonIndexToNetVarMap[i]] == entId then
             local type = i > 4 and "Exit" or "Entry"
@@ -13,11 +14,13 @@ function AlienTunnelManager:GetTunnelInfo(entId)
 end
 
 function AlienTunnelManager:GetEntityId(techId)
+    PROFILE("AlienTunnelManager:GetEntityId")
     local techIndex = techId - kTechId.BuildTunnelEntryOne
     return self[buttonIndexToNetVarMap[techIndex]]
 end
 
 function AlienTunnelManager:GetTechDropped(techId)
+    PROFILE("AlienTunnelManager:GetTechDropped")
     local techIndex = techId - kTechId.BuildTunnelEntryOne + 1
     if techIndex >= 1 and techIndex <= 8 then
         return self[buttonIndexToNetVarMap[techIndex]] ~= 0
@@ -38,6 +41,7 @@ local networkToTechIds = {
 }
 
 function AlienTunnelManager:NetworkToTechId(networkNum, index)
+    PROFILE("AlienTunnelManager:NetworkToTechId")
     assert(networkNum)
 
     if index then
@@ -48,6 +52,7 @@ function AlienTunnelManager:NetworkToTechId(networkNum, index)
 end
 
 function AlienTunnelManager:IsNetworkAvailable(networkNum)
+    PROFILE("AlienTunnelManager:IsNetworkAvailable")
     self:GetTechButtons()
     local techIds = self:NetworkToTechId(networkNum)
     local valid = true
