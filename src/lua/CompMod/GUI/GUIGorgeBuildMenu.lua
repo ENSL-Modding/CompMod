@@ -1,6 +1,7 @@
 local GorgeBuild_GetKeybindForIndex = debug.getupvaluex(GUIGorgeBuildMenu.Reset, "GorgeBuild_GetKeybindForIndex")
 
 function GUIGorgeBuildMenu:Initialize()
+    PROFILE("GUIGorgeBuildMenu:Initialize")
     GUIAnimatedScript.Initialize(self)
     
     self.kSmokeyBackgroundSize = GUIScale(Vector(220, 400, 0))
@@ -21,7 +22,7 @@ function GUIGorgeBuildMenu:Initialize()
 end
 
 function GUIGorgeBuildMenu:SetIsVisible(isVisible)
-    if isVisible == false then
+    if isVisible == false and self.menuMode ~= 1 then
         self:SetMenuMode(1)
     end
     
@@ -30,6 +31,7 @@ end
 
 local rowTable
 local function GetRowForTechId(techId)
+    PROFILE("GUIGorgeBuildMenu::GetRowForTechId")
     if not rowTable then
         rowTable = {}
         rowTable[kTechId.Hydra] = 1
@@ -50,10 +52,10 @@ local function GetRowForTechId(techId)
     
     return rowTable[techId]
 end
-debug.setupvaluex(GUIGorgeBuildMenu.Update, "GetRowForTechId", GetRowForTechId, true)
 
 local oldCreateButton = GUIGorgeBuildMenu.CreateButton
 function GUIGorgeBuildMenu:CreateButton(techId, scale, frame, keybind, position)
+    PROFILE("GUIGorgeBuildMenu:CreateButtonNew")
     local button = oldCreateButton(self, techId, scale, frame, keybind, position)
 
     -- In vanilla setting the texture pixel coords is only done in the update function, which is fine when the buttons are created in the constructor 
@@ -76,18 +78,22 @@ function GUIGorgeBuildMenu:CreateButton(techId, scale, frame, keybind, position)
 end
 
 function GorgeBuild_GetTunnelIndex()
+    PROFILE("GUIGorgeBuildMenu::GorgeBuild_GetTunnelIndex")
     return #DropStructureAbility.kSupportedStructures + 1
 end
 
 function GorgeBuild_GetTunnelKeybind()
+    PROFILE("GUIGorgeBuildMenu::GorgeBuild_GetTunnelKeybind")
     return GorgeBuild_GetKeybindForIndex(GorgeBuild_GetTunnelIndex())
 end
 
 function GorgeBuild_IsTunnelIndex(index)
+    PROFILE("GUIGorgeBuildMenu::GorgeBuild_IsTunnelIndex")
     return index == GorgeBuild_GetTunnelIndex()
 end
 
 function GUIGorgeBuildMenu:DestroyButtons()
+    PROFILE("GUIGorgeBuildMenu:DestroyButtons")
     for i = 1, #self.buttons do
         self.buttons[i].background:Destroy()
     end
@@ -96,12 +102,14 @@ function GUIGorgeBuildMenu:DestroyButtons()
 end
 
 function GUIGorgeBuildMenu:SetMenuMode(mode)
+    PROFILE("GUIGorgeBuildMenu:SetMenuMode")
     self.menuMode = mode
     self:DestroyButtons()
     self:Reset()
 end
 
 local function SendTunnelSelect(self, index)
+    PROFILE("GUIGorgeBuildMenu::SendTunnelSelect")
     local player = Client.GetLocalPlayer()
     
     if player then
@@ -117,6 +125,7 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function GUIGorgeBuildMenu:CreateStructureButtons()
+    PROFILE("GUIGorgeBuildMenu:CreateStructureButtons")
     for index, structureAbility in ipairs(DropStructureAbility.kSupportedStructures) do
         -- TODO: pass keybind from options instead of index
         table.insert(self.buttons, self:CreateButton(structureAbility.GetDropStructureId(), self.scale, self.background, GorgeBuild_GetKeybindForIndex(index), index - 1))
@@ -126,6 +135,7 @@ function GUIGorgeBuildMenu:CreateStructureButtons()
 end
 
 function GUIGorgeBuildMenu:CreateNetworkButtons()
+    PROFILE("GUIGorgeBuildMenu:CreateNetworkButtons")
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork1,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork2,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuNetwork3,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
@@ -134,6 +144,7 @@ function GUIGorgeBuildMenu:CreateNetworkButtons()
 end
 
 function GUIGorgeBuildMenu:CreateTunnelTypeButtons()
+    PROFILE("GUIGorgeBuildMenu:CreateTunnelTypeButtons")
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuEntrance,   self.scale, self.background, GorgeBuild_GetKeybindForIndex(1), 0))
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuExit,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(2), 1))
     table.insert(self.buttons, self:CreateButton(kTechId.GorgeTunnelMenuBack,       self.scale, self.background, GorgeBuild_GetKeybindForIndex(3), 2))
@@ -145,6 +156,7 @@ local createButtonsMenuModeMap = {
     GUIGorgeBuildMenu.CreateTunnelTypeButtons
 }
 function GUIGorgeBuildMenu:Reset()
+    PROFILE("GUIGorgeBuildMenu:Reset")
     self.background:SetUniformScale(self.scale)
 
     createButtonsMenuModeMap[self.menuMode](self)
@@ -158,6 +170,7 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function GUIGorgeBuildMenu:InputStructureMenu(input)
+    PROFILE("GUIGorgeBuildMenu:InputStructureMenu")
     -- Assume the user wants to switch the top-level weapons
     if HasMoveCommand(input.commands, Move.SelectNextWeapon) or HasMoveCommand(input.commands, Move.SelectPrevWeapon) then
         GorgeBuild_OnClose()
@@ -202,6 +215,7 @@ function GUIGorgeBuildMenu:InputStructureMenu(input)
 end
 
 function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
+    PROFILE("GUIGorgeBuildMenu:InputTunnelNetworkSelect")
     local exitMoves = {
         Move.PrimaryAttack,
         Move.SecondaryAttack,
@@ -239,6 +253,7 @@ function GUIGorgeBuildMenu:InputTunnelNetworkSelect(input)
 end
 
 function GUIGorgeBuildMenu:InputTunnelTypeSelect(input)
+    PROFILE("GUIGorgeBuildMenu:InputTunnelTypeSelect")
     local exitMoves = {
         Move.PrimaryAttack,
         Move.SecondaryAttack,
@@ -286,6 +301,7 @@ local overrideInputMenuModeFunctionMap = {
     GUIGorgeBuildMenu.InputTunnelTypeSelect
 }
 function GUIGorgeBuildMenu:OverrideInput(input)
+    PROFILE("GUIGorgeBuildMenu:OverrideInput")
     return overrideInputMenuModeFunctionMap[self.menuMode](self, input)
 end
 
@@ -294,6 +310,7 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function GUIGorgeBuildMenu:GetIsAbilityAvailableStructures(index)
+    PROFILE("GUIGorgeBuildMenu:GetIsAbilityAvailableStructures")
     if GorgeBuild_IsTunnelIndex(index) then
         return true
     end
@@ -302,6 +319,7 @@ function GUIGorgeBuildMenu:GetIsAbilityAvailableStructures(index)
 end
 
 function GUIGorgeBuildMenu:GetIsAbilityAvailableNetworks(index)
+    PROFILE("GUIGorgeBuildMenu:GetIsAbilityAvailableNetworks")
     if index >= 1 and index <= 4 then
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
@@ -321,6 +339,7 @@ function GUIGorgeBuildMenu:GetIsAbilityAvailableNetworks(index)
 end
 
 function GUIGorgeBuildMenu:GetIsAbilityAvailableTunnels(index)
+    PROFILE("GUIGorgeBuildMenu:GetIsAbilityAvailableTunnels")
     if index >= 1 and index <= 2 then
         local teamInfo = GetTeamInfoEntity(kTeam2Index)
         local tunnelManager = teamInfo:GetTunnelManager()
@@ -345,6 +364,7 @@ local availableAbilityMenuModeFunctionMap = {
     GUIGorgeBuildMenu.GetIsAbilityAvailableTunnels,
 }
 function GUIGorgeBuildMenu:GetIsAbilityAvailable(index)
+    PROFILE("GUIGorgeBuildMenu:GetIsAbilityAvailable")
     return availableAbilityMenuModeFunctionMap[self.menuMode](self, index)
 end
 
@@ -357,6 +377,7 @@ local skipAffordCheckIds = {
     [kTechId.GorgeTunnelMenuNetwork4] = true,
 }
 function GUIGorgeBuildMenu:GetCanAffordAbility(techId)
+    PROFILE("GUIGorgeBuildMenu:GetCanAffordAbility")
     if skipAffordCheckIds[techId] then
         return true
     end
@@ -369,6 +390,7 @@ function GUIGorgeBuildMenu:GetCanAffordAbility(techId)
 end
 
 function GUIGorgeBuildMenu:GetNumStructureBuilt(techId)
+    PROFILE("GUIGorgeBuildMenu:GetNumStructureBuilt")
     local teamInfo = GetTeamInfoEntity(kTeam2Index)
     local tunnelManager = GetTeamInfoEntity(kTeam2Index):GetTunnelManager()
 
@@ -395,6 +417,7 @@ end
 local kDefaultStructureCountPos = Vector(-48, -24, 0)
 local kCenteredStructureCountPos = Vector(0, -24, 0)
 local function UpdateButton(self, button, index)
+    PROFILE("GUIGorgeBuildMenu::UpdateButton")
     local col = 1
     local color = GUIGorgeBuildMenu.kAvailableColor
 

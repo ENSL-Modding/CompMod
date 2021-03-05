@@ -21,7 +21,7 @@ end
 
 local oldSetActiveStructure = DropStructureAbility.SetActiveStructure
 function DropStructureAbility:SetActiveStructure(structureNum, tunnelNetwork)
-    PROFILE("DropStructureAbility:SetActiveStructure")
+    PROFILE("DropStructureAbility:SetActiveStructureNew")
     oldSetActiveStructure(self, structureNum)
 
     if self.activeStructure ~= nil and self.activeStructure < 0 then
@@ -31,7 +31,7 @@ end
 
 local oldGetNUmStructureBuilt = DropStructureAbility.GetNumStructuresBuilt
 function DropStructureAbility:GetNumStructuresBuilt(techId)
-    PROFILE("DropStructureAbility:GetNumStructuresBuilt")
+    PROFILE("DropStructureAbility:GetNumStructuresBuiltNew")
     if techId == kTechId.GorgeTunnelMenuEntrance or techId == kTechId.GorgeTunnelMenuExit then
         if self.activeStructure ~= nil then
             local network = self:GetActiveStructure():GetNetwork()
