@@ -8,5 +8,7 @@ Costs 25 tres and takes 60 seconds to research
 Lowered Blink energy cost to 12 from 14
 
 #Alien.Fade.Swipe
-Swipe damage increased to 75 from 37.5
-Swipe damage type changed to StructuresOnlyLight from Puncture
+Tweaked damage
+>Swipe damage increased to 75 from 37.5
+>Swipe damage type changed to StructuresOnlyLight from Puncture
+>This will deal the same amount of damage to players but will deal full damage to structures without armour
