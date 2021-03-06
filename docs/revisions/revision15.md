@@ -31,7 +31,7 @@ Revision 15
 ### Structures
 * Cyst
   * Lowered damage bonus from welders to 4x from 5x
-  * Increased build time on Shift hive by 20%
+  * Decreased build time on Shift hive by 20%
 
 ## Marine
 
