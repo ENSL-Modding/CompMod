@@ -130,3 +130,6 @@ kRoboticsFactorySupply = 15 --5
 kWeaponStayTime = 18
 
 kStartBlinkEnergyCost = 12 -- 14
+
+kSwipeDamageType = kDamageType.StructuresOnlyLight
+kSwipeDamage = 75
