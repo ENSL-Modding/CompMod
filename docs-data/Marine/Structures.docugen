@@ -8,6 +8,10 @@ Now heals Marine armour
 #Marine.Structures.Observatory
 Changed build time to 10 seconds from 15 seconds
 
+#Marine.Structures.Phase Gate
+Health decreased to 1300 from 1500
+Armor increased to 900 from 800
+
 #Marine.Structures.Prototype Lab
 Cost reduced to 25 from 35
 
