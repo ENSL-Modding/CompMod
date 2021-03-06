@@ -1,3 +1,5 @@
+Armory.kHealArmorAmount = 15
+
 local kArmoryHealthbarHeight = 1.4
 local kAdvancedArmoryHealthbarHeight = 1.7
 
