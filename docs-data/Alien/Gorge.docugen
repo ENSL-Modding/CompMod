@@ -6,6 +6,9 @@ Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 #Alien.Gorge.BileBomb
 Research changed to Biomass 2 from Biomass 3
 
+#Alien.Gorge.Tunnels
+Gorges can now drop tunnels for 4 pres
+
 #Alien.Gorge.Web
 HP gain per charge to 5 from 10
 Web charges lowered to 0 from 3
