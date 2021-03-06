@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 14](revisions/revision14.md) and Vanilla Build 336
+# Changes between CompMod [revision 15](revisions/revision15.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -49,6 +49,11 @@
   * Costs 25 tres and takes 60 seconds to research
 * ### Blink
   * Lowered Blink energy cost to 12 from 14
+* ### Swipe
+  * Tweaked damage
+    * Swipe damage increased to 75 from 37.5
+    * Swipe damage type changed to StructuresOnlyLight from Puncture
+    * This will deal the same amount of damage to players but will deal full damage to structures without armour
 
 ## Gorge
 * ### Babblers
@@ -57,6 +62,8 @@
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
+* ### Tunnels
+  * Gorges can now drop tunnels for 4 pres
 * ### Web
   * HP gain per charge to 5 from 10
   * Web charges lowered to 0 from 3
@@ -104,7 +111,8 @@
 * ### Cyst
   * Build time increased to 6 seconds from 3.33 seconds
   * Shade hive cysts are now visible from further away (to 10 from 6)
-  * Lowered damage bonus from welders to 5x from 7x
+  * Lowered damage bonus from welders to 4x from 7x
+  * Increased build time on Shift hive by 20%
 * ### Shift
   * Echo
     * Echo cost for upgrades increased to 2 from 1
@@ -148,8 +156,8 @@
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
-* Health lowered to 2000/500 from 2600/400
-* Deployed health lowered to 2000 from 2600
+* Health lowered to 1800/500 from 2600/400
+* Deployed health lowered to 1800 from 2600
 
 ## Advanced Weapons
 * Added new research 'Demolitions'
@@ -178,8 +186,13 @@
   * Health decreased to 2000/200 from 3000/200
   * Research cost decreased to 15 tres from 25 tres
   * Research time decreased to 45 seconds from 90 seconds
+  * Now heals Marine armour
+    *  Heals 15 armour per tick
 * ### Observatory
   * Changed build time to 10 seconds from 15 seconds
+* ### Phase Gate
+  * Health decreased to 1300 from 1500
+  * Armor increased to 900 from 800
 * ### Prototype Lab
   * Cost reduced to 25 from 35
 * ### Robotics Factory
