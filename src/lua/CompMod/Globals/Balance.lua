@@ -81,10 +81,10 @@ kAdvancedArmoryPointValue = 10
 kDemolitionsTechResearchCost = 15
 kDemolitionsTechResearchTime = 30
 
-kARCHealth = 2000
+kARCHealth = 1800
 kARCArmor = 500
 kARCPointValue = 5
-kARCDeployedHealth = 2000
+kARCDeployedHealth = 1800
 
 kAdvancedArmoryUpgradeCost = 15
 kAdvancedArmoryResearchTime = 45
@@ -135,3 +135,6 @@ kPhaseGateHealth = 1500
 kPhaseGateArmor = 800
 kPhaseGateHealth = 1300
 kPhaseGateArmor = 900
+
+kSwipeDamageType = kDamageType.StructuresOnlyLight
+kSwipeDamage = 75

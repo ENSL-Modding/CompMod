@@ -2,6 +2,8 @@
 Health decreased to 2000/200 from 3000/200
 Research cost decreased to 15 tres from 25 tres
 Research time decreased to 45 seconds from 90 seconds
+Now heals Marine armour
+> Heals 15 armour per tick
 
 #Marine.Structures.Observatory
 Changed build time to 10 seconds from 15 seconds
