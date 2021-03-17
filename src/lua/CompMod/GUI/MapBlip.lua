@@ -58,10 +58,10 @@ if Client then
 
     -- Show a label for tunnels on the minimap
     function TunnelMapBlip:UpdateHook(minimap, item)
-        local owner = self.ownerEntityId and Shared.GetEntity(self.ownerEntityId)
+        local ownerId = self.ownerEntityId
         local blipTeam = self:GetMapBlipTeam(minimap)
-        if owner and self.OnSameMinimapBlipTeam(minimap.playerTeam, blipTeam) then
-            minimap:DrawMinimapNameTunnel(item, self:GetMapBlipTeam(minimap), owner)
+        if ownerId and self.OnSameMinimapBlipTeam(minimap.playerTeam, blipTeam) then
+            minimap:DrawMinimapNameTunnel(item, self:GetMapBlipTeam(minimap), ownerId)
         end
     end
 end

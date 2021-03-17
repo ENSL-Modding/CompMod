@@ -64,3 +64,13 @@ function AlienTunnelManager:IsNetworkAvailable(networkNum)
 
     return valid
 end
+
+function AlienTunnelManager:GetTunnelNameTag(id)
+    PROFILE("AlienTunnelManager:GetTunnelNameTag")
+    local type, network = self:GetTunnelInfo(id)
+    if type and network then
+        return string.format("%s %s", type, network)
+    end
+
+    return "Tunnel"
+end
