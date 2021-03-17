@@ -1,4 +1,4 @@
-g_compModRevision = 15
+g_compModRevision = 16
 g_compModBeta = 0
 
 -- Alien Buy
@@ -74,7 +74,7 @@ ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/Regener
 
 -- Network
 ModLoader.SetupFileHook("lua/NetworkMessages_Server.lua", "lua/CompMod/Network/NetworkMessages_Server.lua", "post")
-ModLoader.SetupFileHook("lua/NetworkMessages.lua", "lua/CompMod/Network/NetworkMessages.lua", "replace")
+ModLoader.SetupFileHook("lua/NetworkMessages.lua", "lua/CompMod/Network/NetworkMessages.lua", "post")
 
 -- NS2Utility
 ModLoader.SetupFileHook("lua/NS2Utility_Server.lua", "lua/CompMod/NS2Utility/NS2Utility_Server.lua", "post")
