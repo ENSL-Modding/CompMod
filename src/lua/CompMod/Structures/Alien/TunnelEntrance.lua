@@ -9,8 +9,8 @@ function TunnelEntrance:OnCreate()
     oldCreate(self)
 
     -- Needed for the minimap labels
-    -- I know... Hopefully no one's walling :}}}
     self:SetRelevancyDistance(Math.infinity)
+    self:SetExcludeRelevancyMask(bit.bor(kRelevantToReadyRoom, kRelevantToTeam2Unit, kRelevantToTeam2Commander))
 end
 
 function TunnelEntrance:GetNametag()

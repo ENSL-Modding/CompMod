@@ -417,7 +417,7 @@ end
 local kDefaultStructureCountPos = Vector(-48, -24, 0)
 local kCenteredStructureCountPos = Vector(0, -24, 0)
 local function UpdateButton(self, button, index)
-    PROFILE("GUIGorgeBuildMenu::UpdateButton")
+    PROFILE("GUIGorgeBuildMenu:UpdateButton")
     local col = 1
     local color = GUIGorgeBuildMenu.kAvailableColor
 
