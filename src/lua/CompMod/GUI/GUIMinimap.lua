@@ -83,10 +83,10 @@ local function GetTunnelNameTag(self, entId)
     return nameTag
 end
 
-function GUIMinimap:DrawMinimapNameTunnel(item, blipTeam, owner)
+function GUIMinimap:DrawMinimapNameTunnel(item, blipTeam, ownerId)
     if self.showPlayerNames then
-        local nameTag = GetTunnelNameTag(self, owner:GetId())
-        local text = owner:GetNametag()
+        local nameTag = GetTunnelNameTag(self, ownerId)
+        local text = GetTeamInfoEntity(kTeam2Index):GetTunnelManager():GetTunnelNameTag(ownerId)
 
         nameTag:SetIsVisible(self.visible)
         nameTag:SetText(text)
