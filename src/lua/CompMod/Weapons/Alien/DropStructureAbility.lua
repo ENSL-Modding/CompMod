@@ -63,13 +63,6 @@ function DropStructureAbility:OnDropStructure(origin, direction, structureIndex,
 
         if structureAbility then
             self:DropStructure(player, origin, direction, structureAbility, lastClickedPosition, lastClickedPositionNormal)
-
-            -- If we placed a tunnel then select our previous weapon. This is to prevent accidental clicks from placing more tunnels than intended
-            if structureIndex < 0 then
-                if player and self.previousWeaponMapName and player:GetWeapon(self.previousWeaponMapName) then
-                    player:SetActiveWeapon(self.previousWeaponMapName)
-                end
-            end
         end
     end
 end

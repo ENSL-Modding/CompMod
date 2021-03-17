@@ -192,6 +192,8 @@ function TunnelAbility:GetIsPositionValid(position, player, surfaceNormal)
 end
 
 function TunnelAbility:SetNetwork(networkNum)
+    assert(networkNum, "Attempt to set nil network")
+    assert(networkNum >= 1 and networkNum <= 4 , "Attempt to set out-of-bounds network")
     self.networkNum = networkNum
 end
 
@@ -200,9 +202,11 @@ function TunnelAbility:CreateStructure(coords, player, lastClickedPosition)
     local tunnelManager = teamInfo:GetTunnelManager()
     local techId = self:GetTechIds()[self.networkNum]
     local selectTechId = self:GetSelectTechIds()[self.networkNum]
+    assert(selectTechId, "Failed to get tunnel TechId")
     local existingTunnel = tunnelManager:GetTunnelEntrance(selectTechId)
 
     if existingTunnel then
+        existingTunnel.consumed = true
         if existingTunnel:GetCanDie() then
             existingTunnel:Kill()
         else
