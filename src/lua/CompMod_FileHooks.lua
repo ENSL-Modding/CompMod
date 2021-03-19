@@ -1,5 +1,5 @@
-g_compModRevision = 16
-g_compModBeta = 0
+g_compModRevision = 17
+g_compModBeta = 1
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -36,6 +36,8 @@ ModLoader.SetupFileHook("lua/AlienTunnelManager.lua", "lua/CompMod/Entities/Alie
 ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
+-- Marine Entities
+ModLoader.SetupFileHook("lua/MarineTeamInfo.lua", "lua/CompMod/Entities/Marine/MarineTeamInfo.lua", "post")
 
 -- Globals
 ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Globals/Balance.lua", "post")
@@ -91,6 +93,7 @@ ModLoader.SetupFileHook("lua/TunnelEntrance.lua", "lua/CompMod/Structures/Alien/
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
+ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
 ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
 
 -- Teams

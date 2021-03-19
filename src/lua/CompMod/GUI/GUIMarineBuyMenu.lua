@@ -5,11 +5,11 @@ function GetItemTechId(researchTechId)
 
         gResearchToWeaponIds = { }
         gResearchToWeaponIds[kTechId.ShotgunTech] = kTechId.Shotgun
-        gResearchToWeaponIds[kTechId.DemolitionsTech] = { kTechId.GrenadeLauncher, kTechId.Flamethrower }
+        gResearchToWeaponIds[kTechId.AdvancedWeaponry] = { kTechId.HeavyMachineGun, kTechId.GrenadeLauncher, kTechId.Flamethrower }
         gResearchToWeaponIds[kTechId.WelderTech] = kTechId.Welder
         gResearchToWeaponIds[kTechId.MinesTech] = kTechId.LayMines
         gResearchToWeaponIds[kTechId.JetpackTech] = kTechId.Jetpack
-        gResearchToWeaponIds[kTechId.HeavyMachineGunTech] = kTechId.HeavyMachineGun
+        -- gResearchToWeaponIds[kTechId.HeavyMachineGunTech] = kTechId.HeavyMachineGun
         gResearchToWeaponIds[kTechId.ExosuitTech] = kTechId.Exosuit
         gResearchToWeaponIds[kTechId.DualMinigunTech] = kTechId.DualMinigunExosuit
         gResearchToWeaponIds[kTechId.ClawRailgunTech] = kTechId.ClawRailgunExosuit
