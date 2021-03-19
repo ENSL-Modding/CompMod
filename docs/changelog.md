@@ -216,6 +216,10 @@
   * Increased research time to 90 from 75
 * ### Armour 2
   * Increased research time to 100 from 90
+* ### Weapons 1
+  * Increased research time to 90 from 75
+* ### Weapons 2
+  * Increased research time to 100 from 90
 
 ## Weapons
 * ### Expiration Rate

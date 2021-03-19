@@ -135,6 +135,10 @@ kPhaseGateArmor = 900
 kSwipeDamageType = kDamageType.StructuresOnlyLight
 kSwipeDamage = 75
 
+kWeapons1ResearchTime = 90 -- 75
+kWeapons2ResearchTime = 100 -- 90
+kWeapons3ResearchTime = 120
+
 kArmor1ResearchTime = 90 -- 75
 kArmor2ResearchTime = 100 -- 90
 kArmor3ResearchTime = 120
