@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 16](revisions/revision16.md) and Vanilla Build 336
+# Changes between CompMod [revision 17](revisions/revision17.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -158,13 +158,11 @@
 ## ARCs
 * Health lowered to 1800/500 from 2600/400
 * Deployed health lowered to 1800 from 2600
+* Commanders can only create a maximum of 4 ARCs
 
-## Advanced Weapons
-* Added new research 'Demolitions'
-  * Researched on Advanced Armory
-  * Research cost 15 tres
-  * Research time 30 seconds
-  * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
+## Catpacks
+* Increased cost to 2 tres from 1 tres
+* Increased duration to 5.5 seconds from 5.0 seconds
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
@@ -212,6 +210,12 @@
 * Observatory supply cost increased to 30 from 25
 * Sentry Battery supply cost increased to 25 from 15
 * Robotics Factory supply cost increased to 15 from 5
+
+## Upgrades
+* ### Armour 1
+  * Increased research time to 90 from 75
+* ### Armour 2
+  * Increased research time to 100 from 90
 
 ## Weapons
 * ### Expiration Rate

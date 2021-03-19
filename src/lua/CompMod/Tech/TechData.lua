@@ -21,14 +21,6 @@ local function GetTechToAdd()
         },
 
         {
-            [kTechDataId] = kTechId.DemolitionsTech,
-            [kTechDataCostKey] = kDemolitionsTechResearchCost,
-            [kTechDataResearchTimeKey] = kDemolitionsTechResearchTime,
-            [kTechDataDisplayName] = "Research Demolitions",
-            [kTechDataTooltipInfo] = "Allows Flamethowers and Grenade Launchers to be purchased at the Advanced Armory",
-        },
-
-        {
             [kTechDataId] = kTechId.GorgeTunnelMenu,
             [kTechDataDisplayName] = "Tunnel Menu"
         },

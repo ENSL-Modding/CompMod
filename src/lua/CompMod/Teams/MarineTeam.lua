@@ -83,22 +83,21 @@ function MarineTeam:InitTechTree()
     self.techTree:AddTargetedActivation(kTechId.DropShotgun,     kTechId.ShotgunTech,         kTechId.None)
 
     --self.techTree:AddResearchNode(kTechId.HeavyMachineGunTech,           kTechId.AdvancedWeaponry,              kTechId.None)
-    self.techTree:AddTargetedBuyNode(kTechId.HeavyMachineGun,            kTechId.AdvancedArmory)
-    self.techTree:AddTargetedActivation(kTechId.DropHeavyMachineGun,     kTechId.AdvancedArmory)
+    self.techTree:AddTargetedBuyNode(kTechId.HeavyMachineGun,            kTechId.AdvancedWeaponry)
+    self.techTree:AddTargetedActivation(kTechId.DropHeavyMachineGun,     kTechId.AdvancedWeaponry)
 
-    -- self.techTree:AddResearchNode(kTechId.AdvancedWeaponry,      kTechId.AdvancedArmory,      kTechId.None)
-    self.techTree:AddResearchNode(kTechId.DemolitionsTech, kTechId.AdvancedArmory, kTechId.None, kTechId.PhaseTech)
+    self.techTree:AddResearchNode(kTechId.AdvancedWeaponry,      kTechId.AdvancedArmory,      kTechId.None)
 
-    self.techTree:AddTargetedBuyNode(kTechId.GrenadeLauncher,  kTechId.DemolitionsTech)
-    self.techTree:AddTargetedActivation(kTechId.DropGrenadeLauncher,  kTechId.DemolitionsTech)
+    self.techTree:AddTargetedBuyNode(kTechId.GrenadeLauncher,  kTechId.AdvancedWeaponry)
+    self.techTree:AddTargetedActivation(kTechId.DropGrenadeLauncher,  kTechId.AdvancedWeaponry)
 
     self.techTree:AddResearchNode(kTechId.GrenadeTech,           kTechId.Armory,                   kTechId.None)
     self.techTree:AddTargetedBuyNode(kTechId.ClusterGrenade,     kTechId.GrenadeTech)
     self.techTree:AddTargetedBuyNode(kTechId.GasGrenade,         kTechId.GrenadeTech)
     self.techTree:AddTargetedBuyNode(kTechId.PulseGrenade,       kTechId.GrenadeTech)
 
-    self.techTree:AddTargetedBuyNode(kTechId.Flamethrower,     kTechId.DemolitionsTech)
-    self.techTree:AddTargetedActivation(kTechId.DropFlamethrower,    kTechId.DemolitionsTech)
+    self.techTree:AddTargetedBuyNode(kTechId.Flamethrower,     kTechId.AdvancedWeaponry)
+    self.techTree:AddTargetedActivation(kTechId.DropFlamethrower,    kTechId.AdvancedWeaponry)
 
     self.techTree:AddResearchNode(kTechId.MinesTech,            kTechId.Armory,           kTechId.None)
     self.techTree:AddTargetedBuyNode(kTechId.LayMines,          kTechId.MinesTech,        kTechId.None)
@@ -148,4 +147,17 @@ function MarineTeam:InitTechTree()
     self.techTree:AddActivation(kTechId.SocketPowerNode,    kTechId.None,   kTechId.None)
 
     self.techTree:SetComplete()
+end
+
+function MarineTeam:GetNumActiveARCs()
+    local arcs = EntityListToTable(Shared.GetEntitiesWithClassname("ARC"))
+    local activeCount = 0
+    for i=1, #arcs do
+        local arc = arcs[i]
+        if arc and GetIsUnitActive(arc) then
+            activeCount = activeCount + 1
+        end
+    end
+    
+    return activeCount
 end
