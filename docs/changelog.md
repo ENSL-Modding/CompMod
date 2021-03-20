@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 17](revisions/revision17.md) and Vanilla Build 336
+# Changes between CompMod [revision 18](revisions/revision18.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -278,6 +278,9 @@
 
 ## Babbler Shield Friendly Fire Damage Feedback
 * Fixed a vanilla bug that would show damage numbers and hitsounds when attacking babbler shielded teammates
+
+## Biodamnnn Minimal Particles
+* Updated minimal particle prop exclusion list to include ns2_biodamnnn
 
 ## Fade Commander Metabolize Bug
 * Fixed a vanilla bug that meant a Fade's active weapon wouldn't reset when becoming a commander while partway through the Metabolize animation
