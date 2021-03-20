@@ -1,3 +1,5 @@
+local GetAutomaticOrder = debug.getupvaluex(MAC.ProcessFollowAndWeldOrder, "GetAutomaticOrder", true)
+
 local function FindSomethingToDo(self)    
     local target, orderType = GetAutomaticOrder(self)
 	
