@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 17](revisions/revision17.md) and Vanilla Build 336
+# Changes between CompMod [revision 18](revisions/revision18.md) and Vanilla Build 336
 <br/>
 
 # Alien
