@@ -43,6 +43,7 @@ TeamInfo.kRelevantTechIdsMarine = {
 
     kTechId.AdvancedArmory,
     kTechId.AdvancedArmoryUpgrade,
+    kTechId.DemolitionsTech,
 
     kTechId.Weapons1,
     kTechId.Weapons2,

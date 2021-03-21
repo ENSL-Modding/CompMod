@@ -77,6 +77,10 @@ kAdvancedArmoryHealth = 2000 --3000
 kAdvancedArmoryArmor = 500 -- this has no effect due to a bug
 kAdvancedArmoryPointValue = 10
 
+-- Demolitions includes flamethrower and grenade launcher
+kDemolitionsTechResearchCost = 15
+kDemolitionsTechResearchTime = 30
+
 kARCHealth = 1800
 kARCArmor = 500
 kARCPointValue = 5
