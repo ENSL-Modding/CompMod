@@ -30,7 +30,7 @@ Revision 19
 * Decreased duration to 5.0 seconds from 5.5 seconds
 
 ### Upgrades
-* Reverted back to 
+* Reverted back to vanilla
 * Armour 1
   * Decreased research time to 75 from 90
 * Armour 2
