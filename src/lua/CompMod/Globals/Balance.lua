@@ -77,6 +77,10 @@ kAdvancedArmoryHealth = 2000 --3000
 kAdvancedArmoryArmor = 500 -- this has no effect due to a bug
 kAdvancedArmoryPointValue = 10
 
+-- Demolitions includes flamethrower and grenade launcher
+kDemolitionsTechResearchCost = 15
+kDemolitionsTechResearchTime = 30
+
 kARCHealth = 1800
 kARCArmor = 500
 kARCPointValue = 5
@@ -134,14 +138,3 @@ kPhaseGateArmor = 900
 
 kSwipeDamageType = kDamageType.StructuresOnlyLight
 kSwipeDamage = 75
-
-kWeapons1ResearchTime = 90 -- 75
-kWeapons2ResearchTime = 100 -- 90
-kWeapons3ResearchTime = 120
-
-kArmor1ResearchTime = 90 -- 75
-kArmor2ResearchTime = 100 -- 90
-kArmor3ResearchTime = 120
-
-kCatPackCost = 2
-kCatPackDuration = 5.5

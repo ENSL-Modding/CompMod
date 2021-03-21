@@ -19,6 +19,14 @@ local function GetTechToAdd()
             [kTechDataTooltipInfo] = "Each hit inflicts a poison toxin, hurting Marines over time",
             [kTechDataCostKey] = 0,
         },
+        
+        {
+            [kTechDataId] = kTechId.DemolitionsTech,
+            [kTechDataCostKey] = kDemolitionsTechResearchCost,
+            [kTechDataResearchTimeKey] = kDemolitionsTechResearchTime,
+            [kTechDataDisplayName] = "Research Demolitions",
+            [kTechDataTooltipInfo] = "Allows Flamethowers and Grenade Launchers to be purchased at the Advanced Armory",
+        },
 
         {
             [kTechDataId] = kTechId.GorgeTunnelMenu,

@@ -8,7 +8,9 @@
 Revision 18
 </div>
 <div style="display:inline-block;float:right;padding-right:20%">
+<a href="revision19">
 [ Next -> ]
+</a>
 </div>
 </div>
 

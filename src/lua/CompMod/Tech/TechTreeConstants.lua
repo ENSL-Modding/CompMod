@@ -1,6 +1,8 @@
 local newTechIds = {
     "AdvancedSwipe",
+    "DemolitionsTech",
     "Neurotoxin",
+    
     
     -- Gorge Tunnel menus
     "GorgeTunnelMenu",
