@@ -116,6 +116,8 @@ ModLoader.SetupFileHook("lua/TechTreeConstants.lua", "lua/CompMod/Tech/TechTreeC
 -- Alien Units
 ModLoader.SetupFileHook("lua/Drifter.lua", "lua/CompMod/Units/Alien/Drifter.lua", "post")
 ModLoader.SetupFileHook("lua/Hallucination.lua", "lua/CompMod/Units/Alien/Hallucination.lua", "post")
+-- Marine Units
+ModLoader.SetupFileHook("lua/MAC.lua", "lua/CompMod/Units/Marine/MAC.lua", "post")
 
 -- Alien Weapons
 ModLoader.SetupFileHook("lua/Weapons/Alien/Ability.lua", "lua/CompMod/Weapons/Alien/Ability.lua", "post")
