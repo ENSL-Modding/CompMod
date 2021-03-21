@@ -222,8 +222,5 @@ function TunnelAbility:GetNetwork()
 end
 
 function TunnelAbility:IsAllowed(player)
-    local teamInfo = GetTeamInfoEntity(kTeam2Index)
-    local tunnelManager = teamInfo:GetTunnelManager()
-    local allowed = tunnelManager:GetTechAllowed(self:GetTechIds()[self.networkNum])
-    return allowed
+    return GetTeamInfoEntity(kTeam2Index):GetTunnelManager():IsNetworkAvailable(self.networkNum)
 end
