@@ -1,7 +1,5 @@
 if not Client then return end
 
-print("Post load successful!")
-
 local blockableProps = debug.getupvaluex(MapParticlesOption_IsPropnameBlockable, "blockableProps")
 blockableProps["ns2_biodamnnn"] = set
 {
