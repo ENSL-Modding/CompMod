@@ -11,10 +11,6 @@ Revision 18
 <a href="revision19">
 [ Next -> ]
 </a>
-[ Next -> ]
-</a>
-[ Next -> ]
-</a>
 </div>
 </div>
 
