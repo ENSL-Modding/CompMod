@@ -142,6 +142,3 @@ kWeapons3ResearchTime = 120
 kArmor1ResearchTime = 90 -- 75
 kArmor2ResearchTime = 100 -- 90
 kArmor3ResearchTime = 120
-
-kCatPackCost = 2
-kCatPackDuration = 5.5
