@@ -83,6 +83,7 @@ ModLoader.SetupFileHook("lua/NetworkMessages.lua", "lua/CompMod/Network/NetworkM
 
 -- NS2Utility
 ModLoader.SetupFileHook("lua/NS2Utility_Server.lua", "lua/CompMod/NS2Utility/NS2Utility_Server.lua", "post")
+ModLoader.SetupFileHook("lua/NS2Utility.lua", "lua/CompMod/NS2Utility/NS2Utility.lua", "post")
 
 -- Physics
 ModLoader.SetupFileHook("lua/PhysicsGroups.lua", "lua/CompMod/Physics/PhysicsGroups.lua", "post")

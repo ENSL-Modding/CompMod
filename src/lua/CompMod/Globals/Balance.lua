@@ -138,3 +138,5 @@ kPhaseGateArmor = 900
 
 kSwipeDamageType = kDamageType.StructuresOnlyLight
 kSwipeDamage = 75
+
+kAlienStructureOutOfCombatMoveScalar = 1.10
