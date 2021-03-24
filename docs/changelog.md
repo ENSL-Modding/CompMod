@@ -82,7 +82,7 @@
   * Lerk movement mid-flight while flapping often is unaffected
 * ### Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
-  * Spread increased to 3.8 radians from 3.6 radians
+  * Spread increased to 3.8 degrees from 3.6 degrees
   * Size reduced to 45mm from 60mm
 * ### Spores
   * Research changed to Biomass 6 from Biomass 5
@@ -222,7 +222,7 @@
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
   * Reduced damage to 7 from 8
-  * Lowered spread to 3.2 radians from 4 radians
+  * Lowered spread to 3.2 degrees from 4 degrees
   * Increased structure damage multiplier to 1.25x from 1.0x
 * ### Shotgun
   * Damage
