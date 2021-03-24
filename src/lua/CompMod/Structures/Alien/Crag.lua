@@ -1,3 +1,16 @@
+Script.Load("lua/CompMod/Mixins/AdrenalineRushMixin.lua")
+
+local networkVars =
+{
+    -- For client animations
+    healingActive = "boolean",
+    healWaveActive = "boolean",
+    
+    moving = "boolean"
+}
+
+AddMixinNetworkVars(AdrenalineRushMixin, networkVars)
+
 Crag.kHealPercentageLookup = {
     ["Skulk"] = 10 / kSkulkHealth,
     ["Gorge"] = 15 / kGorgeHealth,
@@ -5,6 +18,13 @@ Crag.kHealPercentageLookup = {
     ["Fade"] = 25 / kFadeHealth,
     ["Onos"] = 80 / kOnosHealth,
 }
+
+local oldOnCreate = Crag.OnCreate
+function Crag:OnCreate()
+    oldOnCreate(self)
+    
+    InitMixin(self, AdrenalineRushMixin)
+end
 
 -- From B336
 function Crag:TryHeal(target)
@@ -29,3 +49,27 @@ function Crag:TryHeal(target)
         return 0
     end
 end
+
+function Crag:GetHealTargets()
+    local targets = {}
+
+    for _, healable in ipairs(GetEntitiesWithMixinForTeamWithinRange("Live", self:GetTeamNumber(), self:GetOrigin(), self:GetHealRadius())) do
+        if healable:GetIsAlive() then
+            table.insert(targets, healable)
+        end
+    end
+
+    return targets
+end
+
+function Crag:GetHealRadius()
+    local range = Crag.kHealRadius
+    if self.isAdrenalineRushed then
+        range = range * self.adrenalineRushLevel * kAdrenalineRushRangeScalar
+    end
+    Print("Crag:GetHealRadius() - %s", range)
+
+    return range
+end
+
+Shared.LinkClassToMap("Crag", Crag.kMapName, networkVars)

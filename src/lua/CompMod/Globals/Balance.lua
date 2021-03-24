@@ -140,3 +140,5 @@ kSwipeDamageType = kDamageType.StructuresOnlyLight
 kSwipeDamage = 75
 
 kAlienStructureOutOfCombatMoveScalar = 1.10
+
+kAdrenalineRushRangeScalar = 1.25

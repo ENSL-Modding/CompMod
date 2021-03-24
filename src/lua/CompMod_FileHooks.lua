@@ -1,5 +1,6 @@
 g_compModRevision = 19
 g_compModBeta = 0
+g_compModTest = "RangeR Tests v1"
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -14,6 +15,8 @@ ModLoader.SetupFileHook("lua/Gorge.lua", "lua/CompMod/Classes/Alien/Gorge.lua", 
 ModLoader.SetupFileHook("lua/Lerk.lua", "lua/CompMod/Classes/Alien/Lerk.lua", "post")
 ModLoader.SetupFileHook("lua/Onos.lua", "lua/CompMod/Classes/Alien/Onos.lua", "post")
 ModLoader.SetupFileHook("lua/Skulk.lua", "lua/CompMod/Classes/Alien/Skulk.lua", "post")
+-- Commander Classes
+ModLoader.SetupFileHook("lua/Commander_Client.lua", "lua/CompMod/Classes/Commander/Commander_Client.lua", "post")
 -- Marine Classes
 ModLoader.SetupFileHook("lua/Exo.lua", "lua/CompMod/Classes/Marine/Exo.lua", "post")
 ModLoader.SetupFileHook("lua/Marine.lua", "lua/CompMod/Classes/Marine/Marine.lua", "post")

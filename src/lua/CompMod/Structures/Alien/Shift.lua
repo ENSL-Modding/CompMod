@@ -1,13 +1,56 @@
+Script.Load("lua/CompMod/Mixins/AdrenalineRushMixin.lua")
+
 local networkVars =
 {
-    adrenalineRushActive = "boolean"
+    hydraInRange = "boolean",
+    whipInRange = "boolean",
+    tunnelInRange = "boolean",
+    cragInRange = "boolean",
+    shadeInRange = "boolean",
+    shiftInRange = "boolean",
+    veilInRange = "boolean",
+    spurInRange = "boolean",
+    shellInRange = "boolean",
+    hiveInRange = "boolean",
+    eggInRange = "boolean",
+    harvesterInRange = "boolean",
+    echoActive = "boolean",
+
+    adrenalineRushActive = "boolean",
+    
+    moving = "boolean"
 }
 
+AddMixinNetworkVars(AdrenalineRushMixin, networkVars)
+
 Shift.kAdrenalineRushDuration = 5.0
+
+local kEchoCooldown = debug.getupvaluex(Shift.OnUpdate, "kEchoCooldown")
+local UpdateShiftButtons = debug.getupvaluex(Shift.OnUpdate, "UpdateShiftButtons")
+
+local isTeleport = {
+    [kTechId.TeleportHydra] = true,
+    [kTechId.TeleportWhip] = true,
+    [kTechId.TeleportTunnel] = true,
+    [kTechId.TeleportCrag] = true,
+    [kTechId.TeleportShade] = true,
+    [kTechId.TeleportShift] = true,
+    [kTechId.TeleportVeil] = true,
+    [kTechId.TeleportSpur] = true,
+    [kTechId.TeleportShell] = true,
+    [kTechId.TeleportHive] = true,
+    [kTechId.TeleportEgg] = true,
+    [kTechId.TeleportHarvester] = true,
+}
+local function GetIsTeleport(techId)
+    return isTeleport[techId] or false
+end
 
 local oldOnCreate = Shift.OnCreate
 function Shift:OnCreate()
     oldOnCreate(self)
+    
+    InitMixin(self, AdrenalineRushMixin)
     
     self.adrenalineRushActive = false
 
@@ -29,52 +72,29 @@ function Shift:OnUpdate(deltaTime)
         end
         
         self.echoActive = self.timeLastEcho + kEchoCooldown > Shared.GetTime()
-        self.adrenalineRushActive = self.timeLastAdrenalineRush + Shift.kAdrenalineRushDuration and self.timeLastAdrenalineRush > 0
+        self.adrenalineRushActive = Shared.GetTime() < self.timeLastAdrenalineRush + Shift.kAdrenalineRushDuration and self.timeLastAdrenalineRush > 0
     end
 end
 
 function Shift:EnergizeInRange()
     if self:GetIsBuilt() and not self:GetIsOnFire() then
-        local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
+        local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), self:GetEnergizeRange())
         for _, entity in ipairs(energizeAbles) do
             if entity ~= self then
                 entity:Energize(self)
             end 
         end
 
-        local adrenalineRushAbles = GetEntitiesWithMixinForTeamWithinXZRange("AdrenalineRush", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
-        for _, entity in ipairs(adrenalineRushAbles) do
-            if entity ~= self then
+        if self.adrenalineRushActive then
+            local adrenalineRushAbles = GetEntitiesWithMixinForTeamWithinXZRange("AdrenalineRush", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
+            Print("Found %s adrenlineRushAbles", #adrenalineRushAbles)
+            for _, entity in ipairs(adrenalineRushAbles) do
                 entity:AdrenalineRush(self)
             end
         end
     end
     
     return self:GetIsAlive() 
-end
-
-if Server then
-    function Shift:PerformActivation(techId, position, normal, commander)
-        local success = false
-        local continue = true
-        
-        if GetIsTeleport(techId) then
-            success = self:TriggerEcho(techId, position)
-            if success then
-                UpdateShiftButtons(self)
-                Shared.PlayPrivateSound(commander, Shift.kShiftEchoSound2D, nil, 1.0, self:GetOrigin())                
-            end
-        elseif techId == kTechId.AdrenalineRush then
-            success = self:TriggerAdrenalineRush(commander)
-        end
-        
-        return success, continue
-    end
-
-    function Shift:TriggerAdrenalineRush(commander)
-        self.timeLastAdrenalineRush = Shared.GetTime()
-        return true
-    end
 end
 
 function Shift:GetTechButtons(techId)
@@ -141,6 +161,40 @@ function Shift:GetTechAllowed(techId, techNode, player)
     end
     
     return allowed, canAfford 
+end
+
+function Shift:GetEnergizeRange()
+    local range = kEnergizeRange
+    if self.isAdrenalineRushed then
+        range = range * self.adrenalineRushLevel * kAdrenalineRushRangeScalar
+    end
+    Print("Shift:GetEnergizeRange() - %s", range)
+
+    return range
+end
+
+if Server then
+    function Shift:PerformActivation(techId, position, normal, commander)
+        local success = false
+        local continue = true
+        
+        if GetIsTeleport(techId) then
+            success = self:TriggerEcho(techId, position)
+            if success then
+                UpdateShiftButtons(self)
+                Shared.PlayPrivateSound(commander, Shift.kShiftEchoSound2D, nil, 1.0, self:GetOrigin())                
+            end
+        elseif techId == kTechId.AdrenalineRush then
+            success = self:TriggerAdrenalineRush(commander)
+        end
+        
+        return success, continue
+    end
+
+    function Shift:TriggerAdrenalineRush(commander)
+        self.timeLastAdrenalineRush = Shared.GetTime()
+        return true
+    end
 end
 
 Shared.LinkClassToMap("Shift", Shift.kMapName, networkVars)

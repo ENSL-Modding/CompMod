@@ -1,5 +1,5 @@
 local newTechIds = {
-    "Adrenaline Rush",
+    "AdrenalineRush",
     "AdvancedSwipe",
     "DemolitionsTech",
     "Neurotoxin",

@@ -77,6 +77,15 @@ local function GetTechToAdd()
             [kTechDataCostKey] = 4,
             [kTechDataAllowConsumeDrop] = true,
         },
+
+        {
+            [kTechDataId] = kTechId.AdrenalineRush,
+            [kTechDataDisplayName] = "Adrenaline Rush",
+            [kTechDataTooltipInfo] = "Increase range of nearby PvE by 25% and increase duration of nearby PvE by 10%",
+            [kTechDataCooldown] = 5,
+            [kTechDataCostKey] = 5,
+            [kTechDataOneAtATime] = true,
+        }
     }
 end
 
@@ -97,6 +106,10 @@ local function GetTechToChange()
 
         [kTechId.MedPack] = {
             [kCommanderSelectRadius] = removeTechDataValue
+        },
+
+        [kTechId.Shift] = {
+            [kVisualRange] = kEchoRange
         }
     }
 end

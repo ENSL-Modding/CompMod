@@ -28,3 +28,18 @@ function Player:OnInitLocalClient()
 end
 
 Event.Hook("Console_changelog", showChangeLog)
+
+
+function PlayerUI_WithinCragRange()
+    local player = Client.GetLocalPlayer()
+    if player then
+        local ents = GetEntitiesForTeam("Crag", player:GetTeamNumber())
+        for _, crag in ipairs(ents) do
+            if player:GetOrigin():GetDistance(crag:GetOrigin()) <= crag:GetHealRadius() and crag:GetCanHeal() then
+                return true
+            end
+        end
+    end
+
+    return false
+end

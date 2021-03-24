@@ -8,14 +8,18 @@ AdrenalineRushMixin.expectedMixins =
 local kMaxAdrenalineRushLevel = 1
 AdrenalineRushMixin.networkVars =
 {
-    adrenalineRushLevel = "private integer (0 to " .. kMaxAdrenalineRushLevel .. ")"
+    adrenalineRushLevel = "integer (0 to " .. kMaxAdrenalineRushLevel .. ")",
+    isAdrenalineRushed = "boolean"
 }
+
+local kUpdateRate = 1.0
 
 function AdrenalineRushMixin:__initmixin()
     
     PROFILE("AdrenalineRushMixin:__initmixin")
     
     self.adrenalineRushLevel = 0
+    self.isAdrenalineRushed = false
 
     if Server then
         self.adrenalineRushGivers = unique_set()
@@ -42,43 +46,27 @@ if Server then
         end
 
         self.adrenalineRushLevel = Clamp(self.adrenalineRushGivers:GetCount(), 0, kMaxAdrenalineRushLevel)
-        local isAdrenalineRushed = self.adrenalineRushLevel > 0
+        self.isAdrenalineRushed = self.adrenalineRushLevel > 0
         -- self:SetGameEffectMask(kGameEffect.Energize, energized)
 
-        if isAdrenalineRushed then
-            -- local energy = ConditionalValue(self:isa("Player"), kPlayerEnergyPerEnergize, kStructureEnergyPerEnergize)
-            -- energy = energy * self.energizeLevel
-            -- self:AddEnergy(energy)
-            
-        end
-
-        return isAdrenalineRushed
+        return self.isAdrenalineRushed
     end
 
-    function AdrenalineRushMixin:Energize(giver)
-    
-        local energizeAllowed = not self.GetIsEnergizeAllowed or self:GetIsEnergizeAllowed()
-        
-        if energizeAllowed then
-        
-            self.energizeGivers:Insert(giver:GetId())
-            self.energizeGiverTime[giver:GetId()] = Shared.GetTime()
+    function AdrenalineRushMixin:AdrenalineRush(giver)
+        if not self.GetIsAdrenalineRushAllowed or self:GetIsAdrenalineRushAllowed() then
+            self.adrenalineRushGivers:Insert(giver:GetId())
+            self.adrenalineRushGiverTime[giver:GetId()] = Shared.GetTime()
 
-            if self:GetEnergizeLevel() == 0 then
-                UpdateEnergizedState(self) -- energize
-                self:AddTimedCallback(UpdateEnergizedState, kEnergizeUpdateRate)
+            if self:GetAdrenalineRushLevel() == 0 then
+                UpdateAdrenalineRushState(self) -- adrenaline rush
+                self:AddTimedCallback(UpdateAdrenalineRushState, kUpdateRate)
             end
-        
         end
-    
     end
 
-    function EnergizeMixin:CopyPlayerDataFrom(player)
-
-        if HasMixin(player, "Energize") and player:GetEnergizeLevel() > 0 then
-            self:AddTimedCallback(UpdateEnergizedState, kEnergizeUpdateRate)
+    function AdrenalineRushMixin:CopyPlayerDataFrom(player)
+        if HasMixin(player, "AdrenalineRush") and player:GetAdrenalineRushLevel() > 0 then
+            self:AddTimedCallback(UpdateAdrenalineRushState, kUpdateRate)
         end
-
     end
-
 end
