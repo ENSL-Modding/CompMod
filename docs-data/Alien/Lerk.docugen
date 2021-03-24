@@ -7,7 +7,7 @@ Lerk movement mid-flight while flapping often is unaffected
 
 #Alien.Lerk.Spikes
 Damage increased to 6 from 5 (to 12 from 10 to players)
-Spread increased to 3.8 radians from 3.6 radians
+Spread increased to 3.8 degrees from 3.6 degrees
 Size reduced to 45mm from 60mm
 
 #Alien.Lerk.Spores
