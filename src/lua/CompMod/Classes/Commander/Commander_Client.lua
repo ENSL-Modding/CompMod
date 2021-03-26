@@ -85,6 +85,10 @@ function Commander:UpdateGhostGuides()
                 local techId = entity:GetTechId()
                 if techId == kTechId.Crag then
                     self:AddGhostGuide(Vector(entity:GetOrigin()), entity:GetHealRadius())
+                elseif techId == kTechId.Shade then
+                    self:AddGhostGuide(Vector(entity:GetOrigin()), entity:GetCloakRadius())
+                elseif techId == kTechId.Whip then
+                    self:AddGhostGuide(Vector(entity:GetOrigin()), entity:GetWhipRange())
                 else
                     self:AddGhostGuide(Vector(entity:GetOrigin()), visualRadius)
                     if techId == kTechId.Shift then

@@ -1,13 +1,10 @@
-Drifter.kHoverHeight = 1
-
-local function ScanForNearbyEnemy(self)
-    -- Check for nearby enemy units. Uncloak if we find any.
+function Cyst:ScanForNearbyEnemy()
     self.lastDetectedTime = self.lastDetectedTime or 0
     if self.lastDetectedTime + kDetectInterval < Shared.GetTime() then
         local done = false
 
-        -- Drifters are in the "SmallStructures" physics group, so CloakableMixin's OnCapsuleTraceHit does not trigger since the player movement masks excludes aforementioned group.
-        if #GetEntitiesForTeamWithinRange("Player", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), Drifter.kTouchRange) > 0 then
+        -- Cysts are in the "SmallStructures" physics group, so CloakableMixin's OnCapsuleTraceHit does not trigger since the player movement masks excludes aforementioned group.
+        if #GetEntitiesForTeamWithinRange("Player", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), Cyst.kTouchRange) > 0 then
             self:TriggerUncloak()
             done = true
         end
@@ -30,15 +27,13 @@ local function ScanForNearbyEnemy(self)
         end
 
         -- Finally check if the cysts have players in range.
-        if not done then
-            if #GetEntitiesForTeamWithinRange("Player", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kDrifterDetectRange) > 0 then
-                self:TriggerUncloak()
-                done = true
-            end
+        if not done and #GetEntitiesForTeamWithinRange("Player", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kCystDetectRange) > 0 then
+            self:TriggerUncloak()
+            done = true
         end
 
         self.lastDetectedTime = Shared.GetTime()
     end
-end
 
-debug.setupvaluex(Drifter.OnUpdate, "ScanForNearbyEnemy", ScanForNearbyEnemy)
+    return self:GetIsAlive()
+end

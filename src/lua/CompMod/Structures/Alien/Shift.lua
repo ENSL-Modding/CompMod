@@ -1,24 +1,7 @@
 Script.Load("lua/CompMod/Mixins/AdrenalineRushMixin.lua")
 
-local networkVars =
-{
-    hydraInRange = "boolean",
-    whipInRange = "boolean",
-    tunnelInRange = "boolean",
-    cragInRange = "boolean",
-    shadeInRange = "boolean",
-    shiftInRange = "boolean",
-    veilInRange = "boolean",
-    spurInRange = "boolean",
-    shellInRange = "boolean",
-    hiveInRange = "boolean",
-    eggInRange = "boolean",
-    harvesterInRange = "boolean",
-    echoActive = "boolean",
-
+local networkVars = {
     adrenalineRushActive = "boolean",
-    
-    moving = "boolean"
 }
 
 AddMixinNetworkVars(AdrenalineRushMixin, networkVars)
@@ -46,6 +29,11 @@ local function GetIsTeleport(techId)
     return isTeleport[techId] or false
 end
 
+local function AddEnergizeInRangeCallback(self, interval)
+    self.lastEnergizeInterval = interval
+    self:AddTimedCallback(Shift.EnergizeInRange, interval)
+end
+
 local oldOnCreate = Shift.OnCreate
 function Shift:OnCreate()
     oldOnCreate(self)
@@ -56,7 +44,32 @@ function Shift:OnCreate()
 
     if Server then
         self.timeLastAdrenalineRush = 0
+        self.lastEnergizeInterval = 0
     end
+end
+
+function Shift:OnInitialized()
+    ScriptActor.OnInitialized(self)
+    self:SetModel(Shift.kModelName, kAnimationGraph)
+    
+    if Server then
+        InitMixin(self, StaticTargetMixin)
+        InitMixin(self, RepositioningMixin)
+        InitMixin(self, SupplyUserMixin)
+    
+        AddEnergizeInRangeCallback(self, self:GetEnergizeInterval())
+        self.shiftEggs = {}
+        
+        -- This Mixin must be inited inside this OnInitialized() function.
+        if not HasMixin(self, "MapBlip") then
+            InitMixin(self, MapBlipMixin)
+        end
+    elseif Client then
+        InitMixin(self, UnitStatusMixin)
+        InitMixin(self, HiveVisionMixin)
+    end
+    
+    InitMixin(self, IdleMixin)
 end
 
 function Shift:OnUpdate(deltaTime)
@@ -87,14 +100,19 @@ function Shift:EnergizeInRange()
 
         if self.adrenalineRushActive then
             local adrenalineRushAbles = GetEntitiesWithMixinForTeamWithinXZRange("AdrenalineRush", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
-            Print("Found %s adrenlineRushAbles", #adrenalineRushAbles)
             for _, entity in ipairs(adrenalineRushAbles) do
                 entity:AdrenalineRush(self)
             end
         end
     end
+
+    local interval = self:GetEnergizeInterval()
+    if self.lastEnergizeInterval ~= interval then
+        AddEnergizeInRangeCallback(self, interval)
+        return false
+    end
     
-    return self:GetIsAlive() 
+    return self:GetIsAlive()
 end
 
 function Shift:GetTechButtons(techId)
@@ -166,11 +184,19 @@ end
 function Shift:GetEnergizeRange()
     local range = kEnergizeRange
     if self.isAdrenalineRushed then
-        range = range * self.adrenalineRushLevel * kAdrenalineRushRangeScalar
+        return range + range * self.adrenalineRushLevel * kAdrenalineRushRangeScalar
     end
-    Print("Shift:GetEnergizeRange() - %s", range)
 
     return range
+end
+
+function Shift:GetEnergizeInterval()
+    local interval = 0.5
+    if self.isAdrenalineRushed then
+        return interval - interval * self.adrenalineRushLevel * kAdrenalineRushIntervalScalar
+    end
+
+    return interval
 end
 
 if Server then

@@ -93,16 +93,23 @@ ModLoader.SetupFileHook("lua/PhysicsGroups.lua", "lua/CompMod/Physics/PhysicsGro
 
 -- Alien Structures
 ModLoader.SetupFileHook("lua/Crag.lua", "lua/CompMod/Structures/Alien/Crag.lua", "post")
+ModLoader.SetupFileHook("lua/Cyst_Server.lua", "lua/CompMod/Structures/Alien/Cyst_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Cyst.lua", "lua/CompMod/Structures/Alien/Cyst.lua", "post")
 ModLoader.SetupFileHook("lua/Egg.lua", "lua/CompMod/Structures/Alien/Egg.lua", "post")
 ModLoader.SetupFileHook("lua/Hive_Server.lua", "lua/CompMod/Structures/Alien/Hive_Server.lua", "post")
+ModLoader.SetupFileHook("lua/Shade.lua", "lua/CompMod/Structures/Alien/Shade.lua", "post")
 ModLoader.SetupFileHook("lua/Shift.lua", "lua/CompMod/Structures/Alien/Shift.lua", "post")
 ModLoader.SetupFileHook("lua/TunnelEntrance.lua", "lua/CompMod/Structures/Alien/TunnelEntrance.lua", "post")
+ModLoader.SetupFileHook("lua/Whip.lua", "lua/CompMod/Structures/Alien/Whip.lua", "post")
+ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whip_Server.lua", "post")
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
 ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
+
+-- Targeting
+ModLoader.SetupFileHook("lua/TargetCache.lua", "lua/CompMod/Targeting/TargetCache.lua", "post")
 
 -- Teams
 ModLoader.SetupFileHook("lua/AlienTeam.lua", "lua/CompMod/Teams/AlienTeam.lua", "post")
