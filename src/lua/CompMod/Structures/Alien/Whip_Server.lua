@@ -80,7 +80,7 @@ function Whip:OnAttackHit()
 
             if targetValidated then
                 -- Guestimate HitTagAt vars, they *should* be updated at the next hit tag but they're not always.
-                -- Since this value can change depending on if we're AdrenalineRushed or not
+                -- Since this value can change depending on if we're AdrenalineRushed or not we need to make sure they're up to date
                 kSlapAnimationHitTagAt = self:GetSlapAfterBombardTimeout() / 2.5
                 kBombardAnimationHitTagAt = self:GetBombardAfterBombardTimeout() / 11.5
                 if self.slapping then
