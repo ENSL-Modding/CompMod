@@ -1,6 +1,6 @@
 g_compModRevision = 19
 g_compModBeta = 0
-g_compModTest = "RangeR Tests v2"
+g_compModTest = "RangeR Tests v3"
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
