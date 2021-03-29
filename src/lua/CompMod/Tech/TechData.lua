@@ -82,8 +82,8 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.AdrenalineRush,
             [kTechDataDisplayName] = "Adrenaline Rush",
             [kTechDataTooltipInfo] = "Increase range of nearby PvE by 25% and increase duration of nearby PvE by 10%",
-            [kTechDataCooldown] = 5,
-            [kTechDataCostKey] = 5,
+            [kTechDataCooldown] = 10,
+            [kTechDataCostKey] = 3,
             [kTechDataOneAtATime] = true,
         }
     }

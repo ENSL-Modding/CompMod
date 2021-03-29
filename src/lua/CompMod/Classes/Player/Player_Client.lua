@@ -1,11 +1,28 @@
 local kCompModRevisionKey = "compmod_revision"
+local kCompModBetaRevisionKey = "compmod_betarevision"
 local kChangelogTitle = "NSL Competitive Mod"
 local kChangelogURL = "https://enslcompmod.github.io/CompMod/changelog"
 local kChangelogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision" .. g_compModRevision .. ".html"
+local kBetaChangelogURL = "https://adsfgg.github.io/CompMod/changelog"
+local kBetaChangeLogDetailURL = string.format("https://adsfgg.github.io/CompMod/revisions/revision%sb%s.html", g_compModRevision, g_compModBeta)
 
 local function showChangeLog(withDetail)
     withDetail = withDetail or false
-    local url = withDetail and kChangelogDetailURL or kChangelogURL
+    local url
+    local isBeta = g_compModBeta > 0
+    if withDetail then
+        if isBeta then
+            url = kBetaChangeLogDetailURL
+        else
+            url = kChangelogDetailURL
+        end
+    else
+        if isBeta then
+            url = kBetaChangeLogURL
+        else
+            url = kChangeLogURL
+        end
+    end
 
     if Shine then
         Shine:OpenWebpage(url, kChangelogTitle)
@@ -21,8 +38,10 @@ function Player:OnInitLocalClient()
     oldOnInitLocalClient(self)
 
     local oldRevision = Client.GetOptionInteger(kCompModRevisionKey, -1)
-    if g_compModRevision > oldRevision then
+    local oldBetaRevision = Client.GetOptionInteger(kCompModBetaRevisionKey, -1)
+    if g_compModRevision > oldRevision or (g_compModBeta > 0 and g_compModRevision == oldRevision and g_compModBeta > oldBetaRevision) then
         Client.SetOptionInteger(kCompModRevisionKey, g_compModRevision)
+        Client.SetOptionInteger(kCompModBetaRevisionKey, g_compModBeta)
         showChangeLog(true)
     end
 end
