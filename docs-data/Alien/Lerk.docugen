@@ -1,3 +1,6 @@
+#Alien.Lerk.Health
+Lowered base Lerk health to 170 from 180
+
 #Alien.Lerk.Movement
 Increase strafe force to 8.3 from 7
 Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
