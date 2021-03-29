@@ -9,7 +9,7 @@ Crag.kHealPercentageLookup = {
     ["Gorge"] = 15 / kGorgeHealth,
     ["Lerk"] = 16 / kLerkHealth,
     ["Fade"] = 25 / kFadeHealth,
-    ["Onos"] = 80 / kOnosHealth,
+    ["Onos"] = 55 / kOnosHealth,
 }
 
 local oldOnCreate = Crag.OnCreate
