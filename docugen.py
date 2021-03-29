@@ -30,6 +30,7 @@ def main():
     parser_gen = subparsers.add_parser("gen", help='Generate changelogs')
     parser_gen.add_argument('vanilla_version', type=int, help='Current version of the vanilla game')
     parser_gen.add_argument('mod_version', type=int, help='Current revision of your mod')
+    parser_gen.add_argument('beta_version', nargs='?', default=0, type=int, help='Current beta version of your mod')
 
     # Create parser for init command
     subparsers.add_parser("init", help='Initialize database')
