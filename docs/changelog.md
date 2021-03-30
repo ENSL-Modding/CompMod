@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 20 beta 1](revisions/revision20.md) and Vanilla Build 336
+# Changes between CompMod [revision 20 beta 1](revisions/revision20b1.md) and Vanilla Build 336
 <br/>
 
 # Alien
