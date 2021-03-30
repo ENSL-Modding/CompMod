@@ -64,7 +64,7 @@ def create_changelog_against_vanilla(conn, c, vanilla_version, mod_version, beta
     # Generate markdown text and write to changelog file
     with open("docs/changelog.md", "w+") as f:
         if isBeta:
-            f.write("# Changes between {0} [revision {1} beta {2}](revisions/revision{1}.md) and Vanilla Build {3}\n".format("CompMod", mod_version, beta_version, vanilla_version))
+            f.write("# Changes between {0} [revision {1} beta {2}](revisions/revision{1}b{2}.md) and Vanilla Build {3}\n".format("CompMod", mod_version, beta_version, vanilla_version))
         else:
             f.write("# Changes between {0} [revision {1}](revisions/revision{1}.md) and Vanilla Build {2}\n".format("CompMod", mod_version, vanilla_version))
         f.write("<br/>\n")
