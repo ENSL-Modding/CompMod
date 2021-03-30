@@ -8,7 +8,9 @@
 Revision 20 beta 1
 </div>
 <div style="display:inline-block;float:right;padding-right:20%">
+<a href="revision20b2">
 [ Next -> ]
+</a>
 </div>
 </div>
 

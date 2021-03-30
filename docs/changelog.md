@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 20 beta 1](revisions/revision20b1.md) and Vanilla Build 336
+# Changes between CompMod [revision 20 beta 2](revisions/revision20b2.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -225,6 +225,16 @@
 * Observatory supply cost increased to 30 from 25
 * Sentry Battery supply cost increased to 25 from 15
 * Robotics Factory supply cost increased to 15 from 5
+
+## Upgrades
+* ### Armour 1
+  * Increased research time to 80 from 75
+* ### Armour 2
+  * Increased research time to 95 from 90
+* ### Weapons 1
+  * Increased research time to 80 from 75
+* ### Weapons 2
+  * Increased research time to 95 from 90
 
 ## Weapons
 * ### Expiration Rate
