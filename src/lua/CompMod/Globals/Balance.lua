@@ -145,3 +145,8 @@ kAdrenalineRushRangeScalar = 0.25
 kAdrenalineRushIntervalScalar = 0.1
 
 kLerkHealth = 170 -- 180
+
+kWeapons1ResearchTime = 80 --75
+kWeapons2ResearchTime = 95 --90
+kArmor1ResearchTime = 80 -- 75
+kArmor2ResearchTime = 95 -- 90
