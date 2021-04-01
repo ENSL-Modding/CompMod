@@ -32,3 +32,4 @@ No longer triggers from friendly-fire damage
 Works against exosuits
 Now applies a shader to players that have Vampirism shield
 Lowered Skulk vampirism percentage to 3.77% from 4.66%
+Lowered Lerk vampirism percentage to 6% from 8%
