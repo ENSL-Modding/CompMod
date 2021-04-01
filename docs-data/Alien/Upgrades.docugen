@@ -31,5 +31,5 @@ Reduced from 8% per tick to 6% per tick
 No longer triggers from friendly-fire damage
 Works against exosuits
 Now applies a shader to players that have Vampirism shield
-Lowered Skulk vampirism percentage to 3.77% from 4.66%
-Lowered Lerk vampirism percentage to 6% from 8%
+Lowered Skulk vampirism percentage to 3.77% from 4.66% per shell
+Lowered Lerk vampirism percentage to 2% from 2.67% per shell

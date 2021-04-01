@@ -161,8 +161,8 @@
   * No longer triggers from friendly-fire damage
   * Works against exosuits
   * Now applies a shader to players that have Vampirism shield
-  * Lowered Skulk vampirism percentage to 3.77% from 4.66%
-  * Lowered Lerk vampirism percentage to 6% from 8%
+  * Lowered Skulk vampirism percentage to 3.77% from 4.66% per shell
+  * Lowered Lerk vampirism percentage to 2% from 2.67% per shell
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
