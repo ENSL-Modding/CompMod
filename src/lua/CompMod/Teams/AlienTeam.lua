@@ -187,6 +187,7 @@ function AlienTeam:InitTechTree()
     -- Shift
     self.techTree:AddActivation(kTechId.ShiftHatch,               kTechId.None,         kTechId.None)
     self.techTree:AddPassive(kTechId.ShiftEnergize,               kTechId.None,         kTechId.None)
+    self.techTree:AddActivation(kTechId.AdrenalineRush,           kTechId.None,         kTechId.None)
 
     self.techTree:AddTargetedActivation(kTechId.TeleportHydra,       kTechId.ShiftHive,         kTechId.None)
     self.techTree:AddTargetedActivation(kTechId.TeleportWhip,        kTechId.ShiftHive,         kTechId.None)

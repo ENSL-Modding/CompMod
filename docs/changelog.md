@@ -1,11 +1,20 @@
-# Changes between CompMod [revision 19](revisions/revision19.md) and Vanilla Build 336
+# Changes between CompMod [revision 20](revisions/revision20.md) and Vanilla Build 336
 <br/>
 
 # Alien
 ![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
 
-## Bonewall
-* BoneWall is no longer flammable
+## Commander Abilities
+* ### Adrenaline Rush
+  * Added new ability Adrenaline Rush to the Shift
+  * Costs 3 tres
+  * Duration 5 seconds
+  * Cooldown 5 seconds
+  * When active increases range and output time of nearby PvE
+    * Increases range by 25%
+    * Increases output time by 10% (Whips attack 10% faster, Crags heal 10% faster, etc)
+* ### Bonewall
+  * Bonewall is no longer flammable
 
 ## Crag
 * ### Healing
@@ -17,7 +26,7 @@
     * Gorge: 15 (9%) up from 11
     * Lerk: 16 (~9%) up from 10
     * Fade: 25  (10%) up from 17
-    * Onos: 80  (11%) up from 42
+    * Onos: 55  (8%) up from 42
 
 ## Drifters
 * Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
@@ -71,9 +80,11 @@
 
 ## Healing Cap
 * Decreased healing softcap to 12% from 14%
-* Increased additional healing penalty to 80% from 66%
+* Additional healing after soft cap increased to 80% reduction from 66%
 
 ## Lerk
+* ### Health
+  * Lowered base Lerk health to 170 from 180
 * ### Movement
   * Increase strafe force to 8.3 from 7
   * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
@@ -91,8 +102,6 @@
   * Reduced opacity by 25%
   * Increased research cost to 30 from 20
   * Increased research time to 1 minute 45 seconds from 45 seconds
-* ### Vampirism Shield
-  * Reduced leeched health amount to 6% from 8%
 
 ## Onos
 * ### BoneShield
@@ -113,6 +122,8 @@
   * Shade hive cysts are now visible from further away (to 10 from 6)
   * Lowered damage bonus from welders to 4x from 7x
   * Decreased build time on Shift hive by 20%
+* ### Movement
+  * Structures will move 10% faster when not under attack
 * ### Shift
   * Echo
     * Echo cost for upgrades increased to 2 from 1
@@ -151,6 +162,7 @@
   * Works against exosuits
   * Now applies a shader to players that have Vampirism shield
   * Lowered Skulk vampirism percentage to 3.77% from 4.66%
+  * Lowered Lerk vampirism percentage to 6% from 8%
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
@@ -166,6 +178,9 @@
   * Research cost 15 tres
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
+
+## Jetpacks
+* Increased drop cost for Commanders to 20 tres from 15 tres
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
@@ -213,6 +228,16 @@
 * Observatory supply cost increased to 30 from 25
 * Sentry Battery supply cost increased to 25 from 15
 * Robotics Factory supply cost increased to 15 from 5
+
+## Upgrades
+* ### Armour 1
+  * Increased research time to 80 from 75
+* ### Armour 2
+  * Increased research time to 95 from 90
+* ### Weapons 1
+  * Increased research time to 80 from 75
+* ### Weapons 2
+  * Increased research time to 95 from 90
 
 ## Weapons
 * ### Expiration Rate

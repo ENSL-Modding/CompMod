@@ -1,4 +1,4 @@
-g_compModRevision = 19
+g_compModRevision = 20
 g_compModBeta = 0
 
 -- Alien Buy
@@ -14,6 +14,8 @@ ModLoader.SetupFileHook("lua/Gorge.lua", "lua/CompMod/Classes/Alien/Gorge.lua", 
 ModLoader.SetupFileHook("lua/Lerk.lua", "lua/CompMod/Classes/Alien/Lerk.lua", "post")
 ModLoader.SetupFileHook("lua/Onos.lua", "lua/CompMod/Classes/Alien/Onos.lua", "post")
 ModLoader.SetupFileHook("lua/Skulk.lua", "lua/CompMod/Classes/Alien/Skulk.lua", "post")
+-- Commander Classes
+ModLoader.SetupFileHook("lua/Commander_Client.lua", "lua/CompMod/Classes/Commander/Commander_Client.lua", "post")
 -- Marine Classes
 ModLoader.SetupFileHook("lua/Exo.lua", "lua/CompMod/Classes/Marine/Exo.lua", "post")
 ModLoader.SetupFileHook("lua/Marine.lua", "lua/CompMod/Classes/Marine/Marine.lua", "post")
@@ -83,21 +85,30 @@ ModLoader.SetupFileHook("lua/NetworkMessages.lua", "lua/CompMod/Network/NetworkM
 
 -- NS2Utility
 ModLoader.SetupFileHook("lua/NS2Utility_Server.lua", "lua/CompMod/NS2Utility/NS2Utility_Server.lua", "post")
+ModLoader.SetupFileHook("lua/NS2Utility.lua", "lua/CompMod/NS2Utility/NS2Utility.lua", "post")
 
 -- Physics
 ModLoader.SetupFileHook("lua/PhysicsGroups.lua", "lua/CompMod/Physics/PhysicsGroups.lua", "post")
 
 -- Alien Structures
 ModLoader.SetupFileHook("lua/Crag.lua", "lua/CompMod/Structures/Alien/Crag.lua", "post")
+ModLoader.SetupFileHook("lua/Cyst_Server.lua", "lua/CompMod/Structures/Alien/Cyst_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Cyst.lua", "lua/CompMod/Structures/Alien/Cyst.lua", "post")
 ModLoader.SetupFileHook("lua/Egg.lua", "lua/CompMod/Structures/Alien/Egg.lua", "post")
 ModLoader.SetupFileHook("lua/Hive_Server.lua", "lua/CompMod/Structures/Alien/Hive_Server.lua", "post")
+ModLoader.SetupFileHook("lua/Shade.lua", "lua/CompMod/Structures/Alien/Shade.lua", "post")
+ModLoader.SetupFileHook("lua/Shift.lua", "lua/CompMod/Structures/Alien/Shift.lua", "post")
 ModLoader.SetupFileHook("lua/TunnelEntrance.lua", "lua/CompMod/Structures/Alien/TunnelEntrance.lua", "post")
+ModLoader.SetupFileHook("lua/Whip.lua", "lua/CompMod/Structures/Alien/Whip.lua", "post")
+ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whip_Server.lua", "post")
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
 ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
+
+-- Targeting
+ModLoader.SetupFileHook("lua/TargetCache.lua", "lua/CompMod/Targeting/TargetCache.lua", "post")
 
 -- Teams
 ModLoader.SetupFileHook("lua/AlienTeam.lua", "lua/CompMod/Teams/AlienTeam.lua", "post")
