@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 20 beta 2](revisions/revision20b2.md) and Vanilla Build 336
+# Changes between CompMod [revision 20](revisions/revision20.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -7,8 +7,9 @@
 ## Commander Abilities
 * ### Adrenaline Rush
   * Added new ability Adrenaline Rush to the Shift
-  * Costs 5 tres
+  * Costs 3 tres
   * Duration 5 seconds
+  * Cooldown 5 seconds
   * When active increases range and output time of nearby PvE
     * Increases range by 25%
     * Increases output time by 10% (Whips attack 10% faster, Crags heal 10% faster, etc)
@@ -79,7 +80,7 @@
 
 ## Healing Cap
 * Decreased healing softcap to 12% from 14%
-* Increased additional healing penalty to 80% from 66%
+* Additional healing after soft cap increased to 80% reduction from 66%
 
 ## Lerk
 * ### Health
@@ -101,8 +102,6 @@
   * Reduced opacity by 25%
   * Increased research cost to 30 from 20
   * Increased research time to 1 minute 45 seconds from 45 seconds
-* ### Vampirism Shield
-  * Reduced leeched health amount to 6% from 8%
 
 ## Onos
 * ### BoneShield
@@ -163,6 +162,7 @@
   * Works against exosuits
   * Now applies a shader to players that have Vampirism shield
   * Lowered Skulk vampirism percentage to 3.77% from 4.66%
+  * Lowered Lerk vampirism percentage to 6% from 8%
 
 # Marine
 ![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
@@ -178,6 +178,9 @@
   * Research cost 15 tres
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
+
+## Jetpacks
+* Increased drop cost for Commanders to 20 tres from 15 tres
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
