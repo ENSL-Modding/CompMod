@@ -152,3 +152,4 @@ kArmor1ResearchTime = 80 -- 75
 kArmor2ResearchTime = 95 -- 90
 
 kMinBuildTimePerHealSpray = 0.91
+kJetpackDropCost = 20
