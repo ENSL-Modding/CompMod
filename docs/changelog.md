@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 20](revisions/revision20.md) and Vanilla Build 336
+# Changes between CompMod [revision 21](revisions/revision21.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -209,6 +209,8 @@
 * ### Phase Gate
   * Health decreased to 1300 from 1500
   * Armor increased to 900 from 800
+  * Increased phase timeout to 0.6 seconds from 0.3 seconds
+    *  The result is that a Phase Gate will transport one Marine every 0.6 seconds
 * ### Prototype Lab
   * Cost reduced to 25 from 35
 * ### Robotics Factory
