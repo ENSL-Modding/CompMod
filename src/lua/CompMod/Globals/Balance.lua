@@ -153,3 +153,5 @@ kArmor2ResearchTime = 95 -- 90
 
 kMinBuildTimePerHealSpray = 0.91
 kJetpackDropCost = 20
+
+kMACOutOfCombatSpeedScalar = 1.15 -- 15%
