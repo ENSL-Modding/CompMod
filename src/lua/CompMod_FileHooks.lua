@@ -1,5 +1,5 @@
-g_compModRevision = 21
-g_compModBeta = 0
+g_compModRevision = 22
+g_compModBeta = 1
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
@@ -76,6 +76,7 @@ ModLoader.SetupFileHook("lua/MapBlipMixin.lua", "lua/CompMod/Mixins/MapBlipMixin
 ModLoader.SetupFileHook("lua/MucousableMixin.lua", "lua/CompMod/Mixins/MucousableMixin.lua", "post")
 ModLoader.SetupFileHook("lua/NanoShieldMixin.lua", "lua/CompMod/Mixins/NanoShieldMixin.lua", "post")
 ModLoader.SetupFileHook("lua/ParasiteMixin.lua", "lua/CompMod/Mixins/ParasiteMixin.lua", "post")
+ModLoader.SetupFileHook("lua/PhaseGateUserMixin.lua", "lua/CompMod/Mixins/PhaseGateUserMixin.lua", "post")
 ModLoader.SetupFileHook("lua/PlayerHallucinationMixin.lua", "lua/CompMod/Mixins/PlayerHallucinationMixin.lua", "post")
 ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/RegenerationMixin.lua", "post")
 
