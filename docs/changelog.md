@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 21](revisions/revision21.md) and Vanilla Build 336
+# Changes between CompMod [revision 22 beta 1](revisions/revision22b1.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -184,6 +184,7 @@
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
+* MACs will move 15% faster when not under attack
 
 ## Medpacks
 * Increased instant heal amount to 40 from 25
@@ -211,6 +212,7 @@
   * Armor increased to 900 from 800
   * Increased phase timeout to 0.6 seconds from 0.3 seconds
     *  The result is that a Phase Gate will transport one Marine every 0.6 seconds
+  * Phasing through Gates is now server confirmed
 * ### Prototype Lab
   * Cost reduced to 25 from 35
 * ### Robotics Factory
