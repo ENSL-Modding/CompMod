@@ -1,7 +1,7 @@
 import os
 from .verbose import verbose_print
 
-def process_key(key, key_data, c, mod_version, beta_version):
+def process_key(c, key, key_data, mod_version, beta_version):
     if len(key_data) > 0 and key:
         insert_to_database(c, mod_version, beta_version, key, key_data)
         verbose_print(" -> Processed key: {}".format(key))
@@ -40,7 +40,7 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version):
                     # This line is a key, store the value and populate its key_data array
                     if line.startswith("#"):
                         # Process key/values (if there are any)
-                        process_key(key, key_data, c, mod_version, beta_version)
+                        process_key(c, key, key_data, mod_version, beta_version)
 
                         key = line[1:].strip()
                         key_data = []
@@ -48,7 +48,7 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version):
                         key_data.append(line.strip())
                 
                 # Process the last key if there is one
-                process_key(key, key_data, c, mod_version, beta_version)
+                process_key(c, key, key_data, mod_version, beta_version)
     
     # Commit table changes
     conn.commit()
