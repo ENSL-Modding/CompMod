@@ -5,7 +5,7 @@ from .verbose import verbose_print
 from . import markdown_generator
 from . import changelog
 
-import os.path
+import re
 
 def find_last_mod_version(c, mod_version, beta_version):
     # If we have a beta version try and find the previous beta version (it may not exist as this could be the first beta release)
@@ -150,7 +150,14 @@ def update_prev_nav_bar(short_name, short_name_prev):
             break
 
     firstLines = lines[0:i]
-    i += 1
+
+    # If the next line is a link to the next page, skip the opening, closing and link text lines (3 lines). If it's not then just skip the link text (1 line)
+    p = re.compile('^<a href=\"revision[0-9]+(?:b[0-9]+)\">$')
+    if p.match(lines[i]):
+        i += 3
+    else:
+        i += 1
+    
     afterLines = lines[i:]
 
     with open(filepath, "w") as f:
