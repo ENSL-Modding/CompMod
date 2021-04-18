@@ -48,6 +48,7 @@ kSkulkMucousShieldPercent = 0.2
 kGorgeMucousShieldPercent = 0.13
 kLerkMucousShieldPercent = 0.14
 kFadeMucousShieldPercent = 0.16
+kOnosMucousShieldPercent = 0.09
 kMucousShieldMaxAmount = 85
 
 kBoneShieldInitialFuelCost = 0.1 -- initial cost 0.1 fuel. Fuel range 0-1

@@ -26,3 +26,7 @@ function Onos:OnProcessMove(input)
         boneshield:SetFuel(math.max(0, newFuel))
     end
 end
+
+function Onos:GetMaxShieldAmount()
+    return math.floor(math.min(self:GetBaseHealth() * kOnosMucousShieldPercent, kMucousShieldMaxAmount))
+end
