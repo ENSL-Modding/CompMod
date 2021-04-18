@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 22 beta 1](revisions/revision22b1.md) and Vanilla Build 336
+# Changes between CompMod [revision 22 beta 2](revisions/revision22b2.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -41,7 +41,12 @@
   * Mucous
     * Reduced cooldown to 1 second from 12 seconds
     * Reduced cloud radius from 8 to 5 (reduces area by 60%)
-    * Shield matches babbler shield values (except Skulk - remains at 15 HP)
+    * Added per-lifeform shield values:
+      * Skulk: 20% (15 HP)
+      * Gorge: 13% (20 HP)
+      * Lerk: 14% (24 HP)
+      * Fade: 16% (40 HP)
+      * Onos: 9% (63 HP)
 
 ## Eggs
 * Hives no longer heal eggs, only embryos
