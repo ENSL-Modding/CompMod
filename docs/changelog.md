@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 22 beta 2](revisions/revision22b2.md) and Vanilla Build 336
+# Changes between CompMod [revision 22](revisions/revision22.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -76,6 +76,10 @@
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
+* ### Health
+  * Increased Gorge health to 190 from 160
+* ### Spit
+  * Increased Gorge spit speed to 43 from 35
 * ### Tunnels
   * Gorges can now drop tunnels for 4 pres
 * ### Web
