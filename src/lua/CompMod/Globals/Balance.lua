@@ -156,3 +156,5 @@ kMinBuildTimePerHealSpray = 0.91
 kJetpackDropCost = 20
 
 kMACOutOfCombatSpeedScalar = 1.15 -- 15%
+
+kGorgeHealth = 190 -- 160
