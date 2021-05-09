@@ -6,6 +6,12 @@ Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 #Alien.Gorge.BileBomb
 Research changed to Biomass 2 from Biomass 3
 
+#Alien.Gorge.Health
+Increased Gorge health to 190 from 160
+
+#Alien.Gorge.Spit
+Increased Gorge spit speed to 43 from 35
+
 #Alien.Gorge.Tunnels
 Gorges can now drop tunnels for 4 pres
 

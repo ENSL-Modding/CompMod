@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 21](revisions/revision21.md) and Vanilla Build 336
+# Changes between CompMod [revision 22](revisions/revision22.md) and Vanilla Build 336
 <br/>
 
 # Alien
@@ -41,7 +41,12 @@
   * Mucous
     * Reduced cooldown to 1 second from 12 seconds
     * Reduced cloud radius from 8 to 5 (reduces area by 60%)
-    * Shield matches babbler shield values (except Skulk - remains at 15 HP)
+    * Added per-lifeform shield values:
+      * Skulk: 20% (15 HP)
+      * Gorge: 13% (20 HP)
+      * Lerk: 14% (24 HP)
+      * Fade: 16% (40 HP)
+      * Onos: 9% (63 HP)
 
 ## Eggs
 * Hives no longer heal eggs, only embryos
@@ -71,6 +76,10 @@
   * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
+* ### Health
+  * Increased Gorge health to 190 from 160
+* ### Spit
+  * Increased Gorge spit speed to 43 from 35
 * ### Tunnels
   * Gorges can now drop tunnels for 4 pres
 * ### Web
@@ -184,6 +193,7 @@
 
 ## MACs
 * Cost reduced to 4 tres from 5 tres
+* MACs will move 15% faster when not under attack
 
 ## Medpacks
 * Increased instant heal amount to 40 from 25
@@ -211,6 +221,7 @@
   * Armor increased to 900 from 800
   * Increased phase timeout to 0.6 seconds from 0.3 seconds
     *  The result is that a Phase Gate will transport one Marine every 0.6 seconds
+  * Phasing through Gates is now server confirmed
 * ### Prototype Lab
   * Cost reduced to 25 from 35
 * ### Robotics Factory
