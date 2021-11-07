@@ -15,10 +15,6 @@ Revision 23
 <br />
 
 # CompMod revision 23 - (07/11/2021)
-## Fixes & Improvements
-
-### Minimap
-* Fixed that enemy structures would not pulse red when under attack
 
 ## Bug Fixes
 
