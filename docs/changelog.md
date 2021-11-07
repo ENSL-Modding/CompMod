@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 22](revisions/revision22.md) and Vanilla Build 336
+# Changes between CompMod [revision 23](revisions/revision23.md) and Vanilla Build 338
 <br/>
 
 # Alien
@@ -329,7 +329,7 @@
 * Fixed that if a MAC is doing something when idle (automatic weld order, or build order) and the command ask the mac to move elsewhere, then the mac will return to the origin location after reaching the location - Thanks Katz!
 
 ## Minimap
-* Fixed that enemy structures would not pulse red when under attack (experimental)
+* Fixed that enemy structures would not pulse red when under attack
 * Fixed a vanilla bug that would render the Marine minimap over status icons
   * See: https://youtu.be/_8OmfC79-jc
 
