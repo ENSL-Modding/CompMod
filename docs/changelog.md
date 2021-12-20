@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 23](revisions/revision23.md) and Vanilla Build 338
+# Changes between CompMod [revision 24](revisions/revision24.md) and Vanilla Build 340
 <br/>
 
 # Alien
