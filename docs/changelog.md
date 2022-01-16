@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 24](revisions/revision24.md) and Vanilla Build 340
+# Changes between CompMod [revision 25](revisions/revision25.md) and Vanilla Build 340
 <br/>
 
 # Alien
@@ -113,9 +113,6 @@
   * Increased research time to 1 minute 45 seconds from 45 seconds
 
 ## Onos
-* ### BoneShield
-  * Add small initial cost to BoneShield
-  * Moving with BoneShield active will consume BoneFuel faster
 * ### Charge
   * Marine knockback removed
 * ### Stomp
