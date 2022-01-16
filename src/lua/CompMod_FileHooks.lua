@@ -1,4 +1,4 @@
-g_compModRevision = 24
+g_compModRevision = 25
 g_compModBeta = 0
 
 -- Alien Buy
@@ -135,7 +135,6 @@ ModLoader.SetupFileHook("lua/MAC.lua", "lua/CompMod/Units/Marine/MAC.lua", "post
 -- Alien Weapons
 ModLoader.SetupFileHook("lua/Weapons/Alien/Ability.lua", "lua/CompMod/Weapons/Alien/Ability.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/BiteLeap.lua", "lua/CompMod/Weapons/Alien/BiteLeap.lua", "post")
-ModLoader.SetupFileHook("lua/Weapons/Alien/BoneShield.lua", "lua/CompMod/Weapons/Alien/BoneShield.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/DropStructureAbility.lua", "lua/CompMod/Weapons/Alien/DropStructureAbility.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/Gore.lua", "lua/CompMod/Weapons/Alien/Gore.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Alien/LerkBite.lua", "lua/CompMod/Weapons/Alien/LerkBite.lua", "post")
