@@ -3,13 +3,11 @@ source_dir  = "source/"
 output_dir  = "output/"
 description = [=[[h1]ENSL CompMod revision %%revision_string%%[/h1]
 
-Competitive mod used by the ENSL
+Competitive mod used by the [url=https://ensl.org]ENSL[/url]
 
 View the most recent changelog [url=https://enslcompmod.github.io/CompMod/changelog]here[/url]
 
 View the source: [url=https://github.com/enslcompmod/CompMod]here[/url]
-
-Current Revision: %%revision_string%%
 ]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
