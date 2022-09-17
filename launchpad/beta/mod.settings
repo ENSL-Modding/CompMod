@@ -11,7 +11,7 @@ View the source: [url=https://github.com/adsfgg/CompMod/tree/testing]here[/url]
 
 Current Revision: %%revision_string%%
 
-Please note changes in this mod are experimental and are not guarenteed to make it into a CompMod release.
+Please note changes in this mod are experimental and are not guaranteed to make it into a CompMod release.
 ]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
