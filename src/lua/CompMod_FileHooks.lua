@@ -76,7 +76,6 @@ ModLoader.SetupFileHook("lua/MapBlipMixin.lua", "lua/CompMod/Mixins/MapBlipMixin
 ModLoader.SetupFileHook("lua/MucousableMixin.lua", "lua/CompMod/Mixins/MucousableMixin.lua", "post")
 ModLoader.SetupFileHook("lua/NanoShieldMixin.lua", "lua/CompMod/Mixins/NanoShieldMixin.lua", "post")
 ModLoader.SetupFileHook("lua/ParasiteMixin.lua", "lua/CompMod/Mixins/ParasiteMixin.lua", "post")
-ModLoader.SetupFileHook("lua/PhaseGateUserMixin.lua", "lua/CompMod/Mixins/PhaseGateUserMixin.lua", "post")
 ModLoader.SetupFileHook("lua/PlayerHallucinationMixin.lua", "lua/CompMod/Mixins/PlayerHallucinationMixin.lua", "post")
 ModLoader.SetupFileHook("lua/RegenerationMixin.lua", "lua/CompMod/Mixins/RegenerationMixin.lua", "post")
 
@@ -105,7 +104,6 @@ ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whi
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
-ModLoader.SetupFileHook("lua/PhaseGate.lua", "lua/CompMod/Structures/Marine/PhaseGate.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
 ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
 
