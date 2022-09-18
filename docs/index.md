@@ -7,6 +7,3 @@ To do this the team commits to remaining transparent in all changes, to be open 
 
 # Changes
 For a full list of changes from vanilla see [here](changelog "CompMod ChangeLog")
-
-## Archived Changes
-To view the archived changelogs click [here](archive/full_changelog "Archive")
