@@ -7,11 +7,11 @@ initial_node_order = [
 ]
 
 images_for_nodes = {
-    "Alien":                "https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png",
-    "Marine":               "https://wiki.naturalselection2.com/images/3/30/Marine_banner.png",
-    "Spectator":            "https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png",
-    "Global":               "https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png",
-    "Fixes & Improvements": "https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png"
+    "Alien":                "https://static.wikia.nocookie.net/naturalselection/images/9/9d/Movement_Banner.png",
+    "Marine":               "https://static.wikia.nocookie.net/naturalselection/images/3/30/Marine_banner.png",
+    "Spectator":            "https://static.wikia.nocookie.net/naturalselection/images/d/d1/Alien_Structures_Banner.png",
+    "Global":               "https://static.wikia.nocookie.net/naturalselection/images/3/35/Resource_Model_Banner.png",
+    "Fixes & Improvements": "https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png"
 }
 
 enable_image_output = True
