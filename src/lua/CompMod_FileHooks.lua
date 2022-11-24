@@ -46,6 +46,7 @@ ModLoader.SetupFileHook("lua/MarineTeamInfo.lua", "lua/CompMod/Entities/Marine/M
 
 -- Globals
 ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Globals/Balance.lua", "post")
+ModLoader.SetupFileHook("lua/BalanceMisc.lua", "lua/CompMod/Globals/BalanceMisc.lua", "post")
 ModLoader.SetupFileHook("lua/Globals.lua", "lua/CompMod/Globals/Globals.lua", "post")
 
 -- GUI

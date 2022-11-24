@@ -1,0 +1,1 @@
+kBoneShieldHitpoints = 600
