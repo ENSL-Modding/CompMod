@@ -19,7 +19,7 @@ Revision 26
 
 ### Onos
 * BoneShield
-  * Reduced BoneShield HP to 600 from 1000
+  * Reduced BoneShield HP to 450 from 1000
 
 <br/>
 

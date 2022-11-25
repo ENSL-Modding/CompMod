@@ -116,7 +116,7 @@
 * ### Charge
   * Marine knockback removed
 * ### BoneShield
-  * Reduced BoneShield HP to 600 from 1000
+  * Reduced BoneShield HP to 450 from 1000
 * ### Stomp
   * Moved Stomp to Biomass 9 from Biomass 8
 
