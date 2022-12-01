@@ -1,27 +1,31 @@
 <div style="width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
 <div style="display:inline-block;float:left;padding-left:20%">
-<a href="revision24">
+<a href="revision25">
 [ <- Previous ]
 </a>
 </div>
 <div style="display:inline-block;">
-Revision 25
+Revision 26
 </div>
 <div style="display:inline-block;float:right;padding-right:20%">
-<a href="revision26">
 [ Next -> ]
-</a>
 </div>
 </div>
 
 <br />
 
-# CompMod revision 25 - (16/01/2022)
+# CompMod revision 26 - (01/12/2022)
 ## Alien
 
 ### Onos
 * BoneShield
-  * Removed BoneShield fuel changes: BoneShield no longer has fuel in vanilla
+  * Lowered hitpoints to 500 from 1000
+
+## Marine
+
+### Structures
+* Phase Gate
+  * Remove server confirmed Phase Gates; this change is live in vanilla
 
 <br/>
 
