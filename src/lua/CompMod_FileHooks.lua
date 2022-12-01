@@ -1,4 +1,4 @@
-g_compModRevision = 25
+g_compModRevision = 26
 g_compModBeta = 0
 
 -- Alien Buy
