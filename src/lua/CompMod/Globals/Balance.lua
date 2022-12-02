@@ -155,3 +155,4 @@ kJetpackDropCost = 20
 kMACOutOfCombatSpeedScalar = 1.15 -- 15%
 
 kGorgeHealth = 190 -- 160
+kBoneShieldHitpoints = 500 -- 1000

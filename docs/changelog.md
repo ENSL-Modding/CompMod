@@ -1,8 +1,8 @@
-# Changes between CompMod [revision 25](revisions/revision25.md) and Vanilla Build 340
+# Changes between CompMod [revision 26](revisions/revision26.md) and Vanilla Build 342
 <br/>
 
 # Alien
-![alt text](https://wiki.naturalselection2.com/images/9/9d/Movement_Banner.png "Alien")
+![alt text](https://static.wikia.nocookie.net/naturalselection/images/9/9d/Movement_Banner.png "Alien")
 
 ## Commander Abilities
 * ### Adrenaline Rush
@@ -113,6 +113,8 @@
   * Increased research time to 1 minute 45 seconds from 45 seconds
 
 ## Onos
+* ### BoneShield
+  * Lowered hitpoints to 500 from 1000
 * ### Charge
   * Marine knockback removed
 * ### Stomp
@@ -171,7 +173,7 @@
   * Lowered Lerk vampirism percentage to 2% from 2.67% per shell
 
 # Marine
-![alt text](https://wiki.naturalselection2.com/images/3/30/Marine_banner.png "Marine")
+![alt text](https://static.wikia.nocookie.net/naturalselection/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
 * Health lowered to 1800/500 from 2600/400
@@ -216,9 +218,6 @@
 * ### Phase Gate
   * Health decreased to 1300 from 1500
   * Armor increased to 900 from 800
-  * Increased phase timeout to 0.6 seconds from 0.3 seconds
-    *  The result is that a Phase Gate will transport one Marine every 0.6 seconds
-  * Phasing through Gates is now server confirmed
 * ### Prototype Lab
   * Cost reduced to 25 from 35
 * ### Robotics Factory
@@ -270,7 +269,7 @@
   * Increased weapon lifetime to 18 seconds from 16 seconds
 
 # Spectator
-![alt text](https://wiki.naturalselection2.com/images/d/d1/Alien_Structures_Banner.png "Spectator")
+![alt text](https://static.wikia.nocookie.net/naturalselection/images/d/d1/Alien_Structures_Banner.png "Spectator")
 
 ## Edge Panning
 * Fixed edge pan jitter when following a player -- click to unfollow
@@ -282,7 +281,7 @@
 * Added team supply to top bar
 
 # Global
-![alt text](https://wiki.naturalselection2.com/images/3/35/Resource_Model_Banner.png "Global")
+![alt text](https://static.wikia.nocookie.net/naturalselection/images/3/35/Resource_Model_Banner.png "Global")
 
 ## Hive Power Node
 * Power node in Alien starting Hive room will no longer be destroyed on round start
@@ -296,7 +295,7 @@
 * Increased Marine starting pres to 20 from 15
 
 # Fixes & Improvements
-![alt text](https://wiki.naturalselection2.com/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
+![alt text](https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 
 ## Armory HP Bar
 * Fixed a vanilla bug that caused the HP bar for the Armory/Advanced Armory to display at inconsistent heights

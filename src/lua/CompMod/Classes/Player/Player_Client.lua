@@ -3,8 +3,8 @@ local kCompModBetaRevisionKey = "compmod_betarevision"
 local kChangeLogTitle = "NSL Competitive Mod"
 local kChangeLogURL = "https://enslcompmod.github.io/CompMod/changelog"
 local kChangeLogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision" .. g_compModRevision .. ".html"
-local kBetaChangeLogURL = "https://adsfgg.github.io/CompMod/changelog"
-local kBetaChangeLogDetailURL = string.format("https://adsfgg.github.io/CompMod/revisions/revision%sb%s.html", g_compModRevision, g_compModBeta)
+local kBetaChangeLogURL = "https://enslcompmod.github.io/CompMod-Beta/changelog"
+local kBetaChangeLogDetailURL = string.format("https://enslcompmod.github.io/CompMod-Beta/revisions/revision%sb%s.html", g_compModRevision, g_compModBeta)
 
 local function showChangeLog(withDetail)
     withDetail = withDetail or false
