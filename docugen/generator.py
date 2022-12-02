@@ -57,6 +57,9 @@ def generate_change_logs(args):
         verbose_print("Beta Mod Version: {}".format(beta_version))
     verbose_print("Previous Mod Version: {}".format(prev_mod_version))
 
+    # Generate index.md file
+    create_index_page(mod_version, beta_version)
+
     # Populate database for new version
     scan_for_docugen_files(conn, c, mod_version, beta_version)
 
@@ -73,6 +76,27 @@ def generate_change_logs(args):
 
     # Generate partial changelog
     create_changelog_stub(c, curr_changelog, prev_changelog, short_name, long_name, short_name_prev)
+
+def create_index_page(mod_version, beta_version):
+    is_beta = beta_version > 0
+    with open("docs/index.md", "w+") as f:
+        if (is_beta):
+            f.write("# NSL Competitive Mod (Beta) Revision {} Beta {}\n".format(mod_version, beta_version))
+        else:
+            f.write("# NSL Competitive Mod Revision {}\n".format(mod_version))
+
+        f.write("A Natural Selection 2 balance and feature mod used by the [ENSL](https://www.ensl.org).\n\n")
+        f.write("# Mission Statement\n")
+        f.write("The vision of the Natural Selection League (NSL) Competitive Modification (CompMod) is to enable fun, fair and balanced play in a 6 vs 6 environment, while remaining as accessible to new players as possible.\n\n")
+        f.write("To do this the team commits to remaining transparent in all changes, to be open to discussion, feedback and criticism, and above all else, to strive to attain enjoyable play for all members of the competitive community, regardless of skill level.\n\n")
+        f.write("# Changes\n")
+
+        revision_name = "revision{}".format(mod_version)
+        if (is_beta):
+            f.write("*Please note changes in this mod are experimental and are not guaranteed to make it into a CompMod release.\n\n")
+            revision_name = "{}b{}".format(revision_name, beta_version)
+    
+        f.write('For a full list of changes from vanilla see [here](changelog "CompMod ChangeLog") or see [here](revisions/{0} "Latest Revision") for the most recent changes\n'.format(revision_name))
 
 def create_changelog_against_vanilla(c, curr_changelog, vanilla_version, short_name, long_name):
     # Create tree from table
