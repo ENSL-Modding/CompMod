@@ -1,0 +1,2 @@
+#Fixes & Improvements.Ambient Sound
+Sets the ambient sound modifier to 0, if the lowest option (20%) is chosen in the sound settings.

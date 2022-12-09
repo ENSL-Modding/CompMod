@@ -148,3 +148,6 @@ ModLoader.SetupFileHook("lua/Weapons/Marine/Shotgun.lua", "lua/CompMod/Weapons/M
 -- Shared Weapons
 ModLoader.SetupFileHook("lua/Weapons/DotMarker.lua", "lua/CompMod/Weapons/DotMarker.lua", "post")
 ModLoader.SetupFileHook("lua/Weapons/Weapon_Server.lua", "lua/CompMod/Weapons/Weapon_Server.lua", "post")
+
+-- Ambient Sound
+ModLoader.SetupFileHook("lua/AmbientSound.lua", "lua/CompMod/Sound/AmbientSound.lua", "post")
