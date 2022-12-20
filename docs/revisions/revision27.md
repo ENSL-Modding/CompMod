@@ -1,33 +1,24 @@
 <div style="width:100%;background-color:#373737;color:#FFFFFF;text-align:center">
 <div style="display:inline-block;float:left;padding-left:20%">
-<a href="revision25">
+<a href="revision26">
 [ <- Previous ]
 </a>
 </div>
 <div style="display:inline-block;">
-Revision 26
+Revision 27
 </div>
 <div style="display:inline-block;float:right;padding-right:20%">
-<a href="revision27">
 [ Next -> ]
-</a>
 </div>
 </div>
 
 <br />
 
-# CompMod revision 26 - (01/12/2022)
-## Alien
+# CompMod revision 27 - (20/12/2022)
+## Fixes & Improvements
 
-### Onos
-* BoneShield
-  * Lowered hitpoints to 500 from 1000
-
-## Marine
-
-### Structures
-* Phase Gate
-  * Remove server confirmed Phase Gates; this change is live in vanilla
+### Ambient Sound
+* Sets the ambient sound modifier to 0, if the lowest option (20%) is chosen in the sound settings.
 
 <br/>
 
