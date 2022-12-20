@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 26](revisions/revision26.md) and Vanilla Build 342
+# Changes between CompMod [revision 27](revisions/revision27.md) and Vanilla Build 343
 <br/>
 
 # Alien
@@ -296,6 +296,9 @@
 
 # Fixes & Improvements
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
+
+## Ambient Sound
+* Sets the ambient sound modifier to 0, if the lowest option (20%) is chosen in the sound settings.
 
 ## Armory HP Bar
 * Fixed a vanilla bug that caused the HP bar for the Armory/Advanced Armory to display at inconsistent heights
