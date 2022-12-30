@@ -1,4 +1,4 @@
-g_compModRevision = 27
+g_compModRevision = 28
 g_compModBeta = 0
 
 -- Bots
