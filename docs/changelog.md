@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 27](revisions/revision27.md) and Vanilla Build 343
+# Changes between CompMod [revision 28](revisions/revision28.md) and Vanilla Build 343
 <br/>
 
 # Alien
@@ -317,6 +317,9 @@
 
 ## Female Sprinting Sounds
 * Fixed a vanilla bug that caused the start and end sprinting sounds for the Female marine to be swapped
+
+## Hallucinations
+* Hallucination Lerks will no longer use Umbra or Spores
 
 ## IPs
 * Fixed bug where multiple IPs would sometimes spawn with few players

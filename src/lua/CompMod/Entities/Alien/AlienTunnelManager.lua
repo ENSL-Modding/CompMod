@@ -23,7 +23,7 @@ function AlienTunnelManager:GetTechDropped(techId)
     PROFILE("AlienTunnelManager:GetTechDropped")
     local techIndex = techId - kTechId.BuildTunnelEntryOne + 1
     if techIndex >= 1 and techIndex <= 8 then
-        return self[buttonIndexToNetVarMap[techIndex]] ~= 0
+        return self[buttonIndexToNetVarMap[techIndex]] ~= Entity.invalidId
     end
 
     return false

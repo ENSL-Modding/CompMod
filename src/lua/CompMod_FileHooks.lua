@@ -1,5 +1,8 @@
-g_compModRevision = 27
+g_compModRevision = 28
 g_compModBeta = 0
+
+-- Bots
+ModLoader.SetupFileHook("lua/bots/LerkBrain_Data.lua", "lua/CompMod/Bots/LerkBrain_Data.lua", "post")
 
 -- Alien Buy
 ModLoader.SetupFileHook("lua/AlienBuy_Client.lua", "lua/CompMod/Buy/Alien/AlienBuy_Client.lua", "post")
