@@ -11,7 +11,13 @@ def init_table(args):
 
 def update_database(args):
     conn, c = database.connect_to_database()
-    file_scanner.scan_for_docugen_files(conn, c, args.update_version)
+    file_scanner.scan_for_docugen_files(
+        conn, c, args.update_version,
+        local_balance_filepath=args.local_balance_filepath,
+        vanilla_balance_filepath=args.vanilla_balance_filepath,
+        vanilla_balance_health_filepath=args.vanilla_balance_health_filepath,
+        vanilla_balance_misc_filepath=args.vanilla_balance_misc_filepath
+    )
     print("Database updated successfully")
 
 def main():
@@ -28,6 +34,10 @@ def main():
 
     # Create parser for generate command
     parser_gen = subparsers.add_parser("gen", help='Generate changelogs')
+    parser_gen.add_argument('local_balance_filepath', type=str, help='Filepath to the local Balance.lua file')
+    parser_gen.add_argument('vanilla_balance_filepath', type=str, help='Filepath to the vanilla Balance.lua file')
+    parser_gen.add_argument('vanilla_balance_health_filepath', type=str, help='Filepath to the vanilla BalanceHealth.lua file')
+    parser_gen.add_argument('vanilla_balance_misc_filepath', type=str, help='Filepath to the vanilla BalanceMisc.lua file')
     parser_gen.add_argument('vanilla_version', type=int, help='Current version of the vanilla game')
     parser_gen.add_argument('mod_version', type=int, help='Current revision of your mod')
     parser_gen.add_argument('beta_version', nargs='?', default=0, type=int, help='Current beta version of your mod')
@@ -37,6 +47,10 @@ def main():
 
     # Create parser for update command
     parser_update = subparsers.add_parser("update", help='update help')
+    parser_update.add_argument('local_balance_filepath', type=str, help='Filepath to the local Balance.lua file')
+    parser_update.add_argument('vanilla_balance_filepath', type=str, help='Filepath to the vanilla Balance.lua file')
+    parser_update.add_argument('vanilla_balance_health_filepath', type=str, help='Filepath to the vanilla BalanceHealth.lua file')
+    parser_update.add_argument('vanilla_balance_misc_filepath', type=str, help='Filepath to the vanilla BalanceMisc.lua file')
     parser_update.add_argument('update_version', type=int, help='The mod version to update')
 
     args = parser.parse_args()

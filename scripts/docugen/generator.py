@@ -61,7 +61,7 @@ def generate_change_logs(args):
     create_index_page(mod_version, beta_version)
 
     # Populate database for new version
-    scan_for_docugen_files(conn, c, mod_version, beta_version)
+    scan_for_docugen_files(conn, c, mod_version, beta_version, args.local_balance_filepath, args.vanilla_balance_filepath, args.vanilla_balance_health_filepath, args.vanilla_balance_misc_filepath)
 
     # Grab changelogs
     curr_changelog = get_changelog(c, mod_version, beta_version)
