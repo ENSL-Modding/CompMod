@@ -3,9 +3,9 @@ Bonewall is no longer flammable
 
 #Alien.Commander Abilities.Adrenaline Rush
 Added new ability Adrenaline Rush to the Shift
-Costs 3 tres
-Duration 5 seconds
-Cooldown 5 seconds
+Costs {{kAdrenalineRushCost}} tres to cast
+Duration {{kAdrenalineRushDuration}} seconds
+Cooldown {{kAdrenalineRushCooldown}} seconds
 When active increases range and output time of nearby PvE
->Increases range by 25%
->Increases output time by 10% (Whips attack 10% faster, Crags heal 10% faster, etc)
+>Increases range by {{kAdrenalineRushRangeScalar, format=%}}
+>Increases output time by {{kAdrenalineRushIntervalScalar, format=%}} (Whips attack {{kAdrenalineRushIntervalScalar, format=%}} faster, Crags heal {{kAdrenalineRushIntervalScalar, format=%}} faster, etc)

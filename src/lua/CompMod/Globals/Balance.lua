@@ -95,6 +95,10 @@ kAlienStructureOutOfCombatMoveScalar = 1.10
 
 kAdrenalineRushRangeScalar = 0.25
 kAdrenalineRushIntervalScalar = 0.1
+kAdrenalineRushDuration = 5
+kAdrenalineRushCooldown = 5
+kAdrenalineRushTotalCooldown = kAdrenalineRushDuration + kAdrenalineRushCooldown
+kAdrenalineRushCost = 3
 
 kLerkHealth = 170 -- 180
 
