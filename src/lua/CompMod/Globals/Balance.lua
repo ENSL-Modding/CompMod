@@ -24,8 +24,6 @@ kSpikeSpread = Math.Radians(3.8)
 
 kUmbraResearchTime = 105 -- 45
 
-kLerkBiteVampirismScalar = 0.02 --0.0267
-
 kMucousMembraneAbilityCooldown = 1
 
 kSkulkMucousShieldPercent = 0.2
