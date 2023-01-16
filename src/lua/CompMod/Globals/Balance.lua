@@ -22,7 +22,6 @@ kHealingClampReductionScalar = 0.20
 kSpikeDamage = 6
 kSpikeSpread = Math.Radians(3.8)
 
-kUmbraResearchCost = 30 --20
 kUmbraResearchTime = 105 -- 45
 
 kLerkBiteVampirismScalar = 0.02 --0.0267
