@@ -58,9 +58,6 @@ kARCDeployedHealth = 1800
 kAdvancedArmoryUpgradeCost = 15
 kAdvancedArmoryResearchTime = 45
 
-kHeavyMachineGunDamage = 7
-kHeavyMachineGunSpread = Math.Radians(3.2)
-
 kMACCost = 4 --5
 
 kMedpackHeal = 50 -- 25
