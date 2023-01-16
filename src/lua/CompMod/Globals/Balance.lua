@@ -21,7 +21,6 @@ kHealingClampReductionScalar = 0.20
 
 kSpikeDamage = 6
 kSpikeSpread = Math.Radians(3.8)
-kSpikeSize = 0.045
 
 kUmbraResearchCost = 30 --20
 kUmbraResearchTime = 105 -- 45
