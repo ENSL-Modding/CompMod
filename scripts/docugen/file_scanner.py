@@ -94,6 +94,7 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
             to_val = str(round(float(to_val) * 100, 2)) + "%"
             from_val = str(round(float(from_val) * 100, 2)) + "%"
 
-        key_entry = "{0} {1} to {2} {3} from {4} {3}".format(verb, desc, to_val, suffix, from_val)
+        suffix_space = " " if len(suffix) > 0 else ""
+        key_entry = "{0} {1} to {2}{3}{4} from {5} {4}".format(verb, desc, to_val, suffix_space, suffix, from_val)
     
     return key_entry
