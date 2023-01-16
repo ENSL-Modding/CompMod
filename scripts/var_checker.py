@@ -8,23 +8,27 @@ re_comments = re.compile("--.*\n")
 def check_for_unique_var_usage(var, compmod_src_path):
     for (dirpath, dirnames, filenames) in os.walk(compmod_src_path):
         for file in filenames:
-            if file.endswith(".lua") and file != "Balance.lua":
-                if check_for_var_in_file(var, os.path.join(dirpath, file)):
+            if file.endswith(".lua"):
+                if check_for_var_in_file(var, os.path.join(dirpath, file), balancefile=(file == "Balance.lua")):
                     return True
 
 
     return False
 
 
-def check_for_var_in_file(var : str, filepath : str ):
+def check_for_var_in_file(var : str, filepath : str, balancefile : bool = False):
     data = None
     with open(filepath, "r") as f:
         data = f.read()
 
     data = re_comments.sub("", data)
-    data = data.replace("\n", " ")
+    # We want to retain the newline data for the regex matching, otherwise it gets difficult to determine what's on the rhs of the equals sign
+    # data = data.replace("\n", " ")
 
-    return data.find(var) != -1
+    if balancefile:
+        return re.match("[^ ]+ += +.*{}".format(var), data) != None
+    else:
+        return data.find(var) != -1
 
 
 def main():
