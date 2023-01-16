@@ -33,11 +33,6 @@ kFadeMucousShieldPercent = 0.16
 kOnosMucousShieldPercent = 0.09
 kMucousShieldMaxAmount = 85
 
-kEchoVeilCost = 2
-kEchoSpurCost = 2
-kEchoShellCost = 2
-kEchoEggCost = 1
-
 kLeapEnergyCost = 55
 
 kAdrenalineAbilityMaxEnergy = kAbilityMaxEnergy

@@ -7,10 +7,6 @@ Decreased build time on Shift hive by 20%
 #Alien.Structures.Movement
 Structures will move 10% faster when not under attack
 
-#Alien.Structures.Shift.Echo
-Echo cost for upgrades increased to 2 from 1
-Echo cost for eggs reduced to 1 from 2
-
 #Alien.Structures.Tunnels
 Tunnels are infested tunnels by default
 Decreased height check for tunnel placement
