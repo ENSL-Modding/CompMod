@@ -80,7 +80,6 @@ kShotgunWeapons1DamageScalar = 1 + kShotgunDamagePerUpgradeScalar
 kShotgunWeapons2DamageScalar = 1 + kShotgunDamagePerUpgradeScalar * 2
 kShotgunWeapons3DamageScalar = 1 + kShotgunDamagePerUpgradeScalar * 3
 
-kMACSupply = 15 --5
 kSentrySupply = 15 -- 10
 kObservatorySupply = 30 -- 25
 kSentryBatterySupply = 25 -- 15
