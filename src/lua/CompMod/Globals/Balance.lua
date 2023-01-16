@@ -53,7 +53,6 @@ kDemolitionsTechResearchTime = 30
 
 kARCHealth = 1800
 kARCArmor = 500
-kARCPointValue = 5
 kARCDeployedHealth = 1800
 
 kAdvancedArmoryUpgradeCost = 15
