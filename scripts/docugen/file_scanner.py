@@ -60,15 +60,30 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_balance_fil
     conn.commit()
 
 
-re_dynamic_vars = re.compile("\{\{(.*)\}\}")
+re_dynamic_vars = re.compile("\{\{([^ ]+(?:, ?[^ ]+))\}\}")
 re_generated_statements = re.compile("^>*!(.*)$")
 def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dict):
     dynamic_vars = re_dynamic_vars.findall(key_entry)
     generated_statements = re_generated_statements.findall(key_entry)
 
     # Replace dynamic vars with their values
-    for var in dynamic_vars:
-        key_entry = key_entry.replace("{{{{{}}}}}".format(var), local_tokens[var])
+    for s in dynamic_vars:
+        value = None
+        if s.find(",") != -1:
+            var = s[0:s.index(",")]
+            for m in re.finditer("([^ ]+)=([^,$]*)(?=,|$)", s):
+                (name,value) = m.groups()
+                
+                if name == "format":
+                    fmt = value
+
+            value = local_tokens[var]
+            if fmt == "%":
+                value = str(round(float(value), 2) * 100) + "%"
+        else:
+            value = local_tokens[s]
+
+        key_entry = key_entry.replace("{{{{{}}}}}".format(s), value)
     
     for s in generated_statements:
         desc = None
