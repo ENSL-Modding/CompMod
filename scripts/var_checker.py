@@ -5,18 +5,18 @@ from variable_parser import var_parser
 
 re_comments = re.compile("--.*\n")
 
-def check_for_unique_var_usage(var, compmod_src_path):
+def check_for_unique_var_usage(var, compmod_src_path, compmod_tokens):
     for (dirpath, dirnames, filenames) in os.walk(compmod_src_path):
         for file in filenames:
             if file.endswith(".lua"):
-                if check_for_var_in_file(var, os.path.join(dirpath, file), balancefile=(file == "Balance.lua")):
+                if check_for_var_in_file(var, os.path.join(dirpath, file), file == "Balance.lua", compmod_tokens):
                     return True
 
 
     return False
 
 
-def check_for_var_in_file(var : str, filepath : str, balancefile : bool = False):
+def check_for_var_in_file(var : str, filepath : str, balancefile : bool, compmod_tokens : dict):
     data = None
     with open(filepath, "r") as f:
         data = f.read()
@@ -26,7 +26,10 @@ def check_for_var_in_file(var : str, filepath : str, balancefile : bool = False)
     # data = data.replace("\n", " ")
 
     if balancefile:
-        return re.match("[^ ]+ += +.*{}".format(var), data) != None
+        # Look for token in value of any compmod_token
+        for value in compmod_tokens.values():
+            if var in value:
+                return True
     else:
         return data.find(var) != -1
 
@@ -39,7 +42,7 @@ def main():
     for var in compmod_tokens:
         c_value = compmod_tokens[var]
         if not var in vanilla_tokens:
-            if not check_for_unique_var_usage(var, compmod_src_path):
+            if not check_for_unique_var_usage(var, compmod_src_path, compmod_tokens):
                 print("Warning: {} is not in vanilla and is not used in CompMod".format(var))
             continue
 
