@@ -85,8 +85,6 @@ kRoboticsFactorySupply = 15 --5
 
 kWeaponStayTime = 18
 
-kPhaseGateHealth = 1500
-kPhaseGateArmor = 800
 kPhaseGateHealth = 1300
 kPhaseGateArmor = 900
 
