@@ -35,8 +35,6 @@ kMucousShieldMaxAmount = 85
 
 kLeapEnergyCost = 55
 
-kAdrenalineAbilityMaxEnergy = kAbilityMaxEnergy
-
 kSkulkNeurotoxinDamage = 7
 kGorgeNeurotoxinDamage = 6
 kLerkNeurotoxinDamage = 5
