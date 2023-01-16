@@ -17,9 +17,6 @@ kWebMaxCharges = 0 --3
 
 kWebbedDuration = 2.5 --5
 
-kTunnelEntranceCost = 8
-kTunnelExitCost = 8
-
 kHealingClampMaxHPAmount = 0.12
 kHealingClampReductionScalar = 0.20
 
