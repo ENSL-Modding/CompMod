@@ -88,6 +88,12 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
         to_val = local_tokens[var]
         from_val = vanilla_tokens[var]
 
+        # Perform any value modifications here before we figure out the verb
+        if fmt == "-%":
+            to_val = 1 - float(to_val)
+            from_val = 1 - float(from_val)
+            fmt = "%"
+
         verb = "Decreased" if to_val < from_val else "Increased"
 
         if fmt == '%':

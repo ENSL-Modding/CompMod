@@ -1,2 +1,2 @@
 #Alien.Healing Cap
-Additional healing after soft cap increased to 80% reduction from 66%
+!kHealingClampReductionScalar, description=additional healing after softcap, format=-%
