@@ -46,8 +46,6 @@ kAlienMinRegeneration = 5
 kBiteLeapVampirismScalar = 0.0377 -- 0.0466 (4.66%)
 
 kAdvancedArmoryHealth = 2000 --3000
-kAdvancedArmoryArmor = 500 -- this has no effect due to a bug
-kAdvancedArmoryPointValue = 10
 
 -- Demolitions includes flamethrower and grenade launcher
 kDemolitionsTechResearchCost = 15
