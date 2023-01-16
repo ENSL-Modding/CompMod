@@ -67,9 +67,6 @@ kMarineRegenerationHeal = 0 -- 25
 -- Lower player nanoshield duration to 2 from 3
 kNanoShieldPlayerDuration = 2
 
-kRoboticsFactoryCost = 5 --10
-kUpgradeRoboticsFactoryCost = 10 --5
-
 kSentryCost = 6 -- 5
 
 kConfusedSentryBaseROF = 4.0 --2.0
