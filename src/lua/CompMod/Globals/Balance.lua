@@ -17,7 +17,6 @@ kWebMaxCharges = 0 --3
 
 kWebbedDuration = 2.5 --5
 
-kHealingClampMaxHPAmount = 0.12
 kHealingClampReductionScalar = 0.20
 
 kSpikeDamage = 6
