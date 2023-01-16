@@ -4,9 +4,6 @@ Upgrades the normal swipe damage to 81 from 75
 Can be researched at Biomass 7
 Costs 25 tres and takes 60 seconds to research
 
-#Alien.Fade.Blink
-Lowered Blink energy cost to 12 from 14
-
 #Alien.Fade.Swipe
 Tweaked damage
 >Swipe damage increased to 75 from 37.5
