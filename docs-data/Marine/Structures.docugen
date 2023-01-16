@@ -5,9 +5,6 @@ Research time decreased to 45 seconds from 90 seconds
 Now heals Marine armour
 > Heals 15 armour per tick
 
-#Marine.Structures.Observatory
-Changed build time to 10 seconds from 15 seconds
-
 #Marine.Structures.Phase Gate
 Health decreased to 1300 from 1500
 Armor increased to 900 from 800

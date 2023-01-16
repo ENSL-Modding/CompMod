@@ -67,8 +67,6 @@ kMarineRegenerationHeal = 0 -- 25
 -- Lower player nanoshield duration to 2 from 3
 kNanoShieldPlayerDuration = 2
 
-kObservatoryBuildTime = 10
-
 kPrototypeLabCost = 25 -- 35
 
 kRoboticsFactoryCost = 5 --10
