@@ -15,7 +15,7 @@ def insert_to_database(c, mod_version, beta_version, key, key_data):
         else:
             c.execute("INSERT INTO FullChangelog(modVersion, key, value) VALUES (?,?,?)", [mod_version, key, value.strip()])
 
-def scan_for_docugen_files(conn, c, mod_version, beta_version, local_balance_filepath, vanilla_balance_filepath, vanilla_balance_health_filepath, vanilla_balance_misc_filepath):
+def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, vanilla_src_path, local_balance_filepath, vanilla_balance_filepath, vanilla_balance_health_filepath, vanilla_balance_misc_filepath):
     local_tokens, vanilla_tokens = var_parser.parse_local_and_vanilla(local_balance_filepath, vanilla_balance_filepath, vanilla_balance_health_filepath, vanilla_balance_misc_filepath)
 
 
@@ -50,7 +50,7 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_balance_fil
                         key = line[1:].strip()
                         key_data = []
                     else:
-                        key_entry = process_key_entry(line.strip(), local_tokens, vanilla_tokens)
+                        key_entry = process_key_entry(line.strip(), local_tokens, vanilla_tokens, local_src_path, vanilla_src_path)
                         key_data.append(key_entry)
                 
                 # Process the last key if there is one
@@ -60,9 +60,9 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_balance_fil
     conn.commit()
 
 
-re_dynamic_vars = re.compile("\{\{([^ ]+(?:, ?[^ ]+))\}\}")
+re_dynamic_vars = re.compile("\{\{([^ ]+(?:, ?[^ ]+)*)\}\}")
 re_generated_statements = re.compile("^>*!(.*)$")
-def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dict):
+def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dict, local_src_path : str, vanilla_src_path : str):
     dynamic_vars = re_dynamic_vars.findall(key_entry)
     generated_statements = re_generated_statements.findall(key_entry)
 
@@ -77,11 +77,22 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
                 if name == "format":
                     fmt = value
 
-            value = local_tokens[var]
+            if var.find(":") != -1:
+                (filename, varname) = var.split(":")
+
+                value = find_val_in_file(filename, varname, local_src_path)
+            else:
+                value = local_tokens[var]
+
             if fmt == "%":
                 value = str(round(float(value), 2) * 100) + "%"
         else:
-            value = local_tokens[s]
+            if s.find(":") != -1:
+                (filename, varname) = s.split(":")
+
+                value = find_val_in_file(filename, varname, local_src_path)
+            else:
+                value = local_tokens[s]
 
         key_entry = key_entry.replace("{{{{{}}}}}".format(s), value)
     
@@ -89,8 +100,9 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
         desc = None
         fmt = None
         suffix = ""
+        additional_lookup = None
 
-        var = s[0:s.index(",")]
+        var : str = s[0:s.index(",")]
         for m in re.finditer("([^ ]+)=([^,$]*)(?=,|$)", s):
             (name,value) = m.groups()
             
@@ -100,8 +112,25 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
                 fmt = value
             elif name == "suffix":
                 suffix = value
-        to_val = local_tokens[var]
-        from_val = vanilla_tokens[var]
+            elif name == "additional_lookup":
+                additional_lookup = value.lower()
+
+        to_val = None
+        from_val = None
+
+        if var.find(":") != -1:
+            (filename, varname) = var.split(":")
+
+            to_val = find_val_in_file(filename, varname, local_src_path)
+            from_val = find_val_in_file(filename, varname, vanilla_src_path)
+        else:
+            to_val = local_tokens[var]
+            from_val = vanilla_tokens[var]
+
+        if additional_lookup == "vanilla":
+            from_val = vanilla_tokens[from_val]
+        elif additional_lookup == "compmod":
+            to_val = local_tokens[to_val]
 
         # Perform any value modifications here before we figure out the verb
         if fmt == "-%":
@@ -119,3 +148,28 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
         key_entry = "{0} {1} to {2}{3}{4} from {5} {4}".format(verb, desc, to_val, suffix_space, suffix, from_val)
     
     return key_entry
+
+
+re_comments = re.compile("--.*$")
+def find_val_in_file(filename : str, varname : str, src_path : str):
+    re_custom_var = re.compile("{} *= *(.+)$".format(varname))
+    for (dirpath, dirnames, filenames) in os.walk(src_path):
+        if not filename in filenames:
+            continue
+
+        target_filepath = os.path.join(dirpath, filename)
+
+        data = None
+        with open(target_filepath, "r") as f:
+            data = f.readlines()
+
+        for line in data:
+            line = re_comments.sub("", line)
+            m = re_custom_var.match(line)
+            if not m:
+                continue
+
+            value = m.groups()[0].strip()
+            return value
+
+    return None

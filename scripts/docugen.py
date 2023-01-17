@@ -13,6 +13,8 @@ def update_database(args):
     conn, c = database.connect_to_database()
     file_scanner.scan_for_docugen_files(
         conn, c, args.update_version,
+        local_src_path=args.local_src_path,
+        vanilla_src_path=args.vanilla_src_path,
         local_balance_filepath=args.local_balance_filepath,
         vanilla_balance_filepath=args.vanilla_balance_filepath,
         vanilla_balance_health_filepath=args.vanilla_balance_health_filepath,
@@ -34,6 +36,8 @@ def main():
 
     # Create parser for generate command
     parser_gen = subparsers.add_parser("gen", help='Generate changelogs')
+    parser_gen.add_argument('local_src_path', type=str, help='Filepath to the local src directory')
+    parser_gen.add_argument('vanilla_src_path', type=str, help='Filepath to the vanilla src directory')
     parser_gen.add_argument('local_balance_filepath', type=str, help='Filepath to the local Balance.lua file')
     parser_gen.add_argument('vanilla_balance_filepath', type=str, help='Filepath to the vanilla Balance.lua file')
     parser_gen.add_argument('vanilla_balance_health_filepath', type=str, help='Filepath to the vanilla BalanceHealth.lua file')
@@ -47,6 +51,8 @@ def main():
 
     # Create parser for update command
     parser_update = subparsers.add_parser("update", help='update help')
+    parser_update.add_argument('local_src_path', type=str, help='Filepath to the local src directory')
+    parser_update.add_argument('vanilla_src_path', type=str, help='Filepath to the vanilla src directory')
     parser_update.add_argument('local_balance_filepath', type=str, help='Filepath to the local Balance.lua file')
     parser_update.add_argument('vanilla_balance_filepath', type=str, help='Filepath to the vanilla Balance.lua file')
     parser_update.add_argument('vanilla_balance_health_filepath', type=str, help='Filepath to the vanilla BalanceHealth.lua file')

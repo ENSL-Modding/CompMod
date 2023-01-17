@@ -21,8 +21,8 @@ echo -en "\n"
 
 # Generate docs
 if [ "$current_beta_revision" -eq 0 ]; then
-    python3 scripts/docugen.py gen src/lua/CompMod/Globals/Balance.lua $install_path/ns2/lua/Balance.lua $install_path/ns2/lua/BalanceHealth.lua $install_path/ns2/lua/BalanceMisc.lua $vanilla_build $current_revision
+    python3 scripts/docugen.py gen src/lua $install_path/ns2/lua src/lua/CompMod/Globals/Balance.lua $install_path/ns2/lua/Balance.lua $install_path/ns2/lua/BalanceHealth.lua $install_path/ns2/lua/BalanceMisc.lua $vanilla_build $current_revision
 else
-    python3 scripts/docugen.py gen src/lua/CompMod/Globals/Balance.lua $install_path/ns2/lua/Balance.lua $install_path/ns2/lua/BalanceHealth.lua $install_path/ns2/lua/BalanceMisc.lua $vanilla_build $current_revision $current_beta_revision
+    python3 scripts/docugen.py gen src/lua $install_path/ns2/lua src/lua/CompMod/Globals/Balance.lua $install_path/ns2/lua/Balance.lua $install_path/ns2/lua/BalanceHealth.lua $install_path/ns2/lua/BalanceMisc.lua $vanilla_build $current_revision $current_beta_revision
 fi
 test "$?" || { echo "ERROR: Docugen returned a non-zero return-code"; exit 1; }
