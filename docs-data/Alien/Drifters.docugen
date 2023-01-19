@@ -1,9 +1,9 @@
 #Alien.Drifters
-Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
-Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
+!kDrifterDetectRange, description=Drifter detection range
+>This will cause Drifters to uncloak from further away
 
 #Alien.Drifters.Abilities.Enzyme
-Reduced cooldown from 12 seconds to 1 second
+!kEnzymeCloudAbilityCooldown, description=cooldown, suffix=seconds, suffix_singular=second
 
 #Alien.Drifters.Abilities.Hallucinations
 No longer affected by mucous
@@ -11,11 +11,10 @@ Can no longer have babblers attached
 Reduced Onos HP to 100 eHP
 
 #Alien.Drifters.Abilities.Mucous
-Reduced cooldown to 1 second from 12 seconds
-Reduced cloud radius from 8 to 5 (reduces area by 60%)
+!kMucousMembraneAbilityCooldown, description=cooldown, suffix=seconds, suffix_singular=second
 Added per-lifeform shield values:
->Skulk: 20% (15 HP)
->Gorge: 13% (20 HP)
->Lerk: 14% (24 HP)
->Fade: 16% (40 HP)
->Onos: 9% (63 HP)
+>Skulk: {{kSkulkMucousShieldPercent, format=%}} of base health
+>Gorge: {{kGorgeMucousShieldPercent, format=%}} of base health
+>Lerk: {{kLerkMucousShieldPercent, format=%}} of base health
+>Fade: {{kFadeMucousShieldPercent, format=%}} of base health
+>Onos: {{kOnosMucousShieldPercent, format=%}} of base health

@@ -27,7 +27,6 @@ ModLoader.SetupFileHook("lua/Player_Client.lua", "lua/CompMod/Classes/Player/Pla
 
 -- Alien Comm Abilities
 ModLoader.SetupFileHook("lua/CommAbilities/Alien/BoneWall.lua", "lua/CompMod/CommAbilities/Alien/BoneWall.lua", "post")
-ModLoader.SetupFileHook("lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CompMod/CommAbilities/Alien/MucousMembrane.lua", "post")
 
 -- Console Commands
 ModLoader.SetupFileHook("lua/NS2ConsoleCommands_Server.lua", "lua/CompMod/ConsoleCommands/NS2ConsoleCommands_Server.lua", "replace")
