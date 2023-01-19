@@ -100,6 +100,7 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
         desc = None
         fmt = None
         suffix = ""
+        suffix_singular = None
         additional_lookup = None
 
         var : str = s[0:s.index(",")]
@@ -112,8 +113,13 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
                 fmt = value
             elif name == "suffix":
                 suffix = value
+            elif name == "suffix_singular":
+                suffix_singular = value
             elif name == "additional_lookup":
                 additional_lookup = value.lower()
+
+        if suffix_singular and not suffix:
+            raise Exception("Must provide suffix when using suffix_singular")
 
         to_val = None
         from_val = None
@@ -131,6 +137,8 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
             from_val = vanilla_tokens[from_val]
         elif additional_lookup == "compmod":
             to_val = local_tokens[to_val]
+        elif additional_lookup:
+            raise Exception("Invalid additional_lookup")
 
         # Perform any value modifications here before we figure out the verb
         if fmt == "-%":
@@ -144,8 +152,18 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
             to_val = str(round(float(to_val) * 100, 2)) + "%"
             from_val = str(round(float(from_val) * 100, 2)) + "%"
 
-        suffix_space = " " if len(suffix) > 0 else ""
-        key_entry = "{0} {1} to {2}{3}{4} from {5} {4}".format(verb, desc, to_val, suffix_space, suffix, from_val)
+        to_suffix = suffix
+        from_suffix = suffix
+
+        if to_val.isdigit() and int(to_val) == 1:
+            to_suffix = suffix_singular
+
+        if from_val.isdigit() and int(from_val) == 1:
+            from_suffix = suffix_singular
+
+        to_suffix_space = " " if len(to_suffix) > 0 else ""
+        from_suffix_space = " " if len(from_suffix) > 0 else ""
+        key_entry = "{0} {1} to {2}{3}{4} from {5}{6}{7}".format(verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
     
     return key_entry
 
