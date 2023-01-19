@@ -61,7 +61,7 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, v
 
 
 re_dynamic_vars = re.compile("\{\{([^ ]+(?:, ?[^ ]+)*)\}\}")
-re_generated_statements = re.compile("^>*!(.*)$")
+re_generated_statements = re.compile("^(>*)!(.*)$")
 def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dict, local_src_path : str, vanilla_src_path : str):
     dynamic_vars = re_dynamic_vars.findall(key_entry)
     generated_statements = re_generated_statements.findall(key_entry)
@@ -69,6 +69,7 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
     # Replace dynamic vars with their values
     for s in dynamic_vars:
         value = None
+        source = None
         if s.find(",") != -1:
             var = s[0:s.index(",")]
             for m in re.finditer("([^ ]+)=([^,$]*)(?=,|$)", s):
@@ -76,27 +77,46 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
                 
                 if name == "format":
                     fmt = value
+                if name == "source":
+                    source = value.lower()
 
             if var.find(":") != -1:
                 (filename, varname) = var.split(":")
 
                 value = find_val_in_file(filename, varname, local_src_path)
             else:
-                value = local_tokens[var]
+                if source:
+                    if source == "vanilla":
+                        value = vanilla_tokens[var]
+                    elif source == "compmod":
+                        value = local_tokens[var]
+                else:
+                    value = local_tokens[var]
 
             if fmt == "%":
                 value = str(round(float(value) * 100, 2)) + "%"
+
+            if fmt == "DamageType":
+                print(value)
+                value = value.replace("kDamageType.", "")
+                print(value)
         else:
             if s.find(":") != -1:
                 (filename, varname) = s.split(":")
 
                 value = find_val_in_file(filename, varname, local_src_path)
             else:
-                value = local_tokens[s]
+                if source:
+                    if source == "vanilla":
+                        value = vanilla_tokens[s]
+                    elif source == "compmod":
+                        value = local_tokens[s]
+                else:
+                    value = local_tokens[s]
 
         key_entry = key_entry.replace("{{{{{}}}}}".format(s), value)
     
-    for s in generated_statements:
+    for (indent,s) in generated_statements:
         desc = None
         fmt = None
         suffix = ""
@@ -152,6 +172,10 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
             to_val = str(round(float(to_val) * 100, 2)) + "%"
             from_val = str(round(float(from_val) * 100, 2)) + "%"
 
+        if fmt == "DamageType":
+            to_val = to_val.replace("kDamageType.", "")
+            from_val = from_val.replace("kDamageType.", "")
+
         to_suffix = suffix
         from_suffix = suffix
 
@@ -163,7 +187,7 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
 
         to_suffix_space = " " if len(to_suffix) > 0 else ""
         from_suffix_space = " " if len(from_suffix) > 0 else ""
-        key_entry = "{0} {1} to {2}{3}{4} from {5}{6}{7}".format(verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
+        key_entry = "{}{} {} to {}{}{} from {}{}{}".format(indent, verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
     
     return key_entry
 
