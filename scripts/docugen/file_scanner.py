@@ -85,7 +85,7 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
                 value = local_tokens[var]
 
             if fmt == "%":
-                value = str(round(float(value), 2) * 100) + "%"
+                value = str(round(float(value) * 100, 2)) + "%"
         else:
             if s.find(":") != -1:
                 (filename, varname) = s.split(":")
