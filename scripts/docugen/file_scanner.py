@@ -60,13 +60,24 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, v
     conn.commit()
 
 
-re_dynamic_vars = re.compile("\{\{([^ ]+(?:, ?[^ ]+)*)\}\}")
+re_dynamic_vars = re.compile("\{\{([^ ]+(?:, *[^ ]+ *= *[^$,]+)*)\}\}")
 re_generated_statements = re.compile("^(>*)!(.*)$")
 def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dict, local_src_path : str, vanilla_src_path : str):
     dynamic_vars = re_dynamic_vars.findall(key_entry)
-    generated_statements = re_generated_statements.findall(key_entry)
+    if dynamic_vars:
+        return process_dynamic_var(key_entry, dynamic_vars, local_tokens, vanilla_tokens, local_src_path)
+    
+    m = re_generated_statements.search(key_entry)
+    if m:
+        (indent, s) = m.groups()
+        return process_generated_statement(indent, s, local_tokens, vanilla_tokens, local_src_path, vanilla_src_path)
 
-    # Replace dynamic vars with their values
+    return key_entry
+
+
+
+# Replace dynamic vars with their values
+def process_dynamic_var(key_entry : str, dynamic_vars : list, local_tokens : dict, vanilla_tokens : dict, local_src_path : str):
     for s in dynamic_vars:
         value = None
         source = None
@@ -116,80 +127,84 @@ def process_key_entry(key_entry : str, local_tokens : dict, vanilla_tokens : dic
 
         key_entry = key_entry.replace("{{{{{}}}}}".format(s), value)
     
-    for (indent,s) in generated_statements:
-        desc = None
-        fmt = None
-        suffix = ""
-        suffix_singular = None
-        additional_lookup = None
+    return key_entry
 
-        var : str = s[0:s.index(",")]
-        for m in re.finditer("([^ ]+)=([^,$]*)(?=,|$)", s):
-            (name,value) = m.groups()
-            
-            if name == "description":
-                desc = value
-            elif name == "format":
-                fmt = value
-            elif name == "suffix":
-                suffix = value
-            elif name == "suffix_singular":
-                suffix_singular = value
-            elif name == "additional_lookup":
-                additional_lookup = value.lower()
+def process_generated_statement(indent : str, s : str, local_tokens : dict, vanilla_tokens : dict, local_src_path : str, vanilla_src_path : str):
+    desc = None
+    fmt = None
+    suffix = ""
+    suffix_singular = None
+    additional_lookup = None
 
-        if suffix_singular and not suffix:
-            raise Exception("Must provide suffix when using suffix_singular")
+    var = s[0:s.index(",")]
+    for m in re.finditer("([^ ]+)=([^,$]*)(?=,|$)", s):
+        (name,value) = m.groups()
+        
+        if name == "description":
+            desc = value
+        elif name == "format":
+            fmt = value
+        elif name == "suffix":
+            suffix = value
+        elif name == "suffix_singular":
+            suffix_singular = value
+        elif name == "additional_lookup":
+            additional_lookup = value.lower()
 
-        to_val = None
-        from_val = None
+    if suffix_singular and not suffix:
+        raise Exception("Must provide suffix when using suffix_singular")
 
-        if var.find(":") != -1:
-            (filename, varname) = var.split(":")
+    to_val = None
+    from_val = None
 
-            to_val = find_val_in_file(filename, varname, local_src_path)
-            from_val = find_val_in_file(filename, varname, vanilla_src_path)
-        else:
-            to_val = local_tokens[var]
-            from_val = vanilla_tokens[var]
+    if var.find(":") != -1:
+        (filename, varname) = var.split(":")
 
-        if additional_lookup == "vanilla":
-            from_val = vanilla_tokens[from_val]
-        elif additional_lookup == "compmod":
-            to_val = local_tokens[to_val]
-        elif additional_lookup:
-            raise Exception("Invalid additional_lookup")
+        to_val = find_val_in_file(filename, varname, local_src_path)
+        from_val = find_val_in_file(filename, varname, vanilla_src_path)
+    else:
+        to_val = local_tokens[var]
+        from_val = vanilla_tokens[var]
 
-        # Perform any value modifications here before we figure out the verb
-        if fmt == "-%":
-            to_val = 1 - float(to_val)
-            from_val = 1 - float(from_val)
-            fmt = "%"
+    if additional_lookup == "vanilla":
+        from_val = vanilla_tokens[from_val]
+    elif additional_lookup == "compmod":
+        to_val = local_tokens[to_val]
+    elif additional_lookup:
+        raise Exception("Invalid additional_lookup")
 
-        verb = "Decreased" if to_val < from_val else "Increased"
+    # Perform any value modifications here before we figure out the verb
+    if fmt == "-%":
+        to_val = 1 - float(to_val)
+        from_val = 1 - float(from_val)
+        fmt = "%"
 
         if fmt == '%':
             to_val = str(round(float(to_val) * 100, 2)) + "%"
             from_val = str(round(float(from_val) * 100, 2)) + "%"
 
-        if fmt == "DamageType":
-            to_val = to_val.replace("kDamageType.", "")
-            from_val = from_val.replace("kDamageType.", "")
+    verb = "Decreased" if to_val < from_val else "Increased"
 
-        to_suffix = suffix
-        from_suffix = suffix
+    if fmt == '%':
+        to_val = str(round(float(to_val) * 100, 2)) + "%"
+        from_val = str(round(float(from_val) * 100, 2)) + "%"
 
-        if to_val.isdigit() and int(to_val) == 1:
-            to_suffix = suffix_singular
+    if fmt == "DamageType":
+        to_val = to_val.replace("kDamageType.", "")
+        from_val = from_val.replace("kDamageType.", "")
 
-        if from_val.isdigit() and int(from_val) == 1:
-            from_suffix = suffix_singular
+    to_suffix = suffix
+    from_suffix = suffix
 
-        to_suffix_space = " " if len(to_suffix) > 0 else ""
-        from_suffix_space = " " if len(from_suffix) > 0 else ""
-        key_entry = "{}{} {} to {}{}{} from {}{}{}".format(indent, verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
-    
-    return key_entry
+    if to_val.isdigit() and int(to_val) == 1:
+        to_suffix = suffix_singular
+
+    if from_val.isdigit() and int(from_val) == 1:
+        from_suffix = suffix_singular
+
+    to_suffix_space = " " if len(to_suffix) > 0 else ""
+    from_suffix_space = " " if len(from_suffix) > 0 else ""
+    return "{}{} {} to {}{}{} from {}{}{}".format(indent, verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
 
 
 re_comments = re.compile("--.*$")
