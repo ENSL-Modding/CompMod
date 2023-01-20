@@ -104,13 +104,15 @@ def process_dynamic_var(key_entry : str, dynamic_vars : list, local_tokens : dic
                 else:
                     value = local_tokens[var]
 
+            if fmt == "Scalar":
+                value = float(value) - 1
+                fmt = "%"
+
             if fmt == "%":
                 value = str(round(float(value) * 100, 2)) + "%"
 
             if fmt == "DamageType":
-                print(value)
                 value = value.replace("kDamageType.", "")
-                print(value)
         else:
             if s.find(":") != -1:
                 (filename, varname) = s.split(":")
@@ -179,9 +181,10 @@ def process_generated_statement(indent : str, s : str, local_tokens : dict, vani
         from_val = 1 - float(from_val)
         fmt = "%"
 
-        if fmt == '%':
-            to_val = str(round(float(to_val) * 100, 2)) + "%"
-            from_val = str(round(float(from_val) * 100, 2)) + "%"
+    if fmt == "Scalar":
+        to_val = float(to_val) - 1
+        from_val = float(from_val) - 1
+        fmt = "%"
 
     verb = "Decreased" if to_val < from_val else "Increased"
 
