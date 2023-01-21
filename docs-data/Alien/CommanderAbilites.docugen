@@ -7,5 +7,5 @@ Costs {{kAdrenalineRushCost}} tres to cast
 Duration {{kAdrenalineRushDuration}} seconds
 Cooldown {{kAdrenalineRushCooldown}} seconds
 When active increases range and output time of nearby PvE
->Increases range by {{kAdrenalineRushRangeScalar, format=%}}
->Increases output time by {{kAdrenalineRushIntervalScalar, format=%}} (Whips attack {{kAdrenalineRushIntervalScalar, format=%}} faster, Crags heal {{kAdrenalineRushIntervalScalar, format=%}} faster, etc)
+>Increases range by {{kAdrenalineRushRangeScalar, format=Percent}}
+>Increases output time by {{kAdrenalineRushIntervalScalar, format=Percent}} (Whips attack {{kAdrenalineRushIntervalScalar, format=Percent}} faster, Crags heal {{kAdrenalineRushIntervalScalar, format=Percent}} faster, etc)

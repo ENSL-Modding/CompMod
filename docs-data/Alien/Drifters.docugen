@@ -13,8 +13,8 @@ Reduced Onos HP to 100 eHP
 #Alien.Drifters.Abilities.Mucous
 !kMucousMembraneAbilityCooldown, description=cooldown, suffix=seconds, suffix_singular=second
 Added per-lifeform shield values:
->Skulk: {{kSkulkMucousShieldPercent, format=%}} of base health
->Gorge: {{kGorgeMucousShieldPercent, format=%}} of base health
->Lerk: {{kLerkMucousShieldPercent, format=%}} of base health
->Fade: {{kFadeMucousShieldPercent, format=%}} of base health
->Onos: {{kOnosMucousShieldPercent, format=%}} of base health
+>Skulk: {{kSkulkMucousShieldPercent, format=Percent}} of base health
+>Gorge: {{kGorgeMucousShieldPercent, format=Percent}} of base health
+>Lerk: {{kLerkMucousShieldPercent, format=Percent}} of base health
+>Fade: {{kFadeMucousShieldPercent, format=Percent}} of base health
+>Onos: {{kOnosMucousShieldPercent, format=Percent}} of base health

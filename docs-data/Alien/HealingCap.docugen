@@ -1,2 +1,2 @@
 #Alien.Healing Cap
-!kHealingClampReductionScalar, description=additional healing after softcap, format=-%
+!kHealingClampReductionScalar, description=additional healing after softcap, format=InvPercent
