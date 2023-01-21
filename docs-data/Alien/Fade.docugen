@@ -1,6 +1,6 @@
 #Alien.Fade.Advanced Swipe
 Replaces Stab
-Increases Swipe damage by {{kAdvancedSwipeDamageScalar, format=%}}
+Increases Swipe damage by {{kAdvancedSwipeDamageScalar, format=Scalar}}
 Can be researched at Biomass 7
 Costs {{kAdvancedSwipeCost}} tres and takes {{kAdvancedSwipeResearchTime}} seconds to research
 
