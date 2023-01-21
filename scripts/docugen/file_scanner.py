@@ -18,6 +18,11 @@ format_type_map = {
     "DamageType": FormatType.DAMAGE_TYPE
 }
 
+re_dynamic_vars = re.compile("\{\{([^ ]+(?:, *[^ ]+ *= *[^$,}]+)*)\}\}")
+re_generated_statements = re.compile("^(>*)!(.*)$")
+re_additional_args = re.compile("([^ ]+)=([^,$]*)(?=,|$)")
+re_comments = re.compile("--.*$")
+
 def process_key(c, key, key_data, mod_version, beta_version):
     if len(key_data) > 0 and key:
         insert_to_database(c, mod_version, beta_version, key, key_data)
@@ -78,15 +83,12 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, v
     conn.commit()
 
 
-re_dynamic_vars = re.compile("\{\{([^ ]+(?:, *[^ ]+ *= *[^$,}]+)*)\}\}")
-
 # Replace dynamic vars with their values
 def process_dynamic_var(key_entry : str, local_tokens : dict, local_src_path : str):
     dynamic_vars = re_dynamic_vars.findall(key_entry)
     for s in dynamic_vars:
-        value = None
-        fmt = None
         var = None
+        fmt = None
 
         if s.find(",") != -1:
             var = s[0:s.index(",")]
@@ -104,10 +106,10 @@ def process_dynamic_var(key_entry : str, local_tokens : dict, local_src_path : s
     return key_entry
 
 
-re_generated_statements = re.compile("^(>*)!(.*)$")
 def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_tokens : dict, local_src_path : str, vanilla_src_path : str):
     m = re_generated_statements.search(key_entry)
-    if not m: return key_entry
+    if not m:
+        return key_entry
 
     (indent, s) = m.groups()
     var = s[0:s.index(",")]
@@ -128,24 +130,17 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
     to_val = resolve_variable(var, local_tokens, local_src_path)
     from_val = resolve_variable(var, vanilla_tokens, vanilla_src_path)
 
-    # Perform any value modifications here before we figure out the verb
     to_val = transform_value(to_val, fmt)
     from_val = transform_value(from_val, fmt)
 
+    # Figure out the verb before we do any formatting
     verb = "Decreased" if to_val < from_val else "Increased"
 
     to_val = format_value(to_val, fmt)
     from_val = format_value(from_val, fmt)
 
-    if to_val.isdigit() and int(to_val) == 1:
-        to_suffix = suffix_singular
-    else:
-        to_suffix = suffix
-
-    if from_val.isdigit() and int(from_val) == 1:
-        from_suffix = suffix_singular
-    else:
-        from_suffix = suffix
+    to_suffix = set_suffix(to_val, suffix, suffix_singular)
+    from_suffix = set_suffix(from_val, suffix, suffix_singular)
 
     to_suffix_space = " " if to_suffix and len(to_suffix) > 0 else ""
     from_suffix_space = " " if from_suffix and len(from_suffix) > 0 else ""
@@ -153,7 +148,13 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
     return "{}{} {} to {}{}{} from {}{}{}".format(indent, verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
 
 
-re_additional_args = re.compile("([^ ]+)=([^,$]*)(?=,|$)")
+def set_suffix(val : str, suffix : str, suffix_singular : str):
+    if val.isdigit() and int(val) == 1:
+        return suffix_singular
+        
+    return suffix
+
+
 def parse_args(s : str, valid_args : list):
     additional_args = dict()
 
@@ -195,7 +196,6 @@ def resolve_variable(var : str, tokens : dict, src_path : str):
         return tokens[var]
 
 
-re_comments = re.compile("--.*$")
 def find_val_in_file(filename : str, varname : str, src_path : str):
     re_custom_var = re.compile("{} *= *(.+)$".format(varname))
     for (dirpath, dirnames, filenames) in os.walk(src_path):
