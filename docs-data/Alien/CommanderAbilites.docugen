@@ -1,6 +1,3 @@
-#Alien.Commander Abilities.Bonewall
-Bonewall is no longer flammable
-
 #Alien.Commander Abilities.Adrenaline Rush
 Added new ability Adrenaline Rush to the Shift
 Costs {{kAdrenalineRushCost}} tres to cast
