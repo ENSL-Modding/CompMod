@@ -27,5 +27,4 @@ Removed heal effect (visual and audio)
 No longer triggers from friendly-fire damage
 Works against exosuits
 Now applies a shader to players that have Vampirism shield
-Lowered Skulk vampirism percentage to 3.77% from 4.66% per shell
-!kBiteLeapVampirismScalar, description=Skulk vampirism percentage, format=Percent
+!kBiteLeapVampirismScalar, description=Skulk vampirism percentage, format=Percent, suffix=per shell
