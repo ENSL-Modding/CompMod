@@ -1,4 +1,3 @@
-local kMaxArcs = 4
 local netVars = {
     numArcs = string.format("integer (0 to %d)", kMaxArcs)
 }

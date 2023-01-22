@@ -119,3 +119,4 @@ kGorgeTunnelDropCost = 4
 
 kNeurotoxinDamageInterval = 1
 kNeurotoxinLifetimePerChamber = 1
+kMaxArcs = 4
