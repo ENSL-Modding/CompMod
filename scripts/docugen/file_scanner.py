@@ -11,13 +11,15 @@ class FormatType (Enum):
     INVERSE_PERCENTAGE = 3
     SCALAR = 4
     DAMAGE_TYPE = 5
+    RADIANS = 6
 
 format_type_map = {
     "Number": FormatType.NUMBER,
     "Percent": FormatType.PERCENTAGE,
     "InvPercent": FormatType.INVERSE_PERCENTAGE,
     "Scalar": FormatType.SCALAR,
-    "DamageType": FormatType.DAMAGE_TYPE
+    "DamageType": FormatType.DAMAGE_TYPE,
+    "Radians": FormatType.RADIANS
 }
 
 re_dynamic_vars = re.compile("\{\{([^ ]+(?:, *[^ ]+ *= *[^$,}]+)*)\}\}")
@@ -154,17 +156,18 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
         raise Exception("Invalid or missing format for key {}".format(key_entry))
 
     to_val = resolve_variable(var, local_tokens, local_src_path)
+    to_val = transform_value(to_val, fmt)
+
     if not from_val:
         from_val = resolve_variable(var, vanilla_tokens, vanilla_src_path)
+    from_val = transform_value(from_val, fmt)
 
     verb = get_verb(to_val, from_val, fmt)
 
-    to_val = transform_value(to_val, fmt)
     to_val = format_value(to_val, fmt)
     to_suffix = set_suffix(to_val, suffix, suffix_singular)
     to_suffix_space = " " if to_suffix and len(to_suffix) > 0 else ""
 
-    from_val = transform_value(from_val, fmt)
     from_val = format_value(from_val, fmt)
     from_suffix = set_suffix(from_val, suffix, suffix_singular)
     from_suffix_space = " " if from_suffix and len(from_suffix) > 0 else ""
@@ -198,6 +201,12 @@ def transform_value(val, fmt : FormatType):
         return 1 - float(val)
     elif fmt == FormatType.SCALAR:
         return float(val) - 1
+    elif fmt == FormatType.RADIANS:
+        m = re.match("^Math.Radians\((.*)\)$", val)
+        if not m:
+            raise Exception("Invalid value for type Radians")
+        (v,) = m.groups()
+        return v
     else:
         return val
 
@@ -253,7 +262,8 @@ def get_verb(to_val, from_val, fmt : FormatType):
         FormatType.NUMBER,
         FormatType.PERCENTAGE,
         FormatType.INVERSE_PERCENTAGE,
-        FormatType.SCALAR
+        FormatType.SCALAR,
+        FormatType.RADIANS
     ]
 
     if fmt in numeric_formats:
