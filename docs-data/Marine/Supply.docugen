@@ -1,3 +1,3 @@
 #Marine.Supply
-Observatory supply cost increased to 30 from 25
-Robotics Factory supply cost increased to 15 from 5
+!kObservatorySupply, description=Observatory supply cost, format=Number
+!kRoboticsFactorySupply, description=Robotics Factory supply cost, format=Number
