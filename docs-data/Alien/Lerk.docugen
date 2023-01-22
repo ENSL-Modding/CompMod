@@ -8,13 +8,12 @@ This change minimizes the effectiveness of silent Lerk ambushes. A lerk will hav
 Lerk movement mid-flight while flapping often is unaffected
 
 #Alien.Lerk.Spikes
-Damage increased to 6 from 5 (to 12 from 10 to players)
-Spread increased to 3.8 degrees from 3.6 degrees
+!kSpikeDamage, description=damage, format=Number
+!kSpikeSpread, description=spread, format=Radians, suffix=degrees, suffix_singular=degree
 
 #Alien.Lerk.Spores
-Research changed to Biomass 6 from Biomass 5
 Opacity of cloud lowered by 40%
 
 #Alien.Lerk.Umbra
 Reduced opacity by 25%
-Increased research time to 1 minute 45 seconds from 45 seconds
+!kUmbraResearchTime, description=research time, format=Number, suffix=seconds, suffix_singular=second
