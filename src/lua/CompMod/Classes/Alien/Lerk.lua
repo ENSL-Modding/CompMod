@@ -1,5 +1,3 @@
-Lerk.kFlapForceStrafe = 8.3
-
 -- Vanilla friction value
 Lerk.kMinAirFriction = 0.08
 
