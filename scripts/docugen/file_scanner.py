@@ -95,7 +95,12 @@ def process_dynamic_var(key_entry : str, local_tokens : dict, local_src_path : s
         if s.find(",") != -1:
             var = s[0:s.index(",")]
             args = parse_args(s, ["format"])
-            fmt = get_format_type(args.get("format"))
+            fmt_str = args.get("format")
+
+            if fmt_str:
+                fmt = get_format_type(fmt_str)
+                if fmt == FormatType.NONE:
+                    raise Exception("Invalid format given ({}) for {}".format(fmt_str, s))
         else:
             var = s
 
