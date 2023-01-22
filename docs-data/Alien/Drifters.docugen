@@ -6,9 +6,9 @@
 !kEnzymeCloudAbilityCooldown, description=cooldown, format=Number, suffix=seconds, suffix_singular=second
 
 #Alien.Drifters.Abilities.Hallucinations
-No longer affected by mucous
-Can no longer have babblers attached
-Reduced Onos HP to 100 eHP
+No longer affected by Mucous
+Can no longer be healed
+Will no longer gain health with Biomass upgrades
 
 #Alien.Drifters.Abilities.Mucous
 !kMucousMembraneAbilityCooldown, description=cooldown, format=Number, suffix=seconds, suffix_singular=second

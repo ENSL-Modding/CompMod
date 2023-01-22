@@ -1,13 +1,3 @@
-local oldGetCanAttachBabbler = BabblerClingMixin.GetCanAttachBabbler
-
-function BabblerClingMixin:GetCanAttachBabbler()
-    if self.isHallucination then
-        return false
-    end
-
-    return oldGetCanAttachBabbler(self)
-end
-
 -- Fix vanilla bug with friendly fire
 function BabblerClingMixin:ModifyDamageTaken(damageTable, attacker, doer, damageType, hitPoint, weapon)
     local damage = damageTable.damage or 0
