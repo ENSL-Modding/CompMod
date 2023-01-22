@@ -91,22 +91,33 @@ def process_dynamic_var(key_entry : str, local_tokens : dict, local_src_path : s
     for s in dynamic_vars:
         var = None
         fmt = None
+        suffix = ""
+        suffix_singular = None
 
         if s.find(",") != -1:
             var = s[0:s.index(",")]
-            args = parse_args(s, ["format"])
+            args = parse_args(s, ["format", "suffix", "suffix_singular"])
             fmt_str = args.get("format")
+            suffix = args.get("suffix", "")
+            suffix_singular = args.get("suffix_singular")
 
             if fmt_str:
                 fmt = get_format_type(fmt_str)
                 if fmt == FormatType.NONE:
                     raise Exception("Invalid format given ({}) for {}".format(fmt_str, s))
+
+            if suffix_singular and not suffix:
+                raise Exception("Must provide suffix when using suffix_singular")
         else:
             var = s
 
         value = resolve_variable(var, local_tokens, local_src_path)
         value = transform_value(value, fmt)
         value = format_value(value, fmt)
+        suffix = set_suffix(value, suffix, suffix_singular)
+        suffix_space = " " if suffix and len(suffix) > 0 else ""
+
+        value = "{}{}{}".format(value, suffix_space, suffix)
 
         key_entry = key_entry.replace("{{{{{}}}}}".format(s), value)
     
