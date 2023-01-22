@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 28](revisions/revision28.md) and Vanilla Build 343
+# Changes between CompMod [revision 28](revisions/revision28.md) and Vanilla Build 344
 <br/>
 
 # Alien
@@ -7,7 +7,7 @@
 ## Commander Abilities
 * ### Adrenaline Rush
   * Added new ability Adrenaline Rush to the Shift
-  * Costs 3 tres
+  * Costs 3 tres to cast
   * Duration 5 seconds
   * Cooldown 5 seconds
   * When active increases range and output time of nearby PvE
@@ -19,7 +19,6 @@
 ## Crag
 * ### Healing
   * Changed Crag to heal eHP instead of a flat value
-  * Implement per-lifeform heal values
   * Added per-lifeform heal, removing the min/max heal clamps for lifeforms
   * Healing values:
     * Skulk: 10 (~13%) up from 7
@@ -29,24 +28,23 @@
     * Onos: 55  (8%) up from 42
 
 ## Drifters
-* Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
-* Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
+* Increased Drifter detection range to 5 from 3
+  * This will cause Drifters to uncloak from further away
 * ### Abilities
   * Enzyme
-    * Reduced cooldown from 12 seconds to 1 second
+    * Decreased cooldown to 1 second from 3 seconds
   * Hallucinations
     * No longer affected by mucous
     * Can no longer have babblers attached
     * Reduced Onos HP to 100 eHP
   * Mucous
-    * Reduced cooldown to 1 second from 12 seconds
-    * Reduced cloud radius from 8 to 5 (reduces area by 60%)
+    * Decreased cooldown to 1 second from 3 seconds
     * Added per-lifeform shield values:
-      * Skulk: 20% (15 HP)
-      * Gorge: 13% (20 HP)
-      * Lerk: 14% (24 HP)
-      * Fade: 16% (40 HP)
-      * Onos: 9% (63 HP)
+      * Skulk: 20% of base health
+      * Gorge: 13% of base health
+      * Lerk: 14% of base health
+      * Fade: 16% of base health
+      * Onos: 9% of base health
 
 ## Eggs
 * Hives no longer heal eggs, only embryos
@@ -58,38 +56,33 @@
 ## Fade
 * ### Advanced Swipe
   * Replaces Stab
-  * Upgrades the normal swipe damage to 81 from 75
+  * Increases Swipe damage by 8%
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
-* ### Blink
-  * Lowered Blink energy cost to 12 from 14
 * ### Swipe
-  * Tweaked damage
-    * Swipe damage increased to 75 from 37.5
-    * Swipe damage type changed to StructuresOnlyLight from Puncture
+  * Damage
+    * Increased damage to 75 from 37.5
+    * Changed damage type to StructuresOnlyLight from Puncture
     * This will deal the same amount of damage to players but will deal full damage to structures without armour
 
 ## Gorge
 * ### Babblers
   * Are flammable (die in one welder tick)
-  * Lowered health to 11 from 12
-  * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
+  * Decreased health to 11 from 12
+  * Increased spawn rate to 3 seconds from 2.5 seconds
 * ### BileBomb
   * Research changed to Biomass 2 from Biomass 3
 * ### Health
   * Increased Gorge health to 190 from 160
-* ### Spit
-  * Increased Gorge spit speed to 43 from 35
 * ### Tunnels
   * Gorges can now drop tunnels for 4 pres
 * ### Web
-  * HP gain per charge to 5 from 10
-  * Web charges lowered to 0 from 3
-  * Webbed duration lowered to 2.5 seconds from 5 seconds
+  * Decreased health gain per charge to 5 from 10
+  * Decreased Web charges to 0 from 3
+  * Decreased webbed duration to 2.5 seconds from 5 seconds
 
 ## Healing Cap
-* Decreased healing softcap to 12% from 14%
-* Additional healing after soft cap increased to 80% reduction from 66%
+* Decreased additional healing after softcap to 80% from 66%
 
 ## Lerk
 * ### Health
@@ -103,13 +96,11 @@
 * ### Spikes
   * Damage increased to 6 from 5 (to 12 from 10 to players)
   * Spread increased to 3.8 degrees from 3.6 degrees
-  * Size reduced to 45mm from 60mm
 * ### Spores
   * Research changed to Biomass 6 from Biomass 5
   * Opacity of cloud lowered by 40%
 * ### Umbra
   * Reduced opacity by 25%
-  * Increased research cost to 30 from 20
   * Increased research time to 1 minute 45 seconds from 45 seconds
 
 ## Onos
@@ -132,18 +123,11 @@
   * Decreased build time on Shift hive by 20%
 * ### Movement
   * Structures will move 10% faster when not under attack
-* ### Shift
-  * Echo
-    * Echo cost for upgrades increased to 2 from 1
-    * Echo cost for eggs reduced to 1 from 2
 * ### Tunnels
   * Tunnels are infested tunnels by default
-  * Tunnel cost changed to 8 tres from 6 tres
   * Decreased height check for tunnel placement
 
 ## Upgrades
-* ### Adrenaline
-  * Removed additional energy pool from Adrenaline
 * ### Aura
   * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
   * Only shows HP value on parasited players
@@ -164,13 +148,11 @@
     * Onos: 7
 * ### Regeneration
   * Removed heal effect (visual and audio)
-  * Reduced from 8% per tick to 6% per tick
 * ### Vampirism
   * No longer triggers from friendly-fire damage
   * Works against exosuits
   * Now applies a shader to players that have Vampirism shield
   * Lowered Skulk vampirism percentage to 3.77% from 4.66% per shell
-  * Lowered Lerk vampirism percentage to 2% from 2.67% per shell
 
 # Marine
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/3/30/Marine_banner.png "Marine")
@@ -208,21 +190,16 @@
 
 ## Structures
 * ### AdvancedArmory
-  * Health decreased to 2000/200 from 3000/200
+  * Decreased health to 2000 from 3000
   * Research cost decreased to 15 tres from 25 tres
   * Research time decreased to 45 seconds from 90 seconds
   * Now heals Marine armour
     *  Heals 15 armour per tick
-* ### Observatory
-  * Changed build time to 10 seconds from 15 seconds
 * ### Phase Gate
   * Health decreased to 1300 from 1500
   * Armor increased to 900 from 800
-* ### Prototype Lab
-  * Cost reduced to 25 from 35
 * ### Robotics Factory
   * Removed Armory requirement for ARC Factory upgrade
-  * ARC Factory upgrade cost increased to 15 tres from 5 tres
 * ### Sentry
   * Cost increased to 6 tres from 5 tres
   * Confusion from Spores
@@ -232,10 +209,7 @@
   * Cost increased to 12 tres from 10 tres
 
 ## Supply
-* MAC supply cost increased to 15 from 5
-* Sentry supply cost increased to 15 from 10
 * Observatory supply cost increased to 30 from 25
-* Sentry Battery supply cost increased to 25 from 15
 * Robotics Factory supply cost increased to 15 from 5
 
 ## Upgrades
@@ -255,8 +229,6 @@
 * ### Flamethrower
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
-  * Reduced damage to 7 from 8
-  * Lowered spread to 3.2 degrees from 4 degrees
   * Increased structure damage multiplier to 1.25x from 1.0x
 * ### Shotgun
   * Damage
@@ -288,11 +260,6 @@
 
 ## Mucous Hitsounds
 * Added hitsounds against Aliens with Mucous
-
-## Resources
-* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
-* Increased Alien starting pres to 15 from 12
-* Increased Marine starting pres to 20 from 15
 
 # Fixes & Improvements
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png "Fixes & Improvements")

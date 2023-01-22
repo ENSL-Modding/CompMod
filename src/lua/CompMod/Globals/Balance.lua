@@ -114,3 +114,5 @@ kMACOutOfCombatSpeedScalar = 1.15 -- 15%
 
 kGorgeHealth = 190 -- 160
 kBoneShieldHitpoints = 500 -- 1000
+
+kGorgeTunnelDropCost = 4

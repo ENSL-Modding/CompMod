@@ -66,7 +66,7 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.GorgeTunnelMenuEntrance,
             [kTechDataDisplayName] = "Tunnel Entry",
             [kTechDataMaxAmount] = 1,
-            [kTechDataCostKey] = 4,
+            [kTechDataCostKey] = kGorgeTunnelDropCost,
             [kTechDataAllowConsumeDrop] = true,
         },
 
@@ -74,7 +74,7 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.GorgeTunnelMenuExit,
             [kTechDataDisplayName] = "Tunnel Exit",
             [kTechDataMaxAmount] = 1,
-            [kTechDataCostKey] = 4,
+            [kTechDataCostKey] = kGorgeTunnelDropCost,
             [kTechDataAllowConsumeDrop] = true,
         },
 

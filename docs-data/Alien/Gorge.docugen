@@ -1,21 +1,18 @@
 #Alien.Gorge.Babblers
 Are flammable (die in one welder tick)
-Lowered health to 11 from 12
-Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
+!kBabblerHealth, description=health, format=Number
+!BabblerOwnerMixin.lua:kBabblerHatchTime, description=spawn rate, format=Number, suffix=seconds, suffix_singular=second
 
 #Alien.Gorge.BileBomb
 Research changed to Biomass 2 from Biomass 3
 
 #Alien.Gorge.Health
-Increased Gorge health to 190 from 160
-
-#Alien.Gorge.Spit
-Increased Gorge spit speed to 43 from 35
+!kGorgeHealth, description=Gorge health, format=Number
 
 #Alien.Gorge.Tunnels
-Gorges can now drop tunnels for 4 pres
+Gorges can now drop tunnels for {{kGorgeTunnelDropCost}} pres
 
 #Alien.Gorge.Web
-HP gain per charge to 5 from 10
-Web charges lowered to 0 from 3
-Webbed duration lowered to 2.5 seconds from 5 seconds
+!kWebHealthPerCharge, description=health gain per charge, format=Number
+!kWebMaxCharges, description=Web charges, format=Number
+!kWebbedDuration, description=webbed duration, format=Number, suffix=seconds, suffix_singular=second
