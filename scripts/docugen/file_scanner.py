@@ -124,12 +124,14 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
         "description",
         "format",
         "suffix",
-        "suffix_singular"
+        "suffix_singular",
+        "vanilla_value"
     ])
     desc = args.get("description")
     fmt = get_format_type(args.get("format"))
     suffix = args.get("suffix", "")
     suffix_singular = args.get("suffix_singular")
+    from_val = args.get("vanilla_value")
 
     if not desc:
         raise Exception("Invalid or missing description")
@@ -141,7 +143,8 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
         raise Exception("Invalid or missing format for key {}".format(key_entry))
 
     to_val = resolve_variable(var, local_tokens, local_src_path)
-    from_val = resolve_variable(var, vanilla_tokens, vanilla_src_path)
+    if not from_val:
+        from_val = resolve_variable(var, vanilla_tokens, vanilla_src_path)
 
     verb = get_verb(to_val, from_val, fmt)
 
