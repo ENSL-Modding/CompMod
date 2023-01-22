@@ -1,10 +1,6 @@
 #Alien.Gorge.Babblers
-Are flammable (die in one welder tick)
 !kBabblerHealth, description=health, format=Number
 !BabblerOwnerMixin.lua:kBabblerHatchTime, description=spawn rate, format=Number, suffix=seconds, suffix_singular=second
-
-#Alien.Gorge.BileBomb
-Research changed to Biomass 2 from Biomass 3
 
 #Alien.Gorge.Health
 !kGorgeHealth, description=Gorge health, format=Number

@@ -37,7 +37,6 @@ ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.l
 -- Alien Entities
 ModLoader.SetupFileHook("lua/AlienTeamInfo.lua", "lua/CompMod/Entities/Alien/AlienTeamInfo.lua", "post")
 ModLoader.SetupFileHook("lua/AlienTunnelManager.lua", "lua/CompMod/Entities/Alien/AlienTunnelManager.lua", "post")
-ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
 -- Marine Entities
