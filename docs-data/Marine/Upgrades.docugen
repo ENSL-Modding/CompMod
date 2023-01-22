@@ -1,11 +1,11 @@
 #Marine.Upgrades.Armour 1
-Increased research time to 80 from 75
+!kArmor1ResearchTime, description=research time, format=Number
 
 #Marine.Upgrades.Armour 2
-Increased research time to 95 from 90
+!kArmor2ResearchTime, description=research time, format=Number
 
 #Marine.Upgrades.Weapons 1
-Increased research time to 80 from 75
+!kWeapons1ResearchTime, description=research time, format=Number
 
 #Marine.Upgrades.Weapons 2
-Increased research time to 95 from 90
+!kWeapons2ResearchTime, description=research time, format=Number
