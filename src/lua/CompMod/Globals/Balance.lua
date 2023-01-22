@@ -116,3 +116,6 @@ kGorgeHealth = 190 -- 160
 kBoneShieldHitpoints = 500 -- 1000
 
 kGorgeTunnelDropCost = 4
+
+kNeurotoxinDamageInterval = 1
+kNeurotoxinLifetimePerChamber = 1
