@@ -12,7 +12,6 @@ def check_for_unique_var_usage(var, compmod_src_path, compmod_tokens):
                 if check_for_var_in_file(var, os.path.join(dirpath, file), file == "Balance.lua", compmod_tokens):
                     return True
 
-
     return False
 
 
@@ -47,6 +46,12 @@ def main():
             continue
 
         v_value = vanilla_tokens[var]
+
+        try:
+            c_value = float(c_value)
+            v_value = float(v_value)
+        except:
+            pass
 
         if c_value == v_value:
             print("Warning: {} has the same value in vanilla ({})".format(var, v_value))
