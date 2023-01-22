@@ -69,8 +69,6 @@ kNanoShieldPlayerDuration = 2
 
 kSentryCost = 6 -- 5
 
-kConfusedSentryBaseROF = 4.0 --2.0
-
 kSentryBatteryCost = 12 -- 10
 
 -- Increase damage per upgrade to ~13.33 from ~10

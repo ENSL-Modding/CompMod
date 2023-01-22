@@ -107,7 +107,6 @@ ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whi
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
-ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
 
 -- Targeting
 ModLoader.SetupFileHook("lua/TargetCache.lua", "lua/CompMod/Targeting/TargetCache.lua", "post")
