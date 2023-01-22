@@ -1,5 +1,5 @@
 #Alien.Onos.BoneShield
-Lowered hitpoints to 500 from 1000
+!kBoneShieldHitpoints, description=hitpoints, format=Number
 
 #Alien.Onos.Charge
 Marine knockback removed
