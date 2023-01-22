@@ -118,3 +118,8 @@ kGorgeTunnelDropCost = 4
 kNeurotoxinDamageInterval = 1
 kNeurotoxinLifetimePerChamber = 1
 kMaxARCs = 4
+
+kMarineWeaponExpirationSlowDistance = 4
+kMarineWeaponExpirationSlowRate = 0.5
+
+kMachineGunStructureDamageScalar = 1.25

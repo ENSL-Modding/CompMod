@@ -1,5 +1,4 @@
 local oldBuildDamageTypeRules = debug.getupvaluex(GetDamageByType, "BuildDamageTypeRules")
-local kMachineGunStructureDamageScalar = 1.25
 
 local function MultiplyFlameAble(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType)
     if target.GetIsFlameAble and target:GetIsFlameAble(damageType) then
