@@ -6,6 +6,6 @@ Costs {{kAdvancedSwipeCost}} tres and takes {{kAdvancedSwipeResearchTime}} secon
 
 #Alien.Fade.Swipe
 Damage
->!kSwipeDamage, description=damage
+>!kSwipeDamage, description=damage, format=Number
 >!kSwipeDamageType, description=damage type, format=DamageType
 >This will deal the same amount of damage to players but will deal full damage to structures without armour

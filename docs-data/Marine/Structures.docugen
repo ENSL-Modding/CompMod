@@ -1,5 +1,5 @@
 #Marine.Structures.AdvancedArmory
-!kAdvancedArmoryHealth, description=health
+!kAdvancedArmoryHealth, description=health, format=Number
 Research cost decreased to 15 tres from 25 tres
 Research time decreased to 45 seconds from 90 seconds
 Now heals Marine armour

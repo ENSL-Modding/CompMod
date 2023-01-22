@@ -6,12 +6,14 @@ from enum import Enum
 
 class FormatType (Enum):
     NONE = 0
-    PERCENTAGE = 1
-    INVERSE_PERCENTAGE = 2
-    SCALAR = 3
-    DAMAGE_TYPE = 4
+    NUMBER = 1
+    PERCENTAGE = 2
+    INVERSE_PERCENTAGE = 3
+    SCALAR = 4
+    DAMAGE_TYPE = 5
 
 format_type_map = {
+    "Number": FormatType.NUMBER,
     "Percent": FormatType.PERCENTAGE,
     "InvPercent": FormatType.INVERSE_PERCENTAGE,
     "Scalar": FormatType.SCALAR,
@@ -124,25 +126,28 @@ def process_generated_statement(key_entry : str, local_tokens : dict, vanilla_to
     suffix = args.get("suffix", "")
     suffix_singular = args.get("suffix_singular")
 
+    if not desc:
+        raise Exception("Invalid or missing description")
+
     if suffix_singular and not suffix:
         raise Exception("Must provide suffix when using suffix_singular")
+
+    if fmt == FormatType.NONE:
+        raise Exception("Invalid or missing format for key {}".format(key_entry))
 
     to_val = resolve_variable(var, local_tokens, local_src_path)
     from_val = resolve_variable(var, vanilla_tokens, vanilla_src_path)
 
+    verb = get_verb(to_val, from_val, fmt)
+
     to_val = transform_value(to_val, fmt)
-    from_val = transform_value(from_val, fmt)
-
-    # Figure out the verb before we do any formatting
-    verb = "Decreased" if to_val < from_val else "Increased"
-
     to_val = format_value(to_val, fmt)
-    from_val = format_value(from_val, fmt)
-
     to_suffix = set_suffix(to_val, suffix, suffix_singular)
-    from_suffix = set_suffix(from_val, suffix, suffix_singular)
-
     to_suffix_space = " " if to_suffix and len(to_suffix) > 0 else ""
+
+    from_val = transform_value(from_val, fmt)
+    from_val = format_value(from_val, fmt)
+    from_suffix = set_suffix(from_val, suffix, suffix_singular)
     from_suffix_space = " " if from_suffix and len(from_suffix) > 0 else ""
     
     return "{}{} {} to {}{}{} from {}{}{}".format(indent, verb, desc, to_val, to_suffix_space, to_suffix, from_val, from_suffix_space, from_suffix)
@@ -222,3 +227,19 @@ def find_val_in_file(filename : str, varname : str, src_path : str):
 
 def get_format_type(fmt : str):
     return format_type_map.get(fmt, FormatType.NONE)
+
+
+def get_verb(to_val, from_val, fmt : FormatType):
+    numeric_formats = [
+        FormatType.NUMBER,
+        FormatType.PERCENTAGE,
+        FormatType.INVERSE_PERCENTAGE,
+        FormatType.SCALAR
+    ]
+
+    if fmt in numeric_formats:
+        to_val = float(to_val)
+        from_val = float(from_val)
+        return "Decreased" if to_val < from_val else "Increased"
+    elif fmt == FormatType.DAMAGE_TYPE:
+        return "Changed"
