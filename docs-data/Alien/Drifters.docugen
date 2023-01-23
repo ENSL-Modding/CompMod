@@ -9,6 +9,7 @@
 No longer affected by Mucous
 Can no longer be healed
 Will no longer gain health with Biomass upgrades
+Hallucination Lerks will no longer use Umbra or Spores
 
 #Alien.Drifters.Abilities.Mucous
 !kMucousMembraneAbilityCooldown, description=cooldown, format=Number, suffix=seconds, suffix_singular=second
