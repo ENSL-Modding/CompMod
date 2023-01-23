@@ -24,7 +24,8 @@ Damage Values:
 Removed heal effect (visual and audio)
 
 #Alien.Upgrades.Vampirism
-No longer triggers from friendly-fire damage
-Works against exosuits
-Now applies a shader to players that have Vampirism shield
+Health can no longer be leached from friendly-fire damage
+Health can now be leached from Exosuits
+Added a shader to players that have Vampirism shield
+>This is so that the Marines can have visual feedback
 !kBiteLeapVampirismScalar, description=Skulk vampirism percentage, format=Percent, suffix=per shell
