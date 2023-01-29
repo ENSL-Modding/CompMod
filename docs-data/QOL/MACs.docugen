@@ -1,2 +1,0 @@
-#Fixes & Improvements.MAC Leash Fix
-Fixed that if a MAC is doing something when idle (automatic weld order, or build order) and the command ask the mac to move elsewhere, then the mac will return to the origin location after reaching the location - Thanks Katz!
