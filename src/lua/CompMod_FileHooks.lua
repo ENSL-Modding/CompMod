@@ -49,7 +49,6 @@ ModLoader.SetupFileHook("lua/GUIFeedback.lua", "lua/CompMod/GUI/GUIFeedback.lua"
 ModLoader.SetupFileHook("lua/GUIGorgeBuildMenu.lua", "lua/CompMod/GUI/GUIGorgeBuildMenu.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_Overhead.lua", "lua/CompMod/GUI/GUIInsight_Overhead.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_TopBar.lua", "lua/CompMod/GUI/GUIInsight_TopBar.lua", "post")
-ModLoader.SetupFileHook("lua/GUIMarineBuyMenu.lua", "lua/CompMod/GUI/GUIMarineBuyMenu.lua", "post")
 ModLoader.SetupFileHook("lua/Hud/Marine/GUIMarineHUD.lua", "lua/CompMod/GUI/GUIMarineHUD.lua", "post")
 ModLoader.SetupFileHook("lua/GUIMinimap.lua", "lua/CompMod/GUI/GUIMinimap.lua", "post")
 ModLoader.SetupFileHook("lua/Hud/GUIPlayerStatus.lua", "lua/CompMod/GUI/GUIPlayerStatus.lua", "post")
