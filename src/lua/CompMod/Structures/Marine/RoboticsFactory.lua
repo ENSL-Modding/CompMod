@@ -12,7 +12,6 @@ function RoboticsFactory:GetTechAllowed(techId, techNode, player)
     
     if techId == kTechId.ARC then
         local teamInfo = GetTeamInfoEntity(kTeam1Index)
-        assert(teamInfo)
         allowed = allowed and self:GetTechId() == kTechId.ARCRoboticsFactory and teamInfo:CanBuildARC()
     elseif techId == kTechId.Cancel then
         allowed = self:GetResearchProgress() < 1
