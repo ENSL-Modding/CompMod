@@ -17,6 +17,10 @@ def parse_file(filepath : str, tokens : dict = None, local_file : bool = False):
     eq_idx = data.rfind("=")
     end = data.find("\n", eq_idx)
 
+    # In case the file doens't have a trailing newline, 
+    if end == -1:
+        end = len(data)
+
     # Be careful here, make sure we don't lengthen the character count of the string
     data = data.replace("\n", " ")
 
