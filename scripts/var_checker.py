@@ -48,8 +48,11 @@ def main():
         v_value = vanilla_tokens[var]
 
         try:
-            c_value = float(c_value)
-            v_value = float(v_value)
+            c_value_float = float(c_value)
+            v_value_float = float(v_value)
+
+            c_value = c_value_float
+            v_value = v_value_float
         except:
             pass
 
