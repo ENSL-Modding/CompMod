@@ -113,7 +113,7 @@ def create_changelog_against_vanilla(c, curr_changelog, vanilla_version, short_n
         f.write("<hr/>\n")
         f.write("<br/>\n")
         f.write("\n")
-        f.write("Last updated: {}".format(date.today().strftime("%d %B %Y")))
+        f.write("Last updated: {}\n".format(date.today().strftime("%d %B %Y")))
 
 def create_changelog_stub(c, curr_changelog, prev_changelog, short_name, long_name, short_name_prev):
     # Diff both changelogs
