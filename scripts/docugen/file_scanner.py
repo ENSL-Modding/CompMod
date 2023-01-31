@@ -272,3 +272,5 @@ def get_verb(to_val, from_val, fmt : FormatType):
         return "Decreased" if to_val < from_val else "Increased"
     elif fmt == FormatType.DAMAGE_TYPE:
         return "Changed"
+    else:
+        raise Exception("Unknown verb for FormatType: {}".format(fmt))
