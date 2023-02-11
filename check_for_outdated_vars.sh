@@ -5,3 +5,4 @@ install_path="$1"
 shift
 
 python3 scripts/var_checker.py src/lua/CompMod src/lua/CompMod/Globals/Balance.lua "$install_path/ns2/lua/Balance.lua" "$install_path/ns2/lua/BalanceHealth.lua" "$install_path/ns2/lua/BalanceMisc.lua"
+exit $?

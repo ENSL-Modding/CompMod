@@ -29,7 +29,7 @@ echo "CompMod Revision: $revision_string"
 test -n "$(git status --porcelain)" && { echo "ERROR: You have outstanding commits, please commit before creating a build"; exit 1; }
 
 # Build checks
-python3 scripts/var_checker.py src/lua/CompMod src/lua/CompMod/Globals/Balance.lua "$install_path/ns2/lua/Balance.lua" "$install_path/ns2/lua/BalanceHealth.lua" "$install_path/ns2/lua/BalanceMisc.lua"
+/bin/bash check_for_outdated_vars.sh "$install_path"
 test $? || { echo "ERROR: Build checks failed"; exit 1; }
 
 # Re-create the build dir
