@@ -61,7 +61,7 @@ def generate_change_logs(args):
     create_index_page(mod_version, beta_version)
 
     # Populate database for new version
-    scan_for_docugen_files(conn, c, mod_version, beta_version)
+    scan_for_docugen_files(conn, c, mod_version, beta_version, args.local_src_path, args.vanilla_src_path, args.local_balance_filepath, args.vanilla_balance_filepath, args.vanilla_balance_health_filepath, args.vanilla_balance_misc_filepath)
 
     # Grab changelogs
     curr_changelog = get_changelog(c, mod_version, beta_version)
@@ -108,6 +108,12 @@ def create_changelog_against_vanilla(c, curr_changelog, vanilla_version, short_n
         f.write("<br/>\n")
         f.write("\n")
         markdown_generator.generate(f, tree.root_node)
+        f.write("\n")
+        f.write("<br/>\n")
+        f.write("<hr/>\n")
+        f.write("<br/>\n")
+        f.write("\n")
+        f.write("Last updated: {}\n".format(date.today().strftime("%d %B %Y")))
 
 def create_changelog_stub(c, curr_changelog, prev_changelog, short_name, long_name, short_name_prev):
     # Diff both changelogs

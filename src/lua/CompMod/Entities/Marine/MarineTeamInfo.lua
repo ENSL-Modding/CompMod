@@ -1,6 +1,5 @@
-local kMaxArcs = 4
 local netVars = {
-    numArcs = string.format("integer (0 to %d)", kMaxArcs)
+    numArcs = string.format("integer (0 to %d)", kMaxARCs)
 }
 
 if Server then
@@ -16,13 +15,13 @@ if Server then
         
         local team = self:GetTeam()
         if team then
-            self.numArcs = math.min(team:GetNumActiveARCs(), kMaxArcs)
+            self.numArcs = math.min(team:GetNumActiveARCs(), kMaxARCs)
         end
     end
 end
 
 function MarineTeamInfo:CanBuildARC()
-    return self.numArcs < kMaxArcs
+    return self.numArcs < kMaxARCs
 end
 
 Shared.LinkClassToMap("MarineTeamInfo", MarineTeamInfo.kMapName, netVars, true)

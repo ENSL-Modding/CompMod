@@ -1,14 +1,11 @@
 #Alien.Fade.Advanced Swipe
 Replaces Stab
-Upgrades the normal swipe damage to 81 from 75
+Increases Swipe damage by {{kAdvancedSwipeDamageScalar, format=Scalar}}
 Can be researched at Biomass 7
-Costs 25 tres and takes 60 seconds to research
-
-#Alien.Fade.Blink
-Lowered Blink energy cost to 12 from 14
+Costs {{kAdvancedSwipeCost}} tres and takes {{kAdvancedSwipeResearchTime}} seconds to research
 
 #Alien.Fade.Swipe
-Tweaked damage
->Swipe damage increased to 75 from 37.5
->Swipe damage type changed to StructuresOnlyLight from Puncture
+Damage
+>!kSwipeDamage, description=damage, format=Number
+>!kSwipeDamageType, description=damage type, format=DamageType
 >This will deal the same amount of damage to players but will deal full damage to structures without armour

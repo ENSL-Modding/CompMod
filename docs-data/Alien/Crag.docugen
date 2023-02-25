@@ -1,6 +1,5 @@
 #Alien.Crag.Healing
 Changed Crag to heal eHP instead of a flat value
-Implement per-lifeform heal values
 Added per-lifeform heal, removing the min/max heal clamps for lifeforms
 Healing values:
 >Skulk: 10 (~13%) up from 7

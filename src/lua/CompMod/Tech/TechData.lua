@@ -66,7 +66,7 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.GorgeTunnelMenuEntrance,
             [kTechDataDisplayName] = "Tunnel Entry",
             [kTechDataMaxAmount] = 1,
-            [kTechDataCostKey] = 4,
+            [kTechDataCostKey] = kGorgeTunnelDropCost,
             [kTechDataAllowConsumeDrop] = true,
         },
 
@@ -74,7 +74,7 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.GorgeTunnelMenuExit,
             [kTechDataDisplayName] = "Tunnel Exit",
             [kTechDataMaxAmount] = 1,
-            [kTechDataCostKey] = 4,
+            [kTechDataCostKey] = kGorgeTunnelDropCost,
             [kTechDataAllowConsumeDrop] = true,
         },
 
@@ -82,8 +82,8 @@ local function GetTechToAdd()
             [kTechDataId] = kTechId.AdrenalineRush,
             [kTechDataDisplayName] = "Adrenaline Rush",
             [kTechDataTooltipInfo] = "Increase range of nearby PvE by 25% and increase duration of nearby PvE by 10%",
-            [kTechDataCooldown] = 10,
-            [kTechDataCostKey] = 3,
+            [kTechDataCooldown] = kAdrenalineRushTotalCooldown,
+            [kTechDataCostKey] = kAdrenalineRushCost,
             [kTechDataOneAtATime] = true,
         }
     }
