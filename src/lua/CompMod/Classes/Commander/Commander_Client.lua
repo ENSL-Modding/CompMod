@@ -83,6 +83,7 @@ function Commander:UpdateGhostGuides()
                 end
             else
                 local techId = entity:GetTechId()
+                -- CompMod: Implement AdrenalineRush outlines
                 if techId == kTechId.Crag then
                     self:AddGhostGuide(Vector(entity:GetOrigin()), entity:GetHealRadius())
                 elseif techId == kTechId.Shade then
@@ -92,8 +93,6 @@ function Commander:UpdateGhostGuides()
                 else
                     self:AddGhostGuide(Vector(entity:GetOrigin()), visualRadius)
                     if techId == kTechId.Shift then
-                        -- CompMod: Use new energize range func
-                        -- Disgusting hack but whatevvssss
                         self:AddGhostGuide(Vector(entity:GetOrigin()), entity:GetEnergizeRange())
                     end
                 end

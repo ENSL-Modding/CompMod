@@ -1,12 +1,3 @@
--- Don't think this is needed...
--- function Armory:OnResearchComplete(researchId)
---     if researchId == kTechId.AdvancedArmoryUpgrade then
---         self:SetTechId(kTechId.AdvancedArmory)
-
---         -- Remove AdvancedWeaponry Code
---     end
--- end
-
 function Armory:GetShouldResupplyPlayer(player)
     if not player:GetIsAlive() then
         return false

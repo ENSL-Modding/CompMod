@@ -6,8 +6,6 @@ local networkVars = {
 
 AddMixinNetworkVars(AdrenalineRushMixin, networkVars)
 
-Shift.kAdrenalineRushDuration = 5.0
-
 local kEchoCooldown = debug.getupvaluex(Shift.OnUpdate, "kEchoCooldown")
 local UpdateShiftButtons = debug.getupvaluex(Shift.OnUpdate, "UpdateShiftButtons")
 
@@ -85,7 +83,7 @@ function Shift:OnUpdate(deltaTime)
         end
         
         self.echoActive = self.timeLastEcho + kEchoCooldown > Shared.GetTime()
-        self.adrenalineRushActive = Shared.GetTime() < self.timeLastAdrenalineRush + Shift.kAdrenalineRushDuration and self.timeLastAdrenalineRush > 0
+        self.adrenalineRushActive = Shared.GetTime() < self.timeLastAdrenalineRush + kAdrenalineRushDuration and self.timeLastAdrenalineRush > 0
     end
 end
 

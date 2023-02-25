@@ -1,3 +1,3 @@
 #Marine.MACs
-Cost reduced to 4 tres from 5 tres
-MACs will move 15% faster when not under attack
+!kMACCost, description=cost, format=Number, suffix=tres
+MACs will move {{kMACOutOfCombatSpeedScalar, format=Scalar}} faster when not under attack

@@ -1,8 +1,8 @@
 #Marine.Medpacks
-Increased instant heal amount to 40 from 25
-Decreased HoT amount to 10 from 25
+!kMedpackHeal, description=instant heal amount, format=Number
+!kMarineRegenerationHeal, description=HoT amount, format=Number
 Decreased snap radius to match AmmoPack
-Increased pickup delay to 0.6 seconds from 0.45 seconds
+!kMedpackPickupDelay, description=pickup delay, format=Number, suffix=seconds, suffix_singular=second
 
 #Marine.Medpacks.HoT
 Marines now keep the HoT effect even when they're full HP for the full duration of the Medpack. They cannot overheal.

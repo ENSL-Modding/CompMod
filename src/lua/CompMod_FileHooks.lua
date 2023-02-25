@@ -1,4 +1,4 @@
-g_compModRevision = 28
+g_compModRevision = 29
 g_compModBeta = 0
 
 -- Bots
@@ -25,13 +25,6 @@ ModLoader.SetupFileHook("lua/Marine.lua", "lua/CompMod/Classes/Marine/Marine.lua
 -- Player Classes
 ModLoader.SetupFileHook("lua/Player_Client.lua", "lua/CompMod/Classes/Player/Player_Client.lua", "post")
 
--- Alien Comm Abilities
-ModLoader.SetupFileHook("lua/CommAbilities/Alien/BoneWall.lua", "lua/CompMod/CommAbilities/Alien/BoneWall.lua", "post")
-ModLoader.SetupFileHook("lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CompMod/CommAbilities/Alien/MucousMembrane.lua", "post")
-
--- Console Commands
-ModLoader.SetupFileHook("lua/NS2ConsoleCommands_Server.lua", "lua/CompMod/ConsoleCommands/NS2ConsoleCommands_Server.lua", "replace")
-
 -- core
 ModLoader.SetupFileHook("lua/MapEntityLoader.lua", "lua/CompMod/core/MapEntityLoader.lua", "post")
 
@@ -41,7 +34,6 @@ ModLoader.SetupFileHook("lua/DamageTypes.lua", "lua/CompMod/Damage/DamageTypes.l
 -- Alien Entities
 ModLoader.SetupFileHook("lua/AlienTeamInfo.lua", "lua/CompMod/Entities/Alien/AlienTeamInfo.lua", "post")
 ModLoader.SetupFileHook("lua/AlienTunnelManager.lua", "lua/CompMod/Entities/Alien/AlienTunnelManager.lua", "post")
-ModLoader.SetupFileHook("lua/Babbler.lua", "lua/CompMod/Entities/Alien/Babbler.lua", "post")
 -- Player Entities
 ModLoader.SetupFileHook("lua/PlayerInfoEntity.lua", "lua/CompMod/Entities/Player/PlayerInfoEntity.lua", "post")
 -- Marine Entities
@@ -57,14 +49,12 @@ ModLoader.SetupFileHook("lua/GUIFeedback.lua", "lua/CompMod/GUI/GUIFeedback.lua"
 ModLoader.SetupFileHook("lua/GUIGorgeBuildMenu.lua", "lua/CompMod/GUI/GUIGorgeBuildMenu.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_Overhead.lua", "lua/CompMod/GUI/GUIInsight_Overhead.lua", "post")
 ModLoader.SetupFileHook("lua/GUIInsight_TopBar.lua", "lua/CompMod/GUI/GUIInsight_TopBar.lua", "post")
-ModLoader.SetupFileHook("lua/GUIMarineBuyMenu.lua", "lua/CompMod/GUI/GUIMarineBuyMenu.lua", "post")
 ModLoader.SetupFileHook("lua/Hud/Marine/GUIMarineHUD.lua", "lua/CompMod/GUI/GUIMarineHUD.lua", "post")
 ModLoader.SetupFileHook("lua/GUIMinimap.lua", "lua/CompMod/GUI/GUIMinimap.lua", "post")
 ModLoader.SetupFileHook("lua/Hud/GUIPlayerStatus.lua", "lua/CompMod/GUI/GUIPlayerStatus.lua", "post")
 ModLoader.SetupFileHook("lua/GUIScoreboard.lua", "lua/CompMod/GUI/GUIScoreboard.lua", "post")
 ModLoader.SetupFileHook("lua/GUIUpgradeChamberDisplay.lua", "lua/CompMod/GUI/GUIUpgradeChamberDisplay.lua", "post")
 ModLoader.SetupFileHook("lua/MapBlip.lua", "lua/CompMod/GUI/MapBlip.lua", "post")
-ModLoader.SetupFileHook("lua/GUIUnitStatus.lua", "lua/CompMod/GUI/GUIUnitStatus.lua", "replace")
 
 -- Locale
 ModLoader.SetupFileHook("lua/Locale.lua", "lua/CompMod/Locale/Locale.lua", "post")
@@ -108,7 +98,6 @@ ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whi
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
-ModLoader.SetupFileHook("lua/Sentry.lua", "lua/CompMod/Structures/Marine/Sentry.lua", "post")
 
 -- Targeting
 ModLoader.SetupFileHook("lua/TargetCache.lua", "lua/CompMod/Targeting/TargetCache.lua", "post")

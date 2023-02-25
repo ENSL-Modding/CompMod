@@ -1,1 +1,0 @@
-MucousMembrane.kRadius = 5

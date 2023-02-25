@@ -9,7 +9,7 @@ local oldUpdateMucousEffects = Alien.UpdateMucousEffects
 function Alien:UpdateMucousEffects(isLocal)
     oldUpdateMucousEffects(self, isLocal)
 
-    -- Sneaky {:
+    -- Rather than override Alien:UpdateClientEffects, which is fairly large, we can hijack UpdateMucousEffects to also display our Vamp shield effects.
     self:UpdateShieldEffects(isLocal)
 end
 

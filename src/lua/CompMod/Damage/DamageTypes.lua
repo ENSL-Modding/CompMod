@@ -1,5 +1,4 @@
 local oldBuildDamageTypeRules = debug.getupvaluex(GetDamageByType, "BuildDamageTypeRules")
-local kMachineGunStructureDamageScalar = 1.25
 
 local function MultiplyFlameAble(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType)
     if target.GetIsFlameAble and target:GetIsFlameAble(damageType) then
@@ -39,10 +38,10 @@ local function ApplyNeurotoxinHit(attacker, target, tickDamage, neuroLevel)
     local dotMarker = CreateEntity(DotMarker.kMapName, target:GetOrigin(), attacker:GetTeamNumber())
     dotMarker:SetTechId(kTechId.Neurotoxin)
     dotMarker:SetDamageType(kDamageType.Gas)
-    dotMarker:SetLifeTime(1 + neuroLevel)
+    dotMarker:SetLifeTime(1 + (kNeurotoxinLifetimePerChamber * neuroLevel))
     dotMarker:SetDamage(tickDamage)
     dotMarker:SetRadius(0)
-    dotMarker:SetDamageIntervall(1)
+    dotMarker:SetDamageIntervall(kNeurotoxinDamageInterval)
     dotMarker:SetDotMarkerType(DotMarker.kType.SingleTarget)
     dotMarker:SetTargetEffectName("poison_dart_trail")
     dotMarker:SetDeathIconIndex(kDeathMessageIcon.Neurotoxin)

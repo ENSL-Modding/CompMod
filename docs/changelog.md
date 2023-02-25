@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 28](revisions/revision28.md) and Vanilla Build 343
+# Changes between CompMod [revision 29](revisions/revision29.md) and Vanilla Build 344
 <br/>
 
 # Alien
@@ -7,19 +7,16 @@
 ## Commander Abilities
 * ### Adrenaline Rush
   * Added new ability Adrenaline Rush to the Shift
-  * Costs 3 tres
+  * Costs 3 tres to cast
   * Duration 5 seconds
   * Cooldown 5 seconds
   * When active increases range and output time of nearby PvE
     * Increases range by 25%
     * Increases output time by 10% (Whips attack 10% faster, Crags heal 10% faster, etc)
-* ### Bonewall
-  * Bonewall is no longer flammable
 
 ## Crag
 * ### Healing
   * Changed Crag to heal eHP instead of a flat value
-  * Implement per-lifeform heal values
   * Added per-lifeform heal, removing the min/max heal clamps for lifeforms
   * Healing values:
     * Skulk: 10 (~13%) up from 7
@@ -29,24 +26,23 @@
     * Onos: 55  (8%) up from 42
 
 ## Drifters
-* Reduced hover height to 1 from 1.2 so they don't float in Marine's faces
-* Drifters cloaked by Shade hive upgrade will now uncloak from further away (to 5 from 1.5)
+* Increased Drifter detection range to 5 from 3
+  * This will cause Drifters to uncloak from further away
 * ### Abilities
   * Enzyme
-    * Reduced cooldown from 12 seconds to 1 second
+    * Decreased cooldown to 1 second from 3 seconds
   * Hallucinations
-    * No longer affected by mucous
-    * Can no longer have babblers attached
-    * Reduced Onos HP to 100 eHP
+    * No longer affected by Mucous
+    * Will no longer gain health with Biomass upgrades
+    * Hallucination Lerks will no longer use Umbra or Spores
   * Mucous
-    * Reduced cooldown to 1 second from 12 seconds
-    * Reduced cloud radius from 8 to 5 (reduces area by 60%)
+    * Decreased cooldown to 1 second from 3 seconds
     * Added per-lifeform shield values:
-      * Skulk: 20% (15 HP)
-      * Gorge: 13% (20 HP)
-      * Lerk: 14% (24 HP)
-      * Fade: 16% (40 HP)
-      * Onos: 9% (63 HP)
+      * Skulk: 20% of base health
+      * Gorge: 13% of base health
+      * Lerk: 14% of base health
+      * Fade: 16% of base health
+      * Onos: 9% of base health
 
 ## Eggs
 * Hives no longer heal eggs, only embryos
@@ -58,63 +54,51 @@
 ## Fade
 * ### Advanced Swipe
   * Replaces Stab
-  * Upgrades the normal swipe damage to 81 from 75
+  * Increases Swipe damage by 8%
   * Can be researched at Biomass 7
   * Costs 25 tres and takes 60 seconds to research
-* ### Blink
-  * Lowered Blink energy cost to 12 from 14
 * ### Swipe
-  * Tweaked damage
-    * Swipe damage increased to 75 from 37.5
-    * Swipe damage type changed to StructuresOnlyLight from Puncture
+  * Damage
+    * Increased damage to 75 from 37.5
+    * Changed damage type to StructuresOnlyLight from Puncture
     * This will deal the same amount of damage to players but will deal full damage to structures without armour
 
 ## Gorge
 * ### Babblers
-  * Are flammable (die in one welder tick)
-  * Lowered health to 11 from 12
-  * Reduced spawn rate to 3sec/babbler from 2.5sec/babbler
-* ### BileBomb
-  * Research changed to Biomass 2 from Biomass 3
+  * Decreased health to 11 from 12
+  * Increased spawn rate to 3 seconds from 2.5 seconds
 * ### Health
   * Increased Gorge health to 190 from 160
-* ### Spit
-  * Increased Gorge spit speed to 43 from 35
 * ### Tunnels
   * Gorges can now drop tunnels for 4 pres
 * ### Web
-  * HP gain per charge to 5 from 10
-  * Web charges lowered to 0 from 3
-  * Webbed duration lowered to 2.5 seconds from 5 seconds
+  * Decreased health gain per charge to 5 from 10
+  * Decreased Web charges to 0 from 3
+  * Decreased webbed duration to 2.5 seconds from 5 seconds
 
 ## Healing Cap
-* Decreased healing softcap to 12% from 14%
-* Additional healing after soft cap increased to 80% reduction from 66%
+* Increased additional healing after softcap to 80% from 66%
 
 ## Lerk
 * ### Health
-  * Lowered base Lerk health to 170 from 180
+  * Decreased base Lerk health to 170 from 180
 * ### Movement
-  * Increase strafe force to 8.3 from 7
-  * Air friction value remains equal to vanilla friction (0.08) for 0.64 seconds after flapping
-  * After 0.75 seconds, friction is scaled linearly from 0.08 to 0.5 over 3.25 seconds (total of 4 seconds)
+  * Air friction value is 8% for 0.75 seconds after flapping
+  * After 0.75 seconds, friction is scaled linearly from 8% to 50% over 3.25 seconds
   * This change minimizes the effectiveness of silent Lerk ambushes. A lerk will have to flap in order to quickly catch a marine
   * Lerk movement mid-flight while flapping often is unaffected
 * ### Spikes
-  * Damage increased to 6 from 5 (to 12 from 10 to players)
-  * Spread increased to 3.8 degrees from 3.6 degrees
-  * Size reduced to 45mm from 60mm
+  * Increased damage to 6 from 5
+  * Increased spread to 3.8 degrees from 3.3 degrees
 * ### Spores
-  * Research changed to Biomass 6 from Biomass 5
   * Opacity of cloud lowered by 40%
 * ### Umbra
   * Reduced opacity by 25%
-  * Increased research cost to 30 from 20
-  * Increased research time to 1 minute 45 seconds from 45 seconds
+  * Increased research time to 105 seconds from 75 seconds
 
 ## Onos
 * ### BoneShield
-  * Lowered hitpoints to 500 from 1000
+  * Decreased hitpoints to 500 from 1000
 * ### Charge
   * Marine knockback removed
 * ### Stomp
@@ -122,30 +106,23 @@
 
 ## Skulk
 * ### Leap
-  * Energy cost increased to 55 from 45
+  * Increased energy cost to 55 from 45
 
 ## Structures
 * ### Cyst
-  * Build time increased to 6 seconds from 3.33 seconds
-  * Shade hive cysts are now visible from further away (to 10 from 6)
+  * Increased build time to 6 seconds from 3.33 seconds
+  * Increased cyst detection range to 10 from 8
   * Lowered damage bonus from welders to 4x from 7x
-  * Decreased build time on Shift hive by 20%
+  * Increased auto build time multiplier with Shift hive to 1.5 from 1.25
 * ### Movement
   * Structures will move 10% faster when not under attack
-* ### Shift
-  * Echo
-    * Echo cost for upgrades increased to 2 from 1
-    * Echo cost for eggs reduced to 1 from 2
 * ### Tunnels
   * Tunnels are infested tunnels by default
-  * Tunnel cost changed to 8 tres from 6 tres
   * Decreased height check for tunnel placement
 
 ## Upgrades
-* ### Adrenaline
-  * Removed additional energy pool from Adrenaline
 * ### Aura
-  * Max range decreased to 24 from 30 (to 8 per veil from 10 per veil)
+  * Decreased max range to 24 from 30
   * Only shows HP value on parasited players
 * ### Camouflage
   * No longer fully cloaked while moving
@@ -153,9 +130,9 @@
   * Upgrade removed
 * ### Neurotoxin
   * Replaces Focus
-  * All Alien primary attacks will inflict a poison toxin, hurting Marines over time
-  * Damage will tick once every second
-  * Duration will be 1 second per Veil
+  * All Alien primary attacks will inflict a poison toxin, hurting the Marine over time
+  * Damage ticks every 1 second
+  * The toxin inflicted from each hit lasts for 1 second
   * Damage Values:
     * Skulk: 7
     * Gorge: 6
@@ -164,20 +141,20 @@
     * Onos: 7
 * ### Regeneration
   * Removed heal effect (visual and audio)
-  * Reduced from 8% per tick to 6% per tick
 * ### Vampirism
-  * No longer triggers from friendly-fire damage
-  * Works against exosuits
-  * Now applies a shader to players that have Vampirism shield
-  * Lowered Skulk vampirism percentage to 3.77% from 4.66% per shell
-  * Lowered Lerk vampirism percentage to 2% from 2.67% per shell
+  * Health can no longer be leached from friendly-fire damage
+  * Health can now be leached from Exosuits
+  * Added a shader to players that have Vampirism shield
+    * This is so that the Marines can have visual feedback
+  * Decreased Skulk vampirism percentage to 3.77% per shell from 4.66% per shell
 
 # Marine
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/3/30/Marine_banner.png "Marine")
 
 ## ARCs
-* Health lowered to 1800/500 from 2600/400
-* Deployed health lowered to 1800 from 2600
+* Decreased health to 1800 from 2600
+* Increased armor to 500 from 400
+* Decreased deployed health to 1800 from 2600
 * Commanders can only create a maximum of 4 ARCs
 
 ## Advanced Weapons
@@ -188,15 +165,15 @@
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
 
 ## Jetpacks
-* Increased drop cost for Commanders to 20 tres from 15 tres
+* Increased drop cost to 20 tres from 15 tres
 
 ## MACs
-* Cost reduced to 4 tres from 5 tres
+* Increased cost to 4 tres from 3 tres
 * MACs will move 15% faster when not under attack
 
 ## Medpacks
-* Increased instant heal amount to 40 from 25
-* Decreased HoT amount to 10 from 25
+* Increased instant heal amount to 50 from 25
+* Decreased HoT amount to 0 from 25
 * Decreased snap radius to match AmmoPack
 * Increased pickup delay to 0.6 seconds from 0.45 seconds
 * ### HoT
@@ -204,39 +181,28 @@
   * The result is that Marines can take damage after receiving a Medpack and still benefit from the HoT buff, even if they were already healed to full HP.
 
 ## Nanoshield
-* Duration on players reduced to 2 seconds from 3 seconds
+* Decreased player duration to 2 seconds from 3 seconds
 
 ## Structures
 * ### AdvancedArmory
-  * Health decreased to 2000/200 from 3000/200
-  * Research cost decreased to 15 tres from 25 tres
-  * Research time decreased to 45 seconds from 90 seconds
+  * Decreased health to 2000 from 3000
+  * Decreased research cost to 15 tres from 25 tres
+  * Decreased research time to 45 seconds from 90 seconds
   * Now heals Marine armour
     *  Heals 15 armour per tick
-* ### Observatory
-  * Changed build time to 10 seconds from 15 seconds
 * ### Phase Gate
-  * Health decreased to 1300 from 1500
-  * Armor increased to 900 from 800
-* ### Prototype Lab
-  * Cost reduced to 25 from 35
+  * Decreased health to 1300 from 1500
+  * Increased armor to 900 from 800
 * ### Robotics Factory
   * Removed Armory requirement for ARC Factory upgrade
-  * ARC Factory upgrade cost increased to 15 tres from 5 tres
 * ### Sentry
-  * Cost increased to 6 tres from 5 tres
-  * Confusion from Spores
-    * Duration increased to 8 seconds from 4 seconds
-    * Time until next attack increased to 4 seconds from 2 seconds
+  * Increased cost to 6 tres from 5 tres
 * ### Sentry Battery
-  * Cost increased to 12 tres from 10 tres
+  * Increased cost to 12 tres from 10 tres
 
 ## Supply
-* MAC supply cost increased to 15 from 5
-* Sentry supply cost increased to 15 from 10
-* Observatory supply cost increased to 30 from 25
-* Sentry Battery supply cost increased to 25 from 15
-* Robotics Factory supply cost increased to 15 from 5
+* Increased Observatory supply cost to 30 from 25
+* Increased Robotics Factory supply cost to 15 from 10
 
 ## Upgrades
 * ### Armour 1
@@ -255,15 +221,11 @@
 * ### Flamethrower
   * Removed friendly fire of flame puddles
 * ### Heavy Machine Gun
-  * Reduced damage to 7 from 8
-  * Lowered spread to 3.2 degrees from 4 degrees
-  * Increased structure damage multiplier to 1.25x from 1.0x
+  * Increased structure damage scalar to 25% from 0%
 * ### Shotgun
-  * Damage
-    * Increase Shotgun damage per weapon upgrade to ~13.33 from ~10
   * Falloff
-    * Falloff start distance increased to 10m from 5m
-    * Falloff end distance increased to 20m from 15m
+    * Increased falloff start distance to 10 from 5
+    * Increased falloff end distance to 20 from 15
       * This will result in Shotguns doing more damage at range
 * ### Weapon Lifetime
   * Increased weapon lifetime to 18 seconds from 16 seconds
@@ -289,11 +251,6 @@
 ## Mucous Hitsounds
 * Added hitsounds against Aliens with Mucous
 
-## Resources
-* Decreased Pres income rate to 1 res per resource tower per minute from 1.25 res per resource tower per minute
-* Increased Alien starting pres to 15 from 12
-* Increased Marine starting pres to 20 from 15
-
 # Fixes & Improvements
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png "Fixes & Improvements")
 
@@ -318,25 +275,13 @@
 ## Female Sprinting Sounds
 * Fixed a vanilla bug that caused the start and end sprinting sounds for the Female marine to be swapped
 
-## Hallucinations
-* Hallucination Lerks will no longer use Umbra or Spores
-
 ## IPs
 * Fixed bug where multiple IPs would sometimes spawn with few players
-
-## Keep Upgrades
-* Fixed a vanilla bug that meant players would lose their upgrades when using console commands to change lifeforms
-
-## MAC Leash Fix
-* Fixed that if a MAC is doing something when idle (automatic weld order, or build order) and the command ask the mac to move elsewhere, then the mac will return to the origin location after reaching the location - Thanks Katz!
 
 ## Minimap
 * Fixed that enemy structures would not pulse red when under attack
 * Fixed a vanilla bug that would render the Marine minimap over status icons
   * See: https://youtu.be/_8OmfC79-jc
-
-## Nameplates
-* Fixed a vanilla bug that causes hp/armor bars to show with "Numbers Only" selected in the Advanced Option -- Thanks Salads!
 
 ## Scoreboard
 * Fixed that the scoreboard would sometimes be slow to open
@@ -347,3 +292,9 @@
 ## Status Icons
 * Enabled all status icons regardless of HUD detail setting. Previously would only show on High detail
 * Fixed that the status icon duration bar would sometimes go negative
+
+<br/>
+<hr/>
+<br/>
+
+Last updated: 25 February 2023

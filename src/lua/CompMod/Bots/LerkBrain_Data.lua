@@ -12,8 +12,7 @@ for k,v in ipairs(kLerkBrainActions) do
             local n,_ = debug.getupvalue(v, i)
             if not n then break end
 
-            if n == "PerformUmbraFriendlies"
-            or n == "PerformSporeHostiles" then
+            if n == "PerformUmbraFriendlies" or n == "PerformSporeHostiles" then
                 table.insert(idxsToRemove, k)
                 break
             end
@@ -22,6 +21,7 @@ for k,v in ipairs(kLerkBrainActions) do
     end
 end
 
+-- Need to sort the indexes so that we remove later entries first. If we remove earlier indexes first then we will change all the indexes of the later entries
 table.sort(idxsToRemove, function (i1, i2) return i1 >= i2 end )
 for _,v in ipairs(idxsToRemove) do
     table.remove(kLerkBrainActions, v)

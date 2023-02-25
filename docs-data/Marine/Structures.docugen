@@ -1,29 +1,19 @@
 #Marine.Structures.AdvancedArmory
-Health decreased to 2000/200 from 3000/200
-Research cost decreased to 15 tres from 25 tres
-Research time decreased to 45 seconds from 90 seconds
+!kAdvancedArmoryHealth, description=health, format=Number
+!kAdvancedArmoryUpgradeCost, description=research cost, format=Number, suffix=tres
+!kAdvancedArmoryResearchTime, description=research time, format=Number, suffix=seconds, suffix_singular=second
 Now heals Marine armour
-> Heals 15 armour per tick
-
-#Marine.Structures.Observatory
-Changed build time to 10 seconds from 15 seconds
+> Heals {{Armory.lua:Armory.kHealArmorAmount}} armour per tick
 
 #Marine.Structures.Phase Gate
-Health decreased to 1300 from 1500
-Armor increased to 900 from 800
-
-#Marine.Structures.Prototype Lab
-Cost reduced to 25 from 35
+!kPhaseGateHealth, description=health, format=Number
+!kPhaseGateArmor, description=armor, format=Number
 
 #Marine.Structures.Robotics Factory
 Removed Armory requirement for ARC Factory upgrade
-ARC Factory upgrade cost increased to 15 tres from 5 tres
 
 #Marine.Structures.Sentry
-Cost increased to 6 tres from 5 tres
-Confusion from Spores
->Duration increased to 8 seconds from 4 seconds
->Time until next attack increased to 4 seconds from 2 seconds
+!kSentryCost, description=cost, format=Number, suffix=tres
 
 #Marine.Structures.Sentry Battery
-Cost increased to 12 tres from 10 tres
+!kSentryBatteryCost, description=cost, format=Number, suffix=tres

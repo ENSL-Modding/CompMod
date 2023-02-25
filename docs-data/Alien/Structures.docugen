@@ -1,17 +1,12 @@
 #Alien.Structures.Cyst
-Build time increased to 6 seconds from 3.33 seconds
-Shade hive cysts are now visible from further away (to 10 from 6)
+!kCystBuildTime, description=build time, format=Number, suffix=seconds, suffix_singular=second
+!kCystDetectRange, description=cyst detection range, format=Number
 Lowered damage bonus from welders to 4x from 7x
-Decreased build time on Shift hive by 20%
+Increased auto build time multiplier with Shift hive to 1.5 from 1.25
 
 #Alien.Structures.Movement
-Structures will move 10% faster when not under attack
-
-#Alien.Structures.Shift.Echo
-Echo cost for upgrades increased to 2 from 1
-Echo cost for eggs reduced to 1 from 2
+Structures will move {{kAlienStructureOutOfCombatMoveScalar, format=Scalar}} faster when not under attack
 
 #Alien.Structures.Tunnels
 Tunnels are infested tunnels by default
-Tunnel cost changed to 8 tres from 6 tres
 Decreased height check for tunnel placement

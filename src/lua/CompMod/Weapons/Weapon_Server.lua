@@ -1,7 +1,3 @@
-local kMarineWeaponExpirationSlowDistance = 4
-local kMarineWeaponExpirationSlowRate = 0.5
-local minMarineWithinRangeTime = 1
-
 -- OVERRIDING TO FIX CALLBACK MEMORY LEAK
 -- Set to true for being a world weapon, false for when it's carried by a player
 function Weapon:SetWeaponWorldState(state, preventExpiration)
