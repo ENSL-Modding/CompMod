@@ -1,8 +1,8 @@
 import os
 import re
-from .verbose import verbose_print
 from variable_parser import var_parser
 from enum import Enum
+import sqlite3
 
 class FormatType (Enum):
     NONE = 0
@@ -30,7 +30,6 @@ re_comments = re.compile("--.*$")
 def process_key(c, key, key_data, mod_version, beta_version):
     if len(key_data) > 0 and key:
         insert_to_database(c, mod_version, beta_version, key, key_data)
-        verbose_print(" -> Processed key: {}".format(key))
 
 
 def insert_to_database(c, mod_version, beta_version, key, key_data):
@@ -41,7 +40,20 @@ def insert_to_database(c, mod_version, beta_version, key, key_data):
             c.execute("INSERT INTO FullChangelog(modVersion, key, value) VALUES (?,?,?)", [mod_version, key, value.strip()])
 
 
-def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, vanilla_src_path, local_balance_filepath, vanilla_balance_filepath, vanilla_balance_health_filepath, vanilla_balance_misc_filepath):
+def scan_for_docugen_files(
+    conn : sqlite3.Connection,
+    c : sqlite3.Cursor,
+    mod_version : int,
+    beta_version : int,
+    local_src_path : str,
+    vanilla_src_path : str,
+    local_balance_filepath : str
+    ):
+
+    vanilla_balance_filepath = os.path.join(vanilla_src_path, "Balance.lua")
+    vanilla_balance_health_filepath = os.path.join(vanilla_src_path, "BalanceHealth.lua")
+    vanilla_balance_misc_filepath = os.path.join(vanilla_src_path, "BalanceMisc.lua")
+
     local_tokens, vanilla_tokens = var_parser.parse_local_and_vanilla(local_balance_filepath, vanilla_balance_filepath, vanilla_balance_health_filepath, vanilla_balance_misc_filepath)
 
     # Delete any current entries for mod_version
@@ -52,7 +64,6 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, v
 
     # Walk docs-data looking for .docugen files
     walk_path = "docs-data"
-    verbose_print("Walking path: {}".format(walk_path))
     for root, dirs, files in os.walk(walk_path):
         # Read all docugen files and add entries to database
         for file in files:
@@ -61,7 +72,6 @@ def scan_for_docugen_files(conn, c, mod_version, beta_version, local_src_path, v
                 data = f.readlines()
                 key_data = []
                 key = None
-                verbose_print("Processing docugen file: {}".format(file))
                 for line in data:
                     # Ignore blank lines
                     if line == "\n":
