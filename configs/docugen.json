@@ -7,20 +7,26 @@
         { "order": 4, "name": "Fixes & Improvements", "img_url": "https://static.wikia.nocookie.net/naturalselection/images/1/17/Tutorial_Banner.png" }
     ],
 
-    "enable_image_output": false,
+    "enable_image_output": true,
 
     "index_data": {
         "release": {
-            "title": "# {} Revision {}\n",
+            "title": "# NSL Competitive Mod Revision {1}\n",
             "body": [
-                "A Natural Selection 2 balance and feature mod.\n\n"
+                "A Natural Selection 2 balance and feature mod used by the [ENSL](https://www.ensl.org).\n\n",
+                "# Mission Statement\n",
+                "The vision of the Natural Selection League (NSL) Competitive Modification (CompMod) is to enable fun, fair and balanced play in a 6 vs 6 environment, while remaining as accessible to new players as possible.\n\n",
+                "To do this the team commits to remaining transparent in all changes, to be open to discussion, feedback and criticism, and above all else, to strive to attain enjoyable play for all members of the competitive community, regardless of skill level.\n\n"
             ]
         },
 
         "beta": {
-            "title": "# {} (Beta) Revision {} Beta {}\n",
+            "title": "# NSL Competitive Mod (Beta) Revision {1} beta {2}\n",
             "body": [
-                "A Natural Selection 2 balance and feature mod.\n\n"
+                "A Natural Selection 2 balance and feature mod used by the [ENSL](https://www.ensl.org).\n\n",
+                "# Mission Statement\n",
+                "The vision of the Natural Selection League (NSL) Competitive Modification (CompMod) is to enable fun, fair and balanced play in a 6 vs 6 environment, while remaining as accessible to new players as possible.\n\n",
+                "To do this the team commits to remaining transparent in all changes, to be open to discussion, feedback and criticism, and above all else, to strive to attain enjoyable play for all members of the competitive community, regardless of skill level.\n\n"
             ],
             "changes_note": "*Please note changes in this mod are experimental and are not guaranteed to make it into a future release.\n\n"
         }
