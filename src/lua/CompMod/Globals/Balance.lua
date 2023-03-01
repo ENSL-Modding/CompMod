@@ -116,3 +116,5 @@ kMarineWeaponExpirationSlowDistance = 4
 kMarineWeaponExpirationSlowRate = 0.5
 
 kMachineGunStructureDamageScalar = 1.25
+
+kMatureCystHealth = 300
