@@ -56,7 +56,7 @@ def main():
         c_value = mod_tokens[var]
         if not var in vanilla_tokens:
             if not check_for_unique_var_usage(var, mod_src_path, mod_tokens):
-                print("Warning: {} is not in vanilla and is not used in {}}".format(var, mod_name))
+                print("Warning: {} is not in vanilla and is not used in {}".format(var, mod_name))
             continue
 
         v_value = vanilla_tokens[var]
