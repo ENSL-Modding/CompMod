@@ -162,3 +162,18 @@ function MarineTeam:GetNumActiveARCs()
     
     return activeCount
 end
+
+local oldOnResetComplete = MarineTeam.OnResetComplete
+function MarineTeam:OnResetComplete()
+    oldOnResetComplete(self)
+
+    -- Spawn MAC
+    local initialTechPoint = self:GetInitialTechPoint()
+    local startingCommandStation = initialTechPoint:GetAttached()
+
+    local mac = startingCommandStation:CreateInitialMAC()
+
+    if not mac then
+        Print("CompMod: Failed to create starting MAC!")
+    end
+end
