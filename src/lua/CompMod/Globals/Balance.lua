@@ -48,7 +48,7 @@ kBiteLeapVampirismScalar = 0.0377 -- 0.0466 (4.66%)
 kAdvancedArmoryHealth = 2000 --3000
 
 -- Demolitions includes flamethrower and grenade launcher
-kDemolitionsTechResearchCost = 15
+kDemolitionsTechResearchCost = 10
 kDemolitionsTechResearchTime = 30
 
 kARCHealth = 1800
