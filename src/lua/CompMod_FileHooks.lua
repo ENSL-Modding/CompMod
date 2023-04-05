@@ -1,4 +1,4 @@
-g_compModRevision = 29
+g_compModRevision = 30
 g_compModBeta = 0
 
 -- Bots
@@ -97,6 +97,7 @@ ModLoader.SetupFileHook("lua/Whip_Server.lua", "lua/CompMod/Structures/Alien/Whi
 -- Marine Structures
 ModLoader.SetupFileHook("lua/Armory_Server.lua", "lua/CompMod/Structures/Marine/Armory_Server.lua", "post")
 ModLoader.SetupFileHook("lua/Armory.lua", "lua/CompMod/Structures/Marine/Armory.lua", "post")
+ModLoader.SetupFileHook("lua/CommandStation_Server.lua", "lua/CompMod/Structures/Marine/CommandStation_Server.lua", "post")
 ModLoader.SetupFileHook("lua/RoboticsFactory.lua", "lua/CompMod/Structures/Marine/RoboticsFactory.lua", "post")
 
 -- Targeting

@@ -1,4 +1,4 @@
-# Changes between CompMod [revision 29](revisions/revision29.md) and Vanilla Build 344
+# Changes between CompMod [revision 30](revisions/revision30.md) and Vanilla Build 344
 <br/>
 
 # Alien
@@ -114,6 +114,7 @@
   * Increased cyst detection range to 10 from 8
   * Lowered damage bonus from welders to 4x from 7x
   * Increased auto build time multiplier with Shift hive to 1.5 from 1.25
+  * Decreased mature health to 300 from 400
 * ### Movement
   * Structures will move 10% faster when not under attack
 * ### Tunnels
@@ -160,7 +161,7 @@
 ## Advanced Weapons
 * Added new research 'Demolitions'
   * Researched on Advanced Armory
-  * Research cost 15 tres
+  * Research cost 10 tres
   * Research time 30 seconds
   * Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
 
@@ -245,6 +246,10 @@
 # Global
 ![alt text](https://static.wikia.nocookie.net/naturalselection/images/3/35/Resource_Model_Banner.png "Global")
 
+## Commanders
+* ### Starting Units
+  * The Marines will start the game with 1 MAC at the CommandStation
+
 ## Hive Power Node
 * Power node in Alien starting Hive room will no longer be destroyed on round start
 
@@ -297,4 +302,4 @@
 <hr/>
 <br/>
 
-Last updated: 25 February 2023
+Last updated: 05 April 2023
