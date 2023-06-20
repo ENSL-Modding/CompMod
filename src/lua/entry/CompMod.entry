@@ -1,5 +1,5 @@
 modEntry = {
-  FileHooks = "lua/CompMod_FileHooks.lua"
+  FileHooks = "lua/CompMod_FileHooks.lua",
   Priority = 50
 }
 
