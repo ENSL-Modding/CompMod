@@ -9,3 +9,16 @@ function MAC:GetMoveSpeed()
 
     return maxSpeedTable.maxSpeed 
 end
+
+function MAC:OnValidateOrder(order)
+
+    local gameInfo = GetGameInfoEntity()
+    if not gameInfo then return true end
+
+    local state = gameInfo:GetState()
+    if state <= kGameState.Countdown then
+        return false
+    end
+    
+    return true
+end

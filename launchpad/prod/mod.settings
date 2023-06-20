@@ -1,7 +1,7 @@
 name        = "ENSL CompMod"
 source_dir  = "source/"
 output_dir  = "output/"
-description = [=[[h1]ENSL CompMod revision %%revision_string%%[/h1]
+description = [=[[h1]ENSL CompMod revision [revision_number][/h1]
 
 Competitive mod used by the [url=https://ensl.org]ENSL[/url]
 

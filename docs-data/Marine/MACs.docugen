@@ -1,3 +1,0 @@
-#Marine.MACs
-!kMACCost, description=cost, format=Number, suffix=tres
-MACs will move {{kMACOutOfCombatSpeedScalar, format=Scalar}} faster when not under attack

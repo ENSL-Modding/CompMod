@@ -1,6 +1,0 @@
-#Marine.Advanced Weapons
-Added new research 'Demolitions'
->Researched on Advanced Armory
->Research cost {{kDemolitionsTechResearchCost}} tres
->Research time {{kDemolitionsTechResearchTime}} seconds
->Unlocks Flamethrower and Grenade Launcher to purchase from the Advanced Armory
