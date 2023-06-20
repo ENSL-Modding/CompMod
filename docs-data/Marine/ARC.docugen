@@ -1,5 +1,0 @@
-#Marine.ARCs
-!kARCHealth, description=health, format=Number
-!kARCArmor, description=armor, format=Number
-!kARCDeployedHealth, description=deployed health, format=Number
-Commanders can only create a maximum of {{kMaxARCs}} ARCs

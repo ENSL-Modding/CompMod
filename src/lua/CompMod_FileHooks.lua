@@ -1,5 +1,7 @@
 g_compModRevision = 30
-g_compModBeta = 0
+g_compModBuildString = "CompMod Revision " .. g_compModRevision
+
+-- Place your filehooks here
 
 -- Bots
 ModLoader.SetupFileHook("lua/bots/LerkBrain_Data.lua", "lua/CompMod/Bots/LerkBrain_Data.lua", "post")
