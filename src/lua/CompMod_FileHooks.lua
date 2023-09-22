@@ -1,5 +1,19 @@
-g_compModRevision = 30
-g_compModBuildString = "CompMod Revision " .. g_compModRevision
+local defaultConfig = {
+    revision = "0",
+    build_tag = "dev"
+}
+
+g_compModConfig = {}
+
+local filepath = "game://configs/CompMod.json"
+if GetFileExists(filepath) then
+    local configFile = io.open(filepath)
+    g_compModConfig = json.decode(configFile:read("*all"))
+    io.close(configFile)
+else
+    g_compModConfig = defaultConfig
+    print("Warn: Using default config for CompMod")
+end
 
 -- Place your filehooks here
 
