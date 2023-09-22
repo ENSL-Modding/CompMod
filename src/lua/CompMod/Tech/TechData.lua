@@ -90,7 +90,7 @@ local function GetTechToAdd()
 end
 
 local function GetTechToChange()
-    local tunnelExtents = {[kTechDataMaxExtents] = Vector(1.2, 1.2, 1.2)}
+    local tunnelExtents = {[kTechDataMaxExtents] = Vector(1.2, 0.5, 1.2)}
     return {
         [kTechId.BuildTunnelEntryOne] = tunnelExtents,
         [kTechId.BuildTunnelEntryTwo] = tunnelExtents,
