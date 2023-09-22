@@ -1,13 +1,13 @@
 local kCompModRevisionKey = "compmod_revision"
 local kChangeLogTitle = "NSL Competitive Mod"
 local kChangeLogURL = "https://enslcompmod.github.io/CompMod/changelog"
-local kChangeLogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision" .. g_compModRevision .. ".html"
+local kChangeLogDetailURL = "https://enslcompmod.github.io/CompMod/revisions/revision%s.html"
 
 local function showChangeLog(withDetail)
     withDetail = withDetail or false
     local url
     if withDetail then
-        url = kChangeLogDetailURL
+        url = string.format(kChangeLogDetailURL, g_compModConfig.revision)
     else
         url = kChangeLogURL
     end
@@ -26,8 +26,8 @@ function Player:OnInitLocalClient()
     oldOnInitLocalClient(self)
 
     local oldRevision = Client.GetOptionInteger(kCompModRevisionKey, -1)
-    if g_compModRevision > oldRevision  then
-        Client.SetOptionInteger(kCompModRevisionKey, g_compModRevision)
+    if g_compModConfig.revision > oldRevision  then
+        Client.SetOptionInteger(kCompModRevisionKey, g_compModConfig.revision)
         showChangeLog(true)
     end
 end
